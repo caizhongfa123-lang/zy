@@ -301,6 +301,11 @@ main{padding:6px 0 40px}
 .raid-skill u{text-decoration:none;font-size:11.5px;color:var(--muted)}
 .raid-skill .rs-tip{flex-basis:100%;font-style:normal;font-size:11.5px;color:var(--muted);line-height:1.5}
 .hud-sk span{color:var(--accent)}
+.hud-rad{border-color:#3f8f56;background:rgba(24,54,34,.72)}
+.hud-rad span{color:#8ef2a0;font-weight:800}
+.hud-rad u{color:#7fd694}
+.raid-map.rad{border-color:#3f8f56}
+.raid-map.rad.on{border-color:var(--accent)}
 .raid-map-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:11px}
 .raid-map{
   background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px;text-align:left;
@@ -369,6 +374,8 @@ main{padding:6px 0 40px}
 .raid-tip.on{opacity:1}
 .raid-act{display:flex;gap:7px;pointer-events:auto}
 .raid-act .mini-btn{min-height:44px;font-size:13px;padding:8px 13px}
+.mini-btn.skill{background:var(--accent);border:1px solid var(--accent);color:#12160f;font-weight:800}
+.mini-btn.skill.cd{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:700}
 .joy{
   position:absolute;width:110px;height:110px;border-radius:50%;border:2px solid rgba(255,255,255,.22);
   background:rgba(255,255,255,.05);display:none;touch-action:none
@@ -490,6 +497,9 @@ main{padding:6px 0 40px}
 .op-card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px}
 .op-card.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent-soft) inset}
 .op-card.prev{border-style:dashed;border-color:var(--muted)}
+.op-act{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-size:11px;line-height:1.55;color:var(--muted)}
+.op-act b{display:block;color:var(--accent);font-weight:800;margin-bottom:2px}
+.op-act span{display:block}
 .op-head{display:flex;align-items:center;gap:9px;margin-bottom:8px}
 .op-av{
   flex:none;width:52px;height:52px;border-radius:12px;overflow:hidden;cursor:pointer;
@@ -781,7 +791,7 @@ main{padding:6px 0 40px}
       <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.6v5.9c0 4.8 3.1 8.9 7.5 10.5 4.4-1.6 7.5-5.7 7.5-10.5V5.6L12 2.5z"/><path d="M8.6 12.1l2.5 2.5 4.4-4.6"/></svg>
       <div>
         <div class="brand-name">数学作战台</div>
-        <div class="brand-sub">Operation Math · v<span id="appVerTop">1.0.0</span></div>
+        <div class="brand-sub">Operation Math · v<span id="appVerTop">1.1.0</span></div>
       </div>
     </div>
     <div class="wallet">
@@ -848,7 +858,7 @@ main{padding:6px 0 40px}
       <div id="logList"></div>
     </div>
     <div class="app-foot">
-      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">1.0.0</span></b></div>
+      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">1.1.0</span></b></div>
       <div class="app-foot-sub">上次更新：<span id="appDateHome">2026-10-11</span> · 想知道当前是什么版本，看这里就行</div>
     </div>
   </section>
@@ -1023,14 +1033,14 @@ main{padding:6px 0 40px}
       <div class="panel-title" style="margin:12px 0 8px"><span class="bar"></span>干员皮肤<small id="skinCount"></small></div>
       <div class="op-skin-row" id="opSkinRow"></div>
       <div class="op-grid" id="opGrid"></div>
-      <div class="radio-tip" style="margin-top:8px">点干员头像看立绘；招募后点「出战」生效加成。<b>每位干员都带一个「行动技能」</b>：出战后进「行动 · 枪战」会自动生效（加伤害、加移速、回血、减伤等）。<b>每个人物都是画出来的</b>——立绘下面那张「战场形象」就是他在枪战里跑动的样子（从头顶往下看）：8 位干员的体型、头盔、面罩、背后装备各不相同，谁是谁一眼能认出来。皮肤买一次全队通用，换的是整套配色，选哪套小人就穿哪套上场。</div>
+      <div class="radio-tip" style="margin-top:8px">点干员头像看立绘；招募后点「出战」生效加成。<b>每位干员都带一个「行动技能」</b>：出战后进「行动 · 枪战」会自动生效（加伤害、加移速、回血、减伤等）。<b>每位干员还带两个「主动技能」</b>——进图后按 <b>G</b> / <b>C</b> 释放（手机点右下角两个技能按钮），放完要等冷却。<b>每个人物都是画出来的</b>——立绘下面那张「战场形象」就是他在枪战里跑动的样子（从头顶往下看）：8 位干员的体型、头盔、面罩、背后装备各不相同，谁是谁一眼能认出来。皮肤买一次全队通用，换的是整套配色，选哪套小人就穿哪套上场。</div>
     </div>
   </section>
   <section class="view" id="view-raid">
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>行动准备<small id="raidPrepNote"></small></div>
       <div class="raid-map-grid" id="raidMapList"></div>
-      <div class="radio-tip" style="margin-bottom:11px"><b>六张地图各有各的地貌</b>，卡片上那张缩略图就是进图后脚下的样子：<b>零号大坝</b>是混凝土坝板（板缝 + 四角螺栓 + 排水孔），<b>长弓溪谷</b>是林地草皮（草簇 + 泥土斑），<b>巴克什</b>是城区柏油街面（人行道砖 + 黄色路标线），<b>潮汐监狱</b>是石板院子（十字缝 + 排水格栅），<b>航天基地</b>是发射场跑道（混凝土板 + 白色导引虚线 + 黄黑警示带），<b>大战场</b>是泥地车辙（弹坑 + 积水）。墙体材质、路边摆件（油桶 / 树丛 / 街灯 / 探照灯 / 雷达 / 沙袋）、角落大件（集装箱 / 汽车 / 燃料罐 / 哨塔 / 弹药库）也都按地图各换一套，右上角小地图同样按主题上色。</div>
+      <div class="radio-tip" style="margin-bottom:11px"><b>七张地图各有各的地貌</b>，卡片上那张缩略图就是进图后脚下的样子：<b>零号大坝</b>是混凝土坝板（板缝 + 四角螺栓 + 排水孔），<b>长弓溪谷</b>是林地草皮（草簇 + 泥土斑），<b>巴克什</b>是城区柏油街面（人行道砖 + 黄色路标线），<b>潮汐监狱</b>是石板院子（十字缝 + 排水格栅），<b>航天基地</b>是发射场跑道（混凝土板 + 白色导引虚线 + 黄黑警示带），<b>AZ3 核电站</b>是反应堆厂区水泥板（板缝 + 螺栓，地上还铺着几圈发绿光的核辐射区），<b>大战场</b>是泥地车辙（弹坑 + 积水）。墙体材质、路边摆件（油桶 / 树丛 / 街灯 / 探照灯 / 雷达 / 沙袋）、角落大件（集装箱 / 汽车 / 燃料罐 / 哨塔 / 弹药库）也都按地图各换一套，右上角小地图同样按主题上色。</div>
       <div class="raid-mate" id="raidMate" style="display:none"></div>
       <div class="raid-cost" id="raidCost"></div>
       <div class="raid-skill" id="raidSkill"></div>
@@ -1066,7 +1076,7 @@ main{padding:6px 0 40px}
     </div>
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>行动须知</div>
-      <div class="radio-tip">进场要交哈夫币入场费。<b>阵亡惩罚</b>：阵亡时带进图的<b>枪和防弹衣都会当场掉落丢失</b>（自动退回 M9 手枪和战术背心），想再带就得回军火库重新采购；而<b>成功撤离或主动撤离只结算物资、装备能保住</b>，所以血少了就果断往绿色撤离点跑。大战场是无限复活模式，阵亡不掉装备。地图里散布物资箱，站上去会自动开箱；打死的敌人也会掉东西。把物资背到绿色「撤离点」站满 3 秒才算成功带走；阵亡或超时，这一趟的物资全部丢失。<b>长弓溪谷的河道与攻击艇</b>：「长弓溪谷」地图中间横着一条蓝色的「长弓溪」，<b>涉水移动会变慢</b>（大约七成速度），水面上有三座褐色木桥，走桥上不减速；溪边停着一艘<b>攻击艇</b>——走到艇旁按 E（手机端点右下角「上艇」）登艇，WASD 驾驶，艇只能在溪水里开、上不了岸；按住左键 / 空格发射<b>舰炮</b>，炮弹是<b>范围伤害</b>，一发就能轰掉一小片敌人，弹舱 6 发、打空按 R（或点「换弹」）装填。敌人打你时先掉艇的血，艇被打爆会把你掀进水里并掉一点血，所以别硬顶着火力往前冲；想下艇随时按 E。<b>钓鱼赚币（河边找老渔夫拿鱼竿）</b>：在「长弓溪谷」沿着河道走，河岸边站着一位特殊 NPC「<b>老渔夫</b>」——走到他旁边按 E（手机点右下角「和 老渔夫 交谈」）聊两句，他会送你一根<b>鱼竿</b>（每个账号只需拿一次，永久有效）。有了鱼竿，站在<b>任何水边</b>——长弓溪的河边，或者<b>每张地图都有的小水塘</b>边——按 F 就能抛竿（手机点「钓 N 条」按钮）；鱼漂沉下去的那一瞬间<b>再按一次 F 提竿</b>，手慢了鱼就跑了。抛竿的时候<b>别走动、别开枪</b>，不然会惊跑鱼。钓上来的鱼会直接放进补给站的「<b>渔获鱼篓</b>」，不会因为阵亡丢失，去补给站点「一键卖光鱼篓」就能换成哈夫币。鱼的档次跟着地图难度走：零号大坝多是鲫鱼，航天基地容易上大青鱼、金鳞锦鲤（一条值 620）。每次行动最多钓 6 条。<b>刷卡房间</b>：每张地图有金色描边的上锁房间（零号大坝 1 间、长弓溪谷 2 间、巴克什 3 间、潮汐监狱 3 间、航天基地 3 间），门卡可以直接开（击倒敌人、开箱子有概率掉门卡）；没有门卡就在门口答对 5 道数学题应急解锁，答错的题自动录入错题本。房间可能是惊喜物资库，也可能是陷阱或伏兵。电脑端走到门口按 E 开门。<b>大战场</b>是占领模式：没有物资箱、没有刷卡房间，站到 A / B / C 三个蓝色据点圈里、把敌人清出圈外就能推进占领；占领一个据点 +40 哈夫币，并且它就成了你的复活点——阵亡后 3 秒原地满血复活，无限次不结束，抢下全部 3 个据点即获胜（入场 180 哈夫币）。出发前可以在上面选一个「搭档账号」，它会作为强力队友和你一起作战；还没有第二个账号的话，点「＋ 立即新建搭档账号」一键建一个就行。<b>干员技能</b>：在「电台 · 干员」页招募并点「出战」后，这位干员的<b>行动技能</b>会在枪战里全程生效——红狼加速、威龙加伤害、牧羊人额外减伤、蜂医自动回血、蛊加生命上限、露娜提升开箱品质、骇爪门卡掉率翻倍、乌鲁鲁击杀额外给币。<b>注意：现在战场难度 ×2</b>——所有敌人的血量和伤害都翻了一倍；<b>物价也 ×3</b>——武器、装具、干员、皮肤、补给站和入场费全部是 3 倍价，想买东西就得多在训练场答题赚哈夫币。<b>两把新枪</b>：AA-12 连发散弹枪按住左键就能全自动连喷，一枪喷出六颗弹丸，贴脸最猛；M134 加特林弹链无限、<b>永不需要换弹</b>，射速拉满但单发伤害低、弹道偏散，适合中近距离一路压着打。<b>AWM「A 大」狙击枪</b>：栓动重狙，打中普通敌人<b>一枪一个</b>直接送走，但 <b>BOSS 打不死</b>——只会掉一大截血，拉栓慢，必须站稳了再瞄。<b>航天基地</b>是新增的顶级地图：发射场跑道开阔、掩体稀少、火力最猛，BOSS「老太」坐镇发射控制中心，打倒她可拿 180 哈夫币和 3 件稀缺物资，A 大在这里最好用。<b>近战刀与武器外观</b>：军火库下面新加了「近战军械」和「武器外观」两块。近战刀进图后按 <b>1</b> 端枪、按 <b>2</b> 拔刀（手机点右下角「切刀 / 切枪」按钮，键盘 <b>Q</b> 也能快速切换）；<b>拔刀的那一刻，手里这把刀会被直接画在角色身上</b>，挥刀时还会扫出一道刀光。刀不用换弹、可以一直砍，但必须贴到敌人身边才够得着——开山砍刀一刀能去半管血，武士刀「鬼切」普通敌人一刀一个（BOSS 砍不死但吃满伤害），军用工兵铲扇形最宽、被围住时最好用；弹匣打空或者摸到敌人背后时，切刀比站着换弹划算。枪皮和刀皮买一次永久生效、全枪全刀通用：装备哪款，进图后手里的枪和刀就是哪款涂装，点一下就能换。</div>
+      <div class="radio-tip">进场要交哈夫币入场费。<b>阵亡惩罚</b>：阵亡时带进图的<b>枪和防弹衣都会当场掉落丢失</b>（自动退回 M9 手枪和战术背心），想再带就得回军火库重新采购；而<b>成功撤离或主动撤离只结算物资、装备能保住</b>，所以血少了就果断往绿色撤离点跑。大战场是无限复活模式，阵亡不掉装备。地图里散布物资箱，站上去会自动开箱；打死的敌人也会掉东西。把物资背到绿色「撤离点」站满 3 秒才算成功带走；阵亡或超时，这一趟的物资全部丢失。<b>长弓溪谷的河道与攻击艇</b>：「长弓溪谷」地图中间横着一条蓝色的「长弓溪」，<b>涉水移动会变慢</b>（大约七成速度），水面上有三座褐色木桥，走桥上不减速；溪边停着一艘<b>攻击艇</b>——走到艇旁按 E（手机端点右下角「上艇」）登艇，WASD 驾驶，艇只能在溪水里开、上不了岸；按住左键 / 空格发射<b>舰炮</b>，炮弹是<b>范围伤害</b>，一发就能轰掉一小片敌人，弹舱 6 发、打空按 R（或点「换弹」）装填。敌人打你时先掉艇的血，艇被打爆会把你掀进水里并掉一点血，所以别硬顶着火力往前冲；想下艇随时按 E。<b>钓鱼赚币（河边找老渔夫拿鱼竿）</b>：在「长弓溪谷」沿着河道走，河岸边站着一位特殊 NPC「<b>老渔夫</b>」——走到他旁边按 E（手机点右下角「和 老渔夫 交谈」）聊两句，他会送你一根<b>鱼竿</b>（每个账号只需拿一次，永久有效）。有了鱼竿，站在<b>任何水边</b>——长弓溪的河边，或者<b>每张地图都有的小水塘</b>边——按 F 就能抛竿（手机点「钓 N 条」按钮）；鱼漂沉下去的那一瞬间<b>再按一次 F 提竿</b>，手慢了鱼就跑了。抛竿的时候<b>别走动、别开枪</b>，不然会惊跑鱼。钓上来的鱼会直接放进补给站的「<b>渔获鱼篓</b>」，不会因为阵亡丢失，去补给站点「一键卖光鱼篓」就能换成哈夫币。鱼的档次跟着地图难度走：零号大坝多是鲫鱼，航天基地容易上大青鱼、金鳞锦鲤（一条值 620）。每次行动最多钓 6 条。<b>刷卡房间</b>：每张地图有金色描边的上锁房间（零号大坝 1 间、长弓溪谷 2 间、巴克什 3 间、潮汐监狱 3 间、航天基地 3 间、AZ3 核电站 3 间），门卡可以直接开（击倒敌人、开箱子有概率掉门卡）；没有门卡就在门口答对 5 道数学题应急解锁，答错的题自动录入错题本。房间可能是惊喜物资库，也可能是陷阱或伏兵。电脑端走到门口按 E 开门。<b>大战场</b>是占领模式：没有物资箱、没有刷卡房间，站到 A / B / C 三个蓝色据点圈里、把敌人清出圈外就能推进占领；占领一个据点 +40 哈夫币，并且它就成了你的复活点——阵亡后 3 秒原地满血复活，无限次不结束，抢下全部 3 个据点即获胜（入场 180 哈夫币）。出发前可以在上面选一个「搭档账号」，它会作为强力队友和你一起作战；还没有第二个账号的话，点「＋ 立即新建搭档账号」一键建一个就行。<b>干员技能</b>：在「电台 · 干员」页招募并点「出战」后，这位干员的<b>行动技能</b>会在枪战里全程生效——红狼加速、威龙加伤害、牧羊人额外减伤、蜂医自动回血、蛊加生命上限、露娜提升开箱品质、骇爪门卡掉率翻倍、乌鲁鲁击杀额外给币。另外每位干员还带两个<b>主动技能</b>——进图后按 <b>G</b> / <b>C</b> 释放（手机点右下角两个技能按钮），放完进冷却：红狼「肾上腺素 / 三连手炮」、威龙「喷气背包 / 磁吸炸弹」、牧羊人「破片手雷 / 定时炸弹」、乌鲁鲁「RPG 火箭弹 / 燃烧弹」、蜂医「医疗无人机 / 激素枪」、蛊「毒气弹 / 电磁脉冲」、露娜「电箭 / 手雷」、骇爪「飞刀 / 敌人探测器」。<b>注意：现在战场难度 ×2</b>——所有敌人的血量和伤害都翻了一倍；<b>物价也 ×3</b>——武器、装具、干员、皮肤、补给站和入场费全部是 3 倍价，想买东西就得多在训练场答题赚哈夫币。<b>两把新枪</b>：AA-12 连发散弹枪按住左键就能全自动连喷，一枪喷出六颗弹丸，贴脸最猛；M134 加特林弹链无限、<b>永不需要换弹</b>，射速拉满但单发伤害低、弹道偏散，适合中近距离一路压着打。<b>AWM「A 大」狙击枪</b>：栓动重狙，打中普通敌人<b>一枪一个</b>直接送走，但 <b>BOSS 打不死</b>——只会掉一大截血，拉栓慢，必须站稳了再瞄。<b>航天基地</b>是新增的顶级地图：发射场跑道开阔、掩体稀少、火力最猛，BOSS「老太」坐镇发射控制中心，打倒她可拿 180 哈夫币和 3 件稀缺物资，A 大在这里最好用。<b>AZ3 核电站 · 核辐射</b>是新增的地图：厂区地上铺着好几片发绿光的<b>核辐射区</b>——站进去会持续掉血，而且<b>护甲和减伤都挡不住</b>，只能绕开或者一口气冲过去；右上角小地图上也用绿圈标了位置；辐射圈里还额外埋着高价值物资箱，想拿就得进去扛几秒。厂区里有「反应堆控制室」「汽轮机房」「废料库」三间加锁房间，冷却水池也能钓鱼。<b>近战刀与武器外观</b>：军火库下面新加了「近战军械」和「武器外观」两块。近战刀进图后按 <b>1</b> 端枪、按 <b>2</b> 拔刀（手机点右下角「切刀 / 切枪」按钮，键盘 <b>Q</b> 也能快速切换）；<b>拔刀的那一刻，手里这把刀会被直接画在角色身上</b>，挥刀时还会扫出一道刀光。刀不用换弹、可以一直砍，但必须贴到敌人身边才够得着——开山砍刀一刀能去半管血，武士刀「鬼切」普通敌人一刀一个（BOSS 砍不死但吃满伤害），军用工兵铲扇形最宽、被围住时最好用；弹匣打空或者摸到敌人背后时，切刀比站着换弹划算。枪皮和刀皮买一次永久生效、全枪全刀通用：装备哪款，进图后手里的枪和刀就是哪款涂装，点一下就能换。</div>
     </div>
   </section>
   <div class="footnote">
@@ -1089,6 +1099,7 @@ main{padding:6px 0 40px}
       <div class="hud" id="raidBoatHud" style="display:none"><u>攻击艇</u> <span id="raidBoatTxt">—</span></div>
       <div class="hud" id="raidFishHud" style="display:none"><u>鱼篓</u> <span id="raidFishTxt">—</span></div>
       <div class="hud hud-sk" id="raidSkillHud" style="display:none"><u>干员</u> <span id="raidSkillTxt">—</span></div>
+      <div class="hud hud-rad" id="raidRadHud" style="display:none"><u>辐射</u> <span id="raidRadTxt">—</span></div>
       <div class="hud"><u>倒计时</u> <span id="raidTime">150</span>s</div>
       <div class="hud"><u>击杀</u> <span id="raidKills">0</span></div>
       <div class="raid-act" style="margin-left:auto">
@@ -1099,6 +1110,8 @@ main{padding:6px 0 40px}
     <div class="raid-ui bot">
       <div class="hud" id="raidHint">WASD 移动 · 鼠标瞄准 · 按住左键开火 · R 换弹</div>
       <div class="raid-act">
+        <button class="mini-btn skill" id="btnRaidSkG" type="button" style="display:none">技能 G</button>
+        <button class="mini-btn skill" id="btnRaidSkC" type="button" style="display:none">技能 C</button>
         <button class="mini-btn door" id="btnRaidBoat" type="button" style="display:none">上艇</button>
         <button class="mini-btn door" id="btnRaidNpc" type="button" style="display:none">交谈</button>
         <button class="mini-btn door" id="btnRaidFish" type="button" style="display:none">钓鱼</button>
@@ -1125,7 +1138,7 @@ main{padding:6px 0 40px}
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '1.0.0';
+  var APP_VER = '1.1.0';
   var APP_DATE = '2026-10-11';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
@@ -4896,32 +4909,69 @@ main{padding:6px 0 40px}
 
   /* ================= 干员档案（招募 → 出战 → 战术加成生效） ================= */
   /* raid = 该干员在「行动 · 枪战」里生效的战斗技能；未出战时全部不生效 */
+  /* act = 出战干员的两个「主动技能」，进图后按 G / C 释放（手机点右下角两个技能按钮） */
   var OPS = [
     { id: 'redwolf', code: '红狼', name: '凯·席尔瓦', role: '突击', rk: 'assault', price: 380, skill: '动力外骨骼',
       bType: 'coinPerRight', bVal: 2, desc: '每次答对额外 +2 哈夫币',
-      raid: { spdMul: 1.25 }, raidTxt: '行动中移动速度 +25%，跑图拉扯更灵活', hx: 'dome', ms: 'half', acc: ['exo'] },
+      raid: { spdMul: 1.25 }, raidTxt: '行动中移动速度 +25%，跑图拉扯更灵活',
+      act: [
+        { k: 'g', id: 'speed', name: '肾上腺素', cd: 30, desc: '24 秒内移速再 +60%，转点、冲脸、跑毒都好用' },
+        { k: 'c', id: 'triple', name: '三连手炮', cd: 12, desc: '连发三发手炮，每发都是小范围爆炸' }
+      ], hx: 'dome', ms: 'half', acc: ['exo'] },
     { id: 'dragon', code: '威龙', name: '王宇昊', role: '突击', rk: 'assault', price: 520, skill: '动能辅助系统',
       bType: 'ticketEvery', bVal: 3, desc: '连击满 3 题就得 1 张搜刮券（默认 5 题）',
-      raid: { dmgMul: 1.25 }, raidTxt: '行动中子弹伤害 +25%，同样的枪更疼', hx: 'visor', ms: 'half', acc: ['mic'] },
+      raid: { dmgMul: 1.25 }, raidTxt: '行动中子弹伤害 +25%，同样的枪更疼',
+      act: [
+        { k: 'g', id: 'dash', name: '喷气背包', cd: 8, desc: '朝准心方向瞬间喷气冲刺，穿过火力网拉开距离' },
+        { k: 'c', id: 'magnet', name: '磁吸炸弹', cd: 14, desc: '投出的炸弹会自己吸向最近的敌人，贴上再炸' }
+      ], hx: 'visor', ms: 'half', acc: ['mic'] },
     { id: 'shepherd', code: '牧羊人', name: '泰瑞·缪萨', role: '工程', rk: 'engineer', price: 460, skill: '速凝掩体与维修',
       bType: 'sellBonus', bVal: 0.25, desc: '出售物资多拿 25% 哈夫币',
-      raid: { redAdd: 0.12 }, raidTxt: '行动中额外减伤 12%，和防弹衣叠加', hx: 'dome', ms: 'gog', acc: ['tool'] },
+      raid: { redAdd: 0.12 }, raidTxt: '行动中额外减伤 12%，和防弹衣叠加',
+      act: [
+        { k: 'g', id: 'grenade', name: '破片手雷', cd: 12, desc: '朝准心扔出手雷，落地一两秒后爆炸，范围伤害' },
+        { k: 'c', id: 'timed', name: '定时炸弹', cd: 18, desc: '在脚下埋一颗定时炸弹，3 秒后大范围爆炸' }
+      ], hx: 'dome', ms: 'gog', acc: ['tool'] },
     { id: 'uluru', code: '乌鲁鲁', name: '大卫·费莱尔', role: '工程', rk: 'engineer', price: 600, skill: '巡飞弹与燃烧弹',
       bType: 'wrongRefund', bVal: 3, desc: '答错返还 3 哈夫币，错题不白丢',
-      raid: { killCoin: 10 }, raidTxt: '行动中每击倒 1 名敌人额外 +10 哈夫币', hx: 'cap', ms: 'half', acc: ['missile'] },
+      raid: { killCoin: 10 }, raidTxt: '行动中每击倒 1 名敌人额外 +10 哈夫币',
+      act: [
+        { k: 'g', id: 'rpg', name: 'RPG 火箭弹', cd: 16, desc: '打出一发火箭弹，命中就是一大片爆炸' },
+        { k: 'c', id: 'fire', name: '燃烧弹', cd: 15, desc: '扔出燃烧弹，落点烧成火海，持续烧灼敌人' }
+      ], hx: 'cap', ms: 'half', acc: ['missile'] },
     { id: 'stinger', code: '蜂医', name: '罗伊·斯米', role: '支援', rk: 'support', price: 400, skill: '激素枪',
       bType: 'hintCost', bVal: 5, desc: '战术提示只要 5 哈夫币（单价减半）',
-      raid: { regen: 1.6 }, raidTxt: '行动中每秒自动回血 1.6 点，不用等医疗包', hx: 'visor', ms: 'gog', acc: ['cross'] },
+      raid: { regen: 1.6 }, raidTxt: '行动中每秒自动回血 1.6 点，不用等医疗包',
+      act: [
+        { k: 'g', id: 'heal', name: '医疗无人机', cd: 20, desc: '放出医疗无人机，立刻回复 50 点生命' },
+        { k: 'c', id: 'drug', name: '激素枪', cd: 24, desc: '给自己来一针，8 秒内移速 +30%、减伤 +25%' }
+      ], hx: 'visor', ms: 'gog', acc: ['cross'] },
     { id: 'gu', code: '蛊', name: '佐娅·庞琴科娃', role: '支援', rk: 'support', price: 640, skill: '神经振奋剂',
       bType: 'keepCombo', bVal: 1, desc: '答错不清零连击，连击能一直攒',
-      raid: { hpAdd: 50 }, raidTxt: '行动中生命上限 +50（100 → 150），更抗打', hx: 'hood', ms: 'full', acc: ['pack'] },
+      raid: { hpAdd: 50 }, raidTxt: '行动中生命上限 +50（100 → 150），更抗打',
+      act: [
+        { k: 'g', id: 'poison', name: '毒气弹', cd: 16, desc: '扔出毒气弹，落点散成毒雾，站在里面的敌人持续掉血' },
+        { k: 'c', id: 'emp', name: '电磁脉冲', cd: 22, desc: '以自身为中心放电，击退并瘫痪周围敌人 3 秒' }
+      ], hx: 'hood', ms: 'full', acc: ['pack'] },
     { id: 'luna', code: '露娜', name: '金卢娜', role: '侦察', rk: 'scout', price: 560, skill: '侦察箭矢',
       bType: 'luck', bVal: 2, desc: '搜刮时稀有 / 传说 / 绝密概率翻倍',
-      raid: { lootAdd: 0.8 }, raidTxt: '行动中开箱物资品质大幅提升，更容易出红卡', hx: 'hood', ms: 'gog', acc: ['bow'] },
+      raid: { lootAdd: 0.8 }, raidTxt: '行动中开箱物资品质大幅提升，更容易出红卡',
+      act: [
+        { k: 'g', id: 'bolt', name: '电箭', cd: 11, desc: '射出带电箭矢，命中后电弧会跳向附近两个敌人' },
+        { k: 'c', id: 'grenade', name: '手雷', cd: 12, desc: '朝准心扔出手雷，落地一两秒后爆炸，范围伤害' }
+      ], hx: 'hood', ms: 'gog', acc: ['bow'] },
     { id: 'hacker', code: '骇爪', name: '麦晓雯', role: '侦察', rk: 'scout', price: 720, skill: '信号破译器',
       bType: 'redBonus', bVal: 2, desc: '卖出的绝密物资（红色）价格翻倍',
-      raid: { cardMul: 2, boxSpeed: 1.8 }, raidTxt: '行动中门卡掉率翻倍、开箱速度快 80%', hx: 'cap', ms: 'half', acc: ['antenna'] }
+      raid: { cardMul: 2, boxSpeed: 1.8 }, raidTxt: '行动中门卡掉率翻倍、开箱速度快 80%',
+      act: [
+        { k: 'g', id: 'knives', name: '飞刀', cd: 9, desc: '一口气甩出三把飞刀，直接扎穿面前的敌人' },
+        { k: 'c', id: 'scan', name: '敌人探测器', cd: 20, desc: '8 秒内全场敌人被标记，隔着掩体也看得见' }
+      ], hx: 'cap', ms: 'half', acc: ['antenna'] }
   ];
+  /* 主动技能槽位：0 = V 键，1 = C 键 */
+  var ACT_KEYS = ['g', 'c'];
+  function opActs(op) { return (op && op.act) ? op.act : []; }
+  function curActs() { return opActs(curOp()); }
   function opById(id) {
     for (var i = 0; i < OPS.length; i++) { if (OPS[i].id === id) { return OPS[i]; } }
     return null;
@@ -5042,6 +5092,14 @@ main{padding:6px 0 40px}
       r3.appendChild(make('em', '', op.raidTxt + '（枪战里生效）'));
       info.appendChild(r3);
     }
+    var acts1 = opActs(op), actTxt1 = [];
+    for (var ai1 = 0; ai1 < acts1.length; ai1++) { actTxt1.push(ACT_KEYS[ai1].toUpperCase() + ' ' + acts1[ai1].name); }
+    if (actTxt1.length) {
+      var r4 = make('div', 'op-hero-row');
+      r4.appendChild(make('span', '', '主动技能：'));
+      r4.appendChild(make('em', '', actTxt1.join(' / ') + '（进图按 G / C 释放，有冷却）'));
+      info.appendChild(r4);
+    }
     box.appendChild(info);
   }
   function buildSkinCard(sk) {
@@ -5086,6 +5144,15 @@ main{padding:6px 0 40px}
     card.appendChild(make('div', 'op-skill', '战术装备：' + op.skill));
     card.appendChild(make('div', 'op-bonus', op.desc));
     if (op.raidTxt) { card.appendChild(make('div', 'op-raid', '行动技能：' + op.raidTxt)); }
+    var acts0 = opActs(op);
+    if (acts0.length) {
+      var actBox = make('div', 'op-act');
+      actBox.appendChild(make('b', '', '主动技能（进图按 G / C，手机点右下角按钮）'));
+      for (var ai0 = 0; ai0 < acts0.length; ai0++) {
+        actBox.appendChild(make('span', '', ACT_KEYS[ai0].toUpperCase() + ' · ' + acts0[ai0].name + '：' + acts0[ai0].desc + '（冷却 ' + acts0[ai0].cd + ' 秒）'));
+      }
+      card.appendChild(actBox);
+    }
     var btn = make('button', 'mini-btn', owned ? (state.op === op.id ? '出战中' : '出战') : ('招募 ' + op.price + ' 币'));
     btn.type = 'button';
     if (!owned && state.coin < op.price) { btn.disabled = true; }
@@ -5531,10 +5598,13 @@ main{padding:6px 0 40px}
       bossEt: 4, bossName: '老太', bossCoin: 180, bossLoot: 3,
       tip: '空降「航天基地」：发射场跑道开阔、掩体少，火力比监狱更猛；BOSS「老太」守在发射控制中心，打倒她有重奖！这里的鱼最金贵，容易上大青鱼和金鳞锦鲤。',
       desc: '顶级禁区：发射场跑道开阔、掩体稀少，BOSS「老太」坐镇发射控制中心，绝密物资与红色门卡高发；水塘里的鱼也最贵' },
+    { id: 'az3', code: 'AZ3 核电站', fee: 340, enemies: 15, boxes: 10, edmg: 13, ehp: 68, qb: 2, limit: 195, rad: true,
+      tip: '潜入「AZ3 核电站」：厂区地上那几圈泛绿光的是「核辐射区」——站进去会持续掉血，护甲和减伤都挡不住，只能绕开或者一口气冲过去；右上角小地图上也用绿圈把位置标出来了。辐射圈里额外埋着高价值物资箱，想拿就得进去扛几秒。真东西在「反应堆控制室」「汽轮机房」「废料库」三间加锁房间里，水塘也能钓鱼。',
+      desc: '核泄漏禁区：厂区散布好几片核辐射区，进区持续掉血且无视护甲；辐射圈里额外埋着高价值物资箱，风险和收益一起拉满' },
     { id: 'war', code: '大战场', fee: 60, enemies: 22, boxes: 0, edmg: 9, ehp: 55, qb: 2, limit: 240, war: true,
       desc: '联机占领模式：带上搭档账号一起打，没有箱子和刷卡房，抢下 3 个据点就赢；阵亡不结束，3 秒后在最近的己方据点无限复活。战线中部有水塘，中场休息可以钓鱼' }
   ];
-  /* ================= 地图地貌主题：六张地图各有各的样子 ================= */
+  /* ================= 地图地貌主题：七张地图各有各的样子 ================= */
   /* 每张地图一套：地面双色 + 纹理图案 pat + 墙体材质 + 装饰物件（deco 纯装饰 / big 实体挡路） */
   var MAP_THEME = {
     dam: {
@@ -5578,6 +5648,13 @@ main{padding:6px 0 40px}
       wall: '#4a3e28', wallHi: '#665636', wallLo: '#2e2717', wallEdge: '#8f7949',
       deco: ['crater', 'helmet', 'wire', 'shell'], decoN: 84,
       big: ['sandbag', 'bunker'], bigN: 13
+    },
+    az3: {
+      land: '核电厂区', pat: 'slab', cell: 156, air: 'rgba(120,225,150,.05)',
+      g1: '#232b26', g2: '#1c231e', seam: 'rgba(150,236,168,.09)',
+      wall: '#3c4a41', wallHi: '#57685c', wallLo: '#27302b', wallEdge: '#82c295',
+      deco: ['cone', 'barrel', 'pipe', 'crack'], decoN: 56,
+      big: ['fueltank', 'container'], bigN: 11
     }
   };
   function mapTheme(map) {
@@ -5634,6 +5711,7 @@ main{padding:6px 0 40px}
     if (hh === undefined) { hh = r; }
     if (x - hw < 56 || y - hh < 56 || x + hw > Raid.W - 56 || y + hh > Raid.H - 56) { return false; }
     if (raidWallHit(x, y, r + 8)) { return false; }
+    if (radZoneAt(x, y)) { return false; }
     if (isWater(x, y) || waterInBox(x, y, hw, hh)) { return false; }
     for (i = 0; i < Raid.rooms.length; i++) {
       rr = Raid.rooms[i];
@@ -5724,6 +5802,11 @@ main{padding:6px 0 40px}
       { x: 830, y: 250, w: 255, h: 200, door: 'bottom', name: '燃料库' },
       { x: 350, y: 800, w: 265, h: 210, door: 'right', name: '总装车间' }
     ],
+    az3: [
+      { x: 1240, y: 200, w: 280, h: 215, door: 'left', name: '反应堆控制室' },
+      { x: 820, y: 250, w: 255, h: 200, door: 'bottom', name: '汽轮机房' },
+      { x: 360, y: 830, w: 265, h: 210, door: 'right', name: '废料库' }
+    ],
     war: []
   };
   /* 大战场：3 个占领据点（站在点上推进占领，占领后就是你的复活点） */
@@ -5765,8 +5848,41 @@ main{padding:6px 0 40px}
     bakesh: { name: '巴克什水塘', rect: { x: 1380, y: 900, w: 200, h: 150 } },
     prison: { name: '监狱水塘', rect: { x: 450, y: 700, w: 200, h: 150 } },
     space: { name: '发射场水塘', rect: { x: 1000, y: 950, w: 200, h: 150 } },
+    az3: { name: '冷却水池', rect: { x: 1430, y: 950, w: 200, h: 150 } },
     war: { name: '战线水塘', rect: { x: 1300, y: 960, w: 190, h: 145 } }
   };
+  /* AZ3 核电站：厂区里的核辐射区。站进圈里持续掉血，且「护甲和减伤都挡不住」。
+     辐射圈里还会额外埋高价值物资箱，想拿就得进去扛几秒。 */
+  var RADIATION_DEFS = {
+    az3: [
+      { x: 640, y: 600, r: 155, dps: 10, name: '一回路泄漏区' },
+      { x: 1150, y: 860, r: 150, dps: 12, name: '反应堆厂房热区' },
+      { x: 1520, y: 620, r: 140, dps: 9, name: '乏燃料暂存区' },
+      { x: 380, y: 300, r: 130, dps: 8, name: '废树脂暂存区' }
+    ]
+  };
+  function radZoneAt(x, y) {
+    var i, z, best = null;
+    for (i = 0; i < Raid.rad.length; i++) {
+      z = Raid.rad[i];
+      if (rlen(x, y, z.x, z.y) > z.r) { continue; }
+      if (!best || z.dps > best.dps) { best = z; }
+    }
+    return best;
+  }
+  /* 辐射圈和方框有没有交叠：铺墙体 / 撒装饰时要躲开辐射区（不然绿圈会盖在墙上） */
+  function radRectNear(bx, by, bw, bh, pad) {
+    var i, z, cx, cy, dx, dy, rr;
+    for (i = 0; i < Raid.rad.length; i++) {
+      z = Raid.rad[i];
+      cx = Math.max(bx, Math.min(z.x, bx + bw));
+      cy = Math.max(by, Math.min(z.y, by + bh));
+      dx = z.x - cx; dy = z.y - cy;
+      rr = z.r + (pad || 0);
+      if (dx * dx + dy * dy < rr * rr) { return true; }
+    }
+    return false;
+  }
   /* 鱼类：品质与物资共用一套色阶，越稀有的鱼卖得越贵 */
   var FISH_KINDS = [
     { n: '鲫鱼', q: 'white', p: 30 },
@@ -6015,6 +6131,17 @@ main{padding:6px 0 40px}
           o5.connect(g5); g5.connect(Sfx.gain);
           o5.start(st); o5.stop(st + 0.22);
         }
+      } else if (kind === 'geiger') {
+        /* 盖革计数器：一声很短的「嗒」（站在辐射区里会一直响） */
+        var o7 = c.createOscillator(), g7 = c.createGain();
+        o7.type = 'square';
+        o7.frequency.setValueAtTime(2300, t);
+        o7.frequency.exponentialRampToValueAtTime(1500, t + 0.02);
+        g7.gain.setValueAtTime(0.0001, t);
+        g7.gain.exponentialRampToValueAtTime(0.045, t + 0.002);
+        g7.gain.exponentialRampToValueAtTime(0.0001, t + 0.03);
+        o7.connect(g7); g7.connect(Sfx.gain);
+        o7.start(t); o7.stop(t + 0.034);
       }
     } catch (e) { /* 音频不可用时静默降级 */ }
   }
@@ -6028,6 +6155,10 @@ main{padding:6px 0 40px}
     allies: [], jailOn: false, jq: null, jailGate: null, jailRect: null,
     caps: [], dead: false, respawnT: 0, deaths: 0, capTipT: 0, warMate: '',
     sk: {}, mag: 0, regenAcc: 0, gearLost: [], boat: null, npc: null,
+    /* 干员主动技能（G / C）：冷却表 + 持续增益表 + 场上物件 */
+    acts: [], skCd: {}, skOn: {}, zones: [], mines: [], burst: null, jet: null, scanT: 0,
+    /* AZ3 核电站：核辐射区（站进去持续掉血，无视护甲）+ 已吃辐射量 */
+    rad: [], radIn: null, radDose: 0, radTick: 0, radFlash: 0,
     fish: null, fishGot: 0, fishCd: 0,
     bag: [], ex: null,
     slot: 0, knife: null, swT: 0, slash: 0,
@@ -6261,7 +6392,7 @@ main{padding:6px 0 40px}
     for (var i = 0; i < MAPS.length; i++) {
       var m = MAPS[i];
       var th = mapTheme(m);
-      var b = make('button', 'raid-map' + (state.map === m.id ? ' on' : ''));
+      var b = make('button', 'raid-map' + (state.map === m.id ? ' on' : '') + (m.rad ? ' rad' : ''));
       b.type = 'button';
       var thumb = make('div', 'raid-map-thumb');
       thumb.appendChild(mapThumbSvg(m, 0, 0));
@@ -6274,7 +6405,7 @@ main{padding:6px 0 40px}
       b.appendChild(make('i', '', '入场费 ' + m.fee + ' 哈夫币'));
       var meta = m.war
         ? ('难度 ×2 · 敌人 ' + m.enemies + ' · 占领据点 3 · 无限复活 · ' + Math.round(m.limit / 60) + ' 分钟 · 可联机')
-        : ('难度 ×2 · 敌人 ' + m.enemies + ' · 箱子 ' + m.boxes + ' · ' + Math.round(m.limit / 60) + ' 分钟' + (m.boss ? ' · BOSS ' + (m.bossName || '典狱长') : ''));
+        : ('难度 ×2 · 敌人 ' + m.enemies + ' · 箱子 ' + m.boxes + ' · ' + Math.round(m.limit / 60) + ' 分钟' + (m.boss ? ' · BOSS ' + (m.bossName || '典狱长') : '') + (m.rad ? ' · 核辐射区 ' + ((RADIATION_DEFS[m.id] || []).length) + ' 处' : ''));
       b.appendChild(make('u', '', meta));
       b.onclick = (function (id) { return function () { selectRaidMap(id); }; })(m.id);
       box.appendChild(b);
@@ -6356,7 +6487,7 @@ main{padding:6px 0 40px}
   /* 地图缩略图：卡片上直接看得出这张图长什么样（地貌配色 + 水塘/溪流 + 刷卡房 + 装饰点 + 撤离点） */
   function mapThumbSvg(m, w, h) {
     var th = mapTheme(m), i;
-    var W = m.id === 'war' ? 2000 : (m.id === 'space' ? 1960 : (m.id === 'bakesh' ? 1900 : (m.id === 'valley' || m.id === 'prison') ? 1800 : 1660));
+    var W = m.id === 'war' ? 2000 : (m.id === 'space' ? 1960 : (m.id === 'bakesh' || m.id === 'az3' ? 1900 : (m.id === 'valley' || m.id === 'prison') ? 1800 : 1660));
     var kx = 180 / W, ky = 108 / 1260;
     var s = svgEl('svg', { viewBox: '0 0 180 108', 'class': 'map-thumb', 'data-map': m.id, 'data-theme': th.land, 'data-pat': th.pat });
     s.mapId = m.id;            /* 供自检脚本读取：这张缩略图是哪张地图 */
@@ -6387,6 +6518,15 @@ main{padding:6px 0 40px}
     }
     if (pd) {
       s.appendChild(svgEl('rect', { x: (pd.rect.x * kx).toFixed(1), y: (pd.rect.y * ky).toFixed(1), width: Math.max(3, pd.rect.w * kx).toFixed(1), height: Math.max(3, pd.rect.h * ky).toFixed(1), fill: 'rgba(92,162,214,.8)', rx: '2' }));
+    }
+    /* AZ3 核电站：辐射区（绿圈，位置和进图后看到的一致） */
+    var rads = RADIATION_DEFS[m.id] || [];
+    for (i = 0; i < rads.length; i++) {
+      s.appendChild(svgEl('circle', {
+        cx: (rads[i].x * kx).toFixed(1), cy: (rads[i].y * ky).toFixed(1),
+        r: Math.max(2.5, rads[i].r * kx).toFixed(1),
+        fill: 'rgba(126,240,140,.22)', stroke: '#8ef2a0', 'stroke-width': '1'
+      }));
     }
     /* 装饰点：固定种子撒，和进图后看到的一致 */
     var rf = mulberry(mapSeed('thumb:' + m.id));
@@ -6730,6 +6870,7 @@ main{padding:6px 0 40px}
       y = rnd(70, Raid.H - 70);
       if (raidWallHit(x, y, 26)) { continue; }
       if (isWater(x, y)) { continue; }
+      if (radZoneAt(x, y)) { continue; }
       var ri3, inRoom = false;
       for (ri3 = 0; ri3 < Raid.rooms.length; ri3++) {
         var rr3 = Raid.rooms[ri3];
@@ -6745,7 +6886,7 @@ main{padding:6px 0 40px}
     return { x: 90, y: 90 };
   }
   function raidSetSize(map) {
-    Raid.W = map.id === 'war' ? 2000 : (map.id === 'space' ? 1960 : (map.id === 'bakesh' ? 1900 : (map.id === 'valley' || map.id === 'prison') ? 1800 : 1660));
+    Raid.W = map.id === 'war' ? 2000 : (map.id === 'space' ? 1960 : (map.id === 'bakesh' || map.id === 'az3' ? 1900 : (map.id === 'valley' || map.id === 'prison') ? 1800 : 1660));
     Raid.H = 1260;
   }
   /* 大战场联合作战：主账号带上的「另一个账号」 */
@@ -6773,6 +6914,13 @@ main{padding:6px 0 40px}
   }
   function raidBuild(map) {
     raidSetSize(map);
+    /* AZ3 核电站：先把辐射区铺好，后面的墙体 / 敌人 / 箱子都要避开它 */
+    Raid.rad = [];
+    var rdefs = RADIATION_DEFS[map.id] || [], rdi;
+    for (rdi = 0; rdi < rdefs.length; rdi++) {
+      var rdv = rdefs[rdi];
+      Raid.rad.push({ x: rdv.x, y: rdv.y, r: rdv.r, dps: rdv.dps, name: rdv.name, ph: rdi * 1.1 });
+    }
     var walls = [
       { x: 0, y: 0, w: Raid.W, h: 26 }, { x: 0, y: Raid.H - 26, w: Raid.W, h: 26 },
       { x: 0, y: 0, w: 26, h: Raid.H }, { x: Raid.W - 26, y: 0, w: 26, h: Raid.H }
@@ -6804,6 +6952,7 @@ main{padding:6px 0 40px}
       if (bx < 320 && by + bh > Raid.H - 320) { continue; }
       if (bx + bw > Raid.W - 320 && by < 320) { continue; }
       if (nearRiver(map, bx, by, bw, bh, 44)) { continue; }
+      if (radRectNear(bx, by, bw, bh, 30)) { continue; }
       if (Raid.jailRect && bx < Raid.jailRect.x + Raid.jailRect.w + 90 && by + bh > Raid.jailRect.y - 90 && by < Raid.jailRect.y + Raid.jailRect.h + 90 && bx + bw > Raid.jailRect.x - 90) { continue; }
       if (nearWarCap(bx + bw / 2, by + bh / 2, Math.max(bw, bh) / 2 + 150)) { continue; }
       var ok = true, k;
@@ -6870,7 +7019,7 @@ main{padding:6px 0 40px}
       var pos = raidFreeSpot(520);
       Raid.enemies.push({
         x: pos.x, y: pos.y, r: t.r, t: t, hp: ehpOf(map, t), max: ehpOf(map, t),
-        cd: rnd(0.8, 2.2), ang: 0, hit: 0, wa: rnd(0, 6.28), wander: 0
+        cd: rnd(0.8, 2.2), ang: 0, hit: 0, wa: rnd(0, 6.28), wander: 0, stun: 0
       });
     }
     /* 潮汐监狱：BOSS 典狱长 · 航天基地：BOSS 老太 */
@@ -6878,7 +7027,7 @@ main{padding:6px 0 40px}
       var bt = bossTypeOf(map), bp = raidFreeSpot(760);
       Raid.enemies.push({
         x: bp.x, y: bp.y, r: bt.r, t: bt, hp: ehpOf(map, bt), max: ehpOf(map, bt),
-        cd: 2.4, ang: 0, hit: 0, wa: rnd(0, 6.28), wander: 0
+        cd: 2.4, ang: 0, hit: 0, wa: rnd(0, 6.28), wander: 0, stun: 0
       });
     }
     /* 大战场：主账号 + 另一账号的搭档 + AI 队友 */
@@ -6925,6 +7074,22 @@ main{padding:6px 0 40px}
     for (i = 0; i < map.boxes; i++) {
       var cbp = raidFreeSpot(230);
       Raid.boxes.push({ x: cbp.x, y: cbp.y, prog: 0, open: false, id: i });
+    }
+    /* AZ3 核电站：辐射圈里另埋「热箱」——想拿就得进去扛几秒辐射 */
+    if (Raid.rad.length) {
+      var hotGot = 0;
+      for (i = 0; i < Raid.rad.length && hotGot < 2; i++) {
+        var rzc = Raid.rad[i], att = 0;
+        while (att < 30) {
+          att += 1;
+          var hbx = rzc.x + rnd(-rzc.r * 0.55, rzc.r * 0.55);
+          var hby = rzc.y + rnd(-rzc.r * 0.55, rzc.r * 0.55);
+          if (raidWallHit(hbx, hby, 30) || isWater(hbx, hby)) { continue; }
+          Raid.boxes.push({ x: hbx, y: hby, prog: 0, open: false, id: 200 + hotGot, hot: true });
+          hotGot += 1;
+          break;
+        }
+      }
     }
     /* 长弓溪谷：溪面上的攻击艇（可驾驶、可发射舰炮）+ 河岸边送鱼竿的老渔夫 */
     Raid.boat = null; Raid.npc = null;
@@ -6984,6 +7149,13 @@ main{padding:6px 0 40px}
     if (npcCanTalk()) { hb += ' · 按 E 和' + Raid.npc.name + '交谈'; }
     if (state.rod && fishLeft() > 0 && canFish()) { hb += ' · 按 F 抛竿钓鱼（本次还剩 ' + fishLeft() + ' 条）'; }
     if (isWater(Raid.p ? Raid.p.x : 0, Raid.p ? Raid.p.y : 0)) { hb += ' · 涉水中，移动变慢'; }
+    if (Raid.rad.length) { hb += ' · 地上的绿色圈是核辐射区，站进去持续掉血（护甲无效），绕开或快点穿过去'; }
+    var acts = Raid.acts || [];
+    if (acts.length) {
+      hb += Raid.touch
+        ? (' · 右下角两个技能按钮：' + acts[0].name + (acts[1] ? (' / ' + acts[1].name) : ''))
+        : (' · 按 G 放「' + acts[0].name + '」' + (acts[1] ? ('、按 C 放「' + acts[1].name + '」') : ''));
+    }
     return hb;
   }
   function raidResize() {
@@ -7031,6 +7203,12 @@ main{padding:6px 0 40px}
     raidSetSize(map);
     /* 出战干员的行动技能：进图时定好，整局生效 */
     Raid.sk = opRaid();
+    /* 出战干员的主动技能（G / C）：冷却和增益每局重置 */
+    Raid.acts = curActs();
+    Raid.skCd = {}; Raid.skOn = {};
+    Raid.zones = []; Raid.mines = []; Raid.burst = null; Raid.jet = null; Raid.scanT = 0;
+    /* AZ3 核电站：辐射区每局重铺（存在 Raid.rad 里，靠地图配的 RADIATION_DEFS） */
+    Raid.rad = []; Raid.radIn = null; Raid.radDose = 0; Raid.radTick = 0; Raid.radFlash = 0;
     Raid.regenAcc = 0;
     Raid.mag = Math.max(1, Math.round(gun.mag * raidSk('magMul', 1)));
     var pMax = 100 + raidSk('hpAdd', 0);
@@ -7640,8 +7818,8 @@ main{padding:6px 0 40px}
     if (firing) { boatShoot(); }
     if (Raid.keys.r || Raid.keys.R || Raid.keys.KeyR) { boatReload(); }
   }
-  function shellBlast(x, y, radius) {
-    var i, e, d, dd, rr = radius || 128;
+  function shellBlast(x, y, radius, dmg) {
+    var i, e, d, dd, rr = radius || 128, base = dmg || 120;
     Raid.shake = Math.min(Raid.shake + 5, 11);
     for (i = 0; i < 12; i++) {
       Raid.fx.push({ x: x, y: y, vx: rnd(-260, 260), vy: rnd(-260, 260), life: 0.36, max: 0.36, c: i % 3 ? '#ffb347' : '#ffe6a3' });
@@ -7651,7 +7829,7 @@ main{padding:6px 0 40px}
       if (e.hp <= 0) { continue; }
       d = rlen(x, y, e.x, e.y);
       if (d > rr) { continue; }
-      dd = 120 * (1 - d / (rr + 22));
+      dd = base * (1 - d / (rr + 22));
       if (dd <= 0) { continue; }
       e.hp -= dd;
       e.hit = 0.16;
@@ -7664,15 +7842,284 @@ main{padding:6px 0 40px}
     for (s = 0; s < steps; s++) {
       b.x += b.vx * dt / steps;
       b.y += b.vy * dt / steps;
-      if (b.x < 0 || b.y < 0 || b.x > Raid.W || b.y > Raid.H) { return true; }
-      if (raidWallHit(b.x, b.y, 3)) { shellBlast(b.x, b.y, b.splash); return true; }
+      if (b.x < 0 || b.y < 0 || b.x > Raid.W || b.y > Raid.H) { shellBlast(b.x, b.y, b.splash, b.dmg); return true; }
+      if (raidWallHit(b.x, b.y, 3)) { shellBlast(b.x, b.y, b.splash, b.dmg); return true; }
       for (i = 0; i < Raid.enemies.length; i++) {
         var e = Raid.enemies[i];
         if (e.hp <= 0) { continue; }
-        if (rlen(b.x, b.y, e.x, e.y) < e.r + 5) { shellBlast(b.x, b.y, b.splash); return true; }
+        if (rlen(b.x, b.y, e.x, e.y) < e.r + 5) { shellBlast(b.x, b.y, b.splash, b.dmg); return true; }
       }
     }
     return false;
+  }
+  /* ================= 干员主动技能（G / C） ================= */
+  /* 每个主动技能：按一下释放 → 进冷却 → 冷却走完才能再放。
+     效果全部复用现有系统（子弹 / 爆炸 / 区域持续伤害），不另开一套碰撞。 */
+  var EMP_R = 230;
+  function raidActCdLeft(idx) {
+    var a = Raid.acts[idx];
+    if (!a) { return 0; }
+    return Math.max(0, Raid.skCd[a.k] || 0);
+  }
+  /* 最近的活敌人（磁吸炸弹 / 电弧跳转用） */
+  function raidNearestEnemy(x, y, maxd) {
+    var i, e, d, best = null, bd = maxd || 1e9;
+    for (i = 0; i < Raid.enemies.length; i++) {
+      e = Raid.enemies[i];
+      if (e.hp <= 0) { continue; }
+      d = rlen(x, y, e.x, e.y);
+      if (d < bd) { bd = d; best = e; }
+    }
+    return best;
+  }
+  /* 场上区域（燃烧弹火海 / 毒气弹毒雾）：站在里面持续掉血 */
+  function raidAddZone(x, y, r, dur, dps, kind) {
+    Raid.zones.push({ x: x, y: y, r: r, t: dur, max: dur, dps: dps, kind: kind || 'fire', ph: 0 });
+  }
+  function raidZones(dt) {
+    var out = [], i, j, z, e;
+    for (i = 0; i < Raid.zones.length; i++) {
+      z = Raid.zones[i];
+      z.t -= dt;
+      z.ph += dt;
+      for (j = 0; j < Raid.enemies.length; j++) {
+        e = Raid.enemies[j];
+        if (e.hp <= 0) { continue; }
+        if (rlen(z.x, z.y, e.x, e.y) > z.r + e.r) { continue; }
+        e.hp -= z.dps * dt;
+        e.hit = 0.1;
+        if (e.hp <= 0) { raidKill(e); }
+      }
+      if (z.t > 0) { out.push(z); }
+    }
+    Raid.zones = out;
+  }
+  /* ---- AZ3 核电站：核辐射区 ----
+     走进绿圈持续掉血，而且「护甲和减伤都挡不住」——只能绕开或者一口气冲过去。
+     敌人穿防护服，不受辐射影响；辐射圈里另埋了高价值物资箱（想拿就得扛几秒）。 */
+  function raidRadStep(dt) {
+    var i, p = Raid.p, z;
+    if (!Raid.rad.length) { Raid.radIn = null; return; }
+    for (i = 0; i < Raid.rad.length; i++) { Raid.rad[i].ph += dt; }
+    if (Raid.radFlash > 0) { Raid.radFlash = Math.max(0, Raid.radFlash - dt); }
+    if (Raid.over || Raid.dead || !p) { Raid.radIn = null; Raid.radTick = 0; return; }
+    z = radZoneAt(p.x, p.y);
+    Raid.radIn = z;
+    if (!z) { Raid.radTick = 0; return; }
+    p.hp -= z.dps * dt;
+    Raid.radDose += z.dps * dt;
+    Raid.radFlash = 0.6;
+    Raid.radTick += dt;
+    if (Raid.radTick >= 0.7) { Raid.radTick = 0; sfx('geiger'); }
+    if (p.hp <= 0) {
+      p.hp = 0;
+      if (Raid.map.war) { raidDown(); } else { endRaid(false, '阵亡'); }
+    }
+  }
+  /* 朝准心扔一个投掷物：飞行中减速，引信到点 / 撞墙就炸 */
+  function raidThrow(o) {
+    var p = Raid.p;
+    Raid.bullets.push({
+      x: p.x + Math.cos(p.ang) * 18, y: p.y + Math.sin(p.ang) * 18,
+      vx: Math.cos(p.ang) * (o.spd || 430), vy: Math.sin(p.ang) * (o.spd || 430),
+      own: 'p', thrown: 1, fuse: (o.fuse === undefined ? 1.1 : o.fuse),
+      dmg: o.dmg || 150, splash: o.splash || 130, drag: (o.drag === undefined ? 2.6 : o.drag),
+      magnet: o.magnet ? 1 : 0, zone: o.zone || '', c: o.c || '#8a9a5b'
+    });
+  }
+  function raidThrowBoom(b) {
+    if (b.zone) {
+      raidAddZone(b.x, b.y, b.zone === 'fire' ? 122 : 118, 6, b.zone === 'fire' ? 26 : 22, b.zone);
+      shellBlast(b.x, b.y, b.splash, Math.round(b.dmg * 0.55));
+    } else {
+      shellBlast(b.x, b.y, b.splash, b.dmg);
+    }
+    sfx('kill');
+  }
+  /* 射线式技能（电箭 / 飞刀）：直接朝准心打出去 */
+  function raidFireShot(o) {
+    var p = Raid.p, i;
+    for (i = 0; i < (o.n || 1); i++) {
+      var a = p.ang + (o.spread ? (i - (o.n - 1) / 2) * o.spread : 0);
+      Raid.bullets.push({
+        x: p.x + Math.cos(p.ang) * 17, y: p.y + Math.sin(p.ang) * 17,
+        vx: Math.cos(a) * (o.spd || 900), vy: Math.sin(a) * (o.spd || 900),
+        dmg: o.dmg || 90, own: 'p', chain: o.chain || 0, dart: o.dart ? 1 : 0
+      });
+    }
+  }
+  /* 电箭：命中后再跳向附近两个敌人 */
+  function raidChain(from, times, dmg) {
+    var i, e, d, best, bd, hit = [], n = times;
+    while (n > 0) {
+      n -= 1;
+      best = null; bd = 165;
+      for (i = 0; i < Raid.enemies.length; i++) {
+        e = Raid.enemies[i];
+        if (e.hp <= 0 || e === from || hit.indexOf(e) >= 0) { continue; }
+        d = rlen(from.x, from.y, e.x, e.y);
+        if (d < bd) { bd = d; best = e; }
+      }
+      if (!best) { return; }
+      best.hp -= dmg;
+      best.hit = 0.14;
+      hit.push(best);
+      raidSpark(best.x, best.y, '#8fdcff');
+      if (best.hp <= 0) { raidKill(best); }
+    }
+  }
+  /* 电磁脉冲：以自身为中心击退 + 瘫痪周围敌人 */
+  function raidEmp() {
+    var p = Raid.p, i, e, d, n = 0, kx, ky;
+    Raid.shake = Math.min(Raid.shake + 5, 10);
+    for (i = 0; i < 20; i++) {
+      Raid.fx.push({ x: p.x, y: p.y, vx: rnd(-400, 400), vy: rnd(-400, 400), life: 0.42, max: 0.42, c: i % 2 ? '#8fe4ff' : '#d9f5ff' });
+    }
+    for (i = 0; i < Raid.enemies.length; i++) {
+      e = Raid.enemies[i];
+      if (e.hp <= 0) { continue; }
+      d = rlen(p.x, p.y, e.x, e.y);
+      if (d > EMP_R) { continue; }
+      kx = d > 0.01 ? (e.x - p.x) / d : 1;
+      ky = d > 0.01 ? (e.y - p.y) / d : 0;
+      var nx = e.x + kx * 74, ny = e.y + ky * 74;
+      if (!raidWallHit(nx, ny, e.r)) { e.x = nx; e.y = ny; }
+      e.stun = 3;
+      e.hp -= 30;
+      e.hit = 0.22;
+      n += 1;
+      if (e.hp <= 0) { raidKill(e); }
+    }
+    raidTip(n > 0 ? ('电磁脉冲！' + n + ' 名敌人被击退并瘫痪 3 秒') : '电磁脉冲放空了，附近没有敌人');
+    sfx('kill');
+  }
+  /* 定时炸弹倒计时 */
+  function raidMines(dt) {
+    var out = [], i, m;
+    for (i = 0; i < Raid.mines.length; i++) {
+      m = Raid.mines[i];
+      m.t -= dt;
+      if (m.t <= 0) { shellBlast(m.x, m.y, m.splash, m.dmg); }
+      else { out.push(m); }
+    }
+    Raid.mines = out;
+  }
+  /* 三连手炮：隔一小段时间打一发 */
+  function raidBurstStep(dt) {
+    var bs = Raid.burst, p = Raid.p;
+    if (!bs || !p) { return; }
+    bs.t -= dt;
+    if (bs.t > 0) { return; }
+    Raid.bullets.push({
+      x: p.x + Math.cos(p.ang) * 22, y: p.y + Math.sin(p.ang) * 22,
+      vx: Math.cos(p.ang) * 640, vy: Math.sin(p.ang) * 640,
+      own: 'p', shell: 1, dmg: 88, splash: 94
+    });
+    Raid.shake = Math.min(Raid.shake + 3.2, 8);
+    raidSpark(p.x + Math.cos(p.ang) * 26, p.y + Math.sin(p.ang) * 26, '#ffe6a3');
+    sfx('shoot');
+    bs.n -= 1;
+    if (bs.n <= 0) { Raid.burst = null; } else { bs.t = bs.gap; }
+  }
+  /* 喷气冲刺：沿准心方向快速位移（照样撞墙） */
+  function raidJetStep(dt) {
+    var j = Raid.jet, p = Raid.p;
+    if (!j || !p) { return; }
+    j.t -= dt;
+    raidMoveEnt(p, Math.cos(j.ang) * j.sp * dt, Math.sin(j.ang) * j.sp * dt, p.r);
+    Raid.fx.push({
+      x: p.x - Math.cos(j.ang) * 15, y: p.y - Math.sin(j.ang) * 15,
+      vx: rnd(-70, 70), vy: rnd(-70, 70), life: 0.3, max: 0.3, c: '#9fe3ff'
+    });
+    if (j.t <= 0) { Raid.jet = null; }
+  }
+  /* 真正释放：按技能 id 分发。返回 false 表示这次没放出去（不该进冷却） */
+  function raidActFire(a) {
+    var p = Raid.p;
+    switch (a.id) {
+      case 'speed':
+        Raid.skOn.speed = 24;
+        raidTip('肾上腺素：移速 +60%，持续 24 秒');
+        return true;
+      case 'drug':
+        Raid.skOn.drug = 8;
+        raidTip('激素枪：8 秒内移速 +30%、额外减伤 25%');
+        return true;
+      case 'dash':
+        if (!p) { return false; }
+        Raid.jet = { t: 0.34, sp: 780, ang: p.ang };
+        Raid.shake = Math.min(Raid.shake + 1.6, 5);
+        raidTip('喷气冲刺！');
+        return true;
+      case 'heal':
+        if (!p || p.hp >= p.max) { toastLater('生命已经满了，医疗无人机先留着'); return false; }
+        p.hp = Math.min(p.max, p.hp + 50);
+        raidTip('医疗无人机：回复 50 点生命');
+        return true;
+      case 'grenade':
+        raidThrow({ dmg: 150, splash: 138, fuse: 1.1, c: '#6f7d4a' });
+        raidTip('手雷出手！');
+        return true;
+      case 'fire':
+        raidThrow({ dmg: 60, splash: 104, fuse: 0.75, zone: 'fire', c: '#e0662e' });
+        raidTip('燃烧弹出手！落点会烧成火海');
+        return true;
+      case 'poison':
+        raidThrow({ dmg: 50, splash: 100, fuse: 0.75, zone: 'poison', c: '#8f6fd6' });
+        raidTip('毒气弹出手！落点会散出毒雾');
+        return true;
+      case 'magnet':
+        raidThrow({ dmg: 165, splash: 126, fuse: 1.5, magnet: 1, spd: 460, drag: 1.6, c: '#c95f7a' });
+        raidTip('磁吸炸弹出手！它会自己追着敌人贴上去');
+        return true;
+      case 'timed':
+        Raid.mines.push({ x: p.x, y: p.y, t: 3, max: 3, dmg: 260, splash: 185 });
+        raidTip('定时炸弹已埋在脚下，3 秒后引爆');
+        return true;
+      case 'rpg':
+        Raid.bullets.push({
+          x: p.x + Math.cos(p.ang) * 22, y: p.y + Math.sin(p.ang) * 22,
+          vx: Math.cos(p.ang) * 720, vy: Math.sin(p.ang) * 720,
+          own: 'p', shell: 1, dmg: 195, splash: 152
+        });
+        Raid.shake = Math.min(Raid.shake + 6, 10);
+        raidTip('RPG 发射！');
+        return true;
+      case 'triple':
+        Raid.burst = { n: 3, gap: 0.15, t: 0 };
+        raidTip('三连手炮！');
+        return true;
+      case 'knives':
+        raidFireShot({ n: 3, spread: 0.17, spd: 960, dmg: 96, dart: 1 });
+        raidTip('飞刀出手！三把一起甩出去');
+        return true;
+      case 'bolt':
+        raidFireShot({ n: 1, spd: 880, dmg: 112, chain: 2, dart: 1 });
+        raidTip('电箭射出！命中后电弧会跳向附近敌人');
+        return true;
+      case 'scan':
+        Raid.scanT = 8;
+        raidTip('敌人探测器启动：全场敌人已被标记 8 秒');
+        return true;
+      case 'emp':
+        raidEmp();
+        return true;
+    }
+    return false;
+  }
+  /* 按 G（idx 0）/ 按 C（idx 1） */
+  function raidActUse(idx) {
+    var a = Raid.acts[idx];
+    if (!Raid.on || Raid.dead || Raid.quizOn || Raid.paused || Raid.over || !Raid.p) { return; }
+    if (Raid.boat && Raid.boat.on) { toastLater('驾驶攻击艇时用不了干员技能'); return; }
+    if (!a) {
+      toastLater(curOp() ? '这位干员没有配技能' : '还没有干员出战：去「电台 · 干员」招募并点出战');
+      return;
+    }
+    var left = Raid.skCd[a.k] || 0;
+    if (left > 0) { toastLater(a.name + ' 冷却中，还要 ' + Math.ceil(left) + ' 秒'); return; }
+    if (raidActFire(a) === false) { return; }
+    Raid.skCd[a.k] = a.cd;
   }
   function raidBoatWreck() {
     var b = Raid.boat, p = Raid.p, i;
@@ -7951,7 +8398,7 @@ main{padding:6px 0 40px}
       if (bt.hp <= 0) { raidBoatWreck(); }
       return;
     }
-    var red = Math.min(0.85, (Raid.arm ? Raid.arm.red : 0) + raidSk('redAdd', 0));
+    var red = Math.min(0.85, (Raid.arm ? Raid.arm.red : 0) + raidSk('redAdd', 0) + (Raid.skOn.drug > 0 ? 0.25 : 0));
     p.hp -= dmg * (1 - red);
     Raid.flash = 1;
     sfx('hurt');
@@ -8040,6 +8487,29 @@ main{padding:6px 0 40px}
     var out = [], i, j, s, p = Raid.p;
     for (i = 0; i < Raid.bullets.length; i++) {
       var b = Raid.bullets[i], hit = false, steps = 3;
+      /* 干员技能投掷物（手雷 / 燃烧弹 / 毒气弹 / 磁吸炸弹）：减速飞行，引信到点或被挡住就炸 */
+      if (b.thrown) {
+        b.fuse -= dt;
+        b.x += b.vx * dt;
+        b.y += b.vy * dt;
+        /* 磁吸：朝最近的敌人拐弯 */
+        if (b.magnet) {
+          var mg = raidNearestEnemy(b.x, b.y, 300);
+          if (mg) {
+            var sp0 = Math.sqrt(b.vx * b.vx + b.vy * b.vy) || 1;
+            var want = Math.atan2(mg.y - b.y, mg.x - b.x);
+            var cur = Math.atan2(b.vy, b.vx);
+            var dA = ((want - cur + Math.PI * 3) % (Math.PI * 2)) - Math.PI;
+            cur += Math.max(-4.2 * dt, Math.min(4.2 * dt, dA));
+            b.vx = Math.cos(cur) * sp0; b.vy = Math.sin(cur) * sp0;
+          }
+        }
+        var dr = Math.max(0, 1 - b.drag * dt);
+        b.vx *= dr; b.vy *= dr;
+        if (raidWallHit(b.x, b.y, 4) || b.fuse <= 0) { raidThrowBoom(b); continue; }
+        out.push(b);
+        continue;
+      }
       /* 舰炮炮弹：命中后范围伤害 */
       if (b.shell) { if (!raidShellStep(b, dt)) { out.push(b); } continue; }
       for (s = 0; s < steps; s++) {
@@ -8064,6 +8534,8 @@ main{padding:6px 0 40px}
               e.hit = 0.12;
               hit = true;
               if (e.hp <= 0) { raidKill(e); } else { sfx('hit'); }
+              /* 电箭：命中后电弧继续跳向附近敌人 */
+              if (b.chain) { raidChain(e, b.chain, b.dmg * 0.6); }
               break;
             }
           }
@@ -8108,8 +8580,13 @@ main{padding:6px 0 40px}
     return tgt;
   }
   function raidEnemyStep(e, dt) {
-    var tgt = raidEnemyTarget(e), d = rlen(e.x, e.y, tgt.x, tgt.y);
     e.hit = Math.max(0, e.hit - dt);
+    /* 被电磁脉冲瘫痪：不动也不开枪 */
+    if (e.stun > 0) {
+      e.stun -= dt;
+      return;
+    }
+    var tgt = raidEnemyTarget(e), d = rlen(e.x, e.y, tgt.x, tgt.y);
     e.cd -= dt;
     var mvx = 0, mvy = 0;
     if (d < 520) {
@@ -8268,6 +8745,9 @@ main{padding:6px 0 40px}
       } else {
         var mv = raidMoveVec();
         var spd = 152 * raidSk('spdMul', 1) * (isWater(p.x, p.y) ? 0.66 : 1);
+        /* 干员主动技能：肾上腺素 / 激素枪 的加速 */
+        if (Raid.skOn.speed > 0) { spd *= 1.6; }
+        if (Raid.skOn.drug > 0) { spd *= 1.3; }
         raidMoveEnt(p, mv.x * spd * dt, mv.y * spd * dt, p.r);
         raidAimUpdate();
         if (firing) { if (Raid.slot === 1) { raidSlash(); } else { raidShoot(); } }
@@ -8289,6 +8769,20 @@ main{padding:6px 0 40px}
     }
     raidBullets(dt);
     if (Raid.over) { return; }
+    /* 干员主动技能：场上物件 + 冷却 / 增益计时 */
+    if (!Raid.dead) { raidBurstStep(dt); raidJetStep(dt); }
+    raidZones(dt);
+    raidMines(dt);
+    /* AZ3 核电站：核辐射区（站进去持续掉血，无视护甲） */
+    raidRadStep(dt);
+    if (Raid.over) { return; }
+    for (i = 0; i < ACT_KEYS.length; i++) {
+      var ak = ACT_KEYS[i];
+      if ((Raid.skCd[ak] || 0) > 0) { Raid.skCd[ak] = Math.max(0, Raid.skCd[ak] - dt); }
+    }
+    if (Raid.skOn.speed > 0) { Raid.skOn.speed = Math.max(0, Raid.skOn.speed - dt); }
+    if (Raid.skOn.drug > 0) { Raid.skOn.drug = Math.max(0, Raid.skOn.drug - dt); }
+    if (Raid.scanT > 0) { Raid.scanT = Math.max(0, Raid.scanT - dt); }
     for (i = 0; i < Raid.enemies.length; i++) {
       if (Raid.enemies[i].hp > 0) { raidEnemyStep(Raid.enemies[i], dt); }
     }
@@ -9047,6 +9541,53 @@ main{padding:6px 0 40px}
       ctx.fillText(state.rod ? '塘边按 F 钓鱼' : '塘里有鱼（要先有鱼竿）', pw.x + 16, pw.y + 42);
       ctx.restore();
     }
+    /* AZ3 核电站：核辐射区（铺在地面上，画在墙体之前，不然绿圈会盖住墙） */
+    for (i = 0; i < Raid.rad.length; i++) {
+      var rz = Raid.rad[i];
+      var rpulse = 0.5 + 0.5 * Math.sin(rz.ph * 2.2);
+      var rg = ctx.createRadialGradient(rz.x, rz.y, rz.r * 0.14, rz.x, rz.y, rz.r);
+      rg.addColorStop(0, 'rgba(126,240,140,' + (0.30 + rpulse * 0.1).toFixed(3) + ')');
+      rg.addColorStop(0.62, 'rgba(96,214,120,' + (0.15 + rpulse * 0.07).toFixed(3) + ')');
+      rg.addColorStop(1, 'rgba(70,180,100,0)');
+      ctx.fillStyle = rg;
+      ctx.beginPath(); ctx.arc(rz.x, rz.y, rz.r, 0, 6.2832); ctx.fill();
+      /* 外圈虚线，慢慢转 */
+      ctx.save();
+      ctx.translate(rz.x, rz.y);
+      ctx.rotate(rz.ph * 0.35);
+      ctx.strokeStyle = 'rgba(178,255,190,' + (0.5 + rpulse * 0.35).toFixed(3) + ')';
+      ctx.lineWidth = 3;
+      ctx.setLineDash([16, 12]);
+      ctx.beginPath(); ctx.arc(0, 0, rz.r - 3, 0, 6.2832); ctx.stroke();
+      ctx.restore();
+      /* 内圈呼吸 */
+      ctx.strokeStyle = 'rgba(200,255,210,.32)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(rz.x, rz.y, rz.r * (0.52 + 0.06 * rpulse), 0, 6.2832); ctx.stroke();
+      /* 辐射三叶标（手绘，不依赖字体里有没有 ☢） */
+      ctx.save();
+      ctx.translate(rz.x, rz.y);
+      ctx.fillStyle = 'rgba(226,255,232,' + (0.62 + rpulse * 0.25).toFixed(3) + ')';
+      var tfR = 13, tfA;
+      for (tfA = 0; tfA < 3; tfA++) {
+        var ta0 = tfA * 2.0944 - Math.PI / 2 - 0.5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.arc(0, 0, tfR, ta0, ta0 + 1.0);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.beginPath(); ctx.arc(0, 0, tfR * 0.34, 0, 6.2832); ctx.fill();
+      ctx.restore();
+      /* 区名 + 伤害提示 */
+      ctx.textAlign = 'center';
+      ctx.fillStyle = 'rgba(214,255,222,.82)';
+      ctx.font = 'bold 13px sans-serif';
+      ctx.fillText(rz.name, rz.x, rz.y - 34);
+      ctx.fillStyle = 'rgba(255,132,96,.92)';
+      ctx.font = 'bold 12px sans-serif';
+      ctx.fillText('核辐射 ' + rz.dps + ' / 秒 · 护甲无效', rz.x, rz.y + 46);
+    }
     /* 墙 */
     for (i = 0; i < Raid.walls.length; i++) {
       drawWallMat(ctx, Raid.walls[i], th, camx, camy, vw, vh);
@@ -9154,9 +9695,13 @@ main{padding:6px 0 40px}
     /* 物资箱 */
     for (i = 0; i < Raid.boxes.length; i++) {
       var bx = Raid.boxes[i];
-      ctx.fillStyle = bx.open ? '#30362f' : '#6d5a2c';
+      if (bx.hot && !bx.open) {
+        ctx.fillStyle = 'rgba(126,240,140,.16)';
+        ctx.beginPath(); ctx.arc(bx.x, bx.y, 34 + 4 * Math.sin(Raid.t * 3), 0, 6.2832); ctx.fill();
+      }
+      ctx.fillStyle = bx.open ? '#30362f' : (bx.hot ? '#6f6a2c' : '#6d5a2c');
       ctx.fillRect(bx.x - 16, bx.y - 14, 32, 28);
-      ctx.strokeStyle = bx.open ? '#4a5348' : '#c9a94a';
+      ctx.strokeStyle = bx.open ? '#4a5348' : (bx.hot ? '#8ef0a0' : '#c9a94a');
       ctx.lineWidth = 2;
       ctx.strokeRect(bx.x - 16, bx.y - 14, 32, 28);
       ctx.beginPath();
@@ -9336,9 +9881,65 @@ main{padding:6px 0 40px}
         ctx.fillRect(al.x - aw / 2, al.y - al.r - 11, aw * (al.hp / al.max), 4);
       }
     }
+    /* 干员技能：地面区域（燃烧弹火海 / 毒气弹毒雾） */
+    for (i = 0; i < Raid.zones.length; i++) {
+      var zn = Raid.zones[i];
+      var zc = zn.kind === 'poison' ? '#8f6fd6' : '#ff7a33';
+      ctx.globalAlpha = 0.26;
+      ctx.fillStyle = zc;
+      ctx.beginPath(); ctx.arc(zn.x, zn.y, zn.r, 0, 6.2832); ctx.fill();
+      ctx.globalAlpha = 0.7;
+      ctx.strokeStyle = zc;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.arc(zn.x, zn.y, zn.r * (0.7 + 0.22 * Math.sin(zn.ph * 6)), 0, 6.2832);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    }
+    /* 干员技能：定时炸弹（越接近爆炸闪得越快） */
+    for (i = 0; i < Raid.mines.length; i++) {
+      var mn = Raid.mines[i];
+      var blink = (Math.floor(mn.t * 6) % 2 === 0);
+      ctx.fillStyle = blink ? '#ff5d3a' : '#4a2a22';
+      ctx.beginPath(); ctx.arc(mn.x, mn.y, 7, 0, 6.2832); ctx.fill();
+      ctx.strokeStyle = 'rgba(255,93,58,.45)';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(mn.x, mn.y, 11 + (mn.max - mn.t) * 3, 0, 6.2832); ctx.stroke();
+    }
     /* 子弹 */
     for (i = 0; i < Raid.bullets.length; i++) {
       var b = Raid.bullets[i];
+      /* 干员技能投掷物：手雷 / 燃烧弹 / 毒气弹 / 磁吸炸弹（快炸时闪红） */
+      if (b.thrown) {
+        var lowF = b.fuse < 0.42 && (Math.floor(b.fuse * 14) % 2 === 0);
+        ctx.fillStyle = lowF ? '#ff6b4d' : b.c;
+        ctx.beginPath(); ctx.arc(b.x, b.y, 6, 0, 6.2832); ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,.34)';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(b.x, b.y, 8.5, 0, 6.2832); ctx.stroke();
+        if (b.magnet) {
+          ctx.strokeStyle = 'rgba(255,110,150,.38)';
+          ctx.beginPath(); ctx.arc(b.x, b.y, 15, 0, 6.2832); ctx.stroke();
+        }
+        continue;
+      }
+      /* 干员技能：飞刀 / 电箭（画成一支短刃，电箭带蓝光） */
+      if (b.dart) {
+        var dsp = Math.sqrt(b.vx * b.vx + b.vy * b.vy) || 1;
+        var dux = b.vx / dsp, duy = b.vy / dsp;
+        ctx.strokeStyle = b.chain ? '#8fdcff' : '#e6ecf2';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(b.x - dux * 9, b.y - duy * 9);
+        ctx.lineTo(b.x + dux * 9, b.y + duy * 9);
+        ctx.stroke();
+        if (b.chain) {
+          ctx.strokeStyle = 'rgba(143,220,255,.45)';
+          ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.arc(b.x, b.y, 7.5, 0, 6.2832); ctx.stroke();
+        }
+        continue;
+      }
       if (b.shell) {
         ctx.fillStyle = '#ffcf5c';
         ctx.beginPath(); ctx.arc(b.x, b.y, 6.5, 0, 6.2832); ctx.fill();
@@ -9355,6 +9956,18 @@ main{padding:6px 0 40px}
       ctx.moveTo(b.x, b.y);
       ctx.lineTo(b.x - ux * nl, b.y - uy * nl);
       ctx.stroke();
+    }
+    /* 敌人探测器：8 秒内全场敌人被蓝色标记（隔掩体也看得见） */
+    if (Raid.scanT > 0) {
+      for (i = 0; i < Raid.enemies.length; i++) {
+        var se = Raid.enemies[i];
+        if (se.hp <= 0) { continue; }
+        ctx.strokeStyle = 'rgba(120,230,255,.85)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(se.x, se.y, se.r + 9 + 3 * Math.sin(Raid.t * 6), 0, 6.2832);
+        ctx.stroke();
+      }
     }
     /* 弹匣打空提示环 */
     var p2 = Raid.p;
@@ -9499,6 +10112,15 @@ main{padding:6px 0 40px}
       grad.addColorStop(0, 'rgba(255,60,40,0)');
       grad.addColorStop(1, 'rgba(255,60,40,' + alpha.toFixed(3) + ')');
       ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, vw, vh);
+    }
+    /* 核辐射：屏幕边缘泛绿（站在辐射区里，提醒你赶紧走） */
+    if (Raid.radIn) {
+      var radA = 0.20 + Math.sin(Raid.t * 5) * 0.06;
+      var grd = ctx.createRadialGradient(vw / 2, vh / 2, Math.min(vw, vh) * 0.22, vw / 2, vh / 2, Math.max(vw, vh) * 0.6);
+      grd.addColorStop(0, 'rgba(120,255,150,0)');
+      grd.addColorStop(1, 'rgba(96,226,128,' + radA.toFixed(3) + ')');
+      ctx.fillStyle = grd;
       ctx.fillRect(0, 0, vw, vh);
     }
     /* 大战场阵亡提示 */
@@ -9752,6 +10374,19 @@ main{padding:6px 0 40px}
       ctx.fillStyle = w.k ? thM.wallHi : thM.wall;
       ctx.fillRect(ox + w.x * sc, oy + w.y * sc, Math.max(1, w.w * sc), Math.max(1, w.h * sc));
     }
+    /* AZ3 核电站：辐射区在小地图上画成绿圈 */
+    for (i = 0; i < Raid.rad.length; i++) {
+      var rzm = Raid.rad[i];
+      ctx.fillStyle = 'rgba(120,238,140,.28)';
+      ctx.beginPath();
+      ctx.arc(ox + rzm.x * sc, oy + rzm.y * sc, Math.max(2, rzm.r * sc), 0, 6.2832);
+      ctx.fill();
+      ctx.strokeStyle = '#8ef2a0';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(ox + rzm.x * sc, oy + rzm.y * sc, Math.max(2, rzm.r * sc), 0, 6.2832);
+      ctx.stroke();
+    }
     ctx.strokeStyle = '#f5c04a';
     ctx.lineWidth = 1;
     for (i = 0; i < Raid.rooms.length; i++) {
@@ -9863,8 +10498,39 @@ main{padding:6px 0 40px}
       if (skOp && skOp.raidTxt) {
         skHud.style.display = '';
         var skT = byId('raidSkillTxt');
-        if (skT) { skT.textContent = skOp.code + ' · ' + skOp.skill; }
+        if (skT) {
+          var stk = skOp.code + ' · ' + skOp.skill;
+          if (Raid.skOn.speed > 0) { stk += ' · 加速 ' + Math.ceil(Raid.skOn.speed) + 's'; }
+          if (Raid.skOn.drug > 0) { stk += ' · 激素 ' + Math.ceil(Raid.skOn.drug) + 's'; }
+          if (Raid.scanT > 0) { stk += ' · 探测 ' + Math.ceil(Raid.scanT) + 's'; }
+          skT.textContent = stk;
+        }
       } else { skHud.style.display = 'none'; }
+    }
+    /* 干员主动技能按钮：显示技能名，冷却时显示剩余秒数 */
+    for (var ski = 0; ski < 2; ski++) {
+      var skBtn = byId(ski === 0 ? 'btnRaidSkG' : 'btnRaidSkC');
+      if (!skBtn) { continue; }
+      var skA = Raid.acts[ski];
+      if (!skA) { skBtn.style.display = 'none'; continue; }
+      skBtn.style.display = '';
+      var skLeft = raidActCdLeft(ski);
+      skBtn.className = 'mini-btn skill' + (skLeft > 0 ? ' cd' : '');
+      skBtn.textContent = skLeft > 0
+        ? (skA.name + ' ' + Math.ceil(skLeft) + 's')
+        : (skA.name + ' ' + ACT_KEYS[ski].toUpperCase());
+    }
+    /* AZ3 核电站：辐射警告（站在辐射区里一直亮着，刚出来还会提示吃了多少伤害） */
+    var radHud = byId('raidRadHud');
+    if (radHud) {
+      var rTxt = byId('raidRadTxt');
+      if (Raid.radIn) {
+        radHud.style.display = '';
+        if (rTxt) { rTxt.textContent = Raid.radIn.name + ' ' + Raid.radIn.dps + ' / 秒 · 快离开'; }
+      } else if (Raid.radFlash > 0 && Raid.radDose > 0.5) {
+        radHud.style.display = '';
+        if (rTxt) { rTxt.textContent = '已吃辐射伤害 ' + Math.round(Raid.radDose) + ' 点'; }
+      } else { radHud.style.display = 'none'; }
     }
     var bagHud = byId('raidBagHud'), capHud = byId('raidCapHud'), dHud = byId('raidDeathHud'), mHud = byId('raidMateHud');
     if (bagHud) { bagHud.style.display = isWar ? 'none' : ''; }
@@ -10094,6 +10760,8 @@ main{padding:6px 0 40px}
       if (k === '1' || code === 'Digit1') { raidSwap(0); }
       if (k === '2' || code === 'Digit2') { raidSwap(1); }
       if (k === 'q' || code === 'KeyQ') { raidSwapToggle(); }
+      if (k === 'g' || code === 'KeyG') { raidActUse(0); }
+      if (k === 'c' || code === 'KeyC') { raidActUse(1); }
       if (k === 'p' || code === 'KeyP' || k === 'Escape' || code === 'Escape') { raidPause(); }
     } else {
       if (k) { Raid.keys[k] = false; }
@@ -10148,6 +10816,11 @@ main{padding:6px 0 40px}
     if (bdr) { bdr.onclick = raidDoorAction; }
     var bsw = byId('btnRaidSwap');
     if (bsw) { bsw.onclick = function () { raidSwapToggle(); }; }
+    /* 干员主动技能：G / C（手机上就是这两个按钮） */
+    var bsg = byId('btnRaidSkG');
+    if (bsg) { bsg.onclick = function () { raidActUse(0); }; }
+    var bsc = byId('btnRaidSkC');
+    if (bsc) { bsc.onclick = function () { raidActUse(1); }; }
     var bbt = byId('btnRaidBoat');
     if (bbt) { bbt.onclick = boatToggle; }
     var bnp = byId('btnRaidNpc');
@@ -10725,6 +11398,18 @@ main{padding:6px 0 40px}
         setupForm();
         refreshAll();
       });
+  }
+  /* ---- 调试钩子：只有地址栏带 ?debug=1 时才挂到 window 上（真机自检脚本用），
+     正常游玩完全不生效、也不占开销 ---- */
+  if (typeof location !== 'undefined' && location && String(location.search || '').indexOf('debug=1') >= 0) {
+    window.__MD = {
+      get Raid() { return Raid; },
+      get state() { return state; },
+      MAPS: MAPS, RADIATION_DEFS: RADIATION_DEFS, ACT_KEYS: ACT_KEYS, OPS: OPS, POND_DEFS: POND_DEFS,
+      startRaid: startRaid, exitRaid: exitRaid, selectRaidMap: selectRaidMap, refreshAll: refreshAll,
+      raidActUse: raidActUse, raidHud: raidHud, raidDraw: raidDraw, radZoneAt: radZoneAt,
+      raidRadStep: raidRadStep, switchView: switchView, curOp: curOp, byId: byId
+    };
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
