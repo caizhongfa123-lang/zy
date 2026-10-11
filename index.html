@@ -36,6 +36,11 @@ body.skin-gold .topbar{background:rgba(20,16,9,.92)}
 .brand svg{width:28px;height:28px;flex:none;stroke:var(--accent);fill:none;stroke-width:1.7}
 .brand-name{font-size:17px;font-weight:800;letter-spacing:.6px}
 .brand-sub{font-size:10px;color:var(--muted);letter-spacing:2.2px;text-transform:uppercase}
+/* 首页底部版本条：一眼看到当前版本号 */
+.app-foot{margin:14px 0 4px;padding:11px 13px;border:1px dashed var(--line);border-radius:12px;background:var(--panel);text-align:center}
+.app-foot-main{font-size:12.5px;font-weight:800;color:var(--text);letter-spacing:.4px}
+.app-foot-main b{color:var(--accent);font-weight:900}
+.app-foot-sub{margin-top:3px;font-size:10.5px;color:var(--muted);line-height:1.6}
 .wallet{display:flex;align-items:center;gap:8px}
 .chip{
   display:flex;align-items:center;gap:5px;background:var(--panel2);border:1px solid var(--line);
@@ -776,7 +781,7 @@ main{padding:6px 0 40px}
       <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.6v5.9c0 4.8 3.1 8.9 7.5 10.5 4.4-1.6 7.5-5.7 7.5-10.5V5.6L12 2.5z"/><path d="M8.6 12.1l2.5 2.5 4.4-4.6"/></svg>
       <div>
         <div class="brand-name">数学作战台</div>
-        <div class="brand-sub">Operation Math</div>
+        <div class="brand-sub">Operation Math · v<span id="appVerTop">1.0.0</span></div>
       </div>
     </div>
     <div class="wallet">
@@ -841,6 +846,10 @@ main{padding:6px 0 40px}
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>最近战绩<button class="tiny-btn" id="btnLogTrade" type="button" style="display:none"></button><small id="logCount"></small></div>
       <div id="logList"></div>
+    </div>
+    <div class="app-foot">
+      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">1.0.0</span></b></div>
+      <div class="app-foot-sub">上次更新：<span id="appDateHome">2026-10-11</span> · 想知道当前是什么版本，看这里就行</div>
     </div>
   </section>
 
@@ -1115,6 +1124,9 @@ main{padding:6px 0 40px}
   'use strict';
 
   /* ================= 常量 ================= */
+  /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
+  var APP_VER = '1.0.0';
+  var APP_DATE = '2026-10-11';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
   var LS_FORM = 'wb_mathdelta_form_v1';
@@ -10246,6 +10258,7 @@ main{padding:6px 0 40px}
     return { cur: cur, next: next, idx: idx };
   }
   function renderHome() {
+    applyVersion();
     var dEl = byId('todayDate');
     if (dEl) { dEl.textContent = dateLabel(todayStr()); }
     var total = state.rightCount + state.wrongCount;
@@ -10658,7 +10671,16 @@ main{padding:6px 0 40px}
   }
 
   /* ================= 启动 ================= */
+  /* 把版本号写到页面上：顶栏小字、首页底部版本条、浏览器标签标题 */
+  function applyVersion() {
+    setText('appVerTop', APP_VER);
+    setText('appVerHome', APP_VER);
+    setText('appDateHome', APP_DATE);
+    try { document.title = '数学作战台 v' + APP_VER + ' · 三角洲行动学习基地'; } catch (e) { }
+  }
   function init() {
+    /* 版本号：从 APP_VER / APP_DATE 一处注入到顶栏、首页底部和浏览器标签 */
+    applyVersion();
     applyEconomy();
     loadAccounts();
     askLoad();
