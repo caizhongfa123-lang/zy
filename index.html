@@ -791,7 +791,7 @@ main{padding:6px 0 40px}
       <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.6v5.9c0 4.8 3.1 8.9 7.5 10.5 4.4-1.6 7.5-5.7 7.5-10.5V5.6L12 2.5z"/><path d="M8.6 12.1l2.5 2.5 4.4-4.6"/></svg>
       <div>
         <div class="brand-name">数学作战台</div>
-        <div class="brand-sub">Operation Math · v<span id="appVerTop">1.1.0</span></div>
+        <div class="brand-sub">Operation Math · v<span id="appVerTop">1.1.1</span></div>
       </div>
     </div>
     <div class="wallet">
@@ -858,7 +858,7 @@ main{padding:6px 0 40px}
       <div id="logList"></div>
     </div>
     <div class="app-foot">
-      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">1.1.0</span></b></div>
+      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">1.1.1</span></b></div>
       <div class="app-foot-sub">上次更新：<span id="appDateHome">2026-10-11</span> · 想知道当前是什么版本，看这里就行</div>
     </div>
   </section>
@@ -1110,8 +1110,8 @@ main{padding:6px 0 40px}
     <div class="raid-ui bot">
       <div class="hud" id="raidHint">WASD 移动 · 鼠标瞄准 · 按住左键开火 · R 换弹</div>
       <div class="raid-act">
-        <button class="mini-btn skill" id="btnRaidSkG" type="button" style="display:none">技能 G</button>
-        <button class="mini-btn skill" id="btnRaidSkC" type="button" style="display:none">技能 C</button>
+        <button class="mini-btn skill" id="btnRaidSkG" type="button" style="display:none">技能 1</button>
+        <button class="mini-btn skill" id="btnRaidSkC" type="button" style="display:none">技能 2</button>
         <button class="mini-btn door" id="btnRaidBoat" type="button" style="display:none">上艇</button>
         <button class="mini-btn door" id="btnRaidNpc" type="button" style="display:none">交谈</button>
         <button class="mini-btn door" id="btnRaidFish" type="button" style="display:none">钓鱼</button>
@@ -1138,7 +1138,7 @@ main{padding:6px 0 40px}
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '1.1.0';
+  var APP_VER = '1.1.1';
   var APP_DATE = '2026-10-11';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
@@ -4909,7 +4909,7 @@ main{padding:6px 0 40px}
 
   /* ================= 干员档案（招募 → 出战 → 战术加成生效） ================= */
   /* raid = 该干员在「行动 · 枪战」里生效的战斗技能；未出战时全部不生效 */
-  /* act = 出战干员的两个「主动技能」，进图后按 G / C 释放（手机点右下角两个技能按钮） */
+  /* act = 出战干员的两个「主动技能」，进图后按各自的技能键释放（默认 G / C，威龙喷气背包是 X；手机点右下角两个技能按钮） */
   var OPS = [
     { id: 'redwolf', code: '红狼', name: '凯·席尔瓦', role: '突击', rk: 'assault', price: 380, skill: '动力外骨骼',
       bType: 'coinPerRight', bVal: 2, desc: '每次答对额外 +2 哈夫币',
@@ -4922,7 +4922,7 @@ main{padding:6px 0 40px}
       bType: 'ticketEvery', bVal: 3, desc: '连击满 3 题就得 1 张搜刮券（默认 5 题）',
       raid: { dmgMul: 1.25 }, raidTxt: '行动中子弹伤害 +25%，同样的枪更疼',
       act: [
-        { k: 'g', id: 'dash', name: '喷气背包', cd: 8, desc: '朝准心方向瞬间喷气冲刺，穿过火力网拉开距离' },
+        { k: 'x', id: 'dash', name: '喷气背包', cd: 8, desc: '朝准心方向瞬间喷气冲刺，穿过火力网拉开距离' },
         { k: 'c', id: 'magnet', name: '磁吸炸弹', cd: 14, desc: '投出的炸弹会自己吸向最近的敌人，贴上再炸' }
       ], hx: 'visor', ms: 'half', acc: ['mic'] },
     { id: 'shepherd', code: '牧羊人', name: '泰瑞·缪萨', role: '工程', rk: 'engineer', price: 460, skill: '速凝掩体与维修',
@@ -4968,9 +4968,23 @@ main{padding:6px 0 40px}
         { k: 'c', id: 'scan', name: '敌人探测器', cd: 20, desc: '8 秒内全场敌人被标记，隔着掩体也看得见' }
       ], hx: 'cap', ms: 'half', acc: ['antenna'] }
   ];
-  /* 主动技能槽位：0 = V 键，1 = C 键 */
+  /* 主动技能槽位默认键位：0 = G 键，1 = C 键；
+     单个技能可以用自己的 k 覆盖默认键（威龙的喷气背包就绑在 X 键上） */
   var ACT_KEYS = ['g', 'c'];
   function opActs(op) { return (op && op.act) ? op.act : []; }
+  /* 取某个技能实际绑的键：技能自带 k 优先，没有就按槽位取默认键 */
+  function actKey(a, idx) {
+    if (a && a.k) { return a.k; }
+    return ACT_KEYS[idx] || '';
+  }
+  function actKeyTxt(a, idx) { return String(actKey(a, idx)).toUpperCase(); }
+  /* 一串技能的按键文案，例如 ['X','C']，给干员卡 / 详情 / 提示语用 */
+  function actKeyTxts(acts) {
+    var out = [], i;
+    acts = acts || [];
+    for (i = 0; i < acts.length; i++) { out.push(actKeyTxt(acts[i], i)); }
+    return out;
+  }
   function curActs() { return opActs(curOp()); }
   function opById(id) {
     for (var i = 0; i < OPS.length; i++) { if (OPS[i].id === id) { return OPS[i]; } }
@@ -5092,12 +5106,12 @@ main{padding:6px 0 40px}
       r3.appendChild(make('em', '', op.raidTxt + '（枪战里生效）'));
       info.appendChild(r3);
     }
-    var acts1 = opActs(op), actTxt1 = [];
-    for (var ai1 = 0; ai1 < acts1.length; ai1++) { actTxt1.push(ACT_KEYS[ai1].toUpperCase() + ' ' + acts1[ai1].name); }
+    var acts1 = opActs(op), actTxt1 = [], actKey1 = actKeyTxts(acts1);
+    for (var ai1 = 0; ai1 < acts1.length; ai1++) { actTxt1.push(actKey1[ai1] + ' ' + acts1[ai1].name); }
     if (actTxt1.length) {
       var r4 = make('div', 'op-hero-row');
       r4.appendChild(make('span', '', '主动技能：'));
-      r4.appendChild(make('em', '', actTxt1.join(' / ') + '（进图按 G / C 释放，有冷却）'));
+      r4.appendChild(make('em', '', actTxt1.join(' / ') + '（进图按 ' + actKey1.join(' / ') + ' 释放，有冷却）'));
       info.appendChild(r4);
     }
     box.appendChild(info);
@@ -5147,9 +5161,9 @@ main{padding:6px 0 40px}
     var acts0 = opActs(op);
     if (acts0.length) {
       var actBox = make('div', 'op-act');
-      actBox.appendChild(make('b', '', '主动技能（进图按 G / C，手机点右下角按钮）'));
+      actBox.appendChild(make('b', '', '主动技能（进图按 ' + actKeyTxts(acts0).join(' / ') + '，手机点右下角按钮）'));
       for (var ai0 = 0; ai0 < acts0.length; ai0++) {
-        actBox.appendChild(make('span', '', ACT_KEYS[ai0].toUpperCase() + ' · ' + acts0[ai0].name + '：' + acts0[ai0].desc + '（冷却 ' + acts0[ai0].cd + ' 秒）'));
+        actBox.appendChild(make('span', '', actKeyTxt(acts0[ai0], ai0) + ' · ' + acts0[ai0].name + '：' + acts0[ai0].desc + '（冷却 ' + acts0[ai0].cd + ' 秒）'));
       }
       card.appendChild(actBox);
     }
@@ -6155,7 +6169,7 @@ main{padding:6px 0 40px}
     allies: [], jailOn: false, jq: null, jailGate: null, jailRect: null,
     caps: [], dead: false, respawnT: 0, deaths: 0, capTipT: 0, warMate: '',
     sk: {}, mag: 0, regenAcc: 0, gearLost: [], boat: null, npc: null,
-    /* 干员主动技能（G / C）：冷却表 + 持续增益表 + 场上物件 */
+    /* 干员主动技能（默认 G / C，威龙喷气背包是 X）：冷却表 + 持续增益表 + 场上物件 */
     acts: [], skCd: {}, skOn: {}, zones: [], mines: [], burst: null, jet: null, scanT: 0,
     /* AZ3 核电站：核辐射区（站进去持续掉血，无视护甲）+ 已吃辐射量 */
     rad: [], radIn: null, radDose: 0, radTick: 0, radFlash: 0,
@@ -7152,9 +7166,10 @@ main{padding:6px 0 40px}
     if (Raid.rad.length) { hb += ' · 地上的绿色圈是核辐射区，站进去持续掉血（护甲无效），绕开或快点穿过去'; }
     var acts = Raid.acts || [];
     if (acts.length) {
+      var actKs = actKeyTxts(acts);
       hb += Raid.touch
         ? (' · 右下角两个技能按钮：' + acts[0].name + (acts[1] ? (' / ' + acts[1].name) : ''))
-        : (' · 按 G 放「' + acts[0].name + '」' + (acts[1] ? ('、按 C 放「' + acts[1].name + '」') : ''));
+        : (' · 按 ' + actKs[0] + ' 放「' + acts[0].name + '」' + (acts[1] ? ('、按 ' + actKs[1] + ' 放「' + acts[1].name + '」') : ''));
     }
     return hb;
   }
@@ -7203,7 +7218,7 @@ main{padding:6px 0 40px}
     raidSetSize(map);
     /* 出战干员的行动技能：进图时定好，整局生效 */
     Raid.sk = opRaid();
-    /* 出战干员的主动技能（G / C）：冷却和增益每局重置 */
+    /* 出战干员的主动技能（默认 G / C，威龙喷气背包是 X）：冷却和增益每局重置 */
     Raid.acts = curActs();
     Raid.skCd = {}; Raid.skOn = {};
     Raid.zones = []; Raid.mines = []; Raid.burst = null; Raid.jet = null; Raid.scanT = 0;
@@ -7852,7 +7867,7 @@ main{padding:6px 0 40px}
     }
     return false;
   }
-  /* ================= 干员主动技能（G / C） ================= */
+  /* ================= 干员主动技能（默认 G / C，威龙喷气背包是 X） ================= */
   /* 每个主动技能：按一下释放 → 进冷却 → 冷却走完才能再放。
      效果全部复用现有系统（子弹 / 爆炸 / 区域持续伤害），不另开一套碰撞。 */
   var EMP_R = 230;
@@ -8107,7 +8122,7 @@ main{padding:6px 0 40px}
     }
     return false;
   }
-  /* 按 G（idx 0）/ 按 C（idx 1） */
+  /* 按各自的技能键（idx 0 / 1，默认 G / C，威龙喷气背包是 X） */
   function raidActUse(idx) {
     var a = Raid.acts[idx];
     if (!Raid.on || Raid.dead || Raid.quizOn || Raid.paused || Raid.over || !Raid.p) { return; }
@@ -8776,8 +8791,9 @@ main{padding:6px 0 40px}
     /* AZ3 核电站：核辐射区（站进去持续掉血，无视护甲） */
     raidRadStep(dt);
     if (Raid.over) { return; }
-    for (i = 0; i < ACT_KEYS.length; i++) {
-      var ak = ACT_KEYS[i];
+    /* 冷却按技能实际用的键扣（威龙喷气背包存在 'x' 里，不能只遍历默认键） */
+    var ak;
+    for (ak in Raid.skCd) {
       if ((Raid.skCd[ak] || 0) > 0) { Raid.skCd[ak] = Math.max(0, Raid.skCd[ak] - dt); }
     }
     if (Raid.skOn.speed > 0) { Raid.skOn.speed = Math.max(0, Raid.skOn.speed - dt); }
@@ -10518,7 +10534,7 @@ main{padding:6px 0 40px}
       skBtn.className = 'mini-btn skill' + (skLeft > 0 ? ' cd' : '');
       skBtn.textContent = skLeft > 0
         ? (skA.name + ' ' + Math.ceil(skLeft) + 's')
-        : (skA.name + ' ' + ACT_KEYS[ski].toUpperCase());
+        : (skA.name + ' ' + actKeyTxt(skA, ski));
     }
     /* AZ3 核电站：辐射警告（站在辐射区里一直亮着，刚出来还会提示吃了多少伤害） */
     var radHud = byId('raidRadHud');
@@ -10760,8 +10776,12 @@ main{padding:6px 0 40px}
       if (k === '1' || code === 'Digit1') { raidSwap(0); }
       if (k === '2' || code === 'Digit2') { raidSwap(1); }
       if (k === 'q' || code === 'KeyQ') { raidSwapToggle(); }
-      if (k === 'g' || code === 'KeyG') { raidActUse(0); }
-      if (k === 'c' || code === 'KeyC') { raidActUse(1); }
+      /* 干员技能键：按当前干员每个技能实际绑定的键分派（默认 G / C，威龙喷气背包是 X） */
+      var kAs = curActs(), kAi, kAk;
+      for (kAi = 0; kAi < kAs.length; kAi++) {
+        kAk = actKey(kAs[kAi], kAi);
+        if (kAk && (k === kAk || code === ('Key' + String(kAk).toUpperCase()))) { raidActUse(kAi); }
+      }
       if (k === 'p' || code === 'KeyP' || k === 'Escape' || code === 'Escape') { raidPause(); }
     } else {
       if (k) { Raid.keys[k] = false; }
@@ -10816,7 +10836,7 @@ main{padding:6px 0 40px}
     if (bdr) { bdr.onclick = raidDoorAction; }
     var bsw = byId('btnRaidSwap');
     if (bsw) { bsw.onclick = function () { raidSwapToggle(); }; }
-    /* 干员主动技能：G / C（手机上就是这两个按钮） */
+    /* 干员主动技能：默认 G / C（威龙喷气背包是 X），手机上就是这两个按钮 */
     var bsg = byId('btnRaidSkG');
     if (bsg) { bsg.onclick = function () { raidActUse(0); }; }
     var bsc = byId('btnRaidSkC');
@@ -11406,6 +11426,7 @@ main{padding:6px 0 40px}
       get Raid() { return Raid; },
       get state() { return state; },
       MAPS: MAPS, RADIATION_DEFS: RADIATION_DEFS, ACT_KEYS: ACT_KEYS, OPS: OPS, POND_DEFS: POND_DEFS,
+      actKey: actKey, actKeyTxt: actKeyTxt, actKeyTxts: actKeyTxts, curActs: curActs,
       startRaid: startRaid, exitRaid: exitRaid, selectRaidMap: selectRaidMap, refreshAll: refreshAll,
       raidActUse: raidActUse, raidHud: raidHud, raidDraw: raidDraw, radZoneAt: radZoneAt,
       raidRadStep: raidRadStep, switchView: switchView, curOp: curOp, byId: byId
