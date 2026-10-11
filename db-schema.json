@@ -1,0 +1,27 @@
+{
+  "title": "数学作战档案",
+  "space_id": "EkY6PQ7auCcd6wLUVG0FTK",
+  "properties": [
+    { "name": "事项", "config": { "text": "" } },
+    { "name": "类型", "config": { "select": { "options": [
+      { "text": "错题", "id": "7f3k9d2m1q8xbz4a" },
+      { "text": "战利品", "id": "2n8s5v1c6hjkw0pt" },
+      { "text": "兑换", "id": "9r4t6y2u8ieplm3x" },
+      { "text": "战绩", "id": "5b1g7k3z9ovcnd6s" }
+    ] } } },
+    { "name": "难度", "config": { "select": { "options": [
+      { "text": "新兵", "id": "3c9j5w1r7ymkq2vb" },
+      { "text": "老兵", "id": "8t2f6h0n4pxsd9ze" },
+      { "text": "精锐", "id": "1y7u3i9o5lqwa6rt" }
+    ] } } },
+    { "name": "数值", "config": { "number": { "decimalPlaces": 0, "useSeparate": false } } },
+    { "name": "状态", "config": { "select": { "options": [
+      { "text": "待重做", "id": "4v0b8m2x6kzjq9hs" },
+      { "text": "已掌握", "id": "6d2w9r5t1npkf7yu" },
+      { "text": "待售", "id": "0s6e1a7g3mvcx5kn" },
+      { "text": "已售", "id": "7p3l9c5i2zwqy8do" }
+    ] } } },
+    { "name": "详情", "config": { "text": "" } },
+    { "name": "日期", "config": { "date": "1970-01-01T00:00:00Z" } }
+  ]
+}

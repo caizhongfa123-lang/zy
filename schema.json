@@ -1,0 +1,109 @@
+{
+  "title": "数学作战档案",
+  "page_type": "mixed",
+  "properties": {
+    "事项": { "text": "" },
+    "类型": {
+      "select": {
+        "options": [
+          { "text": "错题", "id": "7f3k9d2m1q8xbz4a" },
+          { "text": "战利品", "id": "2n8s5v1c6hjkw0pt" },
+          { "text": "兑换", "id": "9r4t6y2u8ieplm3x" },
+          { "text": "战绩", "id": "5b1g7k3z9ovcnd6s" }
+        ]
+      }
+    },
+    "难度": {
+      "select": {
+        "options": [
+          { "text": "新兵", "id": "3c9j5w1r7ymkq2vb" },
+          { "text": "老兵", "id": "8t2f6h0n4pxsd9ze" },
+          { "text": "精锐", "id": "1y7u3i9o5lqwa6rt" }
+        ]
+      }
+    },
+    "数值": { "number": { "decimalPlaces": 0, "useSeparate": false } },
+    "状态": {
+      "select": {
+        "options": [
+          { "text": "待重做", "id": "4v0b8m2x6kzjq9hs" },
+          { "text": "已掌握", "id": "6d2w9r5t1npkf7yu" },
+          { "text": "待售", "id": "0s6e1a7g3mvcx5kn" },
+          { "text": "已售", "id": "7p3l9c5i2zwqy8do" }
+        ]
+      }
+    },
+    "详情": { "text": "" },
+    "日期": { "date": "1970-01-01T00:00:00Z" }
+  },
+  "field_mapping": {
+    "事项": {
+      "value_type": "text",
+      "form_input": "[name=\"item\"]",
+      "display_selector": "#wrongList",
+      "render_signal": "label:contains('错题')"
+    },
+    "类型": {
+      "value_type": "select",
+      "form_input": "[name=\"type\"]",
+      "display_selector": null,
+      "render_signal": "label:contains('类型')",
+      "options_value_key": "value"
+    },
+    "难度": {
+      "value_type": "select",
+      "form_input": "[name=\"difficulty\"]",
+      "display_selector": null,
+      "render_signal": "label:contains('难度')",
+      "options_value_key": "value"
+    },
+    "数值": {
+      "value_type": "number",
+      "form_input": null,
+      "display_selector": "#kpiCoin",
+      "render_signal": "label:contains('哈夫币')"
+    },
+    "状态": {
+      "value_type": "select",
+      "form_input": "[name=\"status\"]",
+      "display_selector": null,
+      "render_signal": "label:contains('状态')",
+      "options_value_key": "value"
+    },
+    "详情": {
+      "value_type": "text",
+      "form_input": "[name=\"detail\"]",
+      "display_selector": null,
+      "render_signal": "label:contains('详情')"
+    },
+    "日期": {
+      "value_type": "date",
+      "form_input": null,
+      "display_selector": null,
+      "render_signal": "label:contains('日期')"
+    }
+  },
+  "options_map": {
+    "类型": {
+      "wrong": { "text": "错题", "id": "7f3k9d2m1q8xbz4a" },
+      "loot": { "text": "战利品", "id": "2n8s5v1c6hjkw0pt" },
+      "exchange": { "text": "兑换", "id": "9r4t6y2u8ieplm3x" },
+      "record": { "text": "战绩", "id": "5b1g7k3z9ovcnd6s" }
+    },
+    "难度": {
+      "rookie": { "text": "新兵", "id": "3c9j5w1r7ymkq2vb" },
+      "veteran": { "text": "老兵", "id": "8t2f6h0n4pxsd9ze" },
+      "elite": { "text": "精锐", "id": "1y7u3i9o5lqwa6rt" }
+    },
+    "状态": {
+      "redo": { "text": "待重做", "id": "4v0b8m2x6kzjq9hs" },
+      "mastered": { "text": "已掌握", "id": "6d2w9r5t1npkf7yu" },
+      "onSale": { "text": "待售", "id": "0s6e1a7g3mvcx5kn" },
+      "sold": { "text": "已售", "id": "7p3l9c5i2zwqy8do" }
+    }
+  },
+  "source": "agent_analysis",
+  "sdk_calls_found": false,
+  "confidence": "high",
+  "needs_database": { "level": "strong", "reason": "工作台含错题表单与列表渲染，数据需长期积累、跨设备同步" }
+}
