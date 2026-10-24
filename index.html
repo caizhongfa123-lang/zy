@@ -731,6 +731,137 @@ main{padding:6px 0 40px}
   .tab{font-size:10.5px;padding:8px 3px;min-height:52px;gap:2px}
   .tab svg{width:18px;height:18px}
 }
+
+/* ================= v1.2 三角洲正版界面主题 =================
+   对照正版截图：深炭底 + 荧光绿 UI 线条 + 绿色主 CTA + 金色货币；
+   全面战场走橙色；干员页大字名 + 头像条；地图卡暗色大字。 */
+:root{--df:#43df87;--df-soft:rgba(67,223,135,.14);--df-line:rgba(67,223,135,.35);--df-war:#ffb45e}
+body{
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(1100px 460px at 74% -8%,rgba(67,223,135,.06),transparent 62%),
+    radial-gradient(900px 420px at -12% 30%,rgba(74,168,255,.04),transparent 60%);
+  background-attachment:fixed;
+}
+.panel{
+  background:linear-gradient(180deg,#141a15,#10150f);
+  border:1px solid #232b24;
+  box-shadow:0 10px 26px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.025);
+}
+.panel-title .bar{background:var(--df);box-shadow:0 0 7px rgba(67,223,135,.85)}
+.topbar{
+  background:linear-gradient(180deg,rgba(7,10,8,.97),rgba(7,10,8,.9));
+  border-bottom:1px solid var(--df-line);
+  box-shadow:0 4px 18px rgba(0,0,0,.45);
+}
+/* 顶栏货币芯片：金色货币 + 绿色底光 */
+.chip{border-color:#2c352d}
+.chip.coin{border-color:rgba(245,165,36,.4);background:rgba(245,165,36,.06)}
+/* 导航：桌面端改成游戏式文字 tab + 绿色下划线亮条 */
+@media (min-width:768px){
+  .tabs{background:linear-gradient(180deg,rgba(13,18,14,.9),rgba(13,18,14,.55));
+    border:1px solid #232b24;border-radius:12px;margin:10px auto 12px;padding:2px 6px;gap:0}
+  .tab{flex-direction:row;gap:7px;background:transparent;border:0;border-radius:9px;
+    min-height:42px;padding:9px 8px;font-size:13px;letter-spacing:3px;color:#83967f;font-weight:700;position:relative}
+  .tab svg{width:15px;height:15px;opacity:.85}
+  .tab::after{content:'';position:absolute;left:26%;right:26%;bottom:2px;height:2px;border-radius:2px;
+    background:transparent;transition:.16s}
+  .tab.on{color:var(--df);background:rgba(67,223,135,.05);border:0;box-shadow:none}
+  .tab.on::after{background:var(--df);box-shadow:0 0 9px rgba(67,223,135,.8)}
+}
+/* 大厅 Hero（首页顶部） */
+.lobby{
+  position:relative;margin-bottom:12px;border:1px solid #26302a;border-radius:16px;overflow:hidden;
+  background:linear-gradient(135deg,#141c15 0%,#0c110d 52%,#101711 100%);
+  box-shadow:0 12px 30px rgba(0,0,0,.42);
+}
+.lobby::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(680px 300px at 76% 18%,rgba(67,223,135,.11),transparent 62%),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.016) 0 1px,transparent 1px 88px),
+    repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 88px);
+}
+.lobby-main{position:relative;display:flex;gap:12px;padding:18px;flex-wrap:wrap}
+.lobby-poster{flex:1.45;min-width:262px;display:flex;flex-direction:column;justify-content:flex-end;min-height:228px}
+.lobby-kicker{font-size:10.5px;letter-spacing:5px;color:var(--df);font-weight:800;opacity:.9}
+.lobby-title{
+  font-size:clamp(29px,5.2vw,46px);font-weight:900;letter-spacing:6px;line-height:1.12;margin:7px 0 3px;color:#f2f7ee;
+  text-shadow:0 2px 22px rgba(0,0,0,.65),0 0 34px rgba(67,223,135,.14)
+}
+.lobby-sub{font-size:12.5px;color:var(--muted);margin-bottom:15px;letter-spacing:1px}
+.lobby-mode-row{display:flex;gap:10px;flex-wrap:wrap}
+.lobby-mode{
+  flex:1;min-width:172px;text-align:left;cursor:pointer;font-family:inherit;color:var(--txt);
+  background:linear-gradient(135deg,#1a231c,#111711);border:1px solid #2b362c;border-radius:12px;
+  padding:13px 14px;min-height:44px;transition:.16s
+}
+.lobby-mode b{display:block;font-size:16.5px;font-weight:900;letter-spacing:3px;color:#fff}
+.lobby-mode span{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5}
+.lobby-mode:hover{border-color:var(--df-line);background:linear-gradient(135deg,#1e2a20,#131a14)}
+.lobby-mode.war b{color:var(--df-war)}
+.lobby-mode.war:hover{border-color:rgba(255,180,94,.5)}
+.lobby-side{flex:1;min-width:206px;display:flex;flex-direction:column;gap:9px}
+.lobby-card{
+  border:1px solid #2b362c;border-radius:12px;padding:11px 13px;background:#131a14;cursor:pointer;
+  font-family:inherit;color:var(--txt);text-align:left;min-height:44px;transition:.16s
+}
+.lobby-card b{display:block;font-size:13px;letter-spacing:1px}
+.lobby-card span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.lobby-card:hover{border-color:var(--df-line)}
+.lobby-card.hot{border-color:var(--df-line);background:linear-gradient(135deg,#152119,#131a14)}
+.lobby-card.hot b{color:var(--df)}
+.lobby-cta{
+  margin-top:auto;border:0;border-radius:11px;padding:14px;min-height:48px;cursor:pointer;
+  font-size:15px;font-weight:900;letter-spacing:7px;font-family:inherit;color:#07130a;
+  background:linear-gradient(180deg,#5cea97,#2cba66);
+  box-shadow:0 8px 22px rgba(67,223,135,.28),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:.16s
+}
+.lobby-cta:hover{filter:brightness(1.06)}
+.lobby-cta:active{transform:translateY(1px)}
+@media (max-width:767px){
+  .lobby-main{padding:13px}
+  .lobby-poster{min-height:150px}
+  .lobby-title{font-size:29px;letter-spacing:4px}
+}
+/* 行动准备 · 地图卡：正版暗色大字卡 + 绿色选中光晕；大战场橙色 */
+.raid-map{
+  background:linear-gradient(180deg,#151b16,#0e120e);
+  border:1px solid #26302a;position:relative;overflow:hidden;transition:.16s
+}
+.raid-map b{font-size:17px;letter-spacing:2px}
+.raid-map .raid-map-land{color:var(--df)!important;border-color:var(--df-line)}
+.raid-map.on{
+  border-color:var(--df);
+  background:linear-gradient(180deg,rgba(67,223,135,.12),rgba(67,223,135,.03));
+  box-shadow:0 0 0 1px var(--df-line),0 8px 22px rgba(0,0,0,.45)
+}
+.raid-map.war .raid-map-land{color:var(--df-war)!important;border-color:rgba(255,180,94,.4)}
+.raid-map.war.on{
+  border-color:var(--df-war);
+  background:linear-gradient(180deg,rgba(255,180,94,.13),rgba(255,180,94,.03));
+  box-shadow:0 0 0 1px rgba(255,180,94,.4),0 8px 22px rgba(0,0,0,.45)
+}
+/* 干员档案：正版式大字名 + 主题光晕；干员条更像头像栏 */
+.op-hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#151c16 0%,#0e130f 60%,#121a13 100%);
+  border:1px solid #26302a
+}
+.op-hero::after{
+  content:'';position:absolute;right:-70px;top:-70px;width:260px;height:260px;pointer-events:none;
+  background:radial-gradient(circle,rgba(67,223,135,.13),transparent 68%)
+}
+.op-hero-info{position:relative;z-index:1}
+.op-hero-info > b{font-size:33px;letter-spacing:5px;line-height:1.15;display:inline-block}
+.op-hero-info > b::after{content:'';display:block;width:56px;height:3px;border-radius:2px;margin-top:5px;
+  background:var(--df);box-shadow:0 0 8px rgba(67,223,135,.8)}
+@media (min-width:768px){
+  .op-grid{grid-template-columns:repeat(4,1fr)}
+}
+.op-card{background:linear-gradient(180deg,#141a15,#10150f);border-color:#26302a}
+.op-card.on{border-color:var(--df);box-shadow:0 0 0 1px var(--df-line) inset,0 6px 18px rgba(0,0,0,.4)}
 </style>
 </head>
 <body>
@@ -791,7 +922,7 @@ main{padding:6px 0 40px}
       <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.6v5.9c0 4.8 3.1 8.9 7.5 10.5 4.4-1.6 7.5-5.7 7.5-10.5V5.6L12 2.5z"/><path d="M8.6 12.1l2.5 2.5 4.4-4.6"/></svg>
       <div>
         <div class="brand-name">数学作战台</div>
-        <div class="brand-sub">Operation Math · v<span id="appVerTop">1.1.1</span></div>
+        <div class="brand-sub">Operation Math · v<span id="appVerTop">1.2.0</span></div>
       </div>
     </div>
     <div class="wallet">
@@ -825,6 +956,36 @@ main{padding:6px 0 40px}
 
 <main class="wrap">
   <section class="view on" id="view-home">
+    <div class="lobby">
+      <div class="lobby-main">
+        <div class="lobby-poster">
+          <div class="lobby-kicker">DELTA FORCE · OPERATION MATH</div>
+          <div class="lobby-title" id="lobbyOpName">作战大厅</div>
+          <div class="lobby-sub" id="lobbyOpSub">选择模式，开始今天的行动</div>
+          <div class="lobby-mode-row">
+            <button class="lobby-mode" id="btnLobbyRaid" type="button">
+              <b>烽火地带</b>
+              <span>潜入搜刮 · 开箱摸金 · 撤离结算带走物资</span>
+            </button>
+            <button class="lobby-mode war" id="btnLobbyWar" type="button">
+              <b>全面战场</b>
+              <span>占领据点 · 无限复活 · 大规模阵地交火</span>
+            </button>
+          </div>
+        </div>
+        <div class="lobby-side">
+          <button class="lobby-card hot" id="btnLobbySupply" type="button">
+            <b>烽火战庆典礼</b>
+            <span>军需补给站已上架 · 物价 ×3</span>
+          </button>
+          <button class="lobby-card" id="btnLobbyBadge" type="button">
+            <b>S9 · 回声</b>
+            <span>全新勋章赛季 · 15 枚待点亮</span>
+          </button>
+          <button class="lobby-cta" id="btnLobbyGo" type="button">行前备战</button>
+        </div>
+      </div>
+    </div>
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>今日任务 · 出发前简报<small id="todayDate"></small></div>
       <div id="todayList"></div>
@@ -858,7 +1019,7 @@ main{padding:6px 0 40px}
       <div id="logList"></div>
     </div>
     <div class="app-foot">
-      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">1.1.1</span></b></div>
+      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">1.2.0</span></b></div>
       <div class="app-foot-sub">上次更新：<span id="appDateHome">2026-10-11</span> · 想知道当前是什么版本，看这里就行</div>
     </div>
   </section>
@@ -1138,8 +1299,8 @@ main{padding:6px 0 40px}
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '1.1.1';
-  var APP_DATE = '2026-10-11';
+  var APP_VER = '1.2.0';
+  var APP_DATE = '2026-10-24';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
   var LS_FORM = 'wb_mathdelta_form_v1';
@@ -6406,7 +6567,7 @@ main{padding:6px 0 40px}
     for (var i = 0; i < MAPS.length; i++) {
       var m = MAPS[i];
       var th = mapTheme(m);
-      var b = make('button', 'raid-map' + (state.map === m.id ? ' on' : '') + (m.rad ? ' rad' : ''));
+      var b = make('button', 'raid-map' + (state.map === m.id ? ' on' : '') + (m.rad ? ' rad' : '') + (m.war ? ' war' : ''));
       b.type = 'button';
       var thumb = make('div', 'raid-map-thumb');
       thumb.appendChild(mapThumbSvg(m, 0, 0));
@@ -10911,6 +11072,7 @@ main{padding:6px 0 40px}
   /* ================= 渲染入口（唯一刷新入口，渲染函数之间互不调用） ================= */
   function refreshAll() {
     renderChrome();
+    renderLobby();
     renderHome();
     renderTrain();
     renderBadge();
@@ -10937,6 +11099,17 @@ main{padding:6px 0 40px}
         + (o ? (' · 出战干员 ' + o.code) : '');
     }
     askChipUpdate();
+  }
+  /* 大厅 Hero：出战干员名 + 副标题（像游戏主界面那样一眼看到今天带谁出发） */
+  function renderLobby() {
+    var o = curOp();
+    var t1 = byId('lobbyOpName'), t2 = byId('lobbyOpSub');
+    if (t1) { t1.textContent = o ? o.code : '作战大厅'; }
+    if (t2) {
+      t2.textContent = o
+        ? ('出战干员 · 主动技能进图即就绪 · 选一个模式出发')
+        : '还没有出战干员 · 去「电台 · 干员档案」招募一位';
+    }
   }
   var RANKS = [
     { name: '列兵', need: 0 }, { name: '下士', need: 20 }, { name: '中士', need: 50 },
@@ -11222,6 +11395,23 @@ main{padding:6px 0 40px}
         pinOpen('check', function () { askOpen('main'); }, null);
       };
     }
+    /* 大厅 Hero：烽火地带 / 全面战场 / 行前备战 / 侧栏活动卡 */
+    var lgR = byId('btnLobbyRaid');
+    if (lgR) { lgR.onclick = function () { switchView('raid'); }; }
+    var lgW = byId('btnLobbyWar');
+    if (lgW) {
+      lgW.onclick = function () {
+        selectRaidMap('war');
+        switchView('raid');
+        toast('已选定「大战场」· 全面战场模式');
+      };
+    }
+    var lgGo = byId('btnLobbyGo');
+    if (lgGo) { lgGo.onclick = function () { switchView('raid'); }; }
+    var lgSup = byId('btnLobbySupply');
+    if (lgSup) { lgSup.onclick = function () { switchView('supply'); }; }
+    var lgBd = byId('btnLobbyBadge');
+    if (lgBd) { lgBd.onclick = function () { switchView('badge'); }; }
     var filter = byId('wrongFilter');
     if (filter) {
       var fbtns = filter.getElementsByTagName('button');
