@@ -909,6 +909,12 @@ body{
     .lobby-poster{min-height:236px}
     .lobby{background-position:center 22%}
   }
+  /* v2.0.3 首页下方板块折叠 */
+  .home-more{margin-bottom:12px}
+  .home-more summary{list-style:none;cursor:pointer;text-align:center;font-size:12.5px;font-weight:800;letter-spacing:2px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px;transition:.16s}
+  .home-more summary:hover{color:var(--df);border-color:var(--df-line)}
+  .home-more summary::-webkit-details-marker{display:none}
+  .home-more[open] summary{margin-bottom:10px}
 </style>
 </head>
 <body>
@@ -967,7 +973,7 @@ body{
       <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.6v5.9c0 4.8 3.1 8.9 7.5 10.5 4.4-1.6 7.5-5.7 7.5-10.5V5.6L12 2.5z"/><path d="M8.6 12.1l2.5 2.5 4.4-4.6"/></svg>
       <div>
         <div class="brand-name">数学作战台</div>
-        <div class="brand-sub">Operation Math · v<span id="appVerTop">2.0.2</span></div>
+        <div class="brand-sub">Operation Math · v<span id="appVerTop">2.0.3</span></div>
       </div>
     </div>
     <div class="wallet">
@@ -1046,6 +1052,8 @@ body{
         <div class="fac fr"><b>枪火</b><span>BOSS · 机龙暴台废墟里的守火人</span></div>
       </div>
     </div>
+    <details class="home-more">
+      <summary>今日任务 · 战况统计（点开 / 收起）</summary>
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>今日任务 · 出发前简报<small id="todayDate"></small></div>
       <div id="todayList"></div>
@@ -1078,8 +1086,9 @@ body{
       <div class="panel-title"><span class="bar"></span>最近战绩<button class="tiny-btn" id="btnLogTrade" type="button" style="display:none"></button><small id="logCount"></small></div>
       <div id="logList"></div>
     </div>
+    </details>
     <div class="app-foot">
-      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">2.0.2</span></b></div>
+      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">2.0.3</span></b></div>
       <div class="app-foot-sub">上次更新：<span id="appDateHome">2026-10-11</span> · 想知道当前是什么版本，看这里就行</div>
     </div>
   </section>
@@ -1361,7 +1370,7 @@ body{
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '2.0.2';
+  var APP_VER = '2.0.3';
   var APP_DATE = '2026-10-31';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
