@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>数学作战台 · 三角洲行动学习基地</title>
+<title>数学作战台 · 白金国行动学习基地</title>
 <!-- 本工作台通过 WorkBuddy「资料库」skill 搭建、存储和部署 -->
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
@@ -260,7 +260,7 @@ main{padding:6px 0 40px}
 .track-item .n{flex:1;min-width:0;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .track-item .s{flex:none;font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:48%}
 .radio-tip{font-size:11px;color:var(--muted);margin-top:2px}
-/* ===== 电台：曲目分组 + 三角洲原唱 ===== */
+/* ===== 电台：曲目分组 + 白金国原唱 ===== */
 .track-group{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted);margin:12px 2px 7px;font-weight:700;letter-spacing:.5px}
 .track-group:first-child{margin-top:2px}
 .track-group::after{content:'';flex:1;height:1px;background:var(--line)}
@@ -492,7 +492,7 @@ main{padding:6px 0 40px}
 .rq-q{font-size:15px;font-weight:700;line-height:1.6;margin:9px 0 12px}
 .rq-bad{color:#ff5f45;font-size:12.5px;font-weight:700;margin-top:4px}
 
-/* ===== 干员档案 ===== */
+/* ===== 战备档案 ===== */
 .op-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 .op-card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px}
 .op-card.on{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent-soft) inset}
@@ -535,7 +535,7 @@ main{padding:6px 0 40px}
 .op-skin.on b{color:var(--accent)}
   .op-skin .th{display:block;width:44px;height:44px;border-radius:10px;overflow:hidden;margin:0 auto 6px;border:1px solid var(--line)}
   .op-skin .th svg{display:block;width:44px;height:44px}
-  /* 武器外观（枪皮 / 刀皮）：格子与干员皮肤同一套交互 */
+  /* 武器外观（枪皮 / 刀皮）：格子与战备皮肤同一套交互 */
   .wskin-row{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;margin-bottom:4px;-webkit-overflow-scrolling:touch}
   .wskin{flex:none;width:90px;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:8px 6px;color:var(--txt);text-align:center;cursor:pointer;font:inherit}
   .wskin.on{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
@@ -732,9 +732,9 @@ main{padding:6px 0 40px}
   .tab svg{width:18px;height:18px}
 }
 
-/* ================= v1.2 三角洲正版界面主题 =================
+/* ================= v1.2 白金国正版界面主题 =================
    对照正版截图：深炭底 + 荧光绿 UI 线条 + 绿色主 CTA + 金色货币；
-   全面战场走橙色；干员页大字名 + 头像条；地图卡暗色大字。 */
+   全面战场走橙色；战备页大字名 + 头像条；地图卡暗色大字。 */
 :root{--df:#43df87;--df-soft:rgba(67,223,135,.14);--df-line:rgba(67,223,135,.35);--df-war:#ffb45e}
 body{
   background-color:var(--bg);
@@ -843,7 +843,7 @@ body{
   background:linear-gradient(180deg,rgba(255,180,94,.13),rgba(255,180,94,.03));
   box-shadow:0 0 0 1px rgba(255,180,94,.4),0 8px 22px rgba(0,0,0,.45)
 }
-/* 干员档案：正版式大字名 + 主题光晕；干员条更像头像栏 */
+/* 战备档案：正版式大字名 + 主题光晕；战备条更像头像栏 */
 .op-hero{
   position:relative;overflow:hidden;
   background:linear-gradient(135deg,#151c16 0%,#0e130f 60%,#121a13 100%);
@@ -862,17 +862,27 @@ body{
 }
 .op-card{background:linear-gradient(180deg,#141a15,#10150f);border-color:#26302a}
 .op-card.on{border-color:var(--df);box-shadow:0 0 0 1px var(--df-line) inset,0 6px 18px rgba(0,0,0,.4)}
+  /* v2.0 故事面板 */
+  .story{padding:10px 12px;border-left:2px solid var(--df);background:rgba(67,223,135,.04);border-radius:0 8px 8px 0}
+  .story p{margin:0 0 8px;font-size:13px;line-height:1.85;color:#cfd8d4}
+  .story p:last-child{margin-bottom:0;color:#fff;font-weight:600}
+  .story-fac{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:10px}
+  .story-fac .fac{padding:9px 11px;border:1px solid var(--df-line);border-radius:9px;background:rgba(255,255,255,.02)}
+  .story-fac .fac b{display:block;font-size:14px;color:var(--df);letter-spacing:1px;margin-bottom:3px}
+  .story-fac .fac span{font-size:11.5px;color:var(--muted);line-height:1.6}
+  .story-fac .fac.fr b{color:var(--df-war)}
+  .story-fac .fac.fr{border-color:rgba(255,180,94,.35)}
 </style>
 </head>
 <body>
 <div id="boot">
   <div class="boot-in">
     <div class="boot-logo">
-      <b>三角洲行动 · 数学作战台</b>
-      <span>MATH OPERATION · MINI DELTA</span>
+      <b>白金国 · 数学战线</b>
+      <span>PLATINUM NATION · MATH FRONTIER</span>
     </div>
     <div class="boot-acc">
-      <div class="boot-acc-h"><span>选择作战账号</span><small>每人独立存档：哈夫币 / 错题 / 干员 / 物资</small></div>
+      <div class="boot-acc-h"><span>选择作战账号</span><small>每人独立存档：白金 / 错题 / 技能 / 物资</small></div>
       <div class="acc-bar" id="bootAccBar"></div>
       <div class="boot-play" id="bootPlayTip"></div>
     </div>
@@ -882,16 +892,16 @@ body{
     </div>
     <div class="boot-load">
       <div class="boot-bar"><i id="bootBar"></i></div>
-      <span id="bootMsg">正在集结特勤小队…</span>
+      <span id="bootMsg">正在集结边境小队…</span>
     </div>
     <div class="boot-tut">
       <div class="panel-title"><span class="bar"></span>新兵教程<small>六步上手</small></div>
-      <div class="bt-row"><i class="bt-num">1</i><div><b>训练场刷题赚哈夫币</b><span>选难度和单元，填空作答：分数写 3/4、比写 3:2、百分数写 25%，答对有连击加成</span></div></div>
+      <div class="bt-row"><i class="bt-num">1</i><div><b>训练场刷题赚白金</b><span>选难度和单元，填空作答：分数写 3/4、比写 3:2、百分数写 25%，答对有连击加成</span></div></div>
       <div class="bt-row"><i class="bt-num">2</i><div><b>军械库消灭错题</b><span>答错的题自动收进错题本，重做答对才能销案，考前翻一遍</span></div></div>
-      <div class="bt-row"><i class="bt-num">3</i><div><b>补给站抽物资换币</b><span>用搜刮券抽物资卖给商人，哈夫币可以招干员、买皮肤和武器</span></div></div>
+      <div class="bt-row"><i class="bt-num">3</i><div><b>补给站抽物资换币</b><span>用搜刮券抽物资卖给商人，白金可以在技能树里解锁技能、买武器</span></div></div>
       <div class="bt-row"><i class="bt-num">4</i><div><b>行动：枪战撤离</b><span>花钱进场打敌人搬物资；金色房间要门卡或答 5 题；血量剩 50 会被关进牢房，答对 3 题越狱；到绿色圈站 3 秒撤离结算</span></div></div>
       <div class="bt-row"><i class="bt-num">5</i><div><b>账号规则：主账号有密码、行动不限时</b><span>「主账号」是家长账号，可以设一个 4 位数字密码：打开页面进主账号、或从练习账号切回主账号时都要先输密码。只有枪战「行动」卡时间——主账号随便打；其他账号是练习账号，只在周六、周日和法定节假日能打行动，而且每天最多 1 小时。答题、训练场、错题本、补给站、电台随时都能用，不计时也不锁屏</span></div></div>
-      <div class="bt-row"><i class="bt-num">6</i><div><b>钓鱼赚钱：河边找老渔夫要鱼竿</b><span>去「长弓溪谷」沿着河道找特殊 NPC「老渔夫」，按 E 交谈拿到鱼竿；之后站在河边或任何地图的小水塘边按 F 抛竿，鱼漂沉下去的瞬间再按一次 F 提竿。钓到的鱼会进补给站的「渔获鱼篓」，可以卖哈夫币（越危险的地图鱼越贵）</span></div></div>
+      <div class="bt-row"><i class="bt-num">6</i><div><b>钓鱼赚钱：河边找老渔夫要鱼竿</b><span>去「蜂林谷」沿着河道找特殊 NPC「老渔夫」，按 E 交谈拿到鱼竿；之后站在河边或任何地图的小水塘边按 F 抛竿，鱼漂沉下去的瞬间再按一次 F 提竿。钓到的鱼会进补给站的「渔获鱼篓」，可以卖白金（越危险的地图鱼越贵）</span></div></div>
     </div>
     <button id="bootGo" type="button" disabled>系统启动中…</button>
     <div class="boot-foot">威虫 &amp; 哈基蜂 已就位 · 数据自动云同步</div>
@@ -903,7 +913,7 @@ body{
       <b>作战账号</b>
       <button class="acct-ico" id="acctClose" type="button">✕</button>
     </div>
-    <div class="acct-tip">每个账号的哈夫币、错题本、干员、物资和战绩都独立存放，互不影响。<br><b>时段规则（只管「行动」）</b>：「主账号」打行动不限时；其他账号属于练习账号，只在周六、周日和法定节假日能打行动，且每天最多 1 小时。答题、训练场、错题本、补给站这些不限时段、也不计时。<br><b>主账号密码</b>：可以给「主账号」设一个 4 位数字密码，打开页面进入主账号、或从练习账号切回主账号时都要先输密码；练习账号不受影响。密码只存在本机，忘了可以点密码框里的「忘记密码」重置。</div>
+    <div class="acct-tip">每个账号的白金、错题本、技能、物资和战绩都独立存放，互不影响。<br><b>时段规则（只管「行动」）</b>：「主账号」打行动不限时；其他账号属于练习账号，只在周六、周日和法定节假日能打行动，且每天最多 1 小时。答题、训练场、错题本、补给站这些不限时段、也不计时。<br><b>主账号密码</b>：可以给「主账号」设一个 4 位数字密码，打开页面进入主账号、或从练习账号切回主账号时都要先输密码；练习账号不受影响。密码只存在本机，忘了可以点密码框里的「忘记密码」重置。</div>
     <div id="acctPin"></div>
     <div id="acctList"></div>
     <div class="acct-new-box">
@@ -922,7 +932,7 @@ body{
       <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.6v5.9c0 4.8 3.1 8.9 7.5 10.5 4.4-1.6 7.5-5.7 7.5-10.5V5.6L12 2.5z"/><path d="M8.6 12.1l2.5 2.5 4.4-4.6"/></svg>
       <div>
         <div class="brand-name">数学作战台</div>
-        <div class="brand-sub">Operation Math · v<span id="appVerTop">1.2.0</span></div>
+        <div class="brand-sub">Operation Math · v<span id="appVerTop">2.0.0</span></div>
       </div>
     </div>
     <div class="wallet">
@@ -959,31 +969,46 @@ body{
     <div class="lobby">
       <div class="lobby-main">
         <div class="lobby-poster">
-          <div class="lobby-kicker">DELTA FORCE · OPERATION MATH</div>
-          <div class="lobby-title" id="lobbyOpName">作战大厅</div>
-          <div class="lobby-sub" id="lobbyOpSub">选择模式，开始今天的行动</div>
+          <div class="lobby-kicker">PLATINUM NATION · THREE-WAY WAR</div>
+          <div class="lobby-title" id="lobbyOpName">白金国 · 边境</div>
+          <div class="lobby-sub" id="lobbyOpSub">纪年 1010，三方争斗的第一年</div>
           <div class="lobby-mode-row">
             <button class="lobby-mode" id="btnLobbyRaid" type="button">
-              <b>烽火地带</b>
+              <b>边境冲突</b>
               <span>潜入搜刮 · 开箱摸金 · 撤离结算带走物资</span>
             </button>
             <button class="lobby-mode war" id="btnLobbyWar" type="button">
-              <b>全面战场</b>
-              <span>占领据点 · 无限复活 · 大规模阵地交火</span>
+              <b>三方混战</b>
+              <span>占领据点 · 无限复活 · 白金国 / 蚕蚀 / 怪食都</span>
             </button>
           </div>
         </div>
         <div class="lobby-side">
           <button class="lobby-card hot" id="btnLobbySupply" type="button">
-            <b>烽火战庆典礼</b>
-            <span>军需补给站已上架 · 物价 ×3</span>
+            <b>黑市开张</b>
+            <span>蚕蚀集团的军需补给已上架 · 物价 ×3</span>
           </button>
           <button class="lobby-card" id="btnLobbyBadge" type="button">
-            <b>S9 · 回声</b>
-            <span>全新勋章赛季 · 15 枚待点亮</span>
+            <b>S1 卷 · 起源</b>
+            <span>白金国纪年 1010 · 故事就从这一夜开始</span>
           </button>
           <button class="lobby-cta" id="btnLobbyGo" type="button">行前备战</button>
         </div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title"><span class="bar"></span>故事 · S1 卷「起源」<small>白金国纪年 1010</small></div>
+      <div class="story">
+        <p>1010 年，巨龙烧毁了「机龙暴台」。蜂龙罗狂咬枋米华，蜂国虽然白金满仓，却没有一门技术能把它加工成有用的东西——国格一年比一年贫困。</p>
+        <p>蚕蚀集团就是这时候进来的。他们打着「技术帮助」的旗号，干的却是见不得人的勾当。</p>
+        <p>白金国终于发现了。大权限冲突一夜爆发，一些士兵看不下去，索性自己建起了一座「怪食都」。</p>
+        <p>从此，白金国、蚕蚀集团、怪食都——三方争斗，再没有停过。你，是这场争斗里没有归属的那一个。</p>
+      </div>
+      <div class="story-fac">
+        <div class="fac"><b>白金国</b><span>白金满仓 · 没有技术 · 守着哨站与白坝</span></div>
+        <div class="fac"><b>蚕蚀集团</b><span>技术垄断 · 打着援助旗号蚕食一切</span></div>
+        <div class="fac"><b>怪食都</b><span>看不下去的士兵自建 · 三不管地带</span></div>
+        <div class="fac fr"><b>枪火</b><span>BOSS · 机龙暴台废墟里的守火人</span></div>
       </div>
     </div>
     <div class="panel">
@@ -1019,7 +1044,7 @@ body{
       <div id="logList"></div>
     </div>
     <div class="app-foot">
-      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">1.2.0</span></b></div>
+      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">2.0.0</span></b></div>
       <div class="app-foot-sub">上次更新：<span id="appDateHome">2026-10-11</span> · 想知道当前是什么版本，看这里就行</div>
     </div>
   </section>
@@ -1044,7 +1069,7 @@ body{
       <div id="qHint" class="hint-box" style="display:none"></div>
       <div id="qExplain" class="explain" style="display:none"></div>
       <div class="act-row" id="qActions">
-        <button class="mini-btn ghost" id="btnHint">战术提示 -10 哈夫币</button>
+        <button class="mini-btn ghost" id="btnHint">战术提示 -10 白金</button>
         <button class="mini-btn ghost" id="btnSkip">换一题</button>
         <button class="mini-btn" id="btnNext" style="display:none">下一题</button>
       </div>
@@ -1068,7 +1093,7 @@ body{
       <div id="chalHint" class="hint-box" style="display:none"></div>
       <div id="chalExplain" class="explain" style="display:none"></div>
       <div class="act-row" id="chalActions">
-        <button class="mini-btn ghost" id="btnChalHint" type="button">战术提示 -10 哈夫币</button>
+        <button class="mini-btn ghost" id="btnChalHint" type="button">战术提示 -10 白金</button>
         <button class="mini-btn ghost" id="btnChalQuit" type="button">退出挑战</button>
         <button class="mini-btn" id="btnChalNext" type="button" style="display:none">下一题</button>
       </div>
@@ -1151,14 +1176,14 @@ body{
       </div>
     </div>
     <div class="panel">
-      <div class="panel-title"><span class="bar"></span>军需补给站<small>物价 ×3 · 用哈夫币兑换</small></div>
+      <div class="panel-title"><span class="bar"></span>军需补给站<small>物价 ×3 · 用白金兑换</small></div>
       <div id="shopList"></div>
     </div>
   </section>
 
   <section class="view" id="view-radio">
     <div class="panel">
-      <div class="panel-title"><span class="bar"></span>三角洲原唱<small id="musicCount"></small></div>
+      <div class="panel-title"><span class="bar"></span>白金国原唱<small id="musicCount"></small></div>
       <div class="player-box" id="playerBox">
         <div class="player-hint" id="playerHint">点下面任意一首，这里<b>直接播原唱</b> —— 用的是 QQ 音乐官方播放器，需要联网。再点一次正在播的那首可以停下来。</div>
         <iframe id="qqPlayer" class="qq-player" allow="autoplay" scrolling="no" title="QQ音乐外链播放器"></iframe>
@@ -1167,7 +1192,7 @@ body{
       <div class="radio-tip">这 12 首都是<b>官方原唱</b>，曲名与出处取自 QQ 音乐。点「▶」在工作台里直接听；点「↗」跳去 QQ 音乐页面（想听完整版通常要登录或开会员）。</div>
     </div>
     <div class="panel">
-      <div class="panel-title"><span class="bar"></span>三角洲电台<small id="radioState">已停止</small></div>
+      <div class="panel-title"><span class="bar"></span>白金国电台<small id="radioState">已停止</small></div>
       <div class="radio-now">
         <div class="radio-wave" id="radioWave"><i></i><i></i><i></i><i></i><i></i></div>
         <div class="radio-info">
@@ -1189,19 +1214,20 @@ body{
       <div class="radio-tip">上面这些是工作台实时合成的曲目（借真实曲名与主题氛围，旋律由合成器原创演绎），断网、离线也能听，随时暂停不占流量。</div>
     </div>
     <div class="panel">
-      <div class="panel-title"><span class="bar"></span>干员档案<small id="opCount"></small></div>
+      <div class="panel-title"><span class="bar"></span>战备 · 技能树<small id="opCount"></small></div>
       <div class="op-hero" id="opHero"></div>
-      <div class="panel-title" style="margin:12px 0 8px"><span class="bar"></span>干员皮肤<small id="skinCount"></small></div>
+      <div class="panel-title" style="margin:12px 0 8px"><span class="bar"></span>技能槽（主动 G / C · 大招 V）<small id="skinCount"></small></div>
       <div class="op-skin-row" id="opSkinRow"></div>
       <div class="op-grid" id="opGrid"></div>
-      <div class="radio-tip" style="margin-top:8px">点干员头像看立绘；招募后点「出战」生效加成。<b>每位干员都带一个「行动技能」</b>：出战后进「行动 · 枪战」会自动生效（加伤害、加移速、回血、减伤等）。<b>每位干员还带两个「主动技能」</b>——进图后按 <b>G</b> / <b>C</b> 释放（手机点右下角两个技能按钮），放完要等冷却。<b>每个人物都是画出来的</b>——立绘下面那张「战场形象」就是他在枪战里跑动的样子（从头顶往下看）：8 位干员的体型、头盔、面罩、背后装备各不相同，谁是谁一眼能认出来。皮肤买一次全队通用，换的是整套配色，选哪套小人就穿哪套上场。</div>
+      <div class="radio-tip" style="margin-top:8px"><b>这里不再是"挑战备"，而是给自己攒一套战备。</b>解锁的技能会自动进槽：主动技装 <b>G</b> / <b>C</b>，大招装 <b>V</b>，进图后按对应键就放（手机点右下角三个技能按钮）。<b>被动节点（好头 / 刀皮 / 蓄电池 / 精制钢铁 / 挖矿）解锁就永久生效</b>，可叠加：生命、减伤、移速、击杀收益都会算进「战备属性」。点上面的槽位可以卸下技能，方便换一套打法。</div>
+    </div>
     </div>
   </section>
   <section class="view" id="view-raid">
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>行动准备<small id="raidPrepNote"></small></div>
       <div class="raid-map-grid" id="raidMapList"></div>
-      <div class="radio-tip" style="margin-bottom:11px"><b>七张地图各有各的地貌</b>，卡片上那张缩略图就是进图后脚下的样子：<b>零号大坝</b>是混凝土坝板（板缝 + 四角螺栓 + 排水孔），<b>长弓溪谷</b>是林地草皮（草簇 + 泥土斑），<b>巴克什</b>是城区柏油街面（人行道砖 + 黄色路标线），<b>潮汐监狱</b>是石板院子（十字缝 + 排水格栅），<b>航天基地</b>是发射场跑道（混凝土板 + 白色导引虚线 + 黄黑警示带），<b>AZ3 核电站</b>是反应堆厂区水泥板（板缝 + 螺栓，地上还铺着几圈发绿光的核辐射区），<b>大战场</b>是泥地车辙（弹坑 + 积水）。墙体材质、路边摆件（油桶 / 树丛 / 街灯 / 探照灯 / 雷达 / 沙袋）、角落大件（集装箱 / 汽车 / 燃料罐 / 哨塔 / 弹药库）也都按地图各换一套，右上角小地图同样按主题上色。</div>
+      <div class="radio-tip" style="margin-bottom:11px"><b>七张地图各有各的地貌</b>，卡片上那张缩略图就是进图后脚下的样子：<b>白坝哨站</b>是混凝土坝板（板缝 + 四角螺栓 + 排水孔），<b>蜂林谷</b>是林地草皮（草簇 + 泥土斑），<b>蚕蚀旧城</b>是城区柏油街面（人行道砖 + 黄色路标线），<b>囚矿区</b>是石板院子（十字缝 + 排水格栅），<b>机龙暴台</b>是发射场跑道（混凝土板 + 白色导引虚线 + 黄黑警示带），<b>蚕蚀反应堆</b>是反应堆厂区水泥板（板缝 + 螺栓，地上还铺着几圈发绿光的核辐射区），<b>大战场</b>是泥地车辙（弹坑 + 积水）。墙体材质、路边摆件（油桶 / 树丛 / 街灯 / 探照灯 / 雷达 / 沙袋）、角落大件（集装箱 / 汽车 / 燃料罐 / 哨塔 / 弹药库）也都按地图各换一套，右上角小地图同样按主题上色。</div>
       <div class="raid-mate" id="raidMate" style="display:none"></div>
       <div class="raid-cost" id="raidCost"></div>
       <div class="raid-skill" id="raidSkill"></div>
@@ -1237,7 +1263,7 @@ body{
     </div>
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>行动须知</div>
-      <div class="radio-tip">进场要交哈夫币入场费。<b>阵亡惩罚</b>：阵亡时带进图的<b>枪和防弹衣都会当场掉落丢失</b>（自动退回 M9 手枪和战术背心），想再带就得回军火库重新采购；而<b>成功撤离或主动撤离只结算物资、装备能保住</b>，所以血少了就果断往绿色撤离点跑。大战场是无限复活模式，阵亡不掉装备。地图里散布物资箱，站上去会自动开箱；打死的敌人也会掉东西。把物资背到绿色「撤离点」站满 3 秒才算成功带走；阵亡或超时，这一趟的物资全部丢失。<b>长弓溪谷的河道与攻击艇</b>：「长弓溪谷」地图中间横着一条蓝色的「长弓溪」，<b>涉水移动会变慢</b>（大约七成速度），水面上有三座褐色木桥，走桥上不减速；溪边停着一艘<b>攻击艇</b>——走到艇旁按 E（手机端点右下角「上艇」）登艇，WASD 驾驶，艇只能在溪水里开、上不了岸；按住左键 / 空格发射<b>舰炮</b>，炮弹是<b>范围伤害</b>，一发就能轰掉一小片敌人，弹舱 6 发、打空按 R（或点「换弹」）装填。敌人打你时先掉艇的血，艇被打爆会把你掀进水里并掉一点血，所以别硬顶着火力往前冲；想下艇随时按 E。<b>钓鱼赚币（河边找老渔夫拿鱼竿）</b>：在「长弓溪谷」沿着河道走，河岸边站着一位特殊 NPC「<b>老渔夫</b>」——走到他旁边按 E（手机点右下角「和 老渔夫 交谈」）聊两句，他会送你一根<b>鱼竿</b>（每个账号只需拿一次，永久有效）。有了鱼竿，站在<b>任何水边</b>——长弓溪的河边，或者<b>每张地图都有的小水塘</b>边——按 F 就能抛竿（手机点「钓 N 条」按钮）；鱼漂沉下去的那一瞬间<b>再按一次 F 提竿</b>，手慢了鱼就跑了。抛竿的时候<b>别走动、别开枪</b>，不然会惊跑鱼。钓上来的鱼会直接放进补给站的「<b>渔获鱼篓</b>」，不会因为阵亡丢失，去补给站点「一键卖光鱼篓」就能换成哈夫币。鱼的档次跟着地图难度走：零号大坝多是鲫鱼，航天基地容易上大青鱼、金鳞锦鲤（一条值 620）。每次行动最多钓 6 条。<b>刷卡房间</b>：每张地图有金色描边的上锁房间（零号大坝 1 间、长弓溪谷 2 间、巴克什 3 间、潮汐监狱 3 间、航天基地 3 间、AZ3 核电站 3 间），门卡可以直接开（击倒敌人、开箱子有概率掉门卡）；没有门卡就在门口答对 5 道数学题应急解锁，答错的题自动录入错题本。房间可能是惊喜物资库，也可能是陷阱或伏兵。电脑端走到门口按 E 开门。<b>大战场</b>是占领模式：没有物资箱、没有刷卡房间，站到 A / B / C 三个蓝色据点圈里、把敌人清出圈外就能推进占领；占领一个据点 +40 哈夫币，并且它就成了你的复活点——阵亡后 3 秒原地满血复活，无限次不结束，抢下全部 3 个据点即获胜（入场 180 哈夫币）。出发前可以在上面选一个「搭档账号」，它会作为强力队友和你一起作战；还没有第二个账号的话，点「＋ 立即新建搭档账号」一键建一个就行。<b>干员技能</b>：在「电台 · 干员」页招募并点「出战」后，这位干员的<b>行动技能</b>会在枪战里全程生效——红狼加速、威龙加伤害、牧羊人额外减伤、蜂医自动回血、蛊加生命上限、露娜提升开箱品质、骇爪门卡掉率翻倍、乌鲁鲁击杀额外给币。另外每位干员还带两个<b>主动技能</b>——进图后按 <b>G</b> / <b>C</b> 释放（手机点右下角两个技能按钮），放完进冷却：红狼「肾上腺素 / 三连手炮」、威龙「喷气背包 / 磁吸炸弹」、牧羊人「破片手雷 / 定时炸弹」、乌鲁鲁「RPG 火箭弹 / 燃烧弹」、蜂医「医疗无人机 / 激素枪」、蛊「毒气弹 / 电磁脉冲」、露娜「电箭 / 手雷」、骇爪「飞刀 / 敌人探测器」。<b>注意：现在战场难度 ×2</b>——所有敌人的血量和伤害都翻了一倍；<b>物价也 ×3</b>——武器、装具、干员、皮肤、补给站和入场费全部是 3 倍价，想买东西就得多在训练场答题赚哈夫币。<b>两把新枪</b>：AA-12 连发散弹枪按住左键就能全自动连喷，一枪喷出六颗弹丸，贴脸最猛；M134 加特林弹链无限、<b>永不需要换弹</b>，射速拉满但单发伤害低、弹道偏散，适合中近距离一路压着打。<b>AWM「A 大」狙击枪</b>：栓动重狙，打中普通敌人<b>一枪一个</b>直接送走，但 <b>BOSS 打不死</b>——只会掉一大截血，拉栓慢，必须站稳了再瞄。<b>航天基地</b>是新增的顶级地图：发射场跑道开阔、掩体稀少、火力最猛，BOSS「老太」坐镇发射控制中心，打倒她可拿 180 哈夫币和 3 件稀缺物资，A 大在这里最好用。<b>AZ3 核电站 · 核辐射</b>是新增的地图：厂区地上铺着好几片发绿光的<b>核辐射区</b>——站进去会持续掉血，而且<b>护甲和减伤都挡不住</b>，只能绕开或者一口气冲过去；右上角小地图上也用绿圈标了位置；辐射圈里还额外埋着高价值物资箱，想拿就得进去扛几秒。厂区里有「反应堆控制室」「汽轮机房」「废料库」三间加锁房间，冷却水池也能钓鱼。<b>近战刀与武器外观</b>：军火库下面新加了「近战军械」和「武器外观」两块。近战刀进图后按 <b>1</b> 端枪、按 <b>2</b> 拔刀（手机点右下角「切刀 / 切枪」按钮，键盘 <b>Q</b> 也能快速切换）；<b>拔刀的那一刻，手里这把刀会被直接画在角色身上</b>，挥刀时还会扫出一道刀光。刀不用换弹、可以一直砍，但必须贴到敌人身边才够得着——开山砍刀一刀能去半管血，武士刀「鬼切」普通敌人一刀一个（BOSS 砍不死但吃满伤害），军用工兵铲扇形最宽、被围住时最好用；弹匣打空或者摸到敌人背后时，切刀比站着换弹划算。枪皮和刀皮买一次永久生效、全枪全刀通用：装备哪款，进图后手里的枪和刀就是哪款涂装，点一下就能换。</div>
+      <div class="radio-tip">进场要交白金入场费。<b>阵亡惩罚</b>：阵亡时带进图的<b>枪和防弹衣都会当场掉落丢失</b>（自动退回 M9 手枪和战术背心），想再带就得回军火库重新采购；而<b>成功撤离或主动撤离只结算物资、装备能保住</b>，所以血少了就果断往绿色撤离点跑。焦土前线是无限复活模式，阵亡不掉装备。地图里散布物资箱，站上去会自动开箱；打死的敌人也会掉东西。把物资背到绿色「撤离点」站满 3 秒才算成功带走；阵亡或超时，这一趟的物资全部丢失。<b>蜂林谷的河道与攻击艇</b>：「蜂林谷」地图中间横着一条蓝色的「长弓溪」，<b>涉水移动会变慢</b>（大约七成速度），水面上有三座褐色木桥，走桥上不减速；溪边停着一艘<b>攻击艇</b>——走到艇旁按 E（手机端点右下角「上艇」）登艇，WASD 驾驶，艇只能在溪水里开、上不了岸；按住左键 / 空格发射<b>舰炮</b>，炮弹是<b>范围伤害</b>，一发就能轰掉一小片敌人，弹舱 6 发、打空按 R（或点「换弹」）装填。敌人打你时先掉艇的血，艇被打爆会把你掀进水里并掉一点血，所以别硬顶着火力往前冲；想下艇随时按 E。<b>钓鱼赚币（河边找老渔夫拿鱼竿）</b>：在「蜂林谷」沿着河道走，河岸边站着一位特殊 NPC「<b>老渔夫</b>」——走到他旁边按 E（手机点右下角「和 老渔夫 交谈」）聊两句，他会送你一根<b>鱼竿</b>（每个账号只需拿一次，永久有效）。有了鱼竿，站在<b>任何水边</b>——长弓溪的河边，或者<b>每张地图都有的小水塘</b>边——按 F 就能抛竿（手机点「钓 N 条」按钮）；鱼漂沉下去的那一瞬间<b>再按一次 F 提竿</b>，手慢了鱼就跑了。抛竿的时候<b>别走动、别开枪</b>，不然会惊跑鱼。钓上来的鱼会直接放进补给站的「<b>渔获鱼篓</b>」，不会因为阵亡丢失，去补给站点「一键卖光鱼篓」就能换成白金。鱼的档次跟着地图难度走：白坝哨站多是鲫鱼，机龙暴台容易上大青鱼、金鳞锦鲤（一条值 620）。每次行动最多钓 6 条。<b>刷卡房间</b>：每张地图有金色描边的上锁房间（白坝哨站 1 间、蜂林谷 2 间、蚕蚀旧城 3 间、囚矿区 3 间、机龙暴台 3 间、蚕蚀反应堆 3 间），门卡可以直接开（击倒敌人、开箱子有概率掉门卡）；没有门卡就在门口答对 5 道数学题应急解锁，答错的题自动录入错题本。房间可能是惊喜物资库，也可能是陷阱或伏兵。电脑端走到门口按 E 开门。<b>焦土前线</b>是占领模式：没有物资箱、没有刷卡房间，站到 A / B / C 三个蓝色据点圈里、把敌人清出圈外就能推进占领；占领一个据点 +40 白金，并且它就成了你的复活点——阵亡后 3 秒原地满血复活，无限次不结束，抢下全部 3 个据点即获胜（入场 180 白金）。出发前可以在上面选一个「搭档账号」，它会作为强力队友和你一起作战；还没有第二个账号的话，点「＋ 立即新建搭档账号」一键建一个就行。<b>战备技能</b>：去「电台 · 战备技能树」用白金解锁技能节点——<b>主动技</b>装 G / C 槽、<b>大招</b>装 V 槽，进图后按对应键释放（手机点右下角三个技能按钮），放完进冷却；<b>被动节点</b>（好头 / 刀皮 / 蓄电池 / 精制钢铁 / 挖矿）解锁即永久生效、可以叠加，汇总成你的战备属性：生命上限、减伤、移速、击杀收益。<b>注意：现在战场难度 ×2</b>——所有敌人的血量和伤害都翻了一倍；<b>物价也 ×3</b>——武器、装具、战备、皮肤、补给站和入场费全部是 3 倍价，想买东西就得多在训练场答题赚白金。<b>两把新枪</b>：AA-12 连发散弹枪按住左键就能全自动连喷，一枪喷出六颗弹丸，贴脸最猛；M134 加特林弹链无限、<b>永不需要换弹</b>，射速拉满但单发伤害低、弹道偏散，适合中近距离一路压着打。<b>AWM「A 大」狙击枪</b>：栓动重狙，打中普通敌人<b>一枪一个</b>直接送走，但 <b>BOSS 打不死</b>——只会掉一大截血，拉栓慢，必须站稳了再瞄。<b>机龙暴台</b>是新增的顶级地图：发射场跑道开阔、掩体稀少、火力最猛，BOSS「枪火」盘踞在暴台控制中心，打倒它可拿 180 白金和 3 件稀缺物资，A 大在这里最好用。<b>蚕蚀反应堆 · 核辐射</b>是新增的地图：厂区地上铺着好几片发绿光的<b>核辐射区</b>——站进去会持续掉血，而且<b>护甲和减伤都挡不住</b>，只能绕开或者一口气冲过去；右上角小地图上也用绿圈标了位置；辐射圈里还额外埋着高价值物资箱，想拿就得进去扛几秒。厂区里有「反应堆控制室」「汽轮机房」「废料库」三间加锁房间，冷却水池也能钓鱼。<b>近战刀与武器外观</b>：军火库下面新加了「近战军械」和「武器外观」两块。近战刀进图后按 <b>1</b> 端枪、按 <b>2</b> 拔刀（手机点右下角「切刀 / 切枪」按钮，键盘 <b>Q</b> 也能快速切换）；<b>拔刀的那一刻，手里这把刀会被直接画在角色身上</b>，挥刀时还会扫出一道刀光。刀不用换弹、可以一直砍，但必须贴到敌人身边才够得着——开山砍刀一刀能去半管血，武士刀「鬼切」普通敌人一刀一个（BOSS 砍不死但吃满伤害），军用工兵铲扇形最宽、被围住时最好用；弹匣打空或者摸到敌人背后时，切刀比站着换弹划算。枪皮和刀皮买一次永久生效、全枪全刀通用：装备哪款，进图后手里的枪和刀就是哪款涂装，点一下就能换。</div>
     </div>
   </section>
   <div class="footnote">
@@ -1259,7 +1285,7 @@ body{
       <div class="hud" id="raidMateHud" style="display:none"><u>联机</u> <span id="raidMateTxt">—</span></div>
       <div class="hud" id="raidBoatHud" style="display:none"><u>攻击艇</u> <span id="raidBoatTxt">—</span></div>
       <div class="hud" id="raidFishHud" style="display:none"><u>鱼篓</u> <span id="raidFishTxt">—</span></div>
-      <div class="hud hud-sk" id="raidSkillHud" style="display:none"><u>干员</u> <span id="raidSkillTxt">—</span></div>
+      <div class="hud hud-sk" id="raidSkillHud" style="display:none"><u>战备</u> <span id="raidSkillTxt">—</span></div>
       <div class="hud hud-rad" id="raidRadHud" style="display:none"><u>辐射</u> <span id="raidRadTxt">—</span></div>
       <div class="hud"><u>倒计时</u> <span id="raidTime">150</span>s</div>
       <div class="hud"><u>击杀</u> <span id="raidKills">0</span></div>
@@ -1273,6 +1299,7 @@ body{
       <div class="raid-act">
         <button class="mini-btn skill" id="btnRaidSkG" type="button" style="display:none">技能 1</button>
         <button class="mini-btn skill" id="btnRaidSkC" type="button" style="display:none">技能 2</button>
+        <button class="mini-btn skill" id="btnRaidSkV" type="button" style="display:none">大招</button>
         <button class="mini-btn door" id="btnRaidBoat" type="button" style="display:none">上艇</button>
         <button class="mini-btn door" id="btnRaidNpc" type="button" style="display:none">交谈</button>
         <button class="mini-btn door" id="btnRaidFish" type="button" style="display:none">钓鱼</button>
@@ -1299,8 +1326,8 @@ body{
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '1.2.0';
-  var APP_DATE = '2026-10-24';
+  var APP_VER = '2.0.0';
+  var APP_DATE = '2026-10-31';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
   var LS_FORM = 'wb_mathdelta_form_v1';
@@ -1604,7 +1631,7 @@ body{
     combo: 0, bestCombo: 0, rightCount: 0, wrongCount: 0,
     todayCount: 0, todayDate: '',
     skin: 'forest', ownedSkins: ['forest'],
-    ops: [], op: '', opPrev: '', opSkins: ['standard'], opSkin: 'standard', hintDate: '',
+    skills: ['knives', 'helmet'], eq: { g: 'knives', c: '', v: '' }, opSkin: 'standard', hintDate: '',
     map: 'dam', guns: ['m9'], gun: 'm9', armors: ['none'], armor: 'none', sfx: true, assist: true,
     knives: ['kb'], knife: 'kb', gunSkins: ['gs-std'], gunSkin: 'gs-std',
     knifeSkins: ['ks-std'], knifeSkin: 'ks-std',
@@ -1645,8 +1672,7 @@ body{
         rightCount: state.rightCount, wrongCount: state.wrongCount,
         todayCount: state.todayCount, todayDate: state.todayDate,
         skin: state.skin, ownedSkins: state.ownedSkins, logs: state.logs,
-        ops: state.ops, op: state.op, opPrev: state.opPrev,
-        opSkins: state.opSkins, opSkin: state.opSkin, hintDate: state.hintDate,
+        skills: state.skills, eq: state.eq, opSkin: state.opSkin, hintDate: state.hintDate,
         map: state.map, guns: state.guns, gun: state.gun,
         armors: state.armors, armor: state.armor, sfx: state.sfx, assist: state.assist,
         knives: state.knives, knife: state.knife,
@@ -1677,10 +1703,9 @@ body{
       state.todayDate = d.todayDate || '';
       state.skin = d.skin || 'forest';
       state.ownedSkins = d.ownedSkins && d.ownedSkins.length ? d.ownedSkins : ['forest'];
-      state.ops = d.ops && d.ops.length ? d.ops : [];
-      state.op = d.op || '';
-      state.opPrev = d.opPrev || '';
-      state.opSkins = d.opSkins && d.opSkins.length ? d.opSkins : ['standard'];
+      state.skills = d.skills && d.skills.length ? d.skills : ['knives', 'helmet'];
+      state.eq = d.eq && typeof d.eq === 'object' ? d.eq : { g: 'knives', c: '', v: '' };
+      if (!state.eq.g && !state.eq.c && !state.eq.v) { state.eq.g = 'knives'; }
       state.opSkin = d.opSkin || 'standard';
       state.hintDate = d.hintDate || '';
       fixRaidState(d);
@@ -1928,12 +1953,12 @@ body{
   function acctMeta(id) {
     if (isMainAcct(id)) {
       return id === curAcct()
-        ? ('主账号 · 行动不限时 · 哈夫币 ' + state.coin + ' · 错题 ' + state.wrongs.length + ' 题')
+        ? ('主账号 · 行动不限时 · 白金 ' + state.coin + ' · 错题 ' + state.wrongs.length + ' 题')
         : '主账号 · 行动不限时 · 切换后自动载入';
     }
     var g = playGate(id);
     var rule = !g.day ? '今天打不了行动' : (g.ok ? ('今天还能打行动 ' + fmtLeft(g.left)) : '今天的行动时间用完了');
-    if (id === curAcct()) { return '练习账号 · ' + rule + ' · 哈夫币 ' + state.coin + ' · 错题 ' + state.wrongs.length + ' 题'; }
+    if (id === curAcct()) { return '练习账号 · ' + rule + ' · 白金 ' + state.coin + ' · 错题 ' + state.wrongs.length + ' 题'; }
     return '练习账号 · 仅周六日与法定节假日能打行动 · 每天 1 小时';
   }
   function renderBootAcc() {
@@ -2617,7 +2642,7 @@ body{
     card2.appendChild(askHeadNode(acctName(acct), acctAvatar(acct), '准备申请'));
     var md = make('div', 'ask-meta');
     md.appendChild(make('div', '', '想打：' + m.code + ' · 进场费 ' + m.fee + ' 币'));
-    md.appendChild(make('div', '', '我的哈夫币：' + state.coin + ' 币'));
+    md.appendChild(make('div', '', '我的白金：' + state.coin + ' 币'));
     card2.appendChild(md);
     card2.appendChild(make('div', 'ask-lab', '给家长留一句（可不填，最多 ' + ASK_NOTE_MAX + ' 字）'));
     var ta = make('textarea', 'ask-ta');
@@ -3180,8 +3205,7 @@ body{
       rightCount: state.rightCount, wrongCount: state.wrongCount,
       todayCount: state.todayCount, todayDate: state.todayDate,
       skin: state.skin, ownedSkins: state.ownedSkins, logs: state.logs,
-      ops: state.ops, op: state.op, opPrev: state.opPrev,
-      opSkins: state.opSkins, opSkin: state.opSkin, hintDate: state.hintDate,
+      skills: state.skills, eq: state.eq, opSkin: state.opSkin, hintDate: state.hintDate,
       map: state.map, guns: state.guns, gun: state.gun,
       armors: state.armors, armor: state.armor, sfx: state.sfx, assist: state.assist,
       knives: state.knives, knife: state.knife,
@@ -3410,10 +3434,9 @@ body{
       state.todayDate = d.todayDate || todayStr();
       state.skin = d.skin || 'forest';
       state.ownedSkins = d.ownedSkins && d.ownedSkins.length ? d.ownedSkins : ['forest'];
-      state.ops = d.ops && d.ops.length ? d.ops : [];
-      state.op = d.op || '';
-      state.opPrev = d.opPrev || '';
-      state.opSkins = d.opSkins && d.opSkins.length ? d.opSkins : ['standard'];
+      state.skills = d.skills && d.skills.length ? d.skills : ['knives', 'helmet'];
+      state.eq = d.eq && typeof d.eq === 'object' ? d.eq : { g: 'knives', c: '', v: '' };
+      if (!state.eq.g && !state.eq.c && !state.eq.v) { state.eq.g = 'knives'; }
       state.opSkin = d.opSkin || 'standard';
       state.hintDate = d.hintDate || '';
       fixRaidState(d);
@@ -3610,7 +3633,7 @@ body{
         state.tickets += 1;
         toast('连击 ' + state.combo + '！获得 1 张搜刮券');
       } else {
-        toast(bonus > 0 ? ('命中目标！连击 ' + state.combo + '，干员加成 +' + bonus + ' 哈夫币') : ('命中目标！连击 ' + state.combo));
+        toast(bonus > 0 ? ('命中目标！连击 ' + state.combo + '，战备加成 +' + bonus + ' 白金') : ('命中目标！连击 ' + state.combo));
       }
       addLog('答对 1 题（' + quiz.level + '），连击 ' + state.combo);
     } else {
@@ -3638,9 +3661,9 @@ body{
       toast('使用战术提示券 1 张');
     } else if (state.coin >= cost) {
       state.coin -= cost;
-      toast('消耗 ' + cost + ' 哈夫币购买提示');
+      toast('消耗 ' + cost + ' 白金购买提示');
     } else {
-      toast('哈夫币不足，先多答几题攒搜刮券吧');
+      toast('白金不足，先多答几题攒搜刮券吧');
       return;
     }
     quiz.hintShown = true;
@@ -3715,7 +3738,7 @@ body{
     var bh = byId('btnHint');
     bh.style.display = quiz.hintShown || quiz.answered ? 'none' : '';
     var hCost = opVal('hintCost') > 0 ? opVal('hintCost') : HINT_COST;
-    bh.textContent = '战术提示 -' + hCost + ' 哈夫币';
+    bh.textContent = '战术提示 -' + hCost + ' 白金';
     byId('btnSkip').style.display = quiz.answered ? 'none' : '';
     byId('btnNext').style.display = quiz.answered ? '' : 'none';
     byId('qProgress').textContent = '今日已练 ' + state.todayCount + ' 题';
@@ -3904,10 +3927,10 @@ body{
     chal.on = false;
     chal.cur = null;
     sfx('extract');
-    addLog('全对通过「' + ch.name + '」' + (first ? ('，点亮勋章「' + rec.name + '」并奖励 ' + ch.reward + ' 哈夫币') : '（勋章已拥有，再巩固一次）'));
+    addLog('全对通过「' + ch.name + '」' + (first ? ('，点亮勋章「' + rec.name + '」并奖励 ' + ch.reward + ' 白金') : '（勋章已拥有，再巩固一次）'));
     queueSync();
     refreshAll();
-    toast(first ? ('🎉 全对通关！获得勋章「' + rec.name + '」+' + ch.reward + ' 哈夫币') : ('全对通关！「' + rec.name + '」还是你的'));
+    toast(first ? ('🎉 全对通关！获得勋章「' + rec.name + '」+' + ch.reward + ' 白金') : ('全对通关！「' + rec.name + '」还是你的'));
   }
   function chalQuit() {
     if (!chal.on) { return; }
@@ -3924,9 +3947,9 @@ body{
       toast('使用战术提示券 1 张');
     } else if (state.coin >= cost) {
       state.coin -= cost;
-      toast('消耗 ' + cost + ' 哈夫币购买提示');
+      toast('消耗 ' + cost + ' 白金购买提示');
     } else {
-      toast('哈夫币不足，先多答几题攒搜刮券吧');
+      toast('白金不足，先多答几题攒搜刮券吧');
       return;
     }
     chal.hint = true;
@@ -4022,7 +4045,7 @@ body{
     if (bh) {
       bh.style.display = (chal.hint || chal.answered) ? 'none' : '';
       var hCost = opVal('hintCost') > 0 ? opVal('hintCost') : HINT_COST;
-      bh.textContent = '战术提示 -' + hCost + ' 哈夫币';
+      bh.textContent = '战术提示 -' + hCost + ' 白金';
     }
     var bnext = byId('btnChalNext');
     if (bnext) {
@@ -4201,7 +4224,7 @@ body{
     addLog('搜刮到「' + l.n + '」（' + QUALITY_NAME[l.q] + '）');
     queueSync();
     refreshAll();
-    toast('搜刮到「' + l.n + '」！售价 ' + l.p + ' 哈夫币');
+    toast('搜刮到「' + l.n + '」！售价 ' + l.p + ' 白金');
   }
   function renderDrawStage() {
     var box = byId('drawBox'), name = byId('drawName'), sub = byId('drawSub');
@@ -4215,7 +4238,7 @@ body{
     }
     box.className = 'box q-' + d.quality;
     name.textContent = d.name;
-    sub.textContent = QUALITY_NAME[d.quality] + ' · 售价 ' + d.price + ' 哈夫币';
+    sub.textContent = QUALITY_NAME[d.quality] + ' · 售价 ' + d.price + ' 白金';
   }
   function sellLoot(l) {
     if (l.status === STATUS.sold) { return; }
@@ -4223,10 +4246,10 @@ body{
     l.status = STATUS.sold;
     l._dirty = true;
     state.coin += price;
-    addLog('出售「' + l.name + '」获得 ' + price + ' 哈夫币', 'trade');
+    addLog('出售「' + l.name + '」获得 ' + price + ' 白金', 'trade');
     queueSync();
     refreshAll();
-    toast('+' + price + ' 哈夫币');
+    toast('+' + price + ' 白金');
   }
   function sellAll() {
     var n = 0, gain = 0, i;
@@ -4240,10 +4263,10 @@ body{
     }
     if (!n) { toast('仓库里没有待售物资'); return; }
     state.coin += gain;
-    addLog('一键上架 ' + n + ' 件物资，获得 ' + gain + ' 哈夫币', 'trade');
+    addLog('一键上架 ' + n + ' 件物资，获得 ' + gain + ' 白金', 'trade');
     queueSync();
     refreshAll();
-    toast('卖出 ' + n + ' 件，+' + gain + ' 哈夫币');
+    toast('卖出 ' + n + ' 件，+' + gain + ' 白金');
   }
   function buildLootItem(l) {
     var row = make('div', 'loot-item');
@@ -4328,10 +4351,10 @@ body{
     f.status = STATUS.sold;
     f._dirty = true;
     state.coin += price;
-    addLog('把「' + f.name + '」卖给商人，获得 ' + price + ' 哈夫币', 'trade');
+    addLog('把「' + f.name + '」卖给商人，获得 ' + price + ' 白金', 'trade');
     queueSync();
     refreshAll();
-    toast('+' + price + ' 哈夫币');
+    toast('+' + price + ' 白金');
   }
   function sellAllFish() {
     var n = 0, gain = 0, i, f;
@@ -4345,10 +4368,10 @@ body{
     }
     if (!n) { toast('鱼篓里没有待卖的鱼'); return; }
     state.coin += gain;
-    addLog('把鱼篓里 ' + n + ' 条鱼卖给商人，获得 ' + gain + ' 哈夫币', 'trade');
+    addLog('把鱼篓里 ' + n + ' 条鱼卖给商人，获得 ' + gain + ' 白金', 'trade');
     queueSync();
     refreshAll();
-    toast('卖出 ' + n + ' 条鱼，+' + gain + ' 哈夫币');
+    toast('卖出 ' + n + ' 条鱼，+' + gain + ' 白金');
   }
   function buildFishItem(f) {
     var row = make('div', 'loot-item');
@@ -4382,13 +4405,13 @@ body{
     var cnt = byId('fishCount');
     if (cnt) {
       cnt.textContent = state.rod
-        ? ('待卖 ' + mine.length + ' 条 · 价值 ' + fishOpenValue() + ' 哈夫币' + (sold ? ' · 已卖 ' + sold + ' 条' : ''))
+        ? ('待卖 ' + mine.length + ' 条 · 价值 ' + fishOpenValue() + ' 白金' + (sold ? ' · 已卖 ' + sold + ' 条' : ''))
         : '还没有鱼竿';
     }
     var all = byId('btnFishSellAll');
     if (all) { all.disabled = mine.length === 0; }
     if (!state.rod) {
-      box.appendChild(make('div', 'empty', '去「行动」的「长弓溪谷」地图，沿着中间的河道找「老渔夫」聊聊，他会送你一根鱼竿。拿到鱼竿后站在河边或水塘边按 F 就能钓鱼。'));
+      box.appendChild(make('div', 'empty', '去「行动」的「蜂林谷」地图，沿着中间的河道找「老渔夫」聊聊，他会送你一根鱼竿。拿到鱼竿后站在河边或水塘边按 F 就能钓鱼。'));
       return;
     }
     if (!mine.length) {
@@ -4426,7 +4449,7 @@ body{
       return;
     }
     if (state.coin < it.cost) {
-      toast('哈夫币不足，还差 ' + (it.cost - state.coin) + ' 个');
+      toast('白金不足，还差 ' + (it.cost - state.coin) + ' 个');
       return;
     }
     state.coin -= it.cost;
@@ -4437,7 +4460,7 @@ body{
       state.skin = it.val;
       applySkin();
     }
-    addLog('兑换「' + it.name + '」，花费 ' + it.cost + ' 哈夫币');
+    addLog('兑换「' + it.name + '」，花费 ' + it.cost + ' 白金');
     logExchange(it);
     queueSync();
     refreshAll();
@@ -4599,44 +4622,44 @@ body{
   var MAJOR_SCALE = [0, 2, 4, 5, 7, 9, 11, 12];
   /* 每首曲子 = 16 分音符步进网格：鼓用 x/- 字符串（x 命中、- 空拍），贝斯与主旋律用音阶级数（null = 休止） */
   var TRACKS = [
-    /* ---------- 三角洲金曲（工作台合成改编版：只借曲名与主题，旋律由合成器原创演绎） ---------- */
+    /* ---------- 白金国金曲（工作台合成改编版：只借曲名与主题，旋律由合成器原创演绎） ---------- */
     {
-      name: '星河追梦', sub: '威龙 · 凌霄戍卫主题曲', tag: '三角洲金曲', bpm: 136, root: 'E3', mode: 'major',
+      name: '星河追梦', sub: '威龙 · 凌霄戍卫主题曲', tag: '白金国金曲', bpm: 136, root: 'E3', mode: 'major',
       k: 'x---x---x---x---', s: '----x-------x---', h: 'x-x-x-x-x-x-x-xx',
       bass: [0, null, null, 4, null, null, 4, null, 5, null, null, 3, null, null, 3, null],
       lead: [4, 5, 7, 8, null, 7, 5, 4, 5, 7, 8, 9, null, 8, 7, null],
       pad: [[0, 2, 4], [4, 6, 9], [5, 7, 11], [3, 5, 8]]
     },
     {
-      name: '折翼威龙', sub: '威龙 · 玩家同人曲', tag: '三角洲金曲', bpm: 96, root: 'D3', mode: 'minor',
+      name: '折翼威龙', sub: '威龙 · 玩家同人曲', tag: '白金国金曲', bpm: 96, root: 'D3', mode: 'minor',
       k: 'x--x--x-x--x--x-', s: '----x-----x-x---', h: 'x-xxx-x-x-xxx-x-',
       bass: [0, null, null, 0, null, 3, null, 3, null, 5, null, null, 3, null, 0, null],
       lead: [7, null, 7, 9, null, 7, 5, null, 3, 5, null, 7, null, 5, null, null],
       pad: [[0, 3, 7], [3, 7, 10], [5, 8, 12], [-2, 3, 7]]
     },
     {
-      name: 'Delta Force 主旋律', sub: '游戏主题曲 · 庄严军乐', tag: '三角洲金曲', bpm: 100, root: 'A3', mode: 'minor',
+      name: 'Delta Force 主旋律', sub: '游戏主题曲 · 庄严军乐', tag: '白金国金曲', bpm: 100, root: 'A3', mode: 'minor',
       k: 'x---x---x---x---', s: '--x---x---x---x-', h: 'x-x-xxx-x-x-xxx-',
       bass: [0, null, 0, 0, null, 5, null, 5, 3, null, 3, null, 7, null, 7, null],
       lead: [7, null, 3, null, 7, null, 3, null, 5, null, 3, null, 7, null, null, null],
       pad: [[0, 3, 7], [5, 8, 12], [3, 7, 10], [7, 10, 14]]
     },
     {
-      name: 'Blazefall', sub: 'S3 赛季 CG 音乐 · 高能', tag: '三角洲金曲', bpm: 148, root: 'E3', mode: 'minor',
+      name: 'Blazefall', sub: 'S3 赛季 CG 音乐 · 高能', tag: '白金国金曲', bpm: 148, root: 'E3', mode: 'minor',
       k: 'x-x-x-x-x-x-x-x-', s: '----x-------x---', h: 'xxxxxxxxxxxxxxxx',
       bass: [0, 0, null, 0, 0, null, 3, null, 5, 5, null, 5, 3, null, 0, null],
       lead: [12, 11, 9, 7, 5, 7, 9, 11, 12, 11, 9, 7, 5, 7, 9, null],
       pad: [[0, 3, 7], [5, 8, 12], [3, 7, 10], [5, 8, 12]]
     },
     {
-      name: 'Leave No Man Behind', sub: '全面战场 · 烬区主题', tag: '三角洲金曲', bpm: 76, root: 'D3', mode: 'minor',
+      name: 'Leave No Man Behind', sub: '全面战场 · 烬区主题', tag: '白金国金曲', bpm: 76, root: 'D3', mode: 'minor',
       k: 'x-------x-------', s: '--------x-------', h: '----x-------x---',
       bass: [0, null, null, null, 5, null, null, null, 3, null, null, null, 7, null, null, null],
       lead: [7, null, 9, 10, null, 7, null, 5, 3, null, 5, null, null, null, null, null],
       pad: [[0, 3, 7], [-2, 3, 7], [0, 5, 12], [-4, 0, 7]]
     },
     {
-      name: 'Hazard Operation', sub: '烽火行动主题 · 稳步推进', tag: '三角洲金曲', bpm: 112, root: 'G3', mode: 'minor',
+      name: 'Hazard Operation', sub: '烽火行动主题 · 稳步推进', tag: '白金国金曲', bpm: 112, root: 'G3', mode: 'minor',
       k: 'x---x--xx---x---', s: '----x-------x--x', h: 'x-x-x-x-x-x-x-x-',
       bass: [0, null, null, 3, null, null, 3, null, 5, null, null, 5, null, null, 3, null],
       lead: [7, 7, null, 9, 10, null, 9, 7, 5, null, 7, null, 5, 3, null, null],
@@ -4651,21 +4674,21 @@ body{
       pad: [[0, 3, 7], [5, 8, 12], [3, 7, 10], [5, 8, 12]]
     },
     {
-      name: '零号大坝', sub: '夜间潜入 · 低频压迫', tag: '工作台原创', bpm: 92, root: 'D3', mode: 'minor',
+      name: '白坝哨站', sub: '夜间潜入 · 低频压迫', tag: '工作台原创', bpm: 92, root: 'D3', mode: 'minor',
       k: 'x-------x-------', s: '----x-------x--x', h: '--x---x---x---x-',
       bass: [0, null, null, 0, null, null, -4, null, 0, null, null, 3, null, null, null, null],
       lead: [12, null, 10, null, 7, null, null, 5, 3, null, 5, null, null, null, null, null],
       pad: [[0, 3, 7], [-4, 0, 3], [0, 3, 8], [-5, -2, 3]]
     },
     {
-      name: '巴克什攻坚战', sub: '高强度交火 · 快速鼓点', tag: '工作台原创', bpm: 132, root: 'E3', mode: 'minor',
+      name: '蚕蚀旧城攻坚战', sub: '高强度交火 · 快速鼓点', tag: '工作台原创', bpm: 132, root: 'E3', mode: 'minor',
       k: 'x--x--x-x--x--x-', s: '----x-------x---', h: 'x-x-xxx-x-x-xxx-',
       bass: [0, 0, null, 0, 3, null, 3, null, 5, 5, null, 3, 0, null, 0, null],
       lead: [12, 11, 12, 14, 12, 11, 9, null, 7, 9, 11, 12, 11, null, 9, null],
       pad: [[0, 3, 7], [3, 7, 10], [5, 8, 12], [3, 7, 10]]
     },
     {
-      name: '长弓溪谷', sub: '静默潜行 · 空灵氛围', tag: '工作台原创', bpm: 84, root: 'G3', mode: 'minor',
+      name: '蜂林谷', sub: '静默潜行 · 空灵氛围', tag: '工作台原创', bpm: 84, root: 'G3', mode: 'minor',
       k: 'x-------x-------', s: '--------x-------', h: '----x-------x---',
       bass: [0, null, null, null, null, null, -4, null, null, null, 0, null, 3, null, null, null],
       lead: [7, null, 9, null, 12, null, null, 10, null, 7, null, null, 9, null, null, null],
@@ -4679,21 +4702,21 @@ body{
       pad: [[0, 4, 7], [4, 8, 12], [5, 9, 12], [3, 7, 10]]
     }
   ];
-  /* 三角洲真实曲目：id = QQ音乐 songid（喂给官方外链播放器）；mid = songmid（打开原唱页用）。
+  /* 白金国真实曲目：id = QQ音乐 songid（喂给官方外链播放器）；mid = songmid（打开原唱页用）。
      歌名与出处取自 QQ 音乐曲库。点「▶」直接在工作台里播原唱，点「↗」跳去 QQ 音乐听完整版。 */
   var REAL_MUSIC = [
-    { n: '星河追梦', en: 'Beyond the Stars', by: '三角洲行动 / 黄宗辉', from: '威龙「凌霄戍卫」皮肤主题曲', id: 638957157, mid: '004JFeGX0VTkgW', kw: '三角洲行动 星河追梦' },
-    { n: '折翼威龙', en: '', by: '太守大人2110', from: '玩家同人曲 · 唱给威龙', id: 645239703, mid: '0010o0Lt3LsNHb', kw: '三角洲行动 折翼威龙' },
-    { n: '汪洋与浩渺', en: 'A Sky to Chase', by: '三角洲行动 / 周菲戈', from: '威龙 · 群星计划主题曲', id: 727581248, mid: '001YQRn31pGAcv', kw: '三角洲行动 汪洋与浩渺' },
-    { n: 'Delta Force', en: 'Main Theme', by: '三角洲行动 / Zio', from: '游戏主题音乐', id: 556710302, mid: '002EKPFu4dxxm4', kw: '三角洲行动 Delta Force' },
-    { n: 'Hazard Operation', en: '', by: '三角洲行动 / Edwin Wendler', from: '烽火行动主题音乐', id: 556710322, mid: '003WcHcs20Qyaz', kw: '三角洲行动 Hazard Operation' },
-    { n: 'Blazefall', en: '', by: '三角洲行动 / 黄智骞 / LUMi', from: 'S3 赛季 CG 音乐', id: 556710234, mid: '000MR32H1IvBo8', kw: '三角洲行动 Blazefall' },
-    { n: 'Leave No Man Behind', en: '', by: '三角洲行动 / Johan Soderqvist', from: '全面战场 · 烬区主题音乐', id: 556710342, mid: '0049bcCy0bqfjO', kw: '三角洲行动 Leave No Man Behind' },
-    { n: 'THE FEAR', en: '无惧', by: '三角洲行动 / Charlotte Churchman', from: '露娜 × 黑·天际线 皮肤主题曲', id: 588089543, mid: '002Jp2p92j4OOa', kw: '三角洲行动 THE FEAR' },
-    { n: 'Dawn', en: '黎明将至', by: '三角洲行动 / Lithium Done', from: '红狼 · 蚀金玫瑰 皮肤主题曲', id: 522811597, mid: '004bJEnp23hSJN', kw: '三角洲行动 Dawn' },
-    { n: 'Into the Never', en: '归', by: '三角洲行动 / LUMi', from: '黑鹰坠落片尾曲', id: 563352993, mid: '002LnopG2fXbmo', kw: '三角洲行动 Into the Never' },
-    { n: 'GOT YOU', en: '归零', by: '三角洲行动 / Lana Mel. / 汪晨蕊', from: '骇爪 · 水墨云图 皮肤主题曲', id: 557574185, mid: '0025mOz71z1mjr', kw: '三角洲行动 GOT YOU' },
-    { n: '最佳干员', en: 'The Best Operator', by: '三角洲行动 / G.T.I.小队', from: '2025 新年主题曲', id: 557375494, mid: '000lkOru453lFH', kw: '三角洲行动 最佳干员' }
+    { n: '星河追梦', en: 'Beyond the Stars', by: '白金国行动 / 黄宗辉', from: '威龙「凌霄戍卫」皮肤主题曲', id: 638957157, mid: '004JFeGX0VTkgW', kw: '白金国行动 星河追梦' },
+    { n: '折翼威龙', en: '', by: '太守大人2110', from: '玩家同人曲 · 唱给威龙', id: 645239703, mid: '0010o0Lt3LsNHb', kw: '白金国行动 折翼威龙' },
+    { n: '汪洋与浩渺', en: 'A Sky to Chase', by: '白金国行动 / 周菲戈', from: '威龙 · 群星计划主题曲', id: 727581248, mid: '001YQRn31pGAcv', kw: '白金国行动 汪洋与浩渺' },
+    { n: 'Delta Force', en: 'Main Theme', by: '白金国行动 / Zio', from: '游戏主题音乐', id: 556710302, mid: '002EKPFu4dxxm4', kw: '白金国行动 Delta Force' },
+    { n: 'Hazard Operation', en: '', by: '白金国行动 / Edwin Wendler', from: '烽火行动主题音乐', id: 556710322, mid: '003WcHcs20Qyaz', kw: '白金国行动 Hazard Operation' },
+    { n: 'Blazefall', en: '', by: '白金国行动 / 黄智骞 / LUMi', from: 'S3 赛季 CG 音乐', id: 556710234, mid: '000MR32H1IvBo8', kw: '白金国行动 Blazefall' },
+    { n: 'Leave No Man Behind', en: '', by: '白金国行动 / Johan Soderqvist', from: '全面战场 · 烬区主题音乐', id: 556710342, mid: '0049bcCy0bqfjO', kw: '白金国行动 Leave No Man Behind' },
+    { n: 'THE FEAR', en: '无惧', by: '白金国行动 / Charlotte Churchman', from: '露娜 × 黑·天际线 皮肤主题曲', id: 588089543, mid: '002Jp2p92j4OOa', kw: '白金国行动 THE FEAR' },
+    { n: 'Dawn', en: '黎明将至', by: '白金国行动 / Lithium Done', from: '红狼 · 蚀金玫瑰 皮肤主题曲', id: 522811597, mid: '004bJEnp23hSJN', kw: '白金国行动 Dawn' },
+    { n: 'Into the Never', en: '归', by: '白金国行动 / LUMi', from: '黑鹰坠落片尾曲', id: 563352993, mid: '002LnopG2fXbmo', kw: '白金国行动 Into the Never' },
+    { n: 'GOT YOU', en: '归零', by: '白金国行动 / Lana Mel. / 汪晨蕊', from: '骇爪 · 水墨云图 皮肤主题曲', id: 557574185, mid: '0025mOz71z1mjr', kw: '白金国行动 GOT YOU' },
+    { n: '最佳战备', en: 'The Best Operator', by: '白金国行动 / G.T.I.小队', from: '2025 新年主题曲', id: 557375494, mid: '000lkOru453lFH', kw: '白金国行动 最佳战备' }
   ];
   var Music = { cur: -1 };   /* 原唱面板：当前在播第几首，-1 = 还没点过 */
   var Radio = { ctx: null, master: null, buf: null, on: false, idx: 0, step: 0, bar: 0, next: 0, timer: null, vol: 70 };
@@ -4906,7 +4929,7 @@ body{
     }
     renderMusic();
   }
-  /* ===== 三角洲原唱：QQ 音乐官方外链播放器（iframe 内嵌，直接在工作台里播）+ 直达原唱页 ===== */
+  /* ===== 白金国原唱：QQ 音乐官方外链播放器（iframe 内嵌，直接在工作台里播）+ 直达原唱页 ===== */
   function musicPlayerUrl(m) { return 'https://i.y.qq.com/n2/m/outchain/player/index.html?songid=' + m.id + '&songtype=0'; }
   function musicDetailUrl(m) { return 'https://y.qq.com/n/ryqq/songDetail/' + m.mid; }
   function musicSearchUrl(m) { return 'https://y.qq.com/n/ryqq/search?w=' + encodeURIComponent(m.kw || m.n); }
@@ -4964,10 +4987,10 @@ body{
     }
   }
 
-  /* ================= 干员立绘（内联 SVG 参数化生成，零图片依赖、可离线） ================= */
+  /* ================= 战备立绘（内联 SVG 参数化生成，零图片依赖、可离线） ================= */
   var SVG_NS = 'http://www.w3.org/2000/svg';
   var ROLE_COLOR = { assault: '#ff7d63', engineer: '#f5a524', support: '#4ec97a', scout: '#4aa8ff' };
-  /* 干员皮肤：一次购买全队通用，改的是立绘配色 */
+  /* 战备皮肤：一次购买全队通用，改的是立绘配色 */
   var OP_SKINS = [
     { id: 'standard', name: '标准作战服', price: 0, bg: '#1b241c', uni: '#3d4c3f', uni2: '#2a352c',
       helm: '#4c5c4e', helm2: '#5f7061', mask: '#1d251e', line: '#93a394', accent: '#f5a524' },
@@ -5068,70 +5091,74 @@ body{
     return s;
   }
 
-  /* ================= 干员档案（招募 → 出战 → 战术加成生效） ================= */
-  /* raid = 该干员在「行动 · 枪战」里生效的战斗技能；未出战时全部不生效 */
-  /* act = 出战干员的两个「主动技能」，进图后按各自的技能键释放（默认 G / C，威龙喷气背包是 X；手机点右下角两个技能按钮） */
-  var OPS = [
-    { id: 'redwolf', code: '红狼', name: '凯·席尔瓦', role: '突击', rk: 'assault', price: 380, skill: '动力外骨骼',
-      bType: 'coinPerRight', bVal: 2, desc: '每次答对额外 +2 哈夫币',
-      raid: { spdMul: 1.25 }, raidTxt: '行动中移动速度 +25%，跑图拉扯更灵活',
-      act: [
-        { k: 'g', id: 'speed', name: '肾上腺素', cd: 30, desc: '24 秒内移速再 +60%，转点、冲脸、跑毒都好用' },
-        { k: 'c', id: 'triple', name: '三连手炮', cd: 12, desc: '连发三发手炮，每发都是小范围爆炸' }
-      ], hx: 'dome', ms: 'half', acc: ['exo'] },
-    { id: 'dragon', code: '威龙', name: '王宇昊', role: '突击', rk: 'assault', price: 520, skill: '动能辅助系统',
-      bType: 'ticketEvery', bVal: 3, desc: '连击满 3 题就得 1 张搜刮券（默认 5 题）',
-      raid: { dmgMul: 1.25 }, raidTxt: '行动中子弹伤害 +25%，同样的枪更疼',
-      act: [
-        { k: 'x', id: 'dash', name: '喷气背包', cd: 8, desc: '朝准心方向瞬间喷气冲刺，穿过火力网拉开距离' },
-        { k: 'c', id: 'magnet', name: '磁吸炸弹', cd: 14, desc: '投出的炸弹会自己吸向最近的敌人，贴上再炸' }
-      ], hx: 'visor', ms: 'half', acc: ['mic'] },
-    { id: 'shepherd', code: '牧羊人', name: '泰瑞·缪萨', role: '工程', rk: 'engineer', price: 460, skill: '速凝掩体与维修',
-      bType: 'sellBonus', bVal: 0.25, desc: '出售物资多拿 25% 哈夫币',
-      raid: { redAdd: 0.12 }, raidTxt: '行动中额外减伤 12%，和防弹衣叠加',
-      act: [
-        { k: 'g', id: 'grenade', name: '破片手雷', cd: 12, desc: '朝准心扔出手雷，落地一两秒后爆炸，范围伤害' },
-        { k: 'c', id: 'timed', name: '定时炸弹', cd: 18, desc: '在脚下埋一颗定时炸弹，3 秒后大范围爆炸' }
-      ], hx: 'dome', ms: 'gog', acc: ['tool'] },
-    { id: 'uluru', code: '乌鲁鲁', name: '大卫·费莱尔', role: '工程', rk: 'engineer', price: 600, skill: '巡飞弹与燃烧弹',
-      bType: 'wrongRefund', bVal: 3, desc: '答错返还 3 哈夫币，错题不白丢',
-      raid: { killCoin: 10 }, raidTxt: '行动中每击倒 1 名敌人额外 +10 哈夫币',
-      act: [
-        { k: 'g', id: 'rpg', name: 'RPG 火箭弹', cd: 16, desc: '打出一发火箭弹，命中就是一大片爆炸' },
-        { k: 'c', id: 'fire', name: '燃烧弹', cd: 15, desc: '扔出燃烧弹，落点烧成火海，持续烧灼敌人' }
-      ], hx: 'cap', ms: 'half', acc: ['missile'] },
-    { id: 'stinger', code: '蜂医', name: '罗伊·斯米', role: '支援', rk: 'support', price: 400, skill: '激素枪',
-      bType: 'hintCost', bVal: 5, desc: '战术提示只要 5 哈夫币（单价减半）',
-      raid: { regen: 1.6 }, raidTxt: '行动中每秒自动回血 1.6 点，不用等医疗包',
-      act: [
-        { k: 'g', id: 'heal', name: '医疗无人机', cd: 20, desc: '放出医疗无人机，立刻回复 50 点生命' },
-        { k: 'c', id: 'drug', name: '激素枪', cd: 24, desc: '给自己来一针，8 秒内移速 +30%、减伤 +25%' }
-      ], hx: 'visor', ms: 'gog', acc: ['cross'] },
-    { id: 'gu', code: '蛊', name: '佐娅·庞琴科娃', role: '支援', rk: 'support', price: 640, skill: '神经振奋剂',
-      bType: 'keepCombo', bVal: 1, desc: '答错不清零连击，连击能一直攒',
-      raid: { hpAdd: 50 }, raidTxt: '行动中生命上限 +50（100 → 150），更抗打',
-      act: [
-        { k: 'g', id: 'poison', name: '毒气弹', cd: 16, desc: '扔出毒气弹，落点散成毒雾，站在里面的敌人持续掉血' },
-        { k: 'c', id: 'emp', name: '电磁脉冲', cd: 22, desc: '以自身为中心放电，击退并瘫痪周围敌人 3 秒' }
-      ], hx: 'hood', ms: 'full', acc: ['pack'] },
-    { id: 'luna', code: '露娜', name: '金卢娜', role: '侦察', rk: 'scout', price: 560, skill: '侦察箭矢',
-      bType: 'luck', bVal: 2, desc: '搜刮时稀有 / 传说 / 绝密概率翻倍',
-      raid: { lootAdd: 0.8 }, raidTxt: '行动中开箱物资品质大幅提升，更容易出红卡',
-      act: [
-        { k: 'g', id: 'bolt', name: '电箭', cd: 11, desc: '射出带电箭矢，命中后电弧会跳向附近两个敌人' },
-        { k: 'c', id: 'grenade', name: '手雷', cd: 12, desc: '朝准心扔出手雷，落地一两秒后爆炸，范围伤害' }
-      ], hx: 'hood', ms: 'gog', acc: ['bow'] },
-    { id: 'hacker', code: '骇爪', name: '麦晓雯', role: '侦察', rk: 'scout', price: 720, skill: '信号破译器',
-      bType: 'redBonus', bVal: 2, desc: '卖出的绝密物资（红色）价格翻倍',
-      raid: { cardMul: 2, boxSpeed: 1.8 }, raidTxt: '行动中门卡掉率翻倍、开箱速度快 80%',
-      act: [
-        { k: 'g', id: 'knives', name: '飞刀', cd: 9, desc: '一口气甩出三把飞刀，直接扎穿面前的敌人' },
-        { k: 'c', id: 'scan', name: '敌人探测器', cd: 20, desc: '8 秒内全场敌人被标记，隔着掩体也看得见' }
-      ], hx: 'cap', ms: 'half', acc: ['antenna'] }
+  /* ================= 战备档案（招募 → 出战 → 战术加成生效） ================= */
+  /* raid = 该战备在「行动 · 枪战」里生效的战斗技能；未出战时全部不生效 */
+  /* act = 出战战备的两个「主动技能」，进图后按各自的技能键释放（默认 G / C / V，威龙喷气背包是 X；手机点右下角三个技能按钮） */
+  /* ================= 技能树（v2.0 白金国 · 蚕蚀集团 · 土地国） =================
+     不再"选战备"：你是一个流浪佣兵，用白金在技能树里解锁节点——
+     act = 主动技，可装到 G / C 两个槽；ult = 大招，装 V 槽；pass = 被动，解锁即生效。
+     bonus 里的数值会在 curOp() 里汇总成行动属性（生命 / 减伤 / 移速 / 击杀收益）。 */
+  var SKILLS = [
+    /* ---------- 主动技（G / C 槽） ---------- */
+    { id: 'knives', code: '扔刀', type: 'act', price: 120, node: '刀', tier: 1,
+      lore: '白金国老兵的看家本事：一抖手三把飞刀同时出鞘',
+      act: { id: 'knives', name: '扔刀', cd: 9, desc: '扇形甩出三把飞刀，钉中谁谁掉血' } },
+    { id: 'poison', code: '蝎毒', type: 'act', price: 150, node: '毒', tier: 1,
+      lore: '蚕蚀集团实验室漏出来的东西，一罐能让整条巷子没人敢过',
+      act: { id: 'poison', name: '蝎毒弹', cd: 16, desc: '扔出毒罐，落点散出毒雾，站里面的敌人持续掉血' } },
+    { id: 'timed', code: '地雷', type: 'act', price: 140, node: '雷', tier: 1,
+      lore: '土地国矿工炸巷道用的土制雷，埋脚下三秒就响',
+      act: { id: 'timed', name: '地雷', cd: 14, desc: '在脚下埋一颗定时雷，3 秒后引爆，路过的人一起上天' } },
+    { id: 'quickwall', code: '龟壳', type: 'act', price: 200, node: '壳', tier: 2,
+      lore: '传说中龟甲兵的护身术，两秒内就地立起一堵墙',
+      act: { id: 'quickwall', name: '速凝龟壳', cd: 16, desc: '就地凝出一堵掩体墙，能挡子弹也能挡视线' } },
+    { id: 'emp', code: '蓄电池', type: 'act', price: 180, node: '电', tier: 2,
+      lore: '从机龙暴台废墟里挖出来的电瓶，接上导线就是一件武器',
+      act: { id: 'emp', name: '蓄电池放电', cd: 22, desc: '以自身为中心放电，击退并瘫痪周围敌人 3 秒' } },
+    { id: 'hugun', code: '巨伤重锤', type: 'act', price: 220, node: '锤', tier: 3,
+      lore: '矿场碎岩机的锤头，拆下来装上握把就是重武器',
+      act: { id: 'hugun', name: '巨伤重锤', cd: 18, desc: '砸出冲击波，范围内敌人失衡、移速骤降' } },
+    { id: 'healgun', code: '加血针', type: 'act', price: 170, node: '针', tier: 2,
+      lore: '蜂国医师留下的最后一箱针剂，扎一针能续半条命',
+      act: { id: 'healgun', name: '加血针', cd: 14, desc: '给自己扎一针回 45 点生命；附近有敌人时顺手扎他 35 点伤害' } },
+    { id: 'rpg', code: '海猪火炮', type: 'act', price: 260, node: '炮', tier: 3,
+      lore: '土地国渔民改装的舰炮，绰号"海猪"，一发能掀翻一条船',
+      act: { id: 'rpg', name: '海猪火炮', cd: 20, desc: '打出一发重炮，命中处大范围爆炸' } },
+    /* ---------- 大招（V 槽） ---------- */
+    { id: 'magnet', code: '磁极杖', type: 'ult', price: 320, node: '磁', tier: 3,
+      lore: '暴台核心的磁极碎片做的杖，扔出去会自己找目标',
+      act: { id: 'magnet', name: '磁极杖', cd: 55, desc: '大招：扔出磁极炸弹，它会自己追着最近的敌人贴上去再炸' } },
+    { id: 'exo', code: '精钢超载', type: 'ult', price: 360, node: '钢', tier: 4,
+      lore: '把精制钢铁整块焊在身上，硬扛十二秒',
+      act: { id: 'exo', name: '精钢超载', cd: 60, desc: '大招：12 秒内减伤 30%、移速 +20%，每击倒 1 名敌人回 12 点生命' } },
+    { id: 'shieldwall', code: '龟甲壁垒', type: 'ult', price: 300, node: '壁', tier: 4,
+      lore: '龟壳术的极限形态：一堵墙变成一排墙',
+      act: { id: 'shieldwall', name: '龟甲壁垒', cd: 55, desc: '大招：在身前架起一排可架枪的重盾，挡住整条走廊' } },
+    { id: 'incendiary', code: '焚城弹', type: 'ult', price: 340, node: '焚', tier: 4,
+      lore: '1010 年烧毁机龙暴台的那把火，有人留了一点火种',
+      act: { id: 'incendiary', name: '焚城弹', cd: 60, desc: '大招：扔出燃烧弹，落点烧成一片火海，进去的人持续掉血' } },
+    /* ---------- 被动节点（解锁即生效） ---------- */
+    { id: 'helmet', code: '好头', type: 'pass', price: 160, node: '盔', tier: 1,
+      lore: '一顶捡来的好头盔，能挡住流弹',
+      bonus: { hp: 25 }, desc: '生命上限 +25' },
+    { id: 'bladeSkin', code: '刀皮', type: 'pass', price: 180, node: '皮', tier: 2,
+      lore: '把废刀片缝进外衣，刀口划过只留一道白印',
+      bonus: { red: 0.08 }, desc: '受到的所有伤害 -8%' },
+    { id: 'battery', code: '蓄电池组', type: 'pass', price: 200, node: '池', tier: 2,
+      lore: '腰上挂一排电瓶，跑起来像被电推着',
+      bonus: { spd: 1.12 }, desc: '移动速度 +12%' },
+    { id: 'steel', code: '精制钢铁', type: 'pass', price: 300, node: '钢', tier: 3,
+      lore: '耗尽材料也要炼出来的东西：把废铁提纯再锻打成甲',
+      bonus: { red: 0.12, hp: 15 }, desc: '减伤再 -12%，生命上限 +15' },
+    { id: 'minework', code: '挖矿', type: 'pass', price: 220, node: '矿', tier: 2,
+      lore: '在土地国的矿场干过活，知道哪里还能刨出白金',
+      bonus: { killCoin: 8 }, desc: '行动中每击倒 1 名敌人多拿 8 白金' }
   ];
-  /* 主动技能槽位默认键位：0 = G 键，1 = C 键；
-     单个技能可以用自己的 k 覆盖默认键（威龙的喷气背包就绑在 X 键上） */
-  var ACT_KEYS = ['g', 'c'];
+  var SK_TYPE_TXT = { act: '主动技', ult: '大招', pass: '被动' };
+  var SK_NODE_CLS = { act: 'r-assault', ult: 'r-support', pass: 'r-engineer' };
+  /* 主动技能槽位默认键位：0 = G 键，1 = C 键，2 = 大招 V 键；
+     单个技能可以用自己的 k 覆盖默认键（威龙的喷气推进就绑在 X 键上） */
+  var ACT_KEYS = ['g', 'c', 'v'];
   function opActs(op) { return (op && op.act) ? op.act : []; }
   /* 取某个技能实际绑的键：技能自带 k 优先，没有就按槽位取默认键 */
   function actKey(a, idx) {
@@ -5139,7 +5166,7 @@ body{
     return ACT_KEYS[idx] || '';
   }
   function actKeyTxt(a, idx) { return String(actKey(a, idx)).toUpperCase(); }
-  /* 一串技能的按键文案，例如 ['X','C']，给干员卡 / 详情 / 提示语用 */
+  /* 一串技能的按键文案，例如 ['X','C']，给战备卡 / 详情 / 提示语用 */
   function actKeyTxts(acts) {
     var out = [], i;
     acts = acts || [];
@@ -5147,18 +5174,63 @@ body{
     return out;
   }
   function curActs() { return opActs(curOp()); }
-  function opById(id) {
-    for (var i = 0; i < OPS.length; i++) { if (OPS[i].id === id) { return OPS[i]; } }
+  /* 老接口兼容：新系统里没有"战备"了，查不到人一律返回 null，调用方会走默认外形 */
+  function opById() { return null; }
+  function skillById(id) {
+    if (!id) { return null; }
+    for (var i = 0; i < SKILLS.length; i++) { if (SKILLS[i].id === id) { return SKILLS[i]; } }
     return null;
   }
-  function curOp() { return opById(state.op); }
-  /* 读取当前出战干员的某类加成数值，未出战返回 0 */
-  function opVal(type) {
-    var o = curOp();
-    if (o && o.bType === type) { return o.bVal; }
-    return 0;
+  function ownedSkill(id) { return state.skills.indexOf(id) >= 0; }
+  /* v2.0：战备每日情报下线，保留空函数给旧的初始化调用点 */
+  function applyOpDaily() { /* no-op */ }
+  function eqSlotFor(s) { return s.type === 'ult' ? 'v' : 'g'; }
+  /* 把已解锁的被动 + 已装备的技能合成一个"虚拟战备"，下游代码照旧读 op.act / op.raid / op.pass */
+  function curOp() {
+    var o = {
+      id: 'wanderer', code: '流浪佣兵', name: '白金国边境的流浪者', role: '幸存者', rk: 'assault',
+      skill: '自选战备', desc: '', raidTxt: '', act: [],
+      pass: { name: '战备加成', desc: '', fx: {} },
+      hx: 'dome', ms: 'half', acc: []
+    };
+    var hpAdd = 0, red = 0, spd = 1, regen = 0, dmg = 1, killCoin = 0, loot = 0, i, s2, kk, a;
+    for (i = 0; i < state.skills.length; i++) {
+      s2 = skillById(state.skills[i]);
+      if (!s2 || !s2.bonus) { continue; }
+      hpAdd += s2.bonus.hp || 0;
+      red += s2.bonus.red || 0;
+      spd *= s2.bonus.spd || 1;
+      regen += s2.bonus.regen || 0;
+      dmg *= s2.bonus.dmg || 1;
+      killCoin += s2.bonus.killCoin || 0;
+      loot += s2.bonus.loot || 0;
+    }
+    for (i = 0; i < ACT_KEYS.length; i++) {
+      s2 = skillById(state.eq[ACT_KEYS[i]]);
+      if (!s2 || !s2.act) { continue; }
+      a = {};
+      for (kk in s2.act) { if (s2.act.hasOwnProperty(kk)) { a[kk] = s2.act[kk]; } }
+      a.k = ACT_KEYS[i];
+      o.act.push(a);
+    }
+    o.raid = { hpAdd: hpAdd, redAdd: red, spdMul: spd, regen: regen, dmgMul: dmg, killCoin: killCoin, lootAdd: loot };
+    o.pass.fx = { regenAdd: regen };
+    o.skill = o.act.length ? ('已装备 ' + o.act.length + ' 个技能') : '还没装技能';
+    o.desc = '生命 +' + hpAdd + ' · 减伤 ' + Math.round(red * 100) + '% · 移速 +' + Math.round((spd - 1) * 100) + '%';
+    o.raidTxt = '生命上限 +' + hpAdd + '，减伤 ' + Math.round(red * 100) + '%，移速 +' + Math.round((spd - 1) * 100) + '%'
+      + (killCoin ? '，击杀 +' + killCoin + ' 白金' : '');
+    return o;
   }
-  /* 出战干员的「行动技能」：未出战或该干员没配行动技能时返回空对象 */
+  /* 读取被动节点的某类加成（答题 / 经济侧），以后加节点也能直接用 */
+  function opVal(type) {
+    var v = 0, i, s2;
+    for (i = 0; i < state.skills.length; i++) {
+      s2 = skillById(state.skills[i]);
+      if (s2 && s2.bonus && s2.bonus[type]) { v += s2.bonus[type]; }
+    }
+    return v;
+  }
+  /* 出战战备的「行动技能」：未出战或该战备没配行动技能时返回空对象 */
   var OP_RAID_NONE = {};
   function opRaid() {
     var o = curOp();
@@ -5175,164 +5247,139 @@ body{
     if (l.quality === 'red' && opVal('redBonus') > 1) { p *= opVal('redBonus'); }
     return Math.round(p);
   }
-  function previewOpId() { return state.opPrev || state.op || OPS[0].id; }
-  function recruitOp(op) {
-    if (state.ops.indexOf(op.id) >= 0) { return; }
-    if (state.coin < op.price) {
-      toast('哈夫币不足，还差 ' + (op.price - state.coin) + ' 个');
+  function buySkill(s) {
+    if (ownedSkill(s.id)) { equipSkill(s); return; }
+    if (state.coin < s.price) {
+      toast('白金不足，还差 ' + (s.price - state.coin) + ' 个');
       return;
     }
-    state.coin -= op.price;
-    state.ops.push(op.id);
-    state.opPrev = op.id;
-    if (!state.op) { state.op = op.id; }
-    addLog('招募干员「' + op.code + '」加入特勤小队');
+    state.coin -= s.price;
+    state.skills.push(s.id);
+    addLog('解锁技能「' + s.code + '」');
+    if (s.type !== 'pass') {
+      var slot = s.type === 'ult' ? 'v' : '';
+      if (!slot) {
+        if (!state.eq.g) { state.eq.g = s.id; }
+        else if (!state.eq.c) { state.eq.c = s.id; }
+        else { state.eq.g = s.id; }
+      } else if (!state.eq.v) {
+        state.eq.v = s.id;
+      }
+    }
     queueSync();
     refreshAll();
-    toast('「' + op.code + '」已归档加入小队');
+    toast('「' + s.code + '」已解锁' + (s.type === 'pass' ? '，被动立刻生效' : '，已装进技能槽'));
   }
-  function selectOp(op) {
-    state.op = (state.op === op.id) ? '' : op.id;
-    state.opPrev = op.id;
-    if (state.op) { addLog('干员「' + op.code + '」已出战，战术加成生效'); }
-    applyOpDaily();
+  function equipSkill(s) {
+    if (!s) { return; }
+    if (s.type === 'pass') { toast('「' + s.code + '」是被动，解锁后一直生效，不用装'); return; }
+    if (s.type === 'ult') {
+      state.eq.v = (state.eq.v === s.id) ? '' : s.id;
+    } else if (state.eq.g === s.id) {
+      state.eq.g = '';
+    } else if (state.eq.c === s.id) {
+      state.eq.c = '';
+    } else if (!state.eq.g) {
+      state.eq.g = s.id;
+    } else if (!state.eq.c) {
+      state.eq.c = s.id;
+    } else {
+      state.eq.g = s.id;
+    }
     queueSync();
     refreshAll();
-    toast(state.op ? (op.code + ' 出战：' + op.desc) : '已撤下干员，加成暂停');
+    toast(s.type === 'ult' ? ('大招槽：' + (state.eq.v ? s.code : '已卸下')) : ('主动槽：' + (state.eq.g === s.id || state.eq.c === s.id ? s.code : '已卸下')));
   }
-  /* 蛊的每日情报：出战当天额外补 1 张提示券 */
-  function applyOpDaily() {
-    if (state.op === 'gu' && state.hintDate !== todayStr()) {
-      state.hintDate = todayStr();
-      state.hintCredits += 1;
-      addLog('蛊·神经振奋剂：今日额外获得 1 张提示券');
-      toast('蛊的情报支援：今日 +1 张提示券');
-    }
-  }
-  /* ---- 干员皮肤 ---- */
-  function ownedOpSkin(id) { return state.opSkins.indexOf(id) >= 0; }
-  function buyOpSkin(sk) {
-    if (ownedOpSkin(sk.id)) {
-      state.opSkin = sk.id;
-      queueSync();
-      refreshAll();
-      toast('已装备「' + sk.name + '」');
-      return;
-    }
-    if (state.coin < sk.price) {
-      toast('哈夫币不足，还差 ' + (sk.price - state.coin) + ' 个');
-      return;
-    }
-    state.coin -= sk.price;
-    state.opSkins.push(sk.id);
-    state.opSkin = sk.id;
-    addLog('兑换干员皮肤「' + sk.name + '」，全队换装');
-    logExchange({ name: '干员皮肤 · ' + sk.name, cost: sk.price, id: sk.id });
+  function unequipSlot(k) {
+    if (!state.eq[k]) { return; }
+    state.eq[k] = '';
     queueSync();
     refreshAll();
-    toast('全队换装完成：' + sk.name);
+    toast('已卸下 ' + k.toUpperCase() + ' 槽技能');
   }
   function renderOpHero() {
     var box = byId('opHero');
     if (!box) { return; }
     clearNode(box);
-    var op = opById(previewOpId());
-    if (!op) { return; }
+    var o = curOp();
     var art = make('div', 'op-hero-art');
-    art.appendChild(opPortrait(op, state.opSkin, 108));
+    art.appendChild(opPortrait(o, state.opSkin, 108));
     var onField = make('div', 'op-hero-unit');
-    onField.appendChild(unitSvg(unitCfgForOp(op), state.opSkin, ROLE_COLOR[op.rk], 92, 92));
+    onField.appendChild(unitSvg(unitCfgForOp(o), state.opSkin, ROLE_COLOR[o.rk], 92, 92));
     onField.appendChild(make('span', '', '战场形象 · 俯视'));
     art.appendChild(onField);
     box.appendChild(art);
     var info = make('div', 'op-hero-info');
-    info.appendChild(make('b', '', op.code));
-    info.appendChild(make('span', '', op.name + ' · ' + op.role + '干员'));
+    info.appendChild(make('b', '', '流浪佣兵'));
+    info.appendChild(make('span', '', '白金国边境 · 没有归属的那一个'));
     var tags = make('div', 'op-tagline');
-    tags.appendChild(make('span', 'tag', op.role));
-    tags.appendChild(make('span', 'tag', state.op === op.id ? '出战中' : (state.ops.indexOf(op.id) >= 0 ? '已招募' : '未招募')));
-    tags.appendChild(make('span', 'tag', '皮肤 ' + opSkinById(state.opSkin).name));
+    tags.appendChild(make('span', 'tag', '已解锁 ' + state.skills.length + ' 个节点'));
+    tags.appendChild(make('span', 'tag', '启用 ' + o.act.length + ' 个技能'));
     info.appendChild(tags);
     var r1 = make('div', 'op-hero-row');
-    r1.appendChild(make('span', '', '战术装备：'));
-    r1.appendChild(make('em', '', op.skill));
+    r1.appendChild(make('span', '', '战备属性：'));
+    r1.appendChild(make('em', '', o.desc));
     info.appendChild(r1);
     var r2 = make('div', 'op-hero-row');
-    r2.appendChild(make('span', '', '出战加成：'));
-    r2.appendChild(make('em', '', op.desc));
+    r2.appendChild(make('span', '', '技能槽：'));
+    var eqTxt = [];
+    for (var i = 0; i < ACT_KEYS.length; i++) {
+      var s2 = skillById(state.eq[ACT_KEYS[i]]);
+      eqTxt.push(ACT_KEYS[i].toUpperCase() + ' ' + (s2 ? s2.code : '空'));
+    }
+    r2.appendChild(make('em', '', eqTxt.join(' / ')));
     info.appendChild(r2);
-    if (op.raidTxt) {
-      var r3 = make('div', 'op-hero-row');
-      r3.appendChild(make('span', '', '行动技能：'));
-      r3.appendChild(make('em', '', op.raidTxt + '（枪战里生效）'));
-      info.appendChild(r3);
-    }
-    var acts1 = opActs(op), actTxt1 = [], actKey1 = actKeyTxts(acts1);
-    for (var ai1 = 0; ai1 < acts1.length; ai1++) { actTxt1.push(actKey1[ai1] + ' ' + acts1[ai1].name); }
-    if (actTxt1.length) {
-      var r4 = make('div', 'op-hero-row');
-      r4.appendChild(make('span', '', '主动技能：'));
-      r4.appendChild(make('em', '', actTxt1.join(' / ') + '（进图按 ' + actKey1.join(' / ') + ' 释放，有冷却）'));
-      info.appendChild(r4);
-    }
     box.appendChild(info);
   }
-  function buildSkinCard(sk) {
-    var owned = ownedOpSkin(sk.id);
-    var using = state.opSkin === sk.id;
-    var btn = make('button', 'op-skin' + (using ? ' on' : ''));
+  function buildSlotChip(k, label) {
+    var s2 = skillById(state.eq[k]);
+    var btn = make('button', 'op-skin' + (s2 ? ' on' : ''));
     btn.type = 'button';
     var th = make('span', 'th');
-    var skOp = opById(previewOpId());
-    th.appendChild(unitSvg(unitCfgForOp(skOp), sk.id, ROLE_COLOR[skOp.rk], 44, 44));
-    th.title = sk.name + '：换的是作战服、头盔、面罩那一整套配色，进图后就是这个样子';
+    th.appendChild(make('b', '', k.toUpperCase()));
     btn.appendChild(th);
-    btn.appendChild(make('span', '', sk.name));
-    btn.appendChild(make('b', '', using ? '已装备' : (owned ? '使用' : sk.price + ' 币')));
-    btn.onclick = function () { buyOpSkin(sk); };
+    btn.appendChild(make('span', '', label));
+    btn.appendChild(make('b', '', s2 ? s2.code : '空槽'));
+    btn.title = s2 ? ('点一下卸下「' + s2.code + '」') : '去下面的技能树里解锁并装备';
+    btn.onclick = function () {
+      if (s2) { unequipSlot(k); } else { toast('这个槽还空着：先在下面解锁一个' + label + '再点它装备'); }
+    };
     return btn;
   }
   function renderOpSkins() {
     var box = byId('opSkinRow');
     if (!box) { return; }
     clearNode(box);
-    setText('skinCount', '已拥有 ' + state.opSkins.length + ' / ' + OP_SKINS.length);
-    for (var i = 0; i < OP_SKINS.length; i++) { box.appendChild(buildSkinCard(OP_SKINS[i])); }
+    setText('skinCount', '已装 ' + (state.eq.g ? 1 : 0) + (state.eq.c ? 1 : 0) + (state.eq.v ? 1 : 0) + ' / 3');
+    box.appendChild(buildSlotChip('g', '主动一 · G'));
+    box.appendChild(buildSlotChip('c', '主动二 · C'));
+    box.appendChild(buildSlotChip('v', '大招 · V'));
   }
-  function buildOpCard(op) {
-    var owned = state.ops.indexOf(op.id) >= 0;
-    var card = make('div', 'op-card' + (state.op === op.id ? ' on' : '') + (previewOpId() === op.id ? ' prev' : ''));
+  function buildSkillCard(s) {
+    var owned = ownedSkill(s.id), on = state.eq.g === s.id || state.eq.c === s.id || state.eq.v === s.id;
+    var card = make('div', 'op-card' + (on ? ' on' : ''));
     var head = make('div', 'op-head');
-    var av = make('div', 'op-av r-' + op.rk);
-    av.appendChild(opPortrait(op, state.opSkin, 52));
-    av.title = '查看 ' + op.code + ' 立绘';
-    av.onclick = function () {
-      state.opPrev = op.id;
-      renderOps();
-    };
+    var av = make('div', 'op-av ' + (SK_NODE_CLS[s.type] || 'r-assault'));
+    av.appendChild(make('b', '', s.node));
     head.appendChild(av);
     var who = make('div', 'op-who');
-    who.appendChild(make('b', '', op.code));
-    who.appendChild(make('span', '', op.name + ' · ' + op.role));
+    who.appendChild(make('b', '', s.code));
+    who.appendChild(make('span', '', SK_TYPE_TXT[s.type] + ' · ' + s.tier + ' 层'));
     head.appendChild(who);
     card.appendChild(head);
-    card.appendChild(make('div', 'op-skill', '战术装备：' + op.skill));
-    card.appendChild(make('div', 'op-bonus', op.desc));
-    if (op.raidTxt) { card.appendChild(make('div', 'op-raid', '行动技能：' + op.raidTxt)); }
-    var acts0 = opActs(op);
-    if (acts0.length) {
-      var actBox = make('div', 'op-act');
-      actBox.appendChild(make('b', '', '主动技能（进图按 ' + actKeyTxts(acts0).join(' / ') + '，手机点右下角按钮）'));
-      for (var ai0 = 0; ai0 < acts0.length; ai0++) {
-        actBox.appendChild(make('span', '', actKeyTxt(acts0[ai0], ai0) + ' · ' + acts0[ai0].name + '：' + acts0[ai0].desc + '（冷却 ' + acts0[ai0].cd + ' 秒）'));
-      }
-      card.appendChild(actBox);
+    if (s.lore) { card.appendChild(make('div', 'op-skill', s.lore)); }
+    if (s.act) {
+      card.appendChild(make('div', 'op-bonus', s.act.desc));
+      card.appendChild(make('div', 'op-raid', '按键 ' + (s.type === 'ult' ? 'V' : 'G / C') + ' · 冷却 ' + s.act.cd + ' 秒'));
+    } else if (s.desc) {
+      card.appendChild(make('div', 'op-bonus', s.desc));
+      card.appendChild(make('div', 'op-raid', '被动 · 解锁即生效，可叠加'));
     }
-    var btn = make('button', 'mini-btn', owned ? (state.op === op.id ? '出战中' : '出战') : ('招募 ' + op.price + ' 币'));
+    var btn = make('button', 'mini-btn' + (on ? ' ghost' : ''), owned ? (on ? '已装备' : (s.type === 'pass' ? '已生效' : '装上')) : ('解锁 ' + s.price + ' 白金'));
     btn.type = 'button';
-    if (!owned && state.coin < op.price) { btn.disabled = true; }
+    if (!owned && state.coin < s.price) { btn.disabled = true; }
     btn.onclick = function () {
-      if (state.ops.indexOf(op.id) >= 0) { selectOp(op); } else { recruitOp(op); }
+      if (ownedSkill(s.id)) { equipSkill(s); } else { buySkill(s); }
     };
     card.appendChild(btn);
     return card;
@@ -5341,11 +5388,10 @@ body{
     var box = byId('opGrid');
     if (!box) { return; }
     clearNode(box);
-    var o = curOp();
-    setText('opCount', o ? ('出战中：' + o.code) : ('已招募 ' + state.ops.length + ' / ' + OPS.length));
+    setText('opCount', '已解锁 ' + state.skills.length + ' / ' + SKILLS.length);
     renderOpHero();
     renderOpSkins();
-    for (var i = 0; i < OPS.length; i++) { box.appendChild(buildOpCard(OPS[i])); }
+    for (var i = 0; i < SKILLS.length; i++) { box.appendChild(buildSkillCard(SKILLS[i])); }
   }
   function radioVisible() {
     var sec = byId('view-radio');
@@ -5641,16 +5687,16 @@ body{
 
   /* ================= 战场人物外形（俯视小人，内联绘制、零图片依赖、可离线） =================
      每个人物都是「体型 + 头盔 + 面部装备 + 专属配件」四段参数画出来的：
-     换个干员、换个皮肤，画出来的人就不一样；敌人按兵种也有各自的体型和头盔。
+     换个战备、换个皮肤，画出来的人就不一样；敌人按兵种也有各自的体型和头盔。
      几何指令格式和枪刀完全一样（r 矩形 / c 圆 / e 椭圆 / p 多边形 / l 线段），
-     最后一项写色位，颜色由干员皮肤（作战服配色）+ 角色色一起决定。 */
+     最后一项写色位，颜色由战备皮肤（作战服配色）+ 角色色一起决定。 */
   var UNIT_BUILD = {
     /* w 身宽增量 · hip 髋宽 · leg 腿长 · sh 肩半径 · helm 头盔半径 */
     slim:  { w: -1.3, hip: 3.6, leg: 8.4, sh: 3.2, helm: 5.9 },
     std:   { w: 0,    hip: 4.2, leg: 9.4, sh: 3.7, helm: 6.4 },
     heavy: { w: 1.8,  hip: 5.2, leg: 10.2, sh: 4.4, helm: 7.0 }
   };
-  /* 干员体型：同一个人物在卡片上和进图后长得一样 */
+  /* 战备体型：同一个人物在卡片上和进图后长得一样 */
   var UNIT_SHAPE_OF = {
     redwolf: 'slim', dragon: 'std', shepherd: 'std', uluru: 'heavy',
     stinger: 'std', gu: 'std', luna: 'slim', hacker: 'slim'
@@ -5757,26 +5803,26 @@ body{
       '|' + ((cfg.acc || []).join(','));
   }
   var MAPS = [
-    { id: 'dam', code: '零号大坝', fee: 60, enemies: 6, boxes: 6, edmg: 7, ehp: 38, qb: 0, limit: 150,
+    { id: 'dam', code: '白坝哨站', fee: 60, enemies: 6, boxes: 6, edmg: 7, ehp: 38, qb: 0, limit: 150,
       desc: '低风险训练区：敌人零星、地形开阔，物资以普通和精良为主；地图里有一个小水塘，站塘边按 F 可以钓鱼',
-      tip: '新手第一站「零号大坝」：敌人不多，先把撤离流程走一遍。别错过地图里的「大坝水塘」——拿到鱼竿以后站在塘边按 F 就能钓鱼，钓到的鱼在补给站的「渔获鱼篓」里能卖哈夫币。' },
-    { id: 'valley', code: '长弓溪谷', fee: 150, enemies: 10, boxes: 8, edmg: 10, ehp: 52, qb: 1, limit: 165,
+      tip: '新手第一站「白坝哨站」：敌人不多，先把撤离流程走一遍。别错过地图里的「大坝水塘」——拿到鱼竿以后站在塘边按 F 就能钓鱼，钓到的鱼在补给站的「渔获鱼篓」里能卖白金。' },
+    { id: 'valley', code: '蜂林谷', fee: 150, enemies: 10, boxes: 8, edmg: 10, ehp: 52, qb: 1, limit: 165,
       desc: '中风险区：巡逻队密集，稀有以上物资概率明显提升；一条「长弓溪」横贯地图，溪边停着可驾驶的攻击艇（舰炮能轰开一片敌人），河岸边还有送鱼竿的老渔夫；地图里也有小水塘可以钓鱼',
-      tip: '潜入「长弓溪谷」：地图中间横着一条「长弓溪」，涉水移动会变慢、走木桥最快；溪边停着一艘攻击艇——走到旁边按 E 登艇，WASD 驾驶（只能在溪水里开），左键 / 空格发射舰炮。河岸边站着特殊 NPC「老渔夫」，走到他旁边按 E 交谈可以拿到鱼竿，之后就能在水边按 F 钓鱼了。' },
-    { id: 'bakesh', code: '巴克什', fee: 280, enemies: 14, boxes: 11, edmg: 13, ehp: 66, qb: 2, limit: 180,
+      tip: '潜入「蜂林谷」：地图中间横着一条「长弓溪」，涉水移动会变慢、走木桥最快；溪边停着一艘攻击艇——走到旁边按 E 登艇，WASD 驾驶（只能在溪水里开），左键 / 空格发射舰炮。河岸边站着特殊 NPC「老渔夫」，走到他旁边按 E 交谈可以拿到鱼竿，之后就能在水边按 F 钓鱼了。' },
+    { id: 'bakesh', code: '蚕蚀旧城', fee: 280, enemies: 14, boxes: 11, edmg: 13, ehp: 66, qb: 2, limit: 180,
       desc: '高危战区：火力凶猛、巷战多，绝密物资与红色钥匙卡高发；地图里有小水塘，可以钓到比较贵的鱼' },
-    { id: 'prison', code: '潮汐监狱', fee: 380, enemies: 12, boxes: 10, edmg: 14, ehp: 74, qb: 3, limit: 210, boss: true,
-      bossEt: 3, bossName: '典狱长', bossCoin: 120, bossLoot: 2, jail: true,
-      tip: '潜入「潮汐监狱」：血量剩 50 会被关进牢房，答对 3 题越狱；击败 BOSS 典狱长有重奖！地图里也有水塘，鱼比巴克什更值钱。',
-      desc: '绝密禁区：血量剩 50 会被关进牢房（答对 3 题越狱），击败 BOSS 典狱长有重奖；地图里有大水塘' },
-    { id: 'space', code: '航天基地', fee: 520, enemies: 16, boxes: 12, edmg: 16, ehp: 82, qb: 4, limit: 255, boss: true,
-      bossEt: 4, bossName: '老太', bossCoin: 180, bossLoot: 3,
-      tip: '空降「航天基地」：发射场跑道开阔、掩体少，火力比监狱更猛；BOSS「老太」守在发射控制中心，打倒她有重奖！这里的鱼最金贵，容易上大青鱼和金鳞锦鲤。',
-      desc: '顶级禁区：发射场跑道开阔、掩体稀少，BOSS「老太」坐镇发射控制中心，绝密物资与红色门卡高发；水塘里的鱼也最贵' },
-    { id: 'az3', code: 'AZ3 核电站', fee: 340, enemies: 15, boxes: 10, edmg: 13, ehp: 68, qb: 2, limit: 195, rad: true,
-      tip: '潜入「AZ3 核电站」：厂区地上那几圈泛绿光的是「核辐射区」——站进去会持续掉血，护甲和减伤都挡不住，只能绕开或者一口气冲过去；右上角小地图上也用绿圈把位置标出来了。辐射圈里额外埋着高价值物资箱，想拿就得进去扛几秒。真东西在「反应堆控制室」「汽轮机房」「废料库」三间加锁房间里，水塘也能钓鱼。',
+    { id: 'prison', code: '囚矿区', fee: 380, enemies: 12, boxes: 10, edmg: 14, ehp: 74, qb: 3, limit: 210, boss: true,
+      bossEt: 3, bossName: '矿主', bossCoin: 120, bossLoot: 2, jail: true,
+      tip: '潜入「囚矿区」：血量剩 50 会被关进牢房，答对 3 题越狱；击败 BOSS 矿主有重奖！地图里也有水塘，鱼比蚕蚀旧城更值钱。',
+      desc: '绝密禁区：血量剩 50 会被关进牢房（答对 3 题越狱），击败 BOSS 矿主有重奖；地图里有大水塘' },
+    { id: 'space', code: '机龙暴台', fee: 520, enemies: 16, boxes: 12, edmg: 16, ehp: 82, qb: 4, limit: 255, boss: true,
+      bossEt: 4, bossName: '枪火', bossCoin: 180, bossLoot: 3,
+      tip: '空降「机龙暴台」：发射场跑道开阔、掩体少，火力比监狱更猛；BOSS「枪火」守在暴台控制中心，打倒它有重奖！这里的鱼最金贵，容易上大青鱼和金鳞锦鲤。',
+      desc: '顶级禁区：发射场跑道开阔、掩体稀少，BOSS「枪火」盘踞暴台控制中心，绝密物资与红色门卡高发；水塘里的鱼也最贵' },
+    { id: 'az3', code: '蚕蚀反应堆', fee: 340, enemies: 15, boxes: 10, edmg: 13, ehp: 68, qb: 2, limit: 195, rad: true,
+      tip: '潜入「蚕蚀反应堆」：厂区地上那几圈泛绿光的是「核辐射区」——站进去会持续掉血，护甲和减伤都挡不住，只能绕开或者一口气冲过去；右上角小地图上也用绿圈把位置标出来了。辐射圈里额外埋着高价值物资箱，想拿就得进去扛几秒。真东西在「反应堆控制室」「汽轮机房」「废料库」三间加锁房间里，水塘也能钓鱼。',
       desc: '核泄漏禁区：厂区散布好几片核辐射区，进区持续掉血且无视护甲；辐射圈里额外埋着高价值物资箱，风险和收益一起拉满' },
-    { id: 'war', code: '大战场', fee: 60, enemies: 22, boxes: 0, edmg: 9, ehp: 55, qb: 2, limit: 240, war: true,
+    { id: 'war', code: '焦土前线', fee: 60, enemies: 22, boxes: 0, edmg: 9, ehp: 55, qb: 2, limit: 240, war: true,
       desc: '联机占领模式：带上搭档账号一起打，没有箱子和刷卡房，抢下 3 个据点就赢；阵亡不结束，3 秒后在最近的己方据点无限复活。战线中部有水塘，中场休息可以钓鱼' }
   ];
   /* ================= 地图地貌主题：七张地图各有各的样子 ================= */
@@ -5969,7 +6015,7 @@ body{
     ],
     prison: [
       { x: 1250, y: 220, w: 260, h: 210, door: 'left', name: '武器库' },
-      { x: 1300, y: 800, w: 270, h: 220, door: 'top', name: '典狱长室' },
+      { x: 1300, y: 800, w: 270, h: 220, door: 'top', name: '矿主室' },
       { x: 700, y: 920, w: 250, h: 200, door: 'top', name: '医务室' }
     ],
     space: [
@@ -5994,9 +6040,9 @@ body{
   };
   var CAP_TIME = 6.0, CAP_CONTEST = 190, WAR_RESPAWN = 3.0;
   var ROOM_T = 14, DOOR_W = 52;
-  /* 潮汐监狱的牢房：玩家血量剩 50 会被关进来，答对 3 题越狱 */
+  /* 囚矿区的牢房：玩家血量剩 50 会被关进来，答对 3 题越狱 */
   var JAIL = { x: 66, y: 66, w: 230, h: 190, gateW: 60 };
-  /* 长弓溪谷的河道：一条横贯地图的「长弓溪」，可涉水（会变慢），溪边停着一艘可驾驶的攻击艇 */
+  /* 蜂林谷的河道：一条横贯地图的「长弓溪」，可涉水（会变慢），溪边停着一艘可驾驶的攻击艇 */
   var RIVER_DEFS = {
     valley: {
       name: '长弓溪',
@@ -6016,17 +6062,17 @@ body{
       npc: { x: 645, y: 468, name: '老渔夫' }
     }
   };
-  /* 每张地图一个小水塘：走到塘边就能钓鱼（钓到的鱼进「鱼篓」，可以卖哈夫币） */
+  /* 每张地图一个小水塘：走到塘边就能钓鱼（钓到的鱼进「鱼篓」，可以卖白金） */
   var POND_DEFS = {
     dam: { name: '大坝水塘', rect: { x: 620, y: 980, w: 200, h: 150 } },
     valley: { name: '溪谷水塘', rect: { x: 820, y: 980, w: 200, h: 150 } },
-    bakesh: { name: '巴克什水塘', rect: { x: 1380, y: 900, w: 200, h: 150 } },
+    bakesh: { name: '蚕蚀旧城水塘', rect: { x: 1380, y: 900, w: 200, h: 150 } },
     prison: { name: '监狱水塘', rect: { x: 450, y: 700, w: 200, h: 150 } },
     space: { name: '发射场水塘', rect: { x: 1000, y: 950, w: 200, h: 150 } },
     az3: { name: '冷却水池', rect: { x: 1430, y: 950, w: 200, h: 150 } },
     war: { name: '战线水塘', rect: { x: 1300, y: 960, w: 190, h: 145 } }
   };
-  /* AZ3 核电站：厂区里的核辐射区。站进圈里持续掉血，且「护甲和减伤都挡不住」。
+  /* 蚕蚀反应堆：厂区里的核辐射区。站进圈里持续掉血，且「护甲和减伤都挡不住」。
      辐射圈里还会额外埋高价值物资箱，想拿就得进去扛几秒。 */
   var RADIATION_DEFS = {
     az3: [
@@ -6156,8 +6202,8 @@ body{
     { code: '巡逻兵', hp: 1.0, dmg: 0.7, spd: 60, rate: 1.6, acc: 0.30, r: 12, color: '#7f9a7c', ui: 0 },
     { code: '步枪兵', hp: 1.5, dmg: 1.0, spd: 74, rate: 1.05, acc: 0.20, r: 13, color: '#c0a45f', ui: 1 },
     { code: '重装兵', hp: 2.7, dmg: 1.5, spd: 46, rate: 0.68, acc: 0.16, r: 15, color: '#c1694f', ui: 2 },
-    { code: '典狱长', hp: 7.2, dmg: 1.8, spd: 52, rate: 0.55, acc: 0.13, r: 24, color: '#e0567f', ui: 3, boss: true },
-    { code: '老太', hp: 9.4, dmg: 2.2, spd: 44, rate: 0.6, acc: 0.12, r: 26, color: '#9b7fe0', ui: 4, boss: true }
+    { code: '矿主', hp: 7.2, dmg: 1.8, spd: 52, rate: 0.55, acc: 0.13, r: 24, color: '#e0567f', ui: 3, boss: true },
+    { code: '枪火', hp: 9.4, dmg: 2.2, spd: 44, rate: 0.6, acc: 0.12, r: 26, color: '#9b7fe0', ui: 4, boss: true }
   ];
   function bossTypeOf(map) { return ETYPE[map && map.bossEt !== undefined ? map.bossEt : 3]; }
   function gunById(id) {
@@ -6202,7 +6248,7 @@ body{
   function rlen(ax, ay, bx, by) { var dx = ax - bx, dy = ay - by; return Math.sqrt(dx * dx + dy * dy); }
 
   /* ================= 经济与难度调整 ================= */
-  /* 物价：所有可购买的东西（商店 / 干员 / 干员皮肤 / 武器 / 装具 / 地图入场费）价格 ×3 */
+  /* 物价：所有可购买的东西（商店 / 战备 / 战备皮肤 / 武器 / 装具 / 地图入场费）价格 ×3 */
   /* 难度：枪战小游戏里的敌人（血量 ×2、伤害 ×2），地图卡片上标注「难度 ×2」 */
   var PRICE_MUL = 3, DIFF_MUL = 2, ECO_APPLIED = false;
   function ehpOf(map, t) { return Math.round(map.ehp * t.hp * DIFF_MUL); }
@@ -6216,7 +6262,6 @@ body{
     for (i = 0; i < KNIVES.length; i++) { KNIVES[i].price = Math.round(KNIVES[i].price * PRICE_MUL); }
     for (i = 0; i < GUN_SKINS.length; i++) { GUN_SKINS[i].price = Math.round(GUN_SKINS[i].price * PRICE_MUL); }
     for (i = 0; i < KNIFE_SKINS.length; i++) { KNIFE_SKINS[i].price = Math.round(KNIFE_SKINS[i].price * PRICE_MUL); }
-    for (i = 0; i < OPS.length; i++) { OPS[i].price = Math.round(OPS[i].price * PRICE_MUL); }
     for (i = 0; i < OP_SKINS.length; i++) { OP_SKINS[i].price = Math.round(OP_SKINS[i].price * PRICE_MUL); }
     for (i = 0; i < MAPS.length; i++) { MAPS[i].fee = Math.round(MAPS[i].fee * PRICE_MUL); }
   }
@@ -6330,9 +6375,9 @@ body{
     allies: [], jailOn: false, jq: null, jailGate: null, jailRect: null,
     caps: [], dead: false, respawnT: 0, deaths: 0, capTipT: 0, warMate: '',
     sk: {}, mag: 0, regenAcc: 0, gearLost: [], boat: null, npc: null,
-    /* 干员主动技能（默认 G / C，威龙喷气背包是 X）：冷却表 + 持续增益表 + 场上物件 */
+    /* 战备主动技能（默认 G / C / V，威龙喷气背包是 X）：冷却表 + 持续增益表 + 场上物件 */
     acts: [], skCd: {}, skOn: {}, zones: [], mines: [], burst: null, jet: null, scanT: 0,
-    /* AZ3 核电站：核辐射区（站进去持续掉血，无视护甲）+ 已吃辐射量 */
+    /* 蚕蚀反应堆：核辐射区（站进去持续掉血，无视护甲）+ 已吃辐射量 */
     rad: [], radIn: null, radDose: 0, radTick: 0, radFlash: 0,
     fish: null, fishGot: 0, fishCd: 0,
     bag: [], ex: null,
@@ -6373,9 +6418,9 @@ body{
     for (i = 0; i < Raid.bag.length; i++) { v += Raid.bag[i].price; }
     return v;
   }
-  /* 开箱时实际用的品质等级（地图基础 + 干员技能加成） */
+  /* 开箱时实际用的品质等级（地图基础 + 战备技能加成） */
   function raidQb() { return raidSk('lootAdd', 0) + (Raid.map ? Raid.map.qb : 0); }
-  /* 当前弹匣容量（含干员技能的弹匣加成） */
+  /* 当前弹匣容量（含战备技能的弹匣加成） */
   function raidMag() {
     if (Raid.mag > 0) { return Raid.mag; }
     return Raid.gun ? Raid.gun.mag : 0;
@@ -6385,7 +6430,7 @@ body{
   function buyKnife(k) {
     if (hasKnife(k.id)) { equipKnife(k.id); return; }
     if (state.coin < k.price) {
-      toast('哈夫币不足，还差 ' + (k.price - state.coin) + ' 个');
+      toast('白金不足，还差 ' + (k.price - state.coin) + ' 个');
       return;
     }
     state.coin -= k.price;
@@ -6407,7 +6452,7 @@ body{
   /* 武器外观：枪皮 / 刀皮，买一次永久生效，全枪 / 全刀通用 */
   function buyGunSkin(sk) {
     if (state.gunSkins.indexOf(sk.id) >= 0) { equipGunSkin(sk.id); return; }
-    if (state.coin < sk.price) { toast('哈夫币不足，还差 ' + (sk.price - state.coin) + ' 个'); return; }
+    if (state.coin < sk.price) { toast('白金不足，还差 ' + (sk.price - state.coin) + ' 个'); return; }
     state.coin -= sk.price;
     state.gunSkins.push(sk.id);
     state.gunSkin = sk.id;
@@ -6426,7 +6471,7 @@ body{
   }
   function buyKnifeSkin(sk) {
     if (state.knifeSkins.indexOf(sk.id) >= 0) { equipKnifeSkin(sk.id); return; }
-    if (state.coin < sk.price) { toast('哈夫币不足，还差 ' + (sk.price - state.coin) + ' 个'); return; }
+    if (state.coin < sk.price) { toast('白金不足，还差 ' + (sk.price - state.coin) + ' 个'); return; }
     state.coin -= sk.price;
     state.knifeSkins.push(sk.id);
     state.knifeSkin = sk.id;
@@ -6446,7 +6491,7 @@ body{
   function buyGun(g) {
     if (hasGun(g.id)) { equipGun(g.id); return; }
     if (state.coin < g.price) {
-      toast('哈夫币不足，还差 ' + (g.price - state.coin) + ' 个');
+      toast('白金不足，还差 ' + (g.price - state.coin) + ' 个');
       return;
     }
     state.coin -= g.price;
@@ -6467,7 +6512,7 @@ body{
   function buyArmor(a) {
     if (hasArmor(a.id)) { equipArmor(a.id); return; }
     if (state.coin < a.price) {
-      toast('哈夫币不足，还差 ' + (a.price - state.coin) + ' 个');
+      toast('白金不足，还差 ' + (a.price - state.coin) + ' 个');
       return;
     }
     state.coin -= a.price;
@@ -6577,10 +6622,10 @@ body{
       hd.appendChild(make('span', 'raid-map-land', th.land));
       b.appendChild(hd);
       b.appendChild(make('span', 'raid-map-desc', m.desc));
-      b.appendChild(make('i', '', '入场费 ' + m.fee + ' 哈夫币'));
+      b.appendChild(make('i', '', '入场费 ' + m.fee + ' 白金'));
       var meta = m.war
         ? ('难度 ×2 · 敌人 ' + m.enemies + ' · 占领据点 3 · 无限复活 · ' + Math.round(m.limit / 60) + ' 分钟 · 可联机')
-        : ('难度 ×2 · 敌人 ' + m.enemies + ' · 箱子 ' + m.boxes + ' · ' + Math.round(m.limit / 60) + ' 分钟' + (m.boss ? ' · BOSS ' + (m.bossName || '典狱长') : '') + (m.rad ? ' · 核辐射区 ' + ((RADIATION_DEFS[m.id] || []).length) + ' 处' : ''));
+        : ('难度 ×2 · 敌人 ' + m.enemies + ' · 箱子 ' + m.boxes + ' · ' + Math.round(m.limit / 60) + ' 分钟' + (m.boss ? ' · BOSS ' + (m.bossName || '矿主') : '') + (m.rad ? ' · 核辐射区 ' + ((RADIATION_DEFS[m.id] || []).length) + ' 处' : ''));
       b.appendChild(make('u', '', meta));
       b.onclick = (function (id) { return function () { selectRaidMap(id); }; })(m.id);
       box.appendChild(b);
@@ -6694,7 +6739,7 @@ body{
     if (pd) {
       s.appendChild(svgEl('rect', { x: (pd.rect.x * kx).toFixed(1), y: (pd.rect.y * ky).toFixed(1), width: Math.max(3, pd.rect.w * kx).toFixed(1), height: Math.max(3, pd.rect.h * ky).toFixed(1), fill: 'rgba(92,162,214,.8)', rx: '2' }));
     }
-    /* AZ3 核电站：辐射区（绿圈，位置和进图后看到的一致） */
+    /* 蚕蚀反应堆：辐射区（绿圈，位置和进图后看到的一致） */
     var rads = RADIATION_DEFS[m.id] || [];
     for (i = 0; i < rads.length; i++) {
       s.appendChild(svgEl('circle', {
@@ -6800,9 +6845,9 @@ body{
     box.appendChild(make('span', '', '本次行动：'));
     box.appendChild(make('b', '', m.fee + ' 币'));
     box.appendChild(make('em', '', '装备 ' + g.code + ' · ' + a.code + ' · 近战 ' + curKnife().code));
-    box.appendChild(make('u', '', '当前余额 ' + state.coin + ' 哈夫币'));
+    box.appendChild(make('u', '', '当前余额 ' + state.coin + ' 白金'));
     if (lack > 0) {
-      box.appendChild(make('i', 'cost-lack', '还差 ' + lack + ' 哈夫币：去训练场答题就能赚，答对还有搜刮券'));
+      box.appendChild(make('i', 'cost-lack', '还差 ' + lack + ' 白金：去训练场答题就能赚，答对还有搜刮券'));
     }
     var risky = [];
     if (g.id !== 'm9') { risky.push('枪 · ' + g.code); }
@@ -6816,7 +6861,7 @@ body{
     }
     renderRaidGo();
   }
-  /* 出战干员的「行动技能」：告诉孩子这次进图 TA 会带来什么加成 */
+  /* 出战战备的「行动技能」：告诉孩子这次进图 TA 会带来什么加成 */
   function renderRaidSkill() {
     var box = byId('raidSkill');
     if (!box) { return; }
@@ -6824,20 +6869,20 @@ body{
     var o = curOp();
     if (o && o.raidTxt) {
       box.className = 'raid-skill';
-      box.appendChild(make('span', '', '出战干员：'));
+      box.appendChild(make('span', '', '出战配置：'));
       box.appendChild(make('b', '', o.code));
       box.appendChild(make('em', '', o.skill));
       box.appendChild(make('u', '', o.raidTxt));
-      box.appendChild(make('i', 'rs-tip', '行动技能整局生效，和武器、防弹衣的加成叠加。换干员去「电台 · 干员」页点「出战」。'));
+      box.appendChild(make('i', 'rs-tip', '战备加成整局生效，和武器、防弹衣的加成叠加。想换技能去「电台 · 战备技能树」页点节点。'));
       return;
     }
     box.className = 'raid-skill off';
     if (!state.op) {
-      box.appendChild(make('span', '', '还没派出干员：'));
-      box.appendChild(make('em', '', '去「电台 · 干员」招募并点「出战」，TA 的行动技能就会在枪战里生效'));
+      box.appendChild(make('span', '', '还没装技能：'));
+      box.appendChild(make('em', '', '去「电台 · 战备技能树」解锁节点，装进 G / C / V 槽，进图就能按出来'));
       return;
     }
-    box.appendChild(make('span', '', '出战干员：'));
+    box.appendChild(make('span', '', '出战配置：'));
     box.appendChild(make('em', '', (o ? o.code : '—') + ' 这次没有行动技能加成'));
   }
   /* 「开始行动」按钮：时段 / 审批 / 余额哪一关没过就写清楚，别只弹一句小提示让人以为坏了 */
@@ -6867,7 +6912,7 @@ body{
       }
     }
     if (lack > 0) {
-      btn.textContent = '哈夫币不够 · 还差 ' + lack + ' 币';
+      btn.textContent = '白金不够 · 还差 ' + lack + ' 币';
       btn.className = 'mini-btn lack';
       return;
     }
@@ -7036,6 +7081,18 @@ body{
     if (e.y < r) { e.y = r; }
     if (e.x > Raid.W - r) { e.x = Raid.W - r; }
     if (e.y > Raid.H - r) { e.y = Raid.H - r; }
+    /* 临时掩体（速凝掩体 / 部署盾）：圆形实体，谁都过不去 */
+    if (Raid.barr && Raid.barr.length) {
+      var bi2, bb2, bd2;
+      for (bi2 = 0; bi2 < Raid.barr.length; bi2++) {
+        bb2 = Raid.barr[bi2];
+        bd2 = rlen(e.x, e.y, bb2.x, bb2.y);
+        if (bd2 < bb2.r + r && bd2 > 0.01) {
+          e.x = bb2.x + (e.x - bb2.x) / bd2 * (bb2.r + r);
+          e.y = bb2.y + (e.y - bb2.y) / bd2 * (bb2.r + r);
+        }
+      }
+    }
   }
   function raidFreeSpot(minFromP) {
     var guard = 0, x = 0, y = 0;
@@ -7089,7 +7146,7 @@ body{
   }
   function raidBuild(map) {
     raidSetSize(map);
-    /* AZ3 核电站：先把辐射区铺好，后面的墙体 / 敌人 / 箱子都要避开它 */
+    /* 蚕蚀反应堆：先把辐射区铺好，后面的墙体 / 敌人 / 箱子都要避开它 */
     Raid.rad = [];
     var rdefs = RADIATION_DEFS[map.id] || [], rdi;
     for (rdi = 0; rdi < rdefs.length; rdi++) {
@@ -7100,7 +7157,7 @@ body{
       { x: 0, y: 0, w: Raid.W, h: 26 }, { x: 0, y: Raid.H - 26, w: Raid.W, h: 26 },
       { x: 0, y: 0, w: 26, h: Raid.H }, { x: Raid.W - 26, y: 0, w: 26, h: Raid.H }
     ];
-    /* 潮汐监狱：先建牢房（左上角），血量剩 50 时把玩家关进去 */
+    /* 囚矿区：先建牢房（左上角），血量剩 50 时把玩家关进去 */
     Raid.jailRect = null; Raid.jailGate = null;
     if (map.id === 'prison') {
       var j = JAIL, gx = j.x + j.w / 2 - j.gateW / 2;
@@ -7197,7 +7254,7 @@ body{
         cd: rnd(0.8, 2.2), ang: 0, hit: 0, wa: rnd(0, 6.28), wander: 0, stun: 0
       });
     }
-    /* 潮汐监狱：BOSS 典狱长 · 航天基地：BOSS 老太 */
+    /* 囚矿区：BOSS 典狱长 · 机龙暴台：BOSS 老太 */
     if (map.boss) {
       var bt = bossTypeOf(map), bp = raidFreeSpot(760);
       Raid.enemies.push({
@@ -7250,7 +7307,7 @@ body{
       var cbp = raidFreeSpot(230);
       Raid.boxes.push({ x: cbp.x, y: cbp.y, prog: 0, open: false, id: i });
     }
-    /* AZ3 核电站：辐射圈里另埋「热箱」——想拿就得进去扛几秒辐射 */
+    /* 蚕蚀反应堆：辐射圈里另埋「热箱」——想拿就得进去扛几秒辐射 */
     if (Raid.rad.length) {
       var hotGot = 0;
       for (i = 0; i < Raid.rad.length && hotGot < 2; i++) {
@@ -7266,7 +7323,7 @@ body{
         }
       }
     }
-    /* 长弓溪谷：溪面上的攻击艇（可驾驶、可发射舰炮）+ 河岸边送鱼竿的老渔夫 */
+    /* 蜂林谷：溪面上的攻击艇（可驾驶、可发射舰炮）+ 河岸边送鱼竿的老渔夫 */
     Raid.boat = null; Raid.npc = null;
     Raid.fish = null; Raid.fishGot = 0; Raid.fishCd = 0;
     var rvB = riverOf(map);
@@ -7329,8 +7386,8 @@ body{
     if (acts.length) {
       var actKs = actKeyTxts(acts);
       hb += Raid.touch
-        ? (' · 右下角两个技能按钮：' + acts[0].name + (acts[1] ? (' / ' + acts[1].name) : ''))
-        : (' · 按 ' + actKs[0] + ' 放「' + acts[0].name + '」' + (acts[1] ? ('、按 ' + actKs[1] + ' 放「' + acts[1].name + '」') : ''));
+        ? (' · 右下角技能按钮：' + acts[0].name + (acts[1] ? (' / ' + acts[1].name) : '') + (acts[2] ? (' / ' + acts[2].name) : ''))
+        : (' · 按 ' + actKs[0] + ' 放「' + acts[0].name + '」' + (acts[1] ? ('、按 ' + actKs[1] + ' 放「' + acts[1].name + '」') : '') + (acts[2] ? ('、按 ' + actKs[2] + ' 放大招「' + acts[2].name + '」') : ''));
     }
     return hb;
   }
@@ -7355,7 +7412,7 @@ body{
     var map = mapById(state.map), gun = curGun(), arm = curArmor();
     if (state.coin < map.fee) {
       var need = map.fee - state.coin;
-      toast('哈夫币不够：进场要 ' + map.fee + ' 币，还差 ' + need + ' 币，先去训练场答题赚币');
+      toast('白金不够：进场要 ' + map.fee + ' 币，还差 ' + need + ' 币，先去训练场答题赚币');
       renderRaidCost();
       return;
     }
@@ -7377,14 +7434,15 @@ body{
     /* 进图默认端主武器；近战刀按账号列装的那把带进来（刀不会因为阵亡丢失） */
     Raid.slot = 0; Raid.knife = curKnife(); Raid.swT = 0; Raid.slash = 0;
     raidSetSize(map);
-    /* 出战干员的行动技能：进图时定好，整局生效 */
+    /* 出战战备的行动技能：进图时定好，整局生效 */
     Raid.sk = opRaid();
-    /* 出战干员的主动技能（默认 G / C，威龙喷气背包是 X）：冷却和增益每局重置 */
+    /* 出战战备的主动技能（默认 G / C / V，威龙喷气背包是 X）：冷却和增益每局重置 */
     Raid.acts = curActs();
     Raid.skCd = {}; Raid.skOn = {};
     Raid.zones = []; Raid.mines = []; Raid.burst = null; Raid.jet = null; Raid.scanT = 0;
-    /* AZ3 核电站：辐射区每局重铺（存在 Raid.rad 里，靠地图配的 RADIATION_DEFS） */
+    /* 蚕蚀反应堆：辐射区每局重铺（存在 Raid.rad 里，靠地图配的 RADIATION_DEFS） */
     Raid.rad = []; Raid.radIn = null; Raid.radDose = 0; Raid.radTick = 0; Raid.radFlash = 0;
+    Raid.barr = []; Raid.anchor = null;
     Raid.regenAcc = 0;
     Raid.mag = Math.max(1, Math.round(gun.mag * raidSk('magMul', 1)));
     var pMax = 100 + raidSk('hpAdd', 0);
@@ -7406,9 +7464,9 @@ body{
     }
     var skOp = curOp();
     if (!map.war) { startTip += '｜阵亡会掉落带进图的枪和甲，血少就先去撤离点'; }
-    if (skOp && skOp.raidTxt) { startTip += '｜干员技能「' + skOp.skill + '」生效：' + skOp.raidTxt; }
+    if (skOp && skOp.raidTxt) { startTip += '｜战备技能「' + skOp.skill + '」生效：' + skOp.raidTxt; }
     raidTip(startTip);
-    addLog('进入「' + map.code + '」行动，缴纳入场费 ' + map.fee + ' 哈夫币');
+    addLog('进入「' + map.code + '」行动，缴纳入场费 ' + map.fee + ' 白金');
     sfx('start');
     renderChrome();
     queueSync();
@@ -7479,9 +7537,9 @@ body{
       state.coin += bonus;
       if (val > st.best) { st.best = val; }
       if (map.war) {
-        addLog('大战场告捷：占领 ' + capsN + ' / ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 人（阵亡 ' + Raid.deaths + ' 次），作战奖金 ' + bonus + ' 哈夫币');
+        addLog('大战场告捷：占领 ' + capsN + ' / ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 人（阵亡 ' + Raid.deaths + ' 次），作战奖金 ' + bonus + ' 白金');
       } else {
-        addLog('成功撤离「' + map.code + '」：带回 ' + Raid.bag.length + ' 件物资（价值 ' + val + '），击杀 ' + Raid.kills + ' 人，作战奖金 ' + bonus + ' 哈夫币');
+        addLog('成功撤离「' + map.code + '」：带回 ' + Raid.bag.length + ' 件物资（价值 ' + val + '），击杀 ' + Raid.kills + ' 人，作战奖金 ' + bonus + ' 白金');
       }
       sfx('extract');
     } else {
@@ -7489,7 +7547,7 @@ body{
       if (map.war) {
         bonus = Raid.kills * (8 + raidSk('killCoin', 0)) + capsN * 20;
         state.coin += bonus;
-        addLog('大战场结束「' + map.code + '」（' + reason + '）：占领 ' + capsN + ' / ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 人，击倒奖金 ' + bonus + ' 哈夫币');
+        addLog('大战场结束「' + map.code + '」（' + reason + '）：占领 ' + capsN + ' / ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 人，击倒奖金 ' + bonus + ' 白金');
       } else {
         var gearTxt = gearLost.length ? ('，阵亡掉落 ' + gearLost.join(' + ')) : '';
         addLog('行动失败「' + map.code + '」（' + reason + '）：损失 ' + Raid.bag.length + ' 件物资（价值 ' + val + '），击杀 ' + Raid.kills + ' 人' + gearTxt);
@@ -7528,7 +7586,7 @@ body{
         ? ('大战场告捷！你占领了全部 ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 名敌人，阵亡 ' + Raid.deaths + ' 次后依然拿下了战线。' + mateTxt)
         : ('大战场作战结束（' + reason + '），占领 ' + capsN + ' / ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 名敌人。' + mateTxt);
     } else if (win) {
-      sub = ('在「' + map.code + '」击杀 ' + Raid.kills + ' 名敌人，成功撤离。物资已全部送入补给站仓库，可以卖成哈夫币。');
+      sub = ('在「' + map.code + '」击杀 ' + Raid.kills + ' 名敌人，成功撤离。物资已全部送入补给站仓库，可以卖成白金。');
     } else {
       var gearN = (Raid.gearLost && Raid.gearLost.length) ? Raid.gearLost.join(' + ') : '';
       if (reason === '行动时间到') {
@@ -7543,7 +7601,7 @@ body{
     var btns = [
       { t: '再来一局（' + map.fee + ' 币）', fn: function () {
         if (state.coin < map.fee) {
-          toast('哈夫币不够再来一局，先去训练场答几题攒币');
+          toast('白金不够再来一局，先去训练场答几题攒币');
           exitRaid();
           return;
         }
@@ -7569,7 +7627,7 @@ body{
     line.appendChild(make('b', '', String(Raid.kills)));
     line.appendChild(make('em', '', map.war
       ? ('占领据点 ' + capsN + ' / ' + Raid.caps.length + ' · 阵亡 ' + Raid.deaths + ' 次')
-      : ('物资 ' + Raid.bag.length + ' 件 · 价值 ' + val + ' 哈夫币')));
+      : ('物资 ' + Raid.bag.length + ' 件 · 价值 ' + val + ' 白金')));
     inn.appendChild(line);
     if (Raid.gearLost && Raid.gearLost.length) {
       var gl = make('div', 'raid-cost');
@@ -7592,13 +7650,13 @@ body{
       bonusLine.appendChild(make('b', '', '+' + bonus));
       bonusLine.appendChild(make('em', '', map.war
         ? (win ? ('击杀 × ' + (12 + raidSk('killCoin', 0)) + ' + 据点 × 60') : ('击杀 × ' + (8 + raidSk('killCoin', 0)) + ' + 据点 × 20'))
-        : ('击杀 × ' + (12 + raidSk('killCoin', 0)) + ' 哈夫币')));
+        : ('击杀 × ' + (12 + raidSk('killCoin', 0)) + ' 白金')));
       inn.appendChild(bonusLine);
     }
     var rskOp = curOp();
     if (rskOp && rskOp.raidTxt) {
       var skLine = make('div', 'raid-cost');
-      skLine.appendChild(make('span', '', '干员技能'));
+      skLine.appendChild(make('span', '', '战备技能'));
       skLine.appendChild(make('b', '', rskOp.code));
       skLine.appendChild(make('em', '', rskOp.skill + '：' + rskOp.raidTxt));
       inn.appendChild(skLine);
@@ -7796,7 +7854,7 @@ body{
       Raid.jailGate = { x: gx3, y: JAIL.y + JAIL.h, w: JAIL.gateW, h: 14 };
       Raid.walls.push(Raid.jailGate);
     }
-    addLog('血量跌到 50，在「潮汐监狱」被狱警拖进了牢房');
+    addLog('血量跌到 50，在「囚矿区」被狱警拖进了牢房');
     sfx('lose');
     raidTip('被关进潮汐牢房！答对 3 道数学题才能越狱');
     nextJailQuestion();
@@ -7893,7 +7951,7 @@ body{
     renderChrome();
   }
 
-  /* ---- 攻击艇（长弓溪谷） ---- */
+  /* ---- 攻击艇（蜂林谷） ---- */
   function boatBoardRange() { return 82; }
   /* E 键：驾驶中优先下艇；其次和特殊 NPC 交谈；再次上艇；最后才是开房间门 */
   function raidBoatAction() {
@@ -8028,7 +8086,7 @@ body{
     }
     return false;
   }
-  /* ================= 干员主动技能（默认 G / C，威龙喷气背包是 X） ================= */
+  /* ================= 战备主动技能（默认 G / C / V，威龙喷气背包是 X） ================= */
   /* 每个主动技能：按一下释放 → 进冷却 → 冷却走完才能再放。
      效果全部复用现有系统（子弹 / 爆炸 / 区域持续伤害），不另开一套碰撞。 */
   var EMP_R = 230;
@@ -8064,13 +8122,17 @@ body{
         if (rlen(z.x, z.y, e.x, e.y) > z.r + e.r) { continue; }
         e.hp -= z.dps * dt;
         e.hit = 0.1;
+        if (z.kind === 'smoke' || z.kind === 'slow' || z.kind === 'cold' || z.kind === 'spike' || z.kind === 'web' || z.kind === 'drone') { e.slowMark = 0.35; }
+        if (z.kind === 'smoke') { e.cd = Math.max(e.cd, 0.5); }
+        if (z.kind === 'web') { e.mark = Math.max(e.mark || 0, 1.2); }
+        if (z.kind === 'cold' || z.kind === 'drone') { e.weak = Math.max(e.weak || 0, 0.6); }
         if (e.hp <= 0) { raidKill(e); }
       }
       if (z.t > 0) { out.push(z); }
     }
     Raid.zones = out;
   }
-  /* ---- AZ3 核电站：核辐射区 ----
+  /* ---- 蚕蚀反应堆：核辐射区 ----
      走进绿圈持续掉血，而且「护甲和减伤都挡不住」——只能绕开或者一口气冲过去。
      敌人穿防护服，不受辐射影响；辐射圈里另埋了高价值物资箱（想拿就得扛几秒）。 */
   function raidRadStep(dt) {
@@ -8082,7 +8144,7 @@ body{
     z = radZoneAt(p.x, p.y);
     Raid.radIn = z;
     if (!z) { Raid.radTick = 0; return; }
-    p.hp -= z.dps * dt;
+    p.hp -= z.dps * dt * (1 - passFx('dotRed'));
     Raid.radDose += z.dps * dt;
     Raid.radFlash = 0.6;
     Raid.radTick += dt;
@@ -8100,15 +8162,29 @@ body{
       vx: Math.cos(p.ang) * (o.spd || 430), vy: Math.sin(p.ang) * (o.spd || 430),
       own: 'p', thrown: 1, fuse: (o.fuse === undefined ? 1.1 : o.fuse),
       dmg: o.dmg || 150, splash: o.splash || 130, drag: (o.drag === undefined ? 2.6 : o.drag),
-      magnet: o.magnet ? 1 : 0, zone: o.zone || '', c: o.c || '#8a9a5b'
+      magnet: o.magnet ? 1 : 0, zone: o.zone || '', c: o.c || '#8a9a5b',
+      zr: o.zr || 0, zt: o.zt || 0, zdps: o.zdps === undefined ? 0 : o.zdps
     });
   }
   function raidThrowBoom(b) {
     if (b.zone) {
-      raidAddZone(b.x, b.y, b.zone === 'fire' ? 122 : 118, 6, b.zone === 'fire' ? 26 : 22, b.zone);
-      shellBlast(b.x, b.y, b.splash, Math.round(b.dmg * 0.55));
+      var zr3 = b.zr || (b.zone === 'fire' ? 122 : 118);
+      var zt3 = b.zt || (b.zone === 'fire' ? 6 : 6);
+      var zd3 = b.zdps || (b.zone === 'fire' ? 26 : 22);
+      raidAddZone(b.x, b.y, zr3, zt3, zd3, b.zone);
+      if ((b.dmg || 0) > 0) { shellBlast(b.x, b.y, b.splash, Math.round(b.dmg * 0.55)); }
     } else {
       shellBlast(b.x, b.y, b.splash, b.dmg);
+    }
+    /* 巡飞弹：炸完在落点留一颗小雷 */
+    if (b.mineAfter) { Raid.mines.push({ x: b.x, y: b.y, t: 2, max: 2, dmg: 110, splash: 96 }); }
+    /* 闪光巡飞器：炸开时致盲周围敌人 */
+    if (b.flash) {
+      var fi3, fe3;
+      for (fi3 = 0; fi3 < Raid.enemies.length; fi3++) {
+        fe3 = Raid.enemies[fi3];
+        if (fe3.hp > 0 && rlen(b.x, b.y, fe3.x, fe3.y) < b.splash + 20) { fe3.stun = Math.max(fe3.stun || 0, 2); }
+      }
     }
     sfx('kill');
   }
@@ -8120,7 +8196,8 @@ body{
       Raid.bullets.push({
         x: p.x + Math.cos(p.ang) * 17, y: p.y + Math.sin(p.ang) * 17,
         vx: Math.cos(a) * (o.spd || 900), vy: Math.sin(a) * (o.spd || 900),
-        dmg: o.dmg || 90, own: 'p', chain: o.chain || 0, dart: o.dart ? 1 : 0
+        dmg: o.dmg || 90, own: 'p', chain: o.chain || 0, dart: o.dart ? 1 : 0,
+        markT: o.markT || 0, vulnT: o.vulnT || 0, stunT: o.stunT || 0, pierce: o.pierce ? 1 : 0
       });
     }
   }
@@ -8139,6 +8216,8 @@ body{
       if (!best) { return; }
       best.hp -= dmg;
       best.hit = 0.14;
+      if (passFx('markHit') > 0) { best.mark = Math.max(best.mark || 0, passFx('markHit')); }
+      if (passFx('vuln') > 0) { best.vulnT = 5; }
       hit.push(best);
       raidSpark(best.x, best.y, '#8fdcff');
       if (best.hp <= 0) { raidKill(best); }
@@ -8210,6 +8289,64 @@ body{
     if (j.t <= 0) { Raid.jet = null; }
   }
   /* 真正释放：按技能 id 分发。返回 false 表示这次没放出去（不该进冷却） */
+  /* ================= 战备被动（pass.fx）与大招辅助 ================= */
+  function passFx(key) {
+    var o = curOp();
+    return (o && o.pass && o.pass.fx && o.pass.fx[key]) ? o.pass.fx[key] : 0;
+  }
+  /* 扫描类技能持续时长：回响的被动能加成 */
+  function scanDur(t) { return Math.round(t * (1 + passFx('scanAdd')) * 10) / 10; }
+  /* 大范围脉冲（刘莹 / 捕网 / 深度扫描 / 流荧共用） */
+  function raidPulse(r, dmg, stunT, markT) {
+    var i, e, d, n = 0, pp = Raid.p;
+    if (!pp) { return 0; }
+    for (i = 0; i < Raid.enemies.length; i++) {
+      e = Raid.enemies[i];
+      if (e.hp <= 0) { continue; }
+      d = rlen(pp.x, pp.y, e.x, e.y);
+      if (d > r) { continue; }
+      if (dmg > 0) { e.hp -= dmg; e.hit = 0.18; }
+      if (stunT > 0) { e.stun = Math.max(e.stun || 0, stunT); }
+      if (markT > 0) { e.mark = Math.max(e.mark || 0, markT); }
+      n += 1;
+      if (e.hp <= 0) { raidKill(e); }
+    }
+    Raid.shake = Math.min(Raid.shake + 4, 9);
+    sfx('kill');
+    return n;
+  }
+  function raidMarkAll(r, t) {
+    var i, e;
+    if (!Raid.p) { return; }
+    for (i = 0; i < Raid.enemies.length; i++) {
+      e = Raid.enemies[i];
+      if (e.hp > 0 && rlen(Raid.p.x, Raid.p.y, e.x, e.y) < r) { e.mark = Math.max(e.mark || 0, t); }
+    }
+  }
+  /* 临时掩体（速凝掩体 / 部署盾）：挡子弹、挡走位、挡视线 */
+  function raidAddBarr(r, dur) {
+    var p = Raid.p;
+    if (!p) { return; }
+    Raid.barr.push({ x: p.x + Math.cos(p.ang) * 56, y: p.y + Math.sin(p.ang) * 56, r: r, t: dur, max: dur });
+  }
+  function raidBarrHit(x, y, rad) {
+    var i, b;
+    if (!Raid.barr || !Raid.barr.length) { return false; }
+    for (i = 0; i < Raid.barr.length; i++) {
+      b = Raid.barr[i];
+      if (rlen(x, y, b.x, b.y) < b.r + rad) { return true; }
+    }
+    return false;
+  }
+  function raidBarrStep(dt) {
+    var out = [], i;
+    if (Raid.anchor) { Raid.anchor.t -= dt; if (Raid.anchor.t <= 0) { Raid.anchor = null; } }
+    for (i = 0; i < Raid.barr.length; i++) {
+      Raid.barr[i].t -= dt;
+      if (Raid.barr[i].t > 0) { out.push(Raid.barr[i]); }
+    }
+    Raid.barr = out;
+  }
   function raidActFire(a) {
     var p = Raid.p;
     switch (a.id) {
@@ -8233,7 +8370,7 @@ body{
         raidTip('医疗无人机：回复 50 点生命');
         return true;
       case 'grenade':
-        raidThrow({ dmg: 150, splash: 138, fuse: 1.1, c: '#6f7d4a' });
+        raidThrow({ dmg: 150, splash: 138, fuse: a.fuse || 1.1, c: '#6f7d4a' });
         raidTip('手雷出手！');
         return true;
       case 'fire':
@@ -8280,16 +8417,213 @@ body{
       case 'emp':
         raidEmp();
         return true;
+      /* ---- v1.3.0：新战备技能 ---- */
+      case 'smoke':
+      case 'smartsmoke':
+      case 'longsmoke':
+        raidThrow({ dmg: 0, splash: 0, fuse: 0.8, zone: 'smoke', c: '#cfd8d4',
+          zr: a.id === 'longsmoke' ? 160 : (a.id === 'smartsmoke' ? 140 : 120),
+          zt: a.id === 'longsmoke' ? 12 : (a.id === 'smartsmoke' ? 10 : 7), zdps: 0 });
+        raidTip(a.name + ' 出手！烟幕马上铺开');
+        return true;
+      case 'ctrlsmoke':
+        Raid.skOn.speed = Math.max(Raid.skOn.speed || 0, 10);
+        raidAddZone(p.x, p.y, 150, 10, 0, 'slow');
+        raidTip('遥控烟铺开：你在烟里如履平地，敌人却被拖住');
+        return true;
+      case 'slowsmoke':
+        raidThrow({ dmg: 0, splash: 0, fuse: 0.8, zone: 'slow', c: '#9f86e8', zr: 150, zt: 145, zdps: 0 });
+        raidTip('减速烟出手！这片区域要堵很久');
+        return true;
+      case 'exo':
+        Raid.skOn.exo = 12;
+        raidTip('外骨骼过载！12 秒内减伤 30%、移速 +20%，击倒敌人回血');
+        return true;
+      case 'dash8':
+        if (!p) { return false; }
+        var mv8 = raidMoveVec();
+        var a8 = (mv8.x || mv8.y) ? Math.atan2(mv8.y, mv8.x) : p.ang;
+        Raid.jet = { t: 0.34, sp: 780, ang: a8 };
+        Raid.shake = Math.min(Raid.shake + 1.6, 5);
+        raidTip('喷气推进！');
+        return true;
+      case 'c4':
+        raidThrow({ dmg: 200, splash: 155, fuse: 3, spd: 380, c: '#d8b25a' });
+        raidTip('C4 出手！3 秒后引爆，离远点');
+        return true;
+      case 'hugun':
+        var hx2 = p.x + Math.cos(p.ang) * 150, hy2 = p.y + Math.sin(p.ang) * 150;
+        shellBlast(hx2, hy2, 240, 150);
+        var hi2, he2;
+        for (hi2 = 0; hi2 < Raid.enemies.length; hi2++) {
+          he2 = Raid.enemies[hi2];
+          if (he2.hp > 0 && rlen(hx2, hy2, he2.x, he2.y) < 240) { he2.stun = Math.max(he2.stun || 0, 2.5); }
+        }
+        raidTip('虎蹲炮轰出去！敌人失去平衡');
+        return true;
+      case 'wallflash':
+        if (!p) { return false; }
+        Raid.jet = { t: 0.3, sp: 880, ang: p.ang };
+        raidTip('弹墙闪！');
+        return true;
+      case 'disc':
+        raidFireShot({ n: 1, spd: 900, dmg: 135, dart: 1, markT: 5, vulnT: 5 });
+        raidTip('锁敌飞盘出手！命中重伤并显形');
+        return true;
+      case 'silent':
+        Raid.skOn.silent = Raid.map.war ? 18 : 12;
+        raidTip('静默圈展开：脚步全消，远处的敌人发现不了你');
+        return true;
+      case 'arcpike':
+        raidFireShot({ n: 1, spd: 860, dmg: 120, dart: 1, pierce: 1, stunT: 1.5 });
+        raidTip('穿墙电刺射出！墙体挡不住它');
+        return true;
+      case 'roll':
+        if (!p) { return false; }
+        Raid.jet = { t: 0.26, sp: 700, ang: p.ang };
+        var rk2;
+        for (rk2 in Raid.skCd) { Raid.skCd[rk2] = Math.max(0, (Raid.skCd[rk2] || 0) - 4); }
+        raidTip('战术翻滚！全部技能冷却 -4 秒');
+        return true;
+      case 'rewind':
+        if (!p) { return false; }
+        if (Raid.anchor && Raid.anchor.t > 0) {
+          p.x = Raid.anchor.x; p.y = Raid.anchor.y;
+          p.hp = Math.min(p.max, p.hp + 30 * (1 + passFx('healAdd')));
+          Raid.anchor = null;
+          raidTip('锚点回溯！已传回锚点并回复生命');
+          sfx('extract');
+        } else {
+          Raid.anchor = { x: p.x, y: p.y, t: 20 };
+          raidTip('回溯锚点已放置：20 秒内再按 V 就能传回这里');
+        }
+        return true;
+      case 'healgun':
+        if (!p) { return false; }
+        var hge = raidNearestEnemy(p.x, p.y, 220);
+        if (p.hp >= p.max && !hge) { toastLater('生命已满且附近没有敌人，先留着'); return false; }
+        p.hp = Math.min(p.max, p.hp + 45 * (1 + passFx('healAdd')));
+        if (hge) { hge.hp -= 35; hge.hit = 0.15; if (hge.hp <= 0) { raidKill(hge); } }
+        raidTip('治疗针打完：回复 45 点生命' + (hge ? '，顺手扎了敌人一针' : ''));
+        return true;
+      case 'stimgun':
+        if (!p) { return false; }
+        p.hp = Math.min(p.max, p.hp + 40 * (1 + passFx('healAdd')));
+        Raid.skOn.stim = 10;
+        raidTip('极速枪！立刻抬血，之后 10 秒持续回血');
+        return true;
+      case 'hormone':
+        Raid.skOn.hormone = 10;
+        raidTip('激素注射：10 秒内移速 +15%、减伤 +15%');
+        return true;
+      case 'liuying':
+        raidPulse(240, 70, 1.2, 8);
+        raidTip('神经干扰展开：范围内敌人重创并失衡');
+        return true;
+      case 'fixarmor':
+        Raid.skOn.armorup = 8;
+        raidTip('护甲抢修：8 秒内额外减伤 30%');
+        return true;
+      case 'swarm':
+        if (!p) { return false; }
+        p.hp = Math.min(p.max, p.hp + 40 * (1 + passFx('healAdd')));
+        Raid.skOn.wing = 12;
+        raidTip('蝴蝶群环绕：12 秒内减伤 35%');
+        return true;
+      case 'sonic':
+        raidAddZone(p.x + Math.cos(p.ang) * 90, p.y + Math.sin(p.ang) * 90, 110, 12, 4, 'slow');
+        raidTip('声波陷阱已布下');
+        return true;
+      case 'shockdrone':
+        raidAddZone(p.x, p.y, 170, 8, 6, 'drone');
+        raidTip('震荡无人机升空：圈内敌人被压制');
+        return true;
+      case 'loiter':
+        raidThrow({ dmg: 170, splash: 150, fuse: 1.4, mineAfter: 1, c: '#7fa7d9' });
+        raidTip('巡飞弹出手！炸完还会留一颗小雷');
+        return true;
+      case 'quickwall':
+      case 'shieldwall':
+        raidAddBarr(a.id === 'shieldwall' ? 48 : 42, a.id === 'shieldwall' ? 30 : 25);
+        raidTip(a.id === 'shieldwall' ? '防爆盾已部署：30 秒内放心架枪' : '速凝掩体浇筑完成！');
+        return true;
+      case 'incendiary':
+        raidThrow({ dmg: 80, splash: 150, fuse: 0.8, zone: 'fire', big: 1, c: '#e0662e' });
+        raidTip('大号燃烧弹出手！这一片都要着了');
+        return true;
+      case 'caltrop':
+        raidAddZone(p.x, p.y, 95, 15, 12, 'spike');
+        raidTip('地刺撒了一地');
+        return true;
+      case 'hook':
+        if (!p) { return false; }
+        Raid.jet = { t: 0.42, sp: 950, ang: p.ang };
+        raidTip('蓄力钩发射！');
+        return true;
+      case 'spider':
+        raidAddZone(p.x + Math.cos(p.ang) * 80, p.y + Math.sin(p.ang) * 80, 100, 20, 5, 'web');
+        raidTip('蜘蛛陷阱已布下：踩到的敌人会显形');
+        return true;
+      case 'bignet':
+        raidPulse(260, 20, 3, 6);
+        raidTip('捕网罩下：敌人被缠住没法开枪');
+        return true;
+      case 'dewar':
+        raidAddZone(p.x, p.y, 120, 14, 8, 'cold');
+        raidTip('杜瓦冷罐打开：周围被深度冻结');
+        return true;
+      case 'cryo':
+        raidThrow({ dmg: 40, splash: 110, fuse: 0.9, zone: 'cold', c: '#9fd8ef', zr: 120, zt: 10, zdps: 8 });
+        raidTip('冷凝榴弹出手！');
+        return true;
+      case 'ricochet':
+        raidFireShot({ n: 1, spd: 880, dmg: 105, chain: 3, dart: 1 });
+        raidTip('反弹电剑掷出！电弧会连续弹跳');
+        return true;
+      case 'longfuse':
+        Raid.mines.push({ x: p.x, y: p.y, t: 5, max: 5, dmg: 220, splash: 150 });
+        raidTip('长引线雷已埋下，5 秒后引爆');
+        return true;
+      case 'xray':
+        Raid.scanT = scanDur(6);
+        raidTip('透视扫描：全场敌人一览无余');
+        return true;
+      case 'dataknives':
+        raidFireShot({ n: 3, spread: 0.17, spd: 960, dmg: 100, dart: 1, stunT: 1.5 });
+        raidTip('数据飞刀！命中者设备被禁用');
+        return true;
+      case 'flashdrone':
+        raidThrow({ dmg: 25, splash: 115, fuse: 1.1, flash: 1, c: '#f5f2d8' });
+        raidTip('闪光巡飞器出手！');
+        return true;
+      case 'deepscan':
+        Raid.scanT = scanDur(8);
+        raidPulse(300, 40, 0, 8);
+        raidTip('深度扫描：60 米内敌人全部显形');
+        return true;
+      case 'sonar':
+        Raid.scanT = scanDur(5);
+        raidTip('回声探测器：声源已被标记');
+        return true;
+      case 'resonate':
+        raidEmp();
+        raidMarkAll(EMP_R, 6);
+        raidTip('共振干扰！周围敌人被干扰并标记');
+        return true;
+      case 'fireflies':
+        raidPulse(260, 50, 2.5, 8);
+        raidTip('流荧群涌出：敌人视听被压制');
+        return true;
     }
     return false;
   }
-  /* 按各自的技能键（idx 0 / 1，默认 G / C，威龙喷气背包是 X） */
+  /* 按各自的技能键（idx 0 / 1，默认 G / C / V，威龙喷气背包是 X） */
   function raidActUse(idx) {
     var a = Raid.acts[idx];
     if (!Raid.on || Raid.dead || Raid.quizOn || Raid.paused || Raid.over || !Raid.p) { return; }
-    if (Raid.boat && Raid.boat.on) { toastLater('驾驶攻击艇时用不了干员技能'); return; }
+    if (Raid.boat && Raid.boat.on) { toastLater('驾驶攻击艇时用不了战备技能'); return; }
     if (!a) {
-      toastLater(curOp() ? '这位干员没有配技能' : '还没有干员出战：去「电台 · 干员」招募并点出战');
+      toastLater(curOp() ? '这套战备没装技能' : '还没装技能：去「电台 · 战备技能树」解锁并装备');
       return;
     }
     var left = Raid.skCd[a.k] || 0;
@@ -8331,11 +8665,11 @@ body{
       renderChrome();
       sfx('extract');
       raidPauseOpen('老渔夫',
-        '「这条长弓溪里的鱼可肥了，可惜我腿脚不好下不了水。这根鱼竿送给你——拿着它站到水边按 F 抛竿，等鱼漂沉下去的那一下赶紧再按一次 F 提竿！』（已获得「鱼竿」。每张地图都有一个小水塘，河边、塘边都能下竿；钓到的鱼会放进补给站的「渔获鱼篓」，可以卖成哈夫币。）',
+        '「这条长弓溪里的鱼可肥了，可惜我腿脚不好下不了水。这根鱼竿送给你——拿着它站到水边按 F 抛竿，等鱼漂沉下去的那一下赶紧再按一次 F 提竿！』（已获得「鱼竿」。每张地图都有一个小水塘，河边、塘边都能下竿；钓到的鱼会放进补给站的「渔获鱼篓」，可以卖成白金。）',
         '收下鱼竿');
     } else {
       raidPauseOpen('老渔夫',
-        '「鱼竿用得顺手吧？记住：站在水边按 F 抛竿，鱼咬钩的瞬间再按一次 F 提竿，手慢了鱼就跑了。抛竿时别走动、别开枪，不然会惊跑鱼。」（越危险的地图水里的鱼越金贵：零号大坝多是鲫鱼，航天基地容易上大青鱼和金鳞锦鲤。）',
+        '「鱼竿用得顺手吧？记住：站在水边按 F 抛竿，鱼咬钩的瞬间再按一次 F 提竿，手慢了鱼就跑了。抛竿时别走动、别开枪，不然会惊跑鱼。」（越危险的地图水里的鱼越金贵：白坝哨站多是鲫鱼，机龙暴台容易上大青鱼和金鳞锦鲤。）',
         '知道了');
     }
   }
@@ -8372,7 +8706,7 @@ body{
   function fishStart() {
     var p = Raid.p;
     if (!p || Raid.over || Raid.paused) { return; }
-    if (!state.rod) { toast('还没有鱼竿：去「长弓溪谷」的河道边找老渔夫聊聊'); return; }
+    if (!state.rod) { toast('还没有鱼竿：去「蜂林谷」的河道边找老渔夫聊聊'); return; }
     if (Raid.dead) { return; }
     if (Raid.boat && Raid.boat.on) { toast('在船上不能钓鱼，先按 E 下艇'); return; }
     if (Raid.fishCd > 0) { return; }
@@ -8404,8 +8738,8 @@ body{
     renderChrome();
     f.ph = 'got'; f.t = 0; f.got = kind.n; f.q = kind.q; f.flash = 1;
     sfx('extract');
-    toastLater('钓到「' + kind.n + '」！' + QUALITY_NAME[kind.q] + ' · 值 ' + kind.p + ' 哈夫币');
-    addLog('在水边钓到「' + kind.n + '」（' + QUALITY_NAME[kind.q] + '），价值 ' + kind.p + ' 哈夫币', 'trade');
+    toastLater('钓到「' + kind.n + '」！' + QUALITY_NAME[kind.q] + ' · 值 ' + kind.p + ' 白金');
+    addLog('在水边钓到「' + kind.n + '」（' + QUALITY_NAME[kind.q] + '），价值 ' + kind.p + ' 白金', 'trade');
     return true;
   }
   function fishCancel(msg) {
@@ -8574,7 +8908,10 @@ body{
       if (bt.hp <= 0) { raidBoatWreck(); }
       return;
     }
-    var red = Math.min(0.85, (Raid.arm ? Raid.arm.red : 0) + raidSk('redAdd', 0) + (Raid.skOn.drug > 0 ? 0.25 : 0));
+    var red = Math.min(0.85, (Raid.arm ? Raid.arm.red : 0) + raidSk('redAdd', 0) + passFx('red')
+      + (Raid.skOn.drug > 0 ? 0.25 : 0) + (Raid.skOn.armorup > 0 ? 0.3 : 0)
+      + (Raid.skOn.wing > 0 ? 0.35 : 0) + (Raid.skOn.exo > 0 ? 0.3 : 0));
+    if (passFx('hurtSpd') > 0) { Raid.skOn.hurry = passFx('hurtSpd'); }
     p.hp -= dmg * (1 - red);
     Raid.flash = 1;
     sfx('hurt');
@@ -8620,6 +8957,8 @@ body{
   }
   function raidKill(e) {
     Raid.kills += 1;
+    /* 红狼外骨骼大招：击倒敌人立刻回血 */
+    if (Raid.skOn.exo > 0 && Raid.p && !Raid.dead) { Raid.p.hp = Math.min(Raid.p.max, Raid.p.hp + 12); }
     raidSpark(e.x, e.y, '#ff9c6e');
     Raid.shake = Math.min(Raid.shake + 2.4, 7);
     sfx('kill');
@@ -8637,8 +8976,8 @@ body{
         { x: e.x, y: e.y + 30, kind: 'ammo' }
       );
       Raid.shake = 8;
-      raidTip('BOSS ' + e.t.code + ' 被击倒！+' + bossCoin + ' 哈夫币，掉落两把门卡和 ' + bossLoot + ' 件稀缺物资');
-      addLog('击败 BOSS「' + e.t.code + '」，获得 ' + bossCoin + ' 哈夫币和稀缺战利品');
+      raidTip('BOSS ' + e.t.code + ' 被击倒！+' + bossCoin + ' 白金，掉落两把门卡和 ' + bossLoot + ' 件稀缺物资');
+      addLog('击败 BOSS「' + e.t.code + '」，获得 ' + bossCoin + ' 白金和稀缺战利品');
       queueSync();
       return;
     }
@@ -8663,7 +9002,7 @@ body{
     var out = [], i, j, s, p = Raid.p;
     for (i = 0; i < Raid.bullets.length; i++) {
       var b = Raid.bullets[i], hit = false, steps = 3;
-      /* 干员技能投掷物（手雷 / 燃烧弹 / 毒气弹 / 磁吸炸弹）：减速飞行，引信到点或被挡住就炸 */
+      /* 战备技能投掷物（手雷 / 燃烧弹 / 毒气弹 / 磁吸炸弹）：减速飞行，引信到点或被挡住就炸 */
       if (b.thrown) {
         b.fuse -= dt;
         b.x += b.vx * dt;
@@ -8691,7 +9030,7 @@ body{
       for (s = 0; s < steps; s++) {
         b.x += b.vx * dt / steps;
         b.y += b.vy * dt / steps;
-        if (raidWallHit(b.x, b.y, 2)) { raidSpark(b.x, b.y, '#c9d3c7'); hit = true; break; }
+        if (!b.pierce && (raidWallHit(b.x, b.y, 2) || raidBarrHit(b.x, b.y, 2))) { raidSpark(b.x, b.y, '#c9d3c7'); hit = true; break; }
         if (b.own === 'p' || b.own === 'a') {
           for (j = 0; j < Raid.enemies.length; j++) {
             var e = Raid.enemies[j];
@@ -8703,11 +9042,17 @@ body{
                 raidSpark(b.x, b.y, '#ff5f45');
                 Raid.shake = Math.min(Raid.shake + 2.2, 7);
               } else {
-                e.hp -= b.dmg;
+                e.hp -= b.dmg * (e.vulnT > 0 ? 1 + passFx('vuln') : 1);
                 raidSpark(b.x, b.y, '#ffd166');
                 if (b.oneShot && e.t.boss) { raidTip('BOSS ' + e.t.code + ' 硬抗住了 A 大的致命一击！'); }
               }
               e.hit = 0.12;
+              /* 战备被动 / 技能附带：显形 / 重伤 / 缴械 */
+              if (passFx('markHit') > 0) { e.mark = Math.max(e.mark || 0, passFx('markHit')); }
+              if (passFx('vuln') > 0) { e.vulnT = 5; }
+              if (b.markT) { e.mark = Math.max(e.mark || 0, b.markT); }
+              if (b.vulnT) { e.vulnT = Math.max(e.vulnT || 0, b.vulnT); }
+              if (b.stunT) { e.stun = Math.max(e.stun || 0, b.stunT); }
               hit = true;
               if (e.hp <= 0) { raidKill(e); } else { sfx('hit'); }
               /* 电箭：命中后电弧继续跳向附近敌人 */
@@ -8757,6 +9102,9 @@ body{
   }
   function raidEnemyStep(e, dt) {
     e.hit = Math.max(0, e.hit - dt);
+    if (e.mark > 0) { e.mark -= dt; }
+    if (e.weak > 0) { e.weak -= dt; }
+    if (e.slowMark > 0) { e.slowMark -= dt; }
     /* 被电磁脉冲瘫痪：不动也不开枪 */
     if (e.stun > 0) {
       e.stun -= dt;
@@ -8765,7 +9113,9 @@ body{
     var tgt = raidEnemyTarget(e), d = rlen(e.x, e.y, tgt.x, tgt.y);
     e.cd -= dt;
     var mvx = 0, mvy = 0;
-    if (d < 520) {
+    /* 静默圈（无名的被动大招力场）：脚步全消，敌人要贴得很近才发现你 */
+    var seeR = Raid.skOn.silent > 0 ? 170 : 520;
+    if (d < seeR) {
       e.ang = Math.atan2(tgt.y - e.y, tgt.x - e.x);
       if (d > 215) { mvx = (tgt.x - e.x) / d; mvy = (tgt.y - e.y) / d; }
       else if (d < 125) { mvx = -(tgt.x - e.x) / d; mvy = -(tgt.y - e.y) / d; }
@@ -8775,7 +9125,7 @@ body{
         var a = e.ang + (Math.random() - 0.5) * e.t.acc * 2;
         Raid.bullets.push({
           x: e.x + Math.cos(e.ang) * 16, y: e.y + Math.sin(e.ang) * 16,
-          vx: Math.cos(a) * 430, vy: Math.sin(a) * 430, dmg: Raid.map.edmg * e.t.dmg * DIFF_MUL, own: 'e'
+          vx: Math.cos(a) * 430, vy: Math.sin(a) * 430, dmg: Raid.map.edmg * e.t.dmg * DIFF_MUL * (e.weak > 0 ? 0.6 : 1), own: 'e'
         });
         sfx('enemy');
       }
@@ -8785,7 +9135,8 @@ body{
       mvx = Math.cos(e.wa) * 0.55; mvy = Math.sin(e.wa) * 0.55;
       e.ang = e.wa;
     }
-    raidMoveEnt(e, mvx * e.t.spd * dt * (isWater(e.x, e.y) ? 0.7 : 1), mvy * e.t.spd * dt * (isWater(e.x, e.y) ? 0.7 : 1), e.r);
+    var esm = e.slowMark > 0 ? 0.42 : 1;
+    raidMoveEnt(e, mvx * e.t.spd * dt * esm * (isWater(e.x, e.y) ? 0.7 : 1), mvy * e.t.spd * dt * esm * (isWater(e.x, e.y) ? 0.7 : 1), e.r);
   }
   function raidAllyStep(a, dt) {
     a.hit = Math.max(0, a.hit - dt);
@@ -8823,7 +9174,7 @@ body{
     var d = rlen(ax, ay, bx, by), steps = Math.ceil(d / 26), i;
     for (i = 1; i < steps; i++) {
       var t = i / steps;
-      if (raidWallHit(ax + (bx - ax) * t, ay + (by - ay) * t, 3)) { return true; }
+      if (raidWallHit(ax + (bx - ax) * t, ay + (by - ay) * t, 3) || raidBarrHit(ax + (bx - ax) * t, ay + (by - ay) * t, 3)) { return true; }
     }
     return false;
   }
@@ -8866,8 +9217,8 @@ body{
           c.prog = 1; c.owner = true; c.flashT = 2.2;
           state.coin += 40;
           sfx('box');
-          raidTip('占领「' + c.name + '」！+40 哈夫币，这里成了你的复活点');
-          addLog('大战场占领「' + c.name + '」，+40 哈夫币');
+          raidTip('占领「' + c.name + '」！+40 白金，这里成了你的复活点');
+          addLog('大战场占领「' + c.name + '」，+40 白金');
           queueSync();
           renderChrome();
         }
@@ -8921,9 +9272,13 @@ body{
       } else {
         var mv = raidMoveVec();
         var spd = 152 * raidSk('spdMul', 1) * (isWater(p.x, p.y) ? 0.66 : 1);
-        /* 干员主动技能：肾上腺素 / 激素枪 的加速 */
+        /* 战备主动技能：肾上腺素 / 激素枪 的加速 */
         if (Raid.skOn.speed > 0) { spd *= 1.6; }
         if (Raid.skOn.drug > 0) { spd *= 1.3; }
+        if (Raid.skOn.hormone > 0) { spd *= 1.15; }
+        if (Raid.skOn.exo > 0) { spd *= 1.2; }
+        if (Raid.skOn.hurry > 0) { spd *= 1.35; }
+        spd *= (1 + passFx('spd'));
         raidMoveEnt(p, mv.x * spd * dt, mv.y * spd * dt, p.r);
         raidAimUpdate();
         if (firing) { if (Raid.slot === 1) { raidSlash(); } else { raidShoot(); } }
@@ -8938,18 +9293,19 @@ body{
       p.reloading -= dt;
       if (p.reloading <= 0) { p.ammo = raidMag(); p.reloading = 0; toastLater('弹匣已更换'); }
     }
-    /* 干员技能：自动回血（蜂医 · 激素枪） */
+    /* 战备技能：自动回血（蜂医 · 激素枪） */
     var rg = raidSk('regen', 0);
     if (rg > 0 && !Raid.dead && p.hp > 0 && p.hp < p.max) {
-      p.hp = Math.min(p.max, p.hp + rg * dt);
+      p.hp = Math.min(p.max, p.hp + (rg + passFx('regenAdd') + (Raid.skOn.stim > 0 ? 3 : 0)) * dt);
     }
     raidBullets(dt);
     if (Raid.over) { return; }
-    /* 干员主动技能：场上物件 + 冷却 / 增益计时 */
+    /* 战备主动技能：场上物件 + 冷却 / 增益计时 */
     if (!Raid.dead) { raidBurstStep(dt); raidJetStep(dt); }
     raidZones(dt);
     raidMines(dt);
-    /* AZ3 核电站：核辐射区（站进去持续掉血，无视护甲） */
+    raidBarrStep(dt);
+    /* 蚕蚀反应堆：核辐射区（站进去持续掉血，无视护甲） */
     raidRadStep(dt);
     if (Raid.over) { return; }
     /* 冷却按技能实际用的键扣（威龙喷气背包存在 'x' 里，不能只遍历默认键） */
@@ -8957,8 +9313,8 @@ body{
     for (ak in Raid.skCd) {
       if ((Raid.skCd[ak] || 0) > 0) { Raid.skCd[ak] = Math.max(0, Raid.skCd[ak] - dt); }
     }
-    if (Raid.skOn.speed > 0) { Raid.skOn.speed = Math.max(0, Raid.skOn.speed - dt); }
-    if (Raid.skOn.drug > 0) { Raid.skOn.drug = Math.max(0, Raid.skOn.drug - dt); }
+    var skOnK;
+    for (skOnK in Raid.skOn) { if (Raid.skOn[skOnK] > 0) { Raid.skOn[skOnK] = Math.max(0, Raid.skOn[skOnK] - dt); } }
     if (Raid.scanT > 0) { Raid.scanT = Math.max(0, Raid.scanT - dt); }
     for (i = 0; i < Raid.enemies.length; i++) {
       if (Raid.enemies[i].hp > 0) { raidEnemyStep(Raid.enemies[i], dt); }
@@ -8977,7 +9333,7 @@ body{
       }
     }
     raidSeparate();
-    /* 潮汐监狱：血量剩 50 → 关进牢房 */
+    /* 囚矿区：血量剩 50 → 关进牢房 */
     if (Raid.map.jail && p.hp <= 50 && p.hp > 0 && !Raid.dead) { startJail(); return; }
     /* 大战场：占领据点 */
     if (Raid.map.war) { raidCapStep(dt); if (Raid.over) { return; } }
@@ -8986,7 +9342,7 @@ body{
       var bx = Raid.boxes[i];
       if (bx.open) { continue; }
       if (!Raid.dead && rlen(p.x, p.y, bx.x, bx.y) < 52) {
-        bx.prog += dt * raidSk('boxSpeed', 1) / 0.85;
+        bx.prog += dt * (raidSk('boxSpeed', 1) + passFx('boxSpd')) / 0.85;
         if (bx.prog >= 1) { raidOpenBox(bx); }
       } else if (bx.prog > 0) {
         bx.prog = Math.max(0, bx.prog - dt * 0.9);
@@ -9182,7 +9538,7 @@ body{
         }
       }
     } else if (pat === 'runway') {
-      /* 航天基地：混凝土板 + 白色导引虚线 + 黄黑警示带 */
+      /* 机龙暴台：混凝土板 + 白色导引虚线 + 黄黑警示带 */
       ctx.strokeStyle = th.seam;
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -9718,7 +10074,7 @@ body{
       ctx.fillText(state.rod ? '塘边按 F 钓鱼' : '塘里有鱼（要先有鱼竿）', pw.x + 16, pw.y + 42);
       ctx.restore();
     }
-    /* AZ3 核电站：核辐射区（铺在地面上，画在墙体之前，不然绿圈会盖住墙） */
+    /* 蚕蚀反应堆：核辐射区（铺在地面上，画在墙体之前，不然绿圈会盖住墙） */
     for (i = 0; i < Raid.rad.length; i++) {
       var rz = Raid.rad[i];
       var rpulse = 0.5 + 0.5 * Math.sin(rz.ph * 2.2);
@@ -9909,7 +10265,7 @@ body{
       ctx.fillRect(-6, -6, 12, 12);
       ctx.restore();
     }
-    /* 攻击艇（长弓溪谷） */
+    /* 攻击艇（蜂林谷） */
     var btr = Raid.boat;
     if (btr) {
       ctx.save();
@@ -10058,10 +10414,31 @@ body{
         ctx.fillRect(al.x - aw / 2, al.y - al.r - 11, aw * (al.hp / al.max), 4);
       }
     }
-    /* 干员技能：地面区域（燃烧弹火海 / 毒气弹毒雾） */
+    /* 战备大招：回溯锚点（绿色虚线圈） */
+    if (Raid.anchor && Raid.anchor.t > 0) {
+      ctx.strokeStyle = '#8ef2a0';
+      ctx.setLineDash([10, 8]);
+      ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.arc(Raid.anchor.x, Raid.anchor.y, 26 + Math.sin(Raid.t * 4) * 3, 0, 6.283); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = 'rgba(142,242,160,.14)';
+      ctx.beginPath(); ctx.arc(Raid.anchor.x, Raid.anchor.y, 26, 0, 6.283); ctx.fill();
+    }
+    /* 临时掩体（速凝掩体 / 部署盾） */
+    for (i = 0; i < Raid.barr.length; i++) {
+      var bbv = Raid.barr[i];
+      ctx.fillStyle = 'rgba(58,68,60,.92)';
+      ctx.strokeStyle = '#9fb3a4';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(bbv.x, bbv.y, bbv.r, 0, 6.283); ctx.fill(); ctx.stroke();
+      ctx.fillStyle = '#c8d6cb';
+      ctx.beginPath(); ctx.arc(bbv.x, bbv.y, 5, 0, 6.283); ctx.fill();
+    }
+    /* 战备技能：地面区域（火海 / 毒雾 / 烟幕 / 减速 / 极寒 / 地刺 / 蛛网 / 无人机） */
     for (i = 0; i < Raid.zones.length; i++) {
       var zn = Raid.zones[i];
-      var zc = zn.kind === 'poison' ? '#8f6fd6' : '#ff7a33';
+      var ZC = { fire: '#ff7a33', poison: '#8f6fd6', smoke: '#c9d4cf', slow: '#9f86e8', cold: '#9fd8ef', spike: '#d99a4e', web: '#e8e3d5', drone: '#7fd9c9' };
+      var zc = ZC[zn.kind] || '#ff7a33';
       ctx.globalAlpha = 0.26;
       ctx.fillStyle = zc;
       ctx.beginPath(); ctx.arc(zn.x, zn.y, zn.r, 0, 6.2832); ctx.fill();
@@ -10073,7 +10450,7 @@ body{
       ctx.stroke();
       ctx.globalAlpha = 1;
     }
-    /* 干员技能：定时炸弹（越接近爆炸闪得越快） */
+    /* 战备技能：定时炸弹（越接近爆炸闪得越快） */
     for (i = 0; i < Raid.mines.length; i++) {
       var mn = Raid.mines[i];
       var blink = (Math.floor(mn.t * 6) % 2 === 0);
@@ -10086,7 +10463,7 @@ body{
     /* 子弹 */
     for (i = 0; i < Raid.bullets.length; i++) {
       var b = Raid.bullets[i];
-      /* 干员技能投掷物：手雷 / 燃烧弹 / 毒气弹 / 磁吸炸弹（快炸时闪红） */
+      /* 战备技能投掷物：手雷 / 燃烧弹 / 毒气弹 / 磁吸炸弹（快炸时闪红） */
       if (b.thrown) {
         var lowF = b.fuse < 0.42 && (Math.floor(b.fuse * 14) % 2 === 0);
         ctx.fillStyle = lowF ? '#ff6b4d' : b.c;
@@ -10100,7 +10477,7 @@ body{
         }
         continue;
       }
-      /* 干员技能：飞刀 / 电箭（画成一支短刃，电箭带蓝光） */
+      /* 战备技能：飞刀 / 电箭（画成一支短刃，电箭带蓝光） */
       if (b.dart) {
         var dsp = Math.sqrt(b.vx * b.vx + b.vy * b.vy) || 1;
         var dux = b.vx / dsp, duy = b.vy / dsp;
@@ -10138,7 +10515,7 @@ body{
     if (Raid.scanT > 0) {
       for (i = 0; i < Raid.enemies.length; i++) {
         var se = Raid.enemies[i];
-        if (se.hp <= 0) { continue; }
+        if (se.hp <= 0 || (Raid.scanT <= 0 && !(se.mark > 0))) { continue; }
         ctx.strokeStyle = 'rgba(120,230,255,.85)';
         ctx.lineWidth = 2;
         ctx.beginPath();
@@ -10155,7 +10532,7 @@ body{
       ctx.arc(p2.x, p2.y, 24, -1.5708, -1.5708 + 6.2832 * (1 - p2.reloading / Raid.gun.reload));
       ctx.stroke();
     }
-    /* 玩家：当前出战干员 + 已装皮肤画出来的小人，头盔 / 面罩 / 配件一眼能认出来 */
+    /* 玩家：当前出战战备 + 已装皮肤画出来的小人，头盔 / 面罩 / 配件一眼能认出来 */
     var pOp = curOp();
     ctx.strokeStyle = 'rgba(233,239,230,.38)';
     ctx.lineWidth = 1.6;
@@ -10451,7 +10828,7 @@ body{
     ctx.restore();
   }
   /* ---- 战场人物：配色 / 外形 / 绘制 ---- */
-  /* 人物配色 = 干员皮肤（作战服、头盔、面罩的一整套色）+ 角色色（部门标记） */
+  /* 人物配色 = 战备皮肤（作战服、头盔、面罩的一整套色）+ 角色色（部门标记） */
   function unitPaint(sk, rc) {
     sk = sk || OP_SKINS[0];
     return {
@@ -10460,17 +10837,22 @@ body{
       gear: '#242a23', boot: '#191e18'
     };
   }
-  /* 出战干员在场上的样子：和干员卡上的体型一致 */
+  /* 出战战备在场上的样子：和战备卡上的体型一致 */
   function unitCfgForOp(op) {
     if (!op) { return { b: 'std', hx: 'dome', ms: 'half', acc: [] }; }
     return { b: UNIT_SHAPE_OF[op.id] || 'std', hx: op.hx, ms: op.ms, acc: op.acc };
   }
-  /* 队友 / 搭档：按名字稳定挑一个干员外形，谁跟谁都不重样 */
+  /* 队友 / 搭档：按名字稳定挑一个战备外形，谁跟谁都不重样 */
   function unitCfgForAlly(al) {
     var n = (al && al.name) ? String(al.name) : '', h = 0, i;
     for (i = 0; i < n.length; i++) { h += n.charCodeAt(i) * (i + 3); }
-    var op = opById(UNIT_ALLY_SHAPE[h % UNIT_ALLY_SHAPE.length]);
-    return { cfg: unitCfgForOp(op), rc: (al && al.mate) ? '#7ed6a5' : '#6ec1ff' };
+    var looks = [
+      { b: 'std', hx: 'dome', ms: 'half', acc: [] },
+      { b: 'slim', hx: 'cap', ms: 'half', acc: ['pack'] },
+      { b: 'heavy', hx: 'visor', ms: 'full', acc: ['pack'] },
+      { b: 'std', hx: 'hood', ms: 'full', acc: ['tool'] }
+    ];
+    return { cfg: looks[h % looks.length], rc: (al && al.mate) ? '#7ed6a5' : '#6ec1ff' };
   }
   function unitCfgForEnemy(e) {
     var c = UNIT_ENEMY_SHAPE[(e && e.t && e.t.ui) || 0] || UNIT_ENEMY_SHAPE[0];
@@ -10551,7 +10933,7 @@ body{
       ctx.fillStyle = w.k ? thM.wallHi : thM.wall;
       ctx.fillRect(ox + w.x * sc, oy + w.y * sc, Math.max(1, w.w * sc), Math.max(1, w.h * sc));
     }
-    /* AZ3 核电站：辐射区在小地图上画成绿圈 */
+    /* 蚕蚀反应堆：辐射区在小地图上画成绿圈 */
     for (i = 0; i < Raid.rad.length; i++) {
       var rzm = Raid.rad[i];
       ctx.fillStyle = 'rgba(120,238,140,.28)';
@@ -10684,9 +11066,10 @@ body{
         }
       } else { skHud.style.display = 'none'; }
     }
-    /* 干员主动技能按钮：显示技能名，冷却时显示剩余秒数 */
-    for (var ski = 0; ski < 2; ski++) {
-      var skBtn = byId(ski === 0 ? 'btnRaidSkG' : 'btnRaidSkC');
+    /* 战备主动技能按钮：显示技能名，冷却时显示剩余秒数 */
+    var SK_BTN_IDS = ['btnRaidSkG', 'btnRaidSkC', 'btnRaidSkV'];
+    for (var ski = 0; ski < SK_BTN_IDS.length; ski++) {
+      var skBtn = byId(SK_BTN_IDS[ski]);
       if (!skBtn) { continue; }
       var skA = Raid.acts[ski];
       if (!skA) { skBtn.style.display = 'none'; continue; }
@@ -10697,7 +11080,7 @@ body{
         ? (skA.name + ' ' + Math.ceil(skLeft) + 's')
         : (skA.name + ' ' + actKeyTxt(skA, ski));
     }
-    /* AZ3 核电站：辐射警告（站在辐射区里一直亮着，刚出来还会提示吃了多少伤害） */
+    /* 蚕蚀反应堆：辐射警告（站在辐射区里一直亮着，刚出来还会提示吃了多少伤害） */
     var radHud = byId('raidRadHud');
     if (radHud) {
       var rTxt = byId('raidRadTxt');
@@ -10937,7 +11320,7 @@ body{
       if (k === '1' || code === 'Digit1') { raidSwap(0); }
       if (k === '2' || code === 'Digit2') { raidSwap(1); }
       if (k === 'q' || code === 'KeyQ') { raidSwapToggle(); }
-      /* 干员技能键：按当前干员每个技能实际绑定的键分派（默认 G / C，威龙喷气背包是 X） */
+      /* 战备技能键：按当前战备每个技能实际绑定的键分派（默认 G / C / V，威龙喷气背包是 X） */
       var kAs = curActs(), kAi, kAk;
       for (kAi = 0; kAi < kAs.length; kAi++) {
         kAk = actKey(kAs[kAi], kAi);
@@ -10997,11 +11380,13 @@ body{
     if (bdr) { bdr.onclick = raidDoorAction; }
     var bsw = byId('btnRaidSwap');
     if (bsw) { bsw.onclick = function () { raidSwapToggle(); }; }
-    /* 干员主动技能：默认 G / C（威龙喷气背包是 X），手机上就是这两个按钮 */
+    /* 战备主动技能：默认 G / C / V（威龙喷气背包是 X），手机上就是这两个按钮 */
     var bsg = byId('btnRaidSkG');
     if (bsg) { bsg.onclick = function () { raidActUse(0); }; }
     var bsc = byId('btnRaidSkC');
     if (bsc) { bsc.onclick = function () { raidActUse(1); }; }
+    var bsv = byId('btnRaidSkV');
+    if (bsv) { bsv.onclick = function () { raidActUse(2); }; }
     var bbt = byId('btnRaidBoat');
     if (bbt) { bbt.onclick = boatToggle; }
     var bnp = byId('btnRaidNpc');
@@ -11096,19 +11481,19 @@ body{
       var o = curOp();
       fs.textContent = '累计答对 ' + state.rightCount + ' 题 · 搜刮券 ' + state.tickets + ' 张 · 提示券 ' + state.hintCredits + ' 张'
         + ' · 鱼篓 ' + fishOpenCount() + ' 条' + (state.rod ? '' : '（还没有鱼竿）')
-        + (o ? (' · 出战干员 ' + o.code) : '');
+        + (o ? (' · 出战 ' + o.code) : '');
     }
     askChipUpdate();
   }
-  /* 大厅 Hero：出战干员名 + 副标题（像游戏主界面那样一眼看到今天带谁出发） */
+  /* 大厅 Hero：出战战备名 + 副标题（像游戏主界面那样一眼看到今天带谁出发） */
   function renderLobby() {
     var o = curOp();
     var t1 = byId('lobbyOpName'), t2 = byId('lobbyOpSub');
     if (t1) { t1.textContent = o ? o.code : '作战大厅'; }
     if (t2) {
       t2.textContent = o
-        ? ('出战干员 · 主动技能进图即就绪 · 选一个模式出发')
-        : '还没有出战干员 · 去「电台 · 干员档案」招募一位';
+        ? ('流浪佣兵 · 技能进图即就绪 · 选一个战场出发')
+        : '还没装技能 · 去「电台 · 战备技能树」解锁节点';
     }
   }
   var RANKS = [
@@ -11202,7 +11587,7 @@ body{
     var t3 = make('div', 'task-txt');
     t3.appendChild(make('span', '', '仓库待售物资 '));
     t3.appendChild(make('em', '', countOnSale() + ' 件'));
-    t3.appendChild(make('i', '', '　卖掉换成哈夫币，可以兑换提示券和涂装'));
+    t3.appendChild(make('i', '', '　卖掉换成白金，可以兑换提示券和涂装'));
     row3.appendChild(t3);
     var b3 = make('button', 'mini-btn ghost', '去补给站');
     b3.type = 'button';
@@ -11217,7 +11602,7 @@ body{
     t5.appendChild(make('em', '', rm.code));
     t5.appendChild(make('i', '', state.coin >= rm.fee
       ? ('　入场费 ' + rm.fee + ' 币，成功撤离物资进仓库（已撤离 ' + state.raidStats.win + ' 次，击杀 ' + state.raidStats.kills + '）')
-      : ('　哈夫币不够进场费（需 ' + rm.fee + ' 币），先答几题攒币')));
+      : ('　白金不够进场费（需 ' + rm.fee + ' 币），先答几题攒币')));
     row5.appendChild(t5);
     var b5 = make('button', 'mini-btn', '去行动');
     b5.type = 'button';
@@ -11230,7 +11615,7 @@ body{
     var t4 = make('div', 'task-txt');
     t4.appendChild(make('span', '', '行动电台 '));
     t4.appendChild(make('em', '', TRACKS[Radio.idx].name));
-    t4.appendChild(make('i', '', theOp ? ('　出战中：' + theOp.code + '（' + theOp.desc + '）') : '　配乐训练效率更高，还能招募干员拿加成'));
+    t4.appendChild(make('i', '', theOp ? ('　出战中：' + theOp.code + '（' + theOp.desc + '）') : '　配乐训练效率更高，技能树还能解锁新打法'));
     row4.appendChild(t4);
     var b4 = make('button', 'mini-btn ghost', '去电台');
     b4.type = 'button';
@@ -11403,7 +11788,7 @@ body{
       lgW.onclick = function () {
         selectRaidMap('war');
         switchView('raid');
-        toast('已选定「大战场」· 全面战场模式');
+        toast('已选定「焦土前线」· 三方混战模式');
       };
     }
     var lgGo = byId('btnLobbyGo');
@@ -11559,7 +11944,7 @@ body{
     setText('appVerTop', APP_VER);
     setText('appVerHome', APP_VER);
     setText('appDateHome', APP_DATE);
-    try { document.title = '数学作战台 v' + APP_VER + ' · 三角洲行动学习基地'; } catch (e) { }
+    try { document.title = '数学作战台 v' + APP_VER + ' · 白金国行动学习基地'; } catch (e) { }
   }
   function init() {
     /* 版本号：从 APP_VER / APP_DATE 一处注入到顶栏、首页底部和浏览器标签 */
@@ -11615,7 +12000,7 @@ body{
     window.__MD = {
       get Raid() { return Raid; },
       get state() { return state; },
-      MAPS: MAPS, RADIATION_DEFS: RADIATION_DEFS, ACT_KEYS: ACT_KEYS, OPS: OPS, POND_DEFS: POND_DEFS,
+      MAPS: MAPS, RADIATION_DEFS: RADIATION_DEFS, ACT_KEYS: ACT_KEYS, SKILLS: SKILLS, POND_DEFS: POND_DEFS,
       actKey: actKey, actKeyTxt: actKeyTxt, actKeyTxts: actKeyTxts, curActs: curActs,
       startRaid: startRaid, exitRaid: exitRaid, selectRaidMap: selectRaidMap, refreshAll: refreshAll,
       raidActUse: raidActUse, raidHud: raidHud, raidDraw: raidDraw, radZoneAt: radZoneAt,
