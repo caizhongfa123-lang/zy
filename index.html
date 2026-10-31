@@ -973,7 +973,7 @@ body{
       <svg viewBox="0 0 24 24"><path d="M12 2.5 4.5 5.6v5.9c0 4.8 3.1 8.9 7.5 10.5 4.4-1.6 7.5-5.7 7.5-10.5V5.6L12 2.5z"/><path d="M8.6 12.1l2.5 2.5 4.4-4.6"/></svg>
       <div>
         <div class="brand-name">数学作战台</div>
-        <div class="brand-sub">Operation Math · v<span id="appVerTop">2.0.3</span></div>
+        <div class="brand-sub">Operation Math · v<span id="appVerTop">2.1.0</span></div>
       </div>
     </div>
     <div class="wallet">
@@ -987,7 +987,6 @@ body{
       </div>
       <div class="chip play" id="playChip" style="display:none"><span id="playLeft">—</span></div>
       <button class="chip ask" id="askChip" type="button" style="display:none" title="家长审批"><span id="askChipTx">📩 行动申请</span></button>
-      <div class="chip eq" id="eqChip"><span class="bars" id="eqBars"><i></i><i></i><i></i></span>电台</div>
       <button class="acc-btn" id="btnAcct" type="button" title="切换账号"><span class="av" id="btnAcctAv">🦊</span><span class="nm" id="btnAcctNm">主账号</span></button>
       <div id="syncState" class="busy"><i></i><span>同步中</span></div>
     </div>
@@ -1002,7 +1001,7 @@ body{
     <button class="tab" data-view="wrong"><svg viewBox="0 0 24 24"><path d="M3.5 7.2 12 3.4l8.5 3.8v9.6L12 20.6l-8.5-3.8z"/><path d="M3.5 7.2 12 11l8.5-3.8M12 11v9.6"/></svg>军械库</button>
     <button class="tab" data-view="supply"><svg viewBox="0 0 24 24"><path d="M4 9.5h16v10.4H4z"/><path d="M4 9.5 12 3l8 6.5M9.5 19.9v-6.3h5v6.3"/></svg>补给站</button>
     <button class="tab" data-view="raid"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M12 1.6v4M12 18.4v4M1.6 12h4M18.4 12h4M12 8.6v6.8M8.6 12h6.8"/></svg>行动</button>
-    <button class="tab" data-view="radio"><svg viewBox="0 0 24 24"><circle cx="7" cy="17.4" r="2.6"/><circle cx="17.4" cy="15.6" r="2.6"/><path d="M9.6 17.4V6.6l10.4-2.4v11.4"/></svg>电台</button>
+    <button class="tab" data-view="radio"><svg viewBox="0 0 24 24"><rect x="3.6" y="7.4" width="16.8" height="11.4" rx="1.6"/><path d="M8.6 7.4V5.2h6.8v2.2"/><path d="M3.6 12.4h16.8"/></svg>装备台</button>
   </nav>
 
 <main class="wrap">
@@ -1088,7 +1087,7 @@ body{
     </div>
     </details>
     <div class="app-foot">
-      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">2.0.3</span></b></div>
+      <div class="app-foot-main">数学作战台 <b>v<span id="appVerHome">2.1.0</span></b></div>
       <div class="app-foot-sub">上次更新：<span id="appDateHome">2026-10-11</span> · 想知道当前是什么版本，看这里就行</div>
     </div>
   </section>
@@ -1227,58 +1226,6 @@ body{
 
   <section class="view" id="view-radio">
     <div class="panel">
-      <div class="panel-title"><span class="bar"></span>白金国原唱<small id="musicCount"></small></div>
-      <div class="player-box" id="playerBox">
-        <div class="player-hint" id="playerHint">点下面任意一首，这里<b>直接播原唱</b> —— 用的是 QQ 音乐官方播放器，需要联网。再点一次正在播的那首可以停下来。</div>
-        <iframe id="qqPlayer" class="qq-player" allow="autoplay" scrolling="no" title="QQ音乐外链播放器"></iframe>
-      </div>
-      <div id="musicList"></div>
-      <div class="radio-tip">这 12 首都是<b>官方原唱</b>，曲名与出处取自 QQ 音乐。点「▶」在工作台里直接听；点「↗」跳去 QQ 音乐页面（想听完整版通常要登录或开会员）。</div>
-    </div>
-    <div class="panel">
-      <div class="panel-title"><span class="bar"></span>白金国电台<small id="radioState">已停止</small></div>
-      <div class="radio-now">
-        <div class="radio-wave" id="radioWave"><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="radio-info">
-          <b id="trackName">行动准备</b>
-          <span id="trackSub">战前集结 · 军鼓推进</span>
-        </div>
-      </div>
-      <div class="act-row">
-        <button class="mini-btn" id="btnPlay">▶ 播放</button>
-        <button class="mini-btn ghost" id="btnPrev">上一首</button>
-        <button class="mini-btn ghost" id="btnTrackNext">下一首</button>
-      </div>
-      <div class="radio-vol">
-        <span>音量</span>
-        <input type="range" id="rngVol" min="0" max="100" step="5" value="70">
-        <b id="volVal">70</b>
-      </div>
-      <div id="trackList"></div>
-      <div class="radio-tip">上面这些是工作台实时合成的曲目（借真实曲名与主题氛围，旋律由合成器原创演绎），断网、离线也能听，随时暂停不占流量。</div>
-    </div>
-    <div class="panel">
-      <div class="panel-title"><span class="bar"></span>战备 · 技能树<small id="opCount"></small></div>
-      <div class="op-hero" id="opHero"></div>
-      <div class="panel-title" style="margin:12px 0 8px"><span class="bar"></span>技能槽（主动 G / C · 大招 V）<small id="skinCount"></small></div>
-      <div class="op-skin-row" id="opSkinRow"></div>
-      <div class="op-grid" id="opGrid"></div>
-      <div class="radio-tip" style="margin-top:8px"><b>这里不再是"挑战备"，而是给自己攒一套战备。</b>解锁的技能会自动进槽：主动技装 <b>G</b> / <b>C</b>，大招装 <b>V</b>，进图后按对应键就放（手机点右下角三个技能按钮）。<b>被动节点（好头 / 刀皮 / 蓄电池 / 精制钢铁 / 挖矿）解锁就永久生效</b>，可叠加：生命、减伤、移速、击杀收益都会算进「战备属性」。点上面的槽位可以卸下技能，方便换一套打法。</div>
-    </div>
-    </div>
-  </section>
-  <section class="view" id="view-raid">
-    <div class="panel">
-      <div class="panel-title"><span class="bar"></span>行动准备<small id="raidPrepNote"></small></div>
-      <div class="raid-map-grid" id="raidMapList"></div>
-      <div class="radio-tip" style="margin-bottom:11px"><b>七张地图各有各的地貌</b>，卡片上那张缩略图就是进图后脚下的样子：<b>白坝哨站</b>是混凝土坝板（板缝 + 四角螺栓 + 排水孔），<b>蜂林谷</b>是林地草皮（草簇 + 泥土斑），<b>蚕蚀旧城</b>是城区柏油街面（人行道砖 + 黄色路标线），<b>囚矿区</b>是石板院子（十字缝 + 排水格栅），<b>机龙暴台</b>是发射场跑道（混凝土板 + 白色导引虚线 + 黄黑警示带），<b>蚕蚀反应堆</b>是反应堆厂区水泥板（板缝 + 螺栓，地上还铺着几圈发绿光的核辐射区），<b>大战场</b>是泥地车辙（弹坑 + 积水）。墙体材质、路边摆件（油桶 / 树丛 / 街灯 / 探照灯 / 雷达 / 沙袋）、角落大件（集装箱 / 汽车 / 燃料罐 / 哨塔 / 弹药库）也都按地图各换一套，右上角小地图同样按主题上色。</div>
-      <div class="raid-mate" id="raidMate" style="display:none"></div>
-      <div class="raid-cost" id="raidCost"></div>
-      <div class="raid-skill" id="raidSkill"></div>
-      <div class="raid-ask" id="raidAsk" style="display:none"></div>
-      <button class="mini-btn" id="btnRaidGo" style="width:100%;min-height:46px;font-size:14px">开始行动</button>
-    </div>
-    <div class="panel">
       <div class="panel-title"><span class="bar"></span>军火库 · 武器采购<small id="gunNote"></small></div>
       <div class="gun-grid" id="gunList"></div>
       <div class="radio-tip" style="margin-top:8px"><b>9 把枪长得都不一样</b>：卡片上那张侧视图就是它进图握在你手里的样子——M9 手枪最短、MP5 带前竖握把和长弹匣、AKM 是下斜木托配弯月弹匣、M4A1 有长提把导轨、M870 中间那截是撸一下的泵动护木、SV-98 和 AWM 带大倍镜和两脚架（AWM 最长）、AA-12 挂着鼓形弹匣、M134 是三根枪管并排转。所有枪都按同一比例画，所以短枪显短、长枪显长；卡片用的是你<b>当前装的那款枪皮</b>，换了涂装整排预览跟着变。</div>
@@ -1300,6 +1247,27 @@ body{
       <div class="wskin-row" id="knifeSkinRow"></div>
       <div class="radio-tip" style="margin-top:6px">枪皮和刀皮买一次永久生效、全枪通用：装备哪款，进「行动 · 枪战」后手里的枪 / 刀就是哪款涂装。上面一排换枪的涂装，下面一排换刀的涂装，点一下就换。<b>每张预览图用的都是你现在装的那把枪 / 那把刀</b>，所以换个涂装立刻能看出装到手里是什么样（枪管、刃口会发光的那几款，预览里也会亮）。</div>
     </div>
+
+    <div class="panel">
+      <div class="panel-title"><span class="bar"></span>战备 · 技能树<small id="opCount"></small></div>
+      <div class="op-hero" id="opHero"></div>
+      <div class="panel-title" style="margin:12px 0 8px"><span class="bar"></span>技能槽（主动 G / C · 大招 V）<small id="skinCount"></small></div>
+      <div class="op-skin-row" id="opSkinRow"></div>
+      <div class="op-grid" id="opGrid"></div>
+      <div class="radio-tip" style="margin-top:8px"><b>这里不再是"挑战备"，而是给自己攒一套战备。</b>解锁的技能会自动进槽：主动技装 <b>G</b> / <b>C</b>，大招装 <b>V</b>，进图后按对应键就放（手机点右下角三个技能按钮）。<b>被动节点（好头 / 刀皮 / 蓄电池 / 精制钢铁 / 挖矿）解锁就永久生效</b>，可叠加：生命、减伤、移速、击杀收益都会算进「战备属性」。点上面的槽位可以卸下技能，方便换一套打法。</div>
+    </div>
+  </section>
+  <section class="view" id="view-raid">
+    <div class="panel">
+      <div class="panel-title"><span class="bar"></span>行动准备<small id="raidPrepNote"></small></div>
+      <div class="raid-map-grid" id="raidMapList"></div>
+      <div class="radio-tip" style="margin-bottom:11px"><b>七张地图各有各的地貌</b>，卡片上那张缩略图就是进图后脚下的样子：<b>白坝哨站</b>是混凝土坝板（板缝 + 四角螺栓 + 排水孔），<b>蜂林谷</b>是林地草皮（草簇 + 泥土斑），<b>蚕蚀旧城</b>是城区柏油街面（人行道砖 + 黄色路标线），<b>囚矿区</b>是石板院子（十字缝 + 排水格栅），<b>机龙暴台</b>是发射场跑道（混凝土板 + 白色导引虚线 + 黄黑警示带），<b>蚕蚀反应堆</b>是反应堆厂区水泥板（板缝 + 螺栓，地上还铺着几圈发绿光的核辐射区），<b>大战场</b>是泥地车辙（弹坑 + 积水）。墙体材质、路边摆件（油桶 / 树丛 / 街灯 / 探照灯 / 雷达 / 沙袋）、角落大件（集装箱 / 汽车 / 燃料罐 / 哨塔 / 弹药库）也都按地图各换一套，右上角小地图同样按主题上色。</div>
+      <div class="raid-mate" id="raidMate" style="display:none"></div>
+      <div class="raid-cost" id="raidCost"></div>
+      <div class="raid-skill" id="raidSkill"></div>
+      <div class="raid-ask" id="raidAsk" style="display:none"></div>
+      <button class="mini-btn" id="btnRaidGo" style="width:100%;min-height:46px;font-size:14px">开始行动</button>
+    </div>
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>行动统计</div>
       <div class="raid-stat-grid" id="raidStat"></div>
@@ -1307,7 +1275,7 @@ body{
     </div>
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>行动须知</div>
-      <div class="radio-tip">进场要交白金入场费。<b>阵亡惩罚</b>：阵亡时带进图的<b>枪和防弹衣都会当场掉落丢失</b>（自动退回 M9 手枪和战术背心），想再带就得回军火库重新采购；而<b>成功撤离或主动撤离只结算物资、装备能保住</b>，所以血少了就果断往绿色撤离点跑。焦土前线是无限复活模式，阵亡不掉装备。地图里散布物资箱，站上去会自动开箱；打死的敌人也会掉东西。把物资背到绿色「撤离点」站满 3 秒才算成功带走；阵亡或超时，这一趟的物资全部丢失。<b>蜂林谷的河道与攻击艇</b>：「蜂林谷」地图中间横着一条蓝色的「长弓溪」，<b>涉水移动会变慢</b>（大约七成速度），水面上有三座褐色木桥，走桥上不减速；溪边停着一艘<b>攻击艇</b>——走到艇旁按 E（手机端点右下角「上艇」）登艇，WASD 驾驶，艇只能在溪水里开、上不了岸；按住左键 / 空格发射<b>舰炮</b>，炮弹是<b>范围伤害</b>，一发就能轰掉一小片敌人，弹舱 6 发、打空按 R（或点「换弹」）装填。敌人打你时先掉艇的血，艇被打爆会把你掀进水里并掉一点血，所以别硬顶着火力往前冲；想下艇随时按 E。<b>钓鱼赚币（河边找老渔夫拿鱼竿）</b>：在「蜂林谷」沿着河道走，河岸边站着一位特殊 NPC「<b>老渔夫</b>」——走到他旁边按 E（手机点右下角「和 老渔夫 交谈」）聊两句，他会送你一根<b>鱼竿</b>（每个账号只需拿一次，永久有效）。有了鱼竿，站在<b>任何水边</b>——长弓溪的河边，或者<b>每张地图都有的小水塘</b>边——按 F 就能抛竿（手机点「钓 N 条」按钮）；鱼漂沉下去的那一瞬间<b>再按一次 F 提竿</b>，手慢了鱼就跑了。抛竿的时候<b>别走动、别开枪</b>，不然会惊跑鱼。钓上来的鱼会直接放进补给站的「<b>渔获鱼篓</b>」，不会因为阵亡丢失，去补给站点「一键卖光鱼篓」就能换成白金。鱼的档次跟着地图难度走：白坝哨站多是鲫鱼，机龙暴台容易上大青鱼、金鳞锦鲤（一条值 620）。每次行动最多钓 6 条。<b>刷卡房间</b>：每张地图有金色描边的上锁房间（白坝哨站 1 间、蜂林谷 2 间、蚕蚀旧城 3 间、囚矿区 3 间、机龙暴台 3 间、蚕蚀反应堆 3 间），门卡可以直接开（击倒敌人、开箱子有概率掉门卡）；没有门卡就在门口答对 5 道数学题应急解锁，答错的题自动录入错题本。房间可能是惊喜物资库，也可能是陷阱或伏兵。电脑端走到门口按 E 开门。<b>焦土前线</b>是占领模式：没有物资箱、没有刷卡房间，站到 A / B / C 三个蓝色据点圈里、把敌人清出圈外就能推进占领；占领一个据点 +40 白金，并且它就成了你的复活点——阵亡后 3 秒原地满血复活，无限次不结束，抢下全部 3 个据点即获胜（入场 180 白金）。出发前可以在上面选一个「搭档账号」，它会作为强力队友和你一起作战；还没有第二个账号的话，点「＋ 立即新建搭档账号」一键建一个就行。<b>战备技能</b>：去「电台 · 战备技能树」用白金解锁技能节点——<b>主动技</b>装 G / C 槽、<b>大招</b>装 V 槽，进图后按对应键释放（手机点右下角三个技能按钮），放完进冷却；<b>被动节点</b>（好头 / 刀皮 / 蓄电池 / 精制钢铁 / 挖矿）解锁即永久生效、可以叠加，汇总成你的战备属性：生命上限、减伤、移速、击杀收益。<b>注意：现在战场难度 ×2</b>——所有敌人的血量和伤害都翻了一倍；<b>物价也 ×3</b>——武器、装具、战备、皮肤、补给站和入场费全部是 3 倍价，想买东西就得多在训练场答题赚白金。<b>两把新枪</b>：AA-12 连发散弹枪按住左键就能全自动连喷，一枪喷出六颗弹丸，贴脸最猛；M134 加特林弹链无限、<b>永不需要换弹</b>，射速拉满但单发伤害低、弹道偏散，适合中近距离一路压着打。<b>AWM「A 大」狙击枪</b>：栓动重狙，打中普通敌人<b>一枪一个</b>直接送走，但 <b>BOSS 打不死</b>——只会掉一大截血，拉栓慢，必须站稳了再瞄。<b>机龙暴台</b>是新增的顶级地图：发射场跑道开阔、掩体稀少、火力最猛，BOSS「枪火」盘踞在暴台控制中心，打倒它可拿 180 白金和 3 件稀缺物资，A 大在这里最好用。<b>蚕蚀反应堆 · 核辐射</b>是新增的地图：厂区地上铺着好几片发绿光的<b>核辐射区</b>——站进去会持续掉血，而且<b>护甲和减伤都挡不住</b>，只能绕开或者一口气冲过去；右上角小地图上也用绿圈标了位置；辐射圈里还额外埋着高价值物资箱，想拿就得进去扛几秒。厂区里有「反应堆控制室」「汽轮机房」「废料库」三间加锁房间，冷却水池也能钓鱼。<b>近战刀与武器外观</b>：军火库下面新加了「近战军械」和「武器外观」两块。近战刀进图后按 <b>1</b> 端枪、按 <b>2</b> 拔刀（手机点右下角「切刀 / 切枪」按钮，键盘 <b>Q</b> 也能快速切换）；<b>拔刀的那一刻，手里这把刀会被直接画在角色身上</b>，挥刀时还会扫出一道刀光。刀不用换弹、可以一直砍，但必须贴到敌人身边才够得着——开山砍刀一刀能去半管血，武士刀「鬼切」普通敌人一刀一个（BOSS 砍不死但吃满伤害），军用工兵铲扇形最宽、被围住时最好用；弹匣打空或者摸到敌人背后时，切刀比站着换弹划算。枪皮和刀皮买一次永久生效、全枪全刀通用：装备哪款，进图后手里的枪和刀就是哪款涂装，点一下就能换。</div>
+      <div class="radio-tip">进场要交白金入场费。<b>阵亡惩罚</b>：阵亡时带进图的<b>枪和防弹衣都会当场掉落丢失</b>（自动退回 M9 手枪和战术背心），想再带就得回军火库重新采购；而<b>成功撤离或主动撤离只结算物资、装备能保住</b>，所以血少了就果断往绿色撤离点跑。焦土前线是无限复活模式，阵亡不掉装备。地图里散布物资箱，站上去会自动开箱；打死的敌人也会掉东西。把物资背到绿色「撤离点」站满 3 秒才算成功带走；阵亡或超时，这一趟的物资全部丢失。<b>蜂林谷的河道与攻击艇</b>：「蜂林谷」地图中间横着一条蓝色的「长弓溪」，<b>涉水移动会变慢</b>（大约七成速度），水面上有三座褐色木桥，走桥上不减速；溪边停着一艘<b>攻击艇</b>——走到艇旁按 E（手机端点右下角「上艇」）登艇，WASD 驾驶，艇只能在溪水里开、上不了岸；按住左键 / 空格发射<b>舰炮</b>，炮弹是<b>范围伤害</b>，一发就能轰掉一小片敌人，弹舱 6 发、打空按 R（或点「换弹」）装填。敌人打你时先掉艇的血，艇被打爆会把你掀进水里并掉一点血，所以别硬顶着火力往前冲；想下艇随时按 E。<b>钓鱼赚币（河边找老渔夫拿鱼竿）</b>：在「蜂林谷」沿着河道走，河岸边站着一位特殊 NPC「<b>老渔夫</b>」——走到他旁边按 E（手机点右下角「和 老渔夫 交谈」）聊两句，他会送你一根<b>鱼竿</b>（每个账号只需拿一次，永久有效）。有了鱼竿，站在<b>任何水边</b>——长弓溪的河边，或者<b>每张地图都有的小水塘</b>边——按 F 就能抛竿（手机点「钓 N 条」按钮）；鱼漂沉下去的那一瞬间<b>再按一次 F 提竿</b>，手慢了鱼就跑了。抛竿的时候<b>别走动、别开枪</b>，不然会惊跑鱼。钓上来的鱼会直接放进补给站的「<b>渔获鱼篓</b>」，不会因为阵亡丢失，去补给站点「一键卖光鱼篓」就能换成白金。鱼的档次跟着地图难度走：白坝哨站多是鲫鱼，机龙暴台容易上大青鱼、金鳞锦鲤（一条值 620）。每次行动最多钓 6 条。<b>刷卡房间</b>：每张地图有金色描边的上锁房间（白坝哨站 1 间、蜂林谷 2 间、蚕蚀旧城 3 间、囚矿区 3 间、机龙暴台 3 间、蚕蚀反应堆 3 间），门卡可以直接开（击倒敌人、开箱子有概率掉门卡）；没有门卡就在门口答对 5 道数学题应急解锁，答错的题自动录入错题本。房间可能是惊喜物资库，也可能是陷阱或伏兵。电脑端走到门口按 E 开门。<b>焦土前线</b>是占领模式：没有物资箱、没有刷卡房间，站到 A / B / C 三个蓝色据点圈里、把敌人清出圈外就能推进占领；占领一个据点 +40 白金，并且它就成了你的复活点——阵亡后 3 秒原地满血复活，无限次不结束，抢下全部 3 个据点即获胜（入场 180 白金）。出发前可以在上面选一个「搭档账号」，它会作为强力队友和你一起作战；还没有第二个账号的话，点「＋ 立即新建搭档账号」一键建一个就行。<b>战备技能</b>：去「装备台 · 战备技能树」用白金解锁技能节点——<b>主动技</b>装 G / C 槽、<b>大招</b>装 V 槽，进图后按对应键释放（手机点右下角三个技能按钮），放完进冷却；<b>被动节点</b>（好头 / 刀皮 / 蓄电池 / 精制钢铁 / 挖矿）解锁即永久生效、可以叠加，汇总成你的战备属性：生命上限、减伤、移速、击杀收益。<b>注意：现在战场难度 ×2</b>——所有敌人的血量和伤害都翻了一倍；<b>物价也 ×3</b>——武器、装具、战备、皮肤、补给站和入场费全部是 3 倍价，想买东西就得多在训练场答题赚白金。<b>两把新枪</b>：AA-12 连发散弹枪按住左键就能全自动连喷，一枪喷出六颗弹丸，贴脸最猛；M134 加特林弹链无限、<b>永不需要换弹</b>，射速拉满但单发伤害低、弹道偏散，适合中近距离一路压着打。<b>AWM「A 大」狙击枪</b>：栓动重狙，打中普通敌人<b>一枪一个</b>直接送走，但 <b>BOSS 打不死</b>——只会掉一大截血，拉栓慢，必须站稳了再瞄。<b>机龙暴台</b>是新增的顶级地图：发射场跑道开阔、掩体稀少、火力最猛，BOSS「枪火」盘踞在暴台控制中心，打倒它可拿 180 白金和 3 件稀缺物资，A 大在这里最好用。<b>蚕蚀反应堆 · 核辐射</b>是新增的地图：厂区地上铺着好几片发绿光的<b>核辐射区</b>——站进去会持续掉血，而且<b>护甲和减伤都挡不住</b>，只能绕开或者一口气冲过去；右上角小地图上也用绿圈标了位置；辐射圈里还额外埋着高价值物资箱，想拿就得进去扛几秒。厂区里有「反应堆控制室」「汽轮机房」「废料库」三间加锁房间，冷却水池也能钓鱼。<b>近战刀与武器外观</b>：军火库下面新加了「近战军械」和「武器外观」两块。近战刀进图后按 <b>1</b> 端枪、按 <b>2</b> 拔刀（手机点右下角「切刀 / 切枪」按钮，键盘 <b>Q</b> 也能快速切换）；<b>拔刀的那一刻，手里这把刀会被直接画在角色身上</b>，挥刀时还会扫出一道刀光。刀不用换弹、可以一直砍，但必须贴到敌人身边才够得着——开山砍刀一刀能去半管血，武士刀「鬼切」普通敌人一刀一个（BOSS 砍不死但吃满伤害），军用工兵铲扇形最宽、被围住时最好用；弹匣打空或者摸到敌人背后时，切刀比站着换弹划算。枪皮和刀皮买一次永久生效、全枪全刀通用：装备哪款，进图后手里的枪和刀就是哪款涂装，点一下就能换。</div>
     </div>
   </section>
   <div class="footnote">
@@ -1370,7 +1338,7 @@ body{
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '2.0.3';
+  var APP_VER = '2.1.0';
   var APP_DATE = '2026-10-31';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
@@ -2905,7 +2873,7 @@ body{
 
   /* ================= 练习账号的「行动」时段限制 ================= */
   /* 规则：主账号不限时段；其他账号只在「周六 / 周日 + 法定节假日」能打「行动」，且每天最多 1 小时。
-     只有枪战「行动」计时和受限——答题、训练场、错题本、补给站、电台全部不限时段、不计时。 */
+     只有枪战「行动」计时和受限——答题、训练场、错题本、补给站、装备台全部不限时段、不计时。 */
   var PLAY_KEY = 'wb_mathdelta_playtime_v1';
   var PLAY_LIMIT = 3600;                 /* 每天最多打 1 小时行动（秒） */
   var PLAY_WARN = [600, 300, 60];        /* 行动剩余 10 / 5 / 1 分钟时提醒 */
@@ -6917,13 +6885,13 @@ body{
       box.appendChild(make('b', '', o.code));
       box.appendChild(make('em', '', o.skill));
       box.appendChild(make('u', '', o.raidTxt));
-      box.appendChild(make('i', 'rs-tip', '战备加成整局生效，和武器、防弹衣的加成叠加。想换技能去「电台 · 战备技能树」页点节点。'));
+      box.appendChild(make('i', 'rs-tip', '战备加成整局生效，和武器、防弹衣的加成叠加。想换技能去「装备台 · 战备技能树」页点节点。'));
       return;
     }
     box.className = 'raid-skill off';
     if (!state.op) {
       box.appendChild(make('span', '', '还没装技能：'));
-      box.appendChild(make('em', '', '去「电台 · 战备技能树」解锁节点，装进 G / C / V 槽，进图就能按出来'));
+      box.appendChild(make('em', '', '去「装备台 · 战备技能树」解锁节点，装进 G / C / V 槽，进图就能按出来'));
       return;
     }
     box.appendChild(make('span', '', '出战配置：'));
@@ -8667,7 +8635,7 @@ body{
     if (!Raid.on || Raid.dead || Raid.quizOn || Raid.paused || Raid.over || !Raid.p) { return; }
     if (Raid.boat && Raid.boat.on) { toastLater('驾驶攻击艇时用不了战备技能'); return; }
     if (!a) {
-      toastLater(curOp() ? '这套战备没装技能' : '还没装技能：去「电台 · 战备技能树」解锁并装备');
+      toastLater(curOp() ? '这套战备没装技能' : '还没装技能：去「装备台 · 战备技能树」解锁并装备');
       return;
     }
     var left = Raid.skCd[a.k] || 0;
@@ -11537,7 +11505,7 @@ body{
     if (t2) {
       t2.textContent = o
         ? ('流浪佣兵 · 技能进图即就绪 · 选一个战场出发')
-        : '还没装技能 · 去「电台 · 战备技能树」解锁节点';
+        : '还没装技能 · 去「装备台 · 战备技能树」解锁节点';
     }
   }
   var RANKS = [
@@ -11657,11 +11625,11 @@ body{
     var theOp = curOp();
     var row4 = make('div', 'task-row');
     var t4 = make('div', 'task-txt');
-    t4.appendChild(make('span', '', '行动电台 '));
-    t4.appendChild(make('em', '', TRACKS[Radio.idx].name));
-    t4.appendChild(make('i', '', theOp ? ('　出战中：' + theOp.code + '（' + theOp.desc + '）') : '　配乐训练效率更高，技能树还能解锁新打法'));
+    t4.appendChild(make('span', '', '装备台 '));
+    t4.appendChild(make('em', '', '已解锁 ' + state.skills.length + ' 个技能节点'));
+    t4.appendChild(make('i', '', theOp ? ('　战备：' + theOp.code + '（' + theOp.desc + '）') : '　去技能树解锁节点，换一套打法'));
     row4.appendChild(t4);
-    var b4 = make('button', 'mini-btn ghost', '去电台');
+    var b4 = make('button', 'mini-btn ghost', '去装备台');
     b4.type = 'button';
     b4.onclick = function () { switchView('radio'); };
     row4.appendChild(b4);
@@ -11755,7 +11723,7 @@ body{
         tabs[i].className = 'tab' + (on ? ' on' : '');
       }
     }
-    if (name === 'radio') { renderOps(); }
+    if (name === 'radio') { renderOps(); renderGuns(); renderKnives(); renderArmors(); renderWeaponSkins(); }
     if (name === 'supply') { renderSupply(); }
     if (name === 'raid') { renderRaid(); }
     if (name === 'badge') { renderBadge(); }
