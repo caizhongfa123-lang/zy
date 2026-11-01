@@ -313,6 +313,11 @@ main{padding:6px 0 40px}
 .hud-rad{border-color:#3f8f56;background:rgba(24,54,34,.72)}
 .hud-rad span{color:#8ef2a0;font-weight:800}
 .hud-rad u{color:#7fd694}
+.hud-bomb{border-color:#8f4a3a;background:rgba(58,26,20,.78)}
+.hud-bomb span{color:#ffb08a;font-weight:800}
+.hud-bomb u{color:#e08b6c}
+.hud-bomb.hot{border-color:#ff5f45;background:rgba(84,26,16,.86);animation:bombPulse .9s ease-in-out infinite alternate}
+@keyframes bombPulse{from{box-shadow:0 0 0 0 rgba(255,95,69,0)}to{box-shadow:0 0 12px 2px rgba(255,95,69,.5)}}
 .raid-map.rad{border-color:#3f8f56}
 .raid-map.rad.on{border-color:var(--accent)}
 .raid-map-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-bottom:11px}
@@ -883,6 +888,12 @@ body{
   background:linear-gradient(180deg,rgba(255,180,94,.13),rgba(255,180,94,.03));
   box-shadow:0 0 0 1px rgba(255,180,94,.4),0 8px 22px rgba(0,0,0,.45)
 }
+.raid-map.bomb .raid-map-land{color:#ff8a5c!important;border-color:rgba(255,95,69,.45)}
+.raid-map.bomb.on{
+  border-color:#ff5f45;
+  background:linear-gradient(180deg,rgba(255,95,69,.15),rgba(255,95,69,.03));
+  box-shadow:0 0 0 1px rgba(255,95,69,.45),0 8px 22px rgba(0,0,0,.45)
+}
 /* 战备档案：正版式大字名 + 主题光晕；战备条更像头像栏 */
 .op-hero{
   position:relative;overflow:hidden;
@@ -1359,6 +1370,7 @@ body{overscroll-behavior-y:contain}
       <div class="hud hud-wp" id="raidWeaponHud"><u>手持</u> <span id="raidWeapon">主武器</span></div>
       <div class="hud" id="raidBagHud"><u>背包</u> <span id="raidBag">0 件 / 0</span></div>
       <div class="hud" id="raidCapHud" style="display:none"><u>据点</u> <span id="raidCap">0 / 3</span></div>
+      <div class="hud hud-bomb" id="raidBombHud" style="display:none"><u>爆破</u> <span id="raidBombTxt">—</span></div>
       <div class="hud" id="raidDeathHud" style="display:none"><u>阵亡</u> <span id="raidDeath">0</span></div>
       <div class="hud" id="raidMateHud" style="display:none"><u>联机</u> <span id="raidMateTxt">—</span></div>
       <div class="hud" id="raidBoatHud" style="display:none"><u>攻击艇</u> <span id="raidBoatTxt">—</span></div>
@@ -1414,7 +1426,7 @@ body{overscroll-behavior-y:contain}
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '2.4.0';
+  var APP_VER = '2.5.0';
   var APP_DATE = '2026-11-01';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
@@ -6098,7 +6110,10 @@ body{overscroll-behavior-y:contain}
       tip: '潜入「蚕蚀反应堆」：厂区地上那几圈泛绿光的是「核辐射区」——站进去会持续掉血，护甲和减伤都挡不住，只能绕开或者一口气冲过去；右上角小地图上也用绿圈把位置标出来了。辐射圈里额外埋着高价值物资箱，想拿就得进去扛几秒。真东西在「反应堆控制室」「汽轮机房」「废料库」三间加锁房间里，水塘也能钓鱼。',
       desc: '核泄漏禁区：厂区散布好几片核辐射区，进区持续掉血且无视护甲；辐射圈里额外埋着高价值物资箱，风险和收益一起拉满' },
     { id: 'war', code: '焦土前线', fee: 60, enemies: 22, boxes: 0, edmg: 9, ehp: 55, qb: 2, limit: 240, war: true,
-      desc: '联机占领模式：带上搭档账号一起打，没有箱子和刷卡房，抢下 3 个据点就赢；阵亡不结束，3 秒后在最近的己方据点无限复活。战线中部有水塘，中场休息可以钓鱼' }
+      desc: '联机占领模式：带上搭档账号一起打，没有箱子和刷卡房，抢下 3 个据点就赢；阵亡不结束，3 秒后在最近的己方据点无限复活。战线中部有水塘，中场休息可以钓鱼' },
+    { id: 'blast', code: '爆破 · 旧城竞技场', fee: 80, enemies: 5, boxes: 0, edmg: 12, ehp: 70, qb: 1, limit: 210, bomb: true,
+      desc: '爆破模式 5v5：你带 4 名队友进攻，对面 5 名强化人机死守 A / B 两个包点。站进包点读条安包，40 秒引爆即胜；守军会扑上来拆弹，全歼守军也算赢',
+      tip: '爆破模式：站进 A 或 B 包点的圈里别动，3 秒读条完成安放；安放后引信走 40 秒，守军会派最近的两个人来拆（拆 5 秒），守住就赢。把 5 名守军全歼也直接算赢。' }
   ];
   /* ================= 地图地貌主题：七张地图各有各的样子 ================= */
   /* 每张地图一套：地面双色 + 纹理图案 pat + 墙体材质 + 装饰物件（deco 纯装饰 / big 实体挡路） */
@@ -6151,6 +6166,13 @@ body{overscroll-behavior-y:contain}
       wall: '#3c4a41', wallHi: '#57685c', wallLo: '#27302b', wallEdge: '#82c295',
       deco: ['cone', 'barrel', 'pipe', 'crack'], decoN: 56,
       big: ['fueltank', 'container'], bigN: 11
+    },
+    blast: {
+      land: '旧城竞技场', pat: 'asphalt', cell: 142, air: 'rgba(255,140,90,.05)',
+      g1: '#2a2422', g2: '#211c1a', seam: 'rgba(255,190,150,.08)',
+      wall: '#473a34', wallHi: '#65524a', wallLo: '#2b2320', wallEdge: '#a3765f',
+      deco: ['crate', 'cone', 'barrel', 'crack', 'bin'], decoN: 66,
+      big: ['container', 'car', 'pillar'], bigN: 12
     }
   };
   function mapTheme(map) {
@@ -6311,9 +6333,17 @@ body{overscroll-behavior-y:contain}
       { x: 470, y: 980, r: 118, name: 'A 号据点' },
       { x: 1010, y: 630, r: 118, name: 'B 号据点' },
       { x: 1560, y: 300, r: 118, name: 'C 号据点' }
+    ],
+    /* 爆破模式：A / B 两个包点（放在 CAP_DEFS 里，生成墙体时会自动避开这两块空地） */
+    blast: [
+      { x: 430, y: 350, r: 120, name: 'A 包点' },
+      { x: 1400, y: 920, r: 120, name: 'B 包点' }
     ]
   };
   var CAP_TIME = 6.0, CAP_CONTEST = 190, WAR_RESPAWN = 3.0;
+  /* 爆破模式：安包读条 / 引信时长 / 拆弹时长 / 守军强化倍率 / 队友人数 */
+  var BOMB_PLANT = 3.0, BOMB_FUSE = 40.0, BOMB_DEFUSE = 5.0, BOMB_ALLY_N = 4, BOMB_RESPAWN = 5.0;
+  var BOMB_BOT = { hp: 1.35, dmg: 1.25, acc: 0.72, rate: 0.85, spd: 1.06 };
   var ROOM_T = 14, DOOR_W = 52;
   /* 囚矿区的牢房：玩家血量剩 50 会被关进来，答对 3 题越狱 */
   var JAIL = { x: 66, y: 66, w: 230, h: 190, gateW: 60 };
@@ -6889,7 +6919,7 @@ body{overscroll-behavior-y:contain}
     for (var i = 0; i < MAPS.length; i++) {
       var m = MAPS[i];
       var th = mapTheme(m);
-      var b = make('button', 'raid-map' + (state.map === m.id ? ' on' : '') + (m.rad ? ' rad' : '') + (m.war ? ' war' : ''));
+      var b = make('button', 'raid-map' + (state.map === m.id ? ' on' : '') + (m.rad ? ' rad' : '') + (m.war ? ' war' : '') + (m.bomb ? ' bomb' : ''));
       b.type = 'button';
       var thumb = make('div', 'raid-map-thumb');
       thumb.appendChild(mapThumbSvg(m, 0, 0));
@@ -6900,9 +6930,11 @@ body{overscroll-behavior-y:contain}
       b.appendChild(hd);
       b.appendChild(make('span', 'raid-map-desc', m.desc));
       b.appendChild(make('i', '', '入场费 ' + m.fee + ' 白金'));
-      var meta = m.war
-        ? ('难度 ×2 · 敌人 ' + m.enemies + ' · 占领据点 3 · 无限复活 · ' + Math.round(m.limit / 60) + ' 分钟 · 可联机')
-        : ('难度 ×2 · 敌人 ' + m.enemies + ' · 箱子 ' + m.boxes + ' · ' + Math.round(m.limit / 60) + ' 分钟' + (m.boss ? ' · BOSS ' + (m.bossName || '矿主') : '') + (m.rad ? ' · 核辐射区 ' + ((RADIATION_DEFS[m.id] || []).length) + ' 处' : ''));
+      var meta = m.bomb
+        ? ('爆破 5v5 · 队友 4 人 vs 守军 5 人（强化）· 引信 ' + Math.round(BOMB_FUSE) + 's · ' + Math.round(m.limit / 60) + ' 分钟 · 阵亡 ' + Math.round(BOMB_RESPAWN) + 's 复活')
+        : (m.war
+          ? ('难度 ×2 · 敌人 ' + m.enemies + ' · 占领据点 3 · 无限复活 · ' + Math.round(m.limit / 60) + ' 分钟 · 可联机')
+          : ('难度 ×2 · 敌人 ' + m.enemies + ' · 箱子 ' + m.boxes + ' · ' + Math.round(m.limit / 60) + ' 分钟' + (m.boss ? ' · BOSS ' + (m.bossName || '矿主') : '') + (m.rad ? ' · 核辐射区 ' + ((RADIATION_DEFS[m.id] || []).length) + ' 处' : '')));
       b.appendChild(make('u', '', meta));
       b.onclick = (function (id) { return function () { selectRaidMap(id); }; })(m.id);
       box.appendChild(b);
@@ -7456,6 +7488,26 @@ body{overscroll-behavior-y:contain}
       }
     }
   }
+  /* 爆破模式：守军出生点（右上角那片空地），5 个人错开站 */
+  function raidBombSpawn(i, r) {
+    var ax = Raid.W - 300 + (i % 3) * 92, ay = 150 + Math.floor(i / 3) * 96, k, x, y;
+    for (k = 0; k < 60; k++) {
+      x = ax + rnd(-46, 46);
+      y = ay + rnd(-40, 40);
+      if (x < 60 || y < 60 || x > Raid.W - 60 || y > Raid.H - 60) { continue; }
+      if (raidWallHit(x, y, r + 6) || isWater(x, y)) { continue; }
+      return { x: x, y: y };
+    }
+    return raidFreeSpot(620);
+  }
+  /* 爆破模式：守军模板克隆 + 强化（只改克隆体，不动 ETYPE 原表，别的图难度不受影响） */
+  function bombBotScale(t) {
+    return {
+      code: t.code, hp: t.hp * BOMB_BOT.hp, dmg: t.dmg * BOMB_BOT.dmg,
+      spd: t.spd * BOMB_BOT.spd, rate: t.rate * BOMB_BOT.rate,
+      acc: t.acc * BOMB_BOT.acc, r: t.r, color: t.color, ui: t.ui, boss: false
+    };
+  }
   function raidFreeSpot(minFromP) {
     var guard = 0, x = 0, y = 0;
     while (guard < 300) {
@@ -7480,7 +7532,7 @@ body{overscroll-behavior-y:contain}
     return { x: 90, y: 90 };
   }
   function raidSetSize(map) {
-    Raid.W = map.id === 'war' ? 2000 : (map.id === 'space' ? 1960 : (map.id === 'bakesh' || map.id === 'az3' ? 1900 : (map.id === 'valley' || map.id === 'prison') ? 1800 : 1660));
+    Raid.W = map.id === 'war' ? 2000 : (map.id === 'blast' ? 1840 : (map.id === 'space' ? 1960 : (map.id === 'bakesh' || map.id === 'az3' ? 1900 : (map.id === 'valley' || map.id === 'prison') ? 1800 : 1660)));
     Raid.H = 1260;
   }
   /* 大战场联合作战：主账号带上的「另一个账号」 */
@@ -7605,15 +7657,19 @@ body{overscroll-behavior-y:contain}
     var i;
     for (i = 0; i < map.enemies; i++) {
       var roll = Math.random(), t;
-      if (map.id === 'dam') { t = ETYPE[roll < 0.72 ? 0 : 1]; }
+      if (map.bomb) { t = ETYPE[roll < 0.45 ? 1 : 2]; }
+      else if (map.id === 'dam') { t = ETYPE[roll < 0.72 ? 0 : 1]; }
       else if (map.id === 'valley') { t = ETYPE[roll < 0.46 ? 0 : (roll < 0.88 ? 1 : 2)]; }
       else if (map.id === 'prison') { t = ETYPE[roll < 0.18 ? 0 : (roll < 0.58 ? 1 : 2)]; }
       else if (map.id === 'space') { t = ETYPE[roll < 0.12 ? 0 : (roll < 0.60 ? 1 : 2)]; }
       else { t = ETYPE[roll < 0.30 ? 0 : (roll < 0.72 ? 1 : 2)]; }
-      var pos = raidFreeSpot(520);
+      /* 爆破模式：守军是强化版（更硬、更疼、更准、出枪更快），没有 BOSS */
+      if (map.bomb) { t = bombBotScale(t); }
+      var pos = map.bomb ? raidBombSpawn(i, t.r) : raidFreeSpot(520);
       Raid.enemies.push({
         x: pos.x, y: pos.y, r: t.r, t: t, hp: ehpOf(map, t), max: ehpOf(map, t),
-        cd: rnd(0.8, 2.2), ang: 0, hit: 0, wa: rnd(0, 6.28), wander: 0, stun: 0
+        cd: rnd(0.8, 2.2), ang: 0, hit: 0, wa: rnd(0, 6.28), wander: 0, stun: 0,
+        siteIdx: i % 2, isDefuser: false, defusing: false
       });
     }
     /* 囚矿区：BOSS 典狱长 · 机龙暴台：BOSS 老太 */
@@ -7663,6 +7719,29 @@ body{overscroll-behavior-y:contain}
           owner: false, prog: 0, contested: false, flashT: 0
         });
       }
+    } else if (map.bomb) {
+      /* 爆破 5v5：玩家 + 4 名 AI 队友（进攻方），对面 5 名守军已经在上面的循环里生成 */
+      var bn = ['雷霆', '夜莺', '大熊', '白鸽'];
+      for (i = 0; i < BOMB_ALLY_N; i++) {
+        Raid.allies.push({
+          x: 160 + i * 46, y: Raid.H - 168 - (i % 2) * 40, r: 12,
+          name: bn[i], av: '', mate: false,
+          hp: 150, max: 150, dmg: 15, spd: 98,
+          cd: rnd(0.5, 1.4), ang: -1.57, hit: 0,
+          wa: rnd(0, 6.28), wander: 0, down: false, downT: 0
+        });
+      }
+      /* 包点：从 CAP_DEFS 读取（墙体生成时已按它避开空地） */
+      var bsd = CAP_DEFS.blast || [], bi;
+      Raid.bomb = {
+        phase: 'carry', plant: 0, fuse: BOMB_FUSE, defuse: 0, site: null, at: null,
+        sites: [], flashT: 0, tipT: 0
+      };
+      for (bi = 0; bi < bsd.length; bi++) {
+        Raid.bomb.sites.push({ x: bsd[bi].x, y: bsd[bi].y, r: bsd[bi].r, name: bsd[bi].name });
+      }
+    } else {
+      Raid.bomb = null;
     }
     Raid.boxes = [];
     for (i = 0; i < map.boxes; i++) {
@@ -7700,8 +7779,8 @@ body{overscroll-behavior-y:contain}
       var nsp = npcSpot(rvB, rvB.npc.x, rvB.npc.y);
       Raid.npc = { x: nsp.x, y: nsp.y, r: 15, name: rvB.npc.name, talked: false, bob: 0 };
     }
-    /* 大战场没有撤离点：抢下全部据点即为胜利 */
-    Raid.ex = map.war ? null : { x: Raid.W - 150, y: 152, r: 62 };
+    /* 大战场 / 爆破模式没有撤离点：靠占点或安包取胜 */
+    Raid.ex = (map.war || map.bomb) ? null : { x: Raid.W - 150, y: 152, r: 62 };
     /* 最后铺地貌：按这张地图的主题撒装饰 + 摆实体大件（要等箱子 / 撤离点 / 据点都定好位再撒） */
     genMapDeco(map);
   }
@@ -7744,6 +7823,11 @@ body{overscroll-behavior-y:contain}
     if (state.rod && fishLeft() > 0 && canFish()) { hb += ' · 按 F 抛竿钓鱼（本次还剩 ' + fishLeft() + ' 条）'; }
     if (isWater(Raid.p ? Raid.p.x : 0, Raid.p ? Raid.p.y : 0)) { hb += ' · 涉水中，移动变慢'; }
     if (Raid.rad.length) { hb += ' · 地上的绿色圈是核辐射区，站进去持续掉血（护甲无效），绕开或快点穿过去'; }
+    if (Raid.map && Raid.map.bomb && Raid.bomb) {
+      hb += Raid.bomb.phase === 'carry'
+        ? ' · 站进 A / B 包点圈里别动，' + BOMB_PLANT + ' 秒完成安包'
+        : (' · 炸弹已在「' + (Raid.bomb.at ? Raid.bomb.at.name : '包点') + '」，引信 ' + Math.ceil(Raid.bomb.fuse) + ' 秒，别让守军靠近拆弹');
+    }
     var acts = Raid.acts || [];
     if (acts.length) {
       var actKs = actKeyTxts(acts);
@@ -7879,7 +7963,7 @@ body{overscroll-behavior-y:contain}
     /* 结算时把按下的键清干净，免得带着一身按键进结算界面还在飘 */
     raidClearKeys(); Raid.mdown = false;
     var map = Raid.map, i, val = raidBagValue();
-    var gearLost = (reason === '阵亡' && !map.war) ? raidLoseGear() : [];
+    var gearLost = (reason === '阵亡' && !(map.war || map.bomb)) ? raidLoseGear() : [];
     Raid.gearLost = gearLost;
     var st = state.raidStats;
     st.runs += 1;
@@ -7889,6 +7973,8 @@ body{overscroll-behavior-y:contain}
     if (win) {
       st.win += 1;
       bonus = Raid.kills * (12 + raidSk('killCoin', 0)) + capsN * 60;
+      /* 爆破模式：赢下一局额外给作战奖金 */
+      if (map.bomb) { bonus += 200; }
       for (i = 0; i < Raid.bag.length; i++) {
         var it = Raid.bag[i];
         state.loots.unshift({
@@ -7900,6 +7986,8 @@ body{overscroll-behavior-y:contain}
       if (val > st.best) { st.best = val; }
       if (map.war) {
         addLog('大战场告捷：占领 ' + capsN + ' / ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 人（阵亡 ' + Raid.deaths + ' 次），作战奖金 ' + bonus + ' 白金');
+      } else if (map.bomb) {
+        addLog('爆破模式告捷（' + reason + '）：击杀 ' + Raid.kills + ' 名守军（阵亡 ' + Raid.deaths + ' 次），作战奖金 ' + bonus + ' 白金');
       } else {
         addLog('成功撤离「' + map.code + '」：带回 ' + Raid.bag.length + ' 件物资（价值 ' + val + '），击杀 ' + Raid.kills + ' 人，作战奖金 ' + bonus + ' 白金');
       }
@@ -7910,6 +7998,10 @@ body{overscroll-behavior-y:contain}
         bonus = Raid.kills * (8 + raidSk('killCoin', 0)) + capsN * 20;
         state.coin += bonus;
         addLog('大战场结束「' + map.code + '」（' + reason + '）：占领 ' + capsN + ' / ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 人，击倒奖金 ' + bonus + ' 白金');
+      } else if (map.bomb) {
+        bonus = Raid.kills * (8 + raidSk('killCoin', 0));
+        state.coin += bonus;
+        addLog('爆破模式失利「' + map.code + '」（' + reason + '）：击杀 ' + Raid.kills + ' 名守军（阵亡 ' + Raid.deaths + ' 次），击倒奖金 ' + bonus + ' 白金');
       } else {
         var gearTxt = gearLost.length ? ('，阵亡掉落 ' + gearLost.join(' + ')) : '';
         addLog('行动失败「' + map.code + '」（' + reason + '）：损失 ' + Raid.bag.length + ' 件物资（价值 ' + val + '），击杀 ' + Raid.kills + ' 人' + gearTxt);
@@ -7942,7 +8034,14 @@ body{overscroll-behavior-y:contain}
     var map = Raid.map, i, capsN = 0;
     for (i = 0; i < Raid.caps.length; i++) { if (Raid.caps[i].owner) { capsN += 1; } }
     var sub;
-    if (map.war) {
+    if (map.bomb) {
+      sub = win
+        ? ('爆破成功（' + reason + '）！你和 4 名队友顶住了强化守军，击杀 ' + Raid.kills + ' 名、阵亡 ' + Raid.deaths + ' 次。爆破胜利另加 200 白金。')
+        : ('爆破失利（' + reason + '），击杀守军 ' + Raid.kills + ' 名、阵亡 ' + Raid.deaths + ' 次。'
+          + (reason === '炸弹被守军拆除'
+            ? '安包后记得跟着炸弹走：守军拆弹需要 5 秒，把拆弹的两个人打掉就稳了。'
+            : '开局先和队友一起冲包点，站进圈里读条安包，别在外围耗时间。'));
+    } else if (map.war) {
       var mateTxt = Raid.mateName ? ('搭档「' + Raid.mateName + '」和你一起冲了这局。') : '下次带上搭档一起打会更轻松。';
       sub = win
         ? ('大战场告捷！你占领了全部 ' + Raid.caps.length + ' 个据点，击杀 ' + Raid.kills + ' 名敌人，阵亡 ' + Raid.deaths + ' 次后依然拿下了战线。' + mateTxt)
@@ -7979,17 +8078,19 @@ body{overscroll-behavior-y:contain}
     clearNode(ov);
     var inn = make('div', 'raid-over-in');
     var headTxt = win
-      ? (map.war ? (Raid.mateName ? '联机作战胜利' : '大战场胜利') : '撤离成功')
+      ? (map.bomb ? '爆破成功' : (map.war ? (Raid.mateName ? '联机作战胜利' : '大战场胜利') : '撤离成功'))
       : (reason === '行动时间到' ? '时间到 · 行动结束'
-        : (map.war ? ('作战结束 · ' + reason) : ('行动失败 · ' + reason)));
+        : ((map.war || map.bomb) ? ('作战结束 · ' + reason) : ('行动失败 · ' + reason)));
     inn.appendChild(make('div', 'raid-over-h ' + (win ? 'win' : 'lose'), headTxt));
     inn.appendChild(make('div', 'raid-over-s', sub));
     var line = make('div', 'raid-cost');
     line.appendChild(make('span', '', '击杀'));
     line.appendChild(make('b', '', String(Raid.kills)));
-    line.appendChild(make('em', '', map.war
-      ? ('占领据点 ' + capsN + ' / ' + Raid.caps.length + ' · 阵亡 ' + Raid.deaths + ' 次')
-      : ('物资 ' + Raid.bag.length + ' 件 · 价值 ' + val + ' 白金')));
+    line.appendChild(make('em', '', map.bomb
+      ? ('击杀守军 ' + Raid.kills + ' 人 · 阵亡 ' + Raid.deaths + ' 次')
+      : (map.war
+        ? ('占领据点 ' + capsN + ' / ' + Raid.caps.length + ' · 阵亡 ' + Raid.deaths + ' 次')
+        : ('物资 ' + Raid.bag.length + ' 件 · 价值 ' + val + ' 白金'))));
     inn.appendChild(line);
     if (Raid.gearLost && Raid.gearLost.length) {
       var gl = make('div', 'raid-cost');
@@ -8010,9 +8111,11 @@ body{overscroll-behavior-y:contain}
       var bonusLine = make('div', 'raid-cost');
       bonusLine.appendChild(make('span', '', win ? '作战奖金' : '击倒奖金'));
       bonusLine.appendChild(make('b', '', '+' + bonus));
-      bonusLine.appendChild(make('em', '', map.war
-        ? (win ? ('击杀 × ' + (12 + raidSk('killCoin', 0)) + ' + 据点 × 60') : ('击杀 × ' + (8 + raidSk('killCoin', 0)) + ' + 据点 × 20'))
-        : ('击杀 × ' + (12 + raidSk('killCoin', 0)) + ' 白金')));
+      bonusLine.appendChild(make('em', '', map.bomb
+        ? (win ? ('击杀 × ' + (12 + raidSk('killCoin', 0)) + ' + 爆破胜利 200') : ('击杀 × ' + (8 + raidSk('killCoin', 0))))
+        : (map.war
+          ? (win ? ('击杀 × ' + (12 + raidSk('killCoin', 0)) + ' + 据点 × 60') : ('击杀 × ' + (8 + raidSk('killCoin', 0)) + ' + 据点 × 20'))
+          : ('击杀 × ' + (12 + raidSk('killCoin', 0)) + ' 白金'))));
       inn.appendChild(bonusLine);
     }
     var rskOp = curOp();
@@ -8513,7 +8616,7 @@ body{overscroll-behavior-y:contain}
     if (Raid.radTick >= 0.7) { Raid.radTick = 0; sfx('geiger'); }
     if (p.hp <= 0) {
       p.hp = 0;
-      if (Raid.map.war) { raidDown(); } else { endRaid(false, '阵亡'); }
+      if (Raid.map.war || Raid.map.bomb) { raidDown(); } else { endRaid(false, '阵亡'); }
     }
   }
   /* 朝准心扔一个投掷物：飞行中减速，引信到点 / 撞墙就炸 */
@@ -9279,19 +9382,23 @@ body{overscroll-behavior-y:contain}
     sfx('hurt');
     if (p.hp <= 0) {
       p.hp = 0;
-      if (Raid.map.war) { raidDown(); } else { endRaid(false, '阵亡'); }
+      if (Raid.map.war || Raid.map.bomb) { raidDown(); } else { endRaid(false, '阵亡'); }
     }
   }
   /* 大战场：阵亡不结束，倒计时结束在最近的己方据点复活 */
   function raidDown() {
+    var isB = !!(Raid.map && Raid.map.bomb);
     Raid.dead = true;
     Raid.deaths += 1;
-    Raid.respawnT = WAR_RESPAWN;
+    Raid.respawnT = isB ? BOMB_RESPAWN : WAR_RESPAWN;
     Raid.p.reloading = 0;
     sfx('lose');
-    raidTip('阵亡！' + Math.round(WAR_RESPAWN) + ' 秒后在最近的己方据点复活');
+    raidTip(isB
+      ? ('阵亡！' + Math.round(BOMB_RESPAWN) + ' 秒后从进攻方出生点复活，安包 / 引信进度不会重置')
+      : ('阵亡！' + Math.round(WAR_RESPAWN) + ' 秒后在最近的己方据点复活'));
   }
   function raidRespawnPoint() {
+    if (Raid.map && Raid.map.bomb) { return { x: 190, y: Raid.H - 170, at: '进攻方出生点' }; }
     var best = null, bd = 1e9, i;
     for (i = 0; i < Raid.caps.length; i++) {
       var c = Raid.caps[i];
@@ -9344,11 +9451,17 @@ body{overscroll-behavior-y:contain}
       return;
     }
     var r = Math.random();
-    if (Raid.map.war) {
-      /* 占领模式没有物资搜刮：只掉弹药和医疗包，专心抢据点 */
+    if (Raid.map.war || Raid.map.bomb) {
+      /* 竞技模式没有物资搜刮：只掉弹药和医疗包，专心抢点 / 守包 */
       if (r < 0.42) { Raid.drops.push({ x: e.x, y: e.y, kind: 'ammo' }); }
       else if (r < 0.62) { Raid.drops.push({ x: e.x, y: e.y, kind: 'med' }); }
-      raidTip('击倒 ' + e.t.code + '，连杀 ' + Raid.kills);
+      if (Raid.map.bomb) {
+        var leftN = 0, ei2;
+        for (ei2 = 0; ei2 < Raid.enemies.length; ei2++) { if (Raid.enemies[ei2].hp > 0) { leftN += 1; } }
+        raidTip('击倒 ' + e.t.code + '，守军还剩 ' + leftN + ' 人');
+      } else {
+        raidTip('击倒 ' + e.t.code + '，连杀 ' + Raid.kills);
+      }
       return;
     }
     var osTag = (Raid.gun && Raid.gun.oneShot) ? '｜A 大 · 一枪一个' : '';
@@ -9472,6 +9585,10 @@ body{overscroll-behavior-y:contain}
       e.stun -= dt;
       return;
     }
+    /* 爆破模式：被指派拆弹的守军直奔炸弹，路上不追人也不开枪 */
+    if (Raid.map && Raid.map.bomb && e.isDefuser && Raid.bomb && Raid.bomb.phase === 'planted' && Raid.bomb.at) {
+      if (raidBombDefuseStep(e, dt)) { return; }
+    }
     var tgt = raidEnemyTarget(e), d = rlen(e.x, e.y, tgt.x, tgt.y);
     e.cd -= dt;
     var mvx = 0, mvy = 0;
@@ -9493,10 +9610,20 @@ body{overscroll-behavior-y:contain}
         sfx('enemy');
       }
     } else {
+      /* 爆破模式：没发现玩家时守在自己的包点上，不会满地图乱逛 */
+      var gsite = (Raid.map && Raid.map.bomb && Raid.bomb && Raid.bomb.sites.length)
+        ? Raid.bomb.sites[e.siteIdx % Raid.bomb.sites.length] : null;
       e.wander -= dt;
       if (e.wander <= 0) { e.wander = rnd(1.2, 2.8); e.wa = rnd(0, 6.28); }
-      mvx = Math.cos(e.wa) * 0.55; mvy = Math.sin(e.wa) * 0.55;
-      e.ang = e.wa;
+      if (gsite) {
+        var gd = rlen(e.x, e.y, gsite.x, gsite.y);
+        e.ang = Math.atan2(gsite.y - e.y, gsite.x - e.x);
+        if (gd > 140) { mvx = (gsite.x - e.x) / gd; mvy = (gsite.y - e.y) / gd; }
+        else { mvx = Math.cos(e.wa) * 0.45; mvy = Math.sin(e.wa) * 0.45; }
+      } else {
+        mvx = Math.cos(e.wa) * 0.55; mvy = Math.sin(e.wa) * 0.55;
+        e.ang = e.wa;
+      }
     }
     var esm = e.slowMark > 0 ? 0.42 : 1;
     raidMoveEnt(e, mvx * e.t.spd * dt * esm * (isWater(e.x, e.y) ? 0.7 : 1), mvy * e.t.spd * dt * esm * (isWater(e.x, e.y) ? 0.7 : 1), e.r);
@@ -9512,7 +9639,9 @@ body{overscroll-behavior-y:contain}
       if (d < bd) { bd = d; best = e; }
     }
     var mvx = 0, mvy = 0;
-    if (best) {
+    /* 爆破模式：敌人太远（或已清空）时，队友自己往包点 / 炸弹推进，不原地发呆 */
+    var bombtgt = (Raid.map && Raid.map.bomb && (!best || bd > 620)) ? raidBombObjective() : null;
+    if (best && !bombtgt) {
       a.ang = Math.atan2(best.y - a.y, best.x - a.x);
       if (bd > 300) { mvx = (best.x - a.x) / bd; mvy = (best.y - a.y) / bd; }
       else if (bd < 150) { mvx = -(best.x - a.x) / bd; mvy = -(best.y - a.y) / bd; }
@@ -9528,8 +9657,27 @@ body{overscroll-behavior-y:contain}
     } else {
       a.wander -= dt;
       if (a.wander <= 0) { a.wander = rnd(1.4, 3); a.wa = rnd(0, 6.28); }
-      mvx = Math.cos(a.wa) * 0.5; mvy = Math.sin(a.wa) * 0.5;
-      a.ang = a.wa;
+      if (bombtgt) {
+        var btd = rlen(a.x, a.y, bombtgt.x, bombtgt.y);
+        if (btd > 160) {
+          a.ang = Math.atan2(bombtgt.y - a.y, bombtgt.x - a.x);
+          mvx = (bombtgt.x - a.x) / btd; mvy = (bombtgt.y - a.y) / btd;
+        } else {
+          mvx = Math.cos(a.wa) * 0.5; mvy = Math.sin(a.wa) * 0.5; a.ang = a.wa;
+        }
+      } else {
+        mvx = Math.cos(a.wa) * 0.55; mvy = Math.sin(a.wa) * 0.55; a.ang = a.wa;
+      }
+      /* 路上看到敌人也照打 */
+      if (best && bd < 520 && a.cd <= 0 && !raidBlocked(a.x, a.y, best.x, best.y)) {
+        a.cd = 0.95 * rnd(0.8, 1.3);
+        a.ang = Math.atan2(best.y - a.y, best.x - a.x);
+        var aa2 = a.ang + (Math.random() - 0.5) * 0.5;
+        Raid.bullets.push({
+          x: a.x + Math.cos(a.ang) * 16, y: a.y + Math.sin(a.ang) * 16,
+          vx: Math.cos(aa2) * 460, vy: Math.sin(aa2) * 460, dmg: 13, own: 'a'
+        });
+      }
     }
     raidMoveEnt(a, mvx * 92 * dt * (isWater(a.x, a.y) ? 0.7 : 1), mvy * 92 * dt * (isWater(a.x, a.y) ? 0.7 : 1), a.r);
   }
@@ -9596,6 +9744,97 @@ body{overscroll-behavior-y:contain}
       raidSetTipSoft('「' + nearest.name + '」有敌兵争夺，先清场再占领');
     }
   }
+  /* ---- 爆破模式：安包 / 引信 / 拆弹 ---- */
+  function raidBombStep(dt) {
+    var b = Raid.bomb, p = Raid.p, i;
+    if (!b || Raid.over) { return; }
+    if (b.flashT > 0) { b.flashT = Math.max(0, b.flashT - dt); }
+    /* 守军全灭 → 进攻方直接赢（没人守也没人拆） */
+    var alive = 0;
+    for (i = 0; i < Raid.enemies.length; i++) { if (Raid.enemies[i].hp > 0) { alive += 1; } }
+    Raid.bombAlive = alive;
+    if (alive === 0) { endRaid(true, '全歼守军'); return; }
+    if (b.phase === 'carry') {
+      var site = null;
+      for (i = 0; i < b.sites.length; i++) {
+        if (rlen(p.x, p.y, b.sites[i].x, b.sites[i].y) < b.sites[i].r) { site = b.sites[i]; break; }
+      }
+      if (site && !Raid.dead && p.hp > 0) {
+        if (!b.site) { b.site = site; raidTip('正在安放炸弹…站在圈里别动，' + BOMB_PLANT + ' 秒'); }
+        b.plant = Math.min(1, b.plant + dt / BOMB_PLANT);
+        b.at = site;
+        if (b.plant >= 1) {
+          b.phase = 'planted'; b.fuse = BOMB_FUSE; b.defuse = 0; b.flashT = 2.4;
+          sfx('box'); Raid.shake = 5;
+          raidTip('炸弹已安放在「' + site.name + '」！守住 ' + BOMB_FUSE + ' 秒，别让守军拆弹');
+          addLog('爆破模式：在「' + site.name + '」安放炸弹，引信 ' + BOMB_FUSE + ' 秒');
+        }
+      } else {
+        b.plant = Math.max(0, b.plant - dt * 0.45);
+        if (b.plant <= 0.001) { b.site = null; b.at = null; }
+      }
+      return;
+    }
+    /* 已安放：引信倒计时 */
+    b.fuse -= dt;
+    if (b.fuse <= 0) {
+      b.fuse = 0; b.phase = 'boom';
+      Raid.shake = 12; Raid.flash = 1;
+      endRaid(true, '炸弹引爆');
+      return;
+    }
+    /* 守军拆弹：离炸弹最近的两个人扑上去，其余继续压制 */
+    var d1 = null, d2 = null, dd1 = 1e9, dd2 = 1e9, e, d;
+    for (i = 0; i < Raid.enemies.length; i++) {
+      e = Raid.enemies[i];
+      if (e.hp <= 0) { e.isDefuser = false; e.defusing = false; continue; }
+      d = rlen(e.x, e.y, b.at.x, b.at.y);
+      if (d < dd1) { dd2 = dd1; d2 = d1; dd1 = d; d1 = e; }
+      else if (d < dd2) { dd2 = d; d2 = e; }
+    }
+    for (i = 0; i < Raid.enemies.length; i++) {
+      e = Raid.enemies[i];
+      e.isDefuser = (e === d1 || e === d2) && e.hp > 0;
+    }
+    var onBomb = 0;
+    if (d1 && dd1 < 46) { onBomb = 1; }
+    else if (d2 && dd2 < 46) { onBomb = 2; }
+    if (onBomb) {
+      b.defuse = Math.min(1, b.defuse + dt / BOMB_DEFUSE * (onBomb === 1 ? 1 : 0.55));
+      if (b.defuse >= 1) {
+        b.defuse = 1; b.phase = 'defused';
+        endRaid(false, '炸弹被守军拆除');
+        return;
+      }
+    } else if (b.defuse > 0) {
+      b.defuse = Math.max(0, b.defuse - dt * 0.4);
+    }
+  }
+  /* 爆破模式：拆弹兵直奔炸弹（到了就原地拆，不追人也不开枪） */
+  function raidBombDefuseStep(e, dt) {
+    var b = Raid.bomb, bb = b && b.at, dd;
+    if (!bb) { return false; }
+    dd = rlen(e.x, e.y, bb.x, bb.y);
+    e.ang = Math.atan2(bb.y - e.y, bb.x - e.x);
+    if (dd > 38) {
+      e.defusing = false;
+      raidMoveEnt(e, (bb.x - e.x) / dd * e.t.spd * dt, (bb.y - e.y) / dd * e.t.spd * dt, e.r);
+    } else {
+      e.defusing = true;
+    }
+    return true;
+  }
+  /* 爆破模式：队友的行进目标（没安包就去包点，安好了就守炸弹） */
+  function raidBombObjective() {
+    var b = Raid.bomb, best = null, bd = 1e9, i, px = Raid.p.x, py = Raid.p.y;
+    if (!b) { return null; }
+    if (b.phase !== 'carry' && b.at) { return b.at; }
+    for (i = 0; i < b.sites.length; i++) {
+      var d = rlen(px, py, b.sites[i].x, b.sites[i].y);
+      if (d < bd) { bd = d; best = b.sites[i]; }
+    }
+    return best;
+  }
   function raidSetTipSoft(msg) {
     if (Raid.tipT > 0.7) { return; }
     var t = byId('raidTip');
@@ -9621,7 +9860,7 @@ body{overscroll-behavior-y:contain}
     var p = Raid.p, i;
     Raid.t += dt;
     if (Raid.t >= Raid.map.limit) {
-      endRaid(false, Raid.map.war ? '时间到，没能占下全部据点' : '任务超时');
+      endRaid(false, Raid.map.bomb ? '时间到，炸弹没能安放' : (Raid.map.war ? '时间到，没能占下全部据点' : '任务超时'));
       return;
     }
     if (Raid.dead) {
@@ -9685,7 +9924,7 @@ body{overscroll-behavior-y:contain}
     for (i = 0; i < Raid.allies.length; i++) {
       var al = Raid.allies[i];
       if (!al.down && al.hp > 0) { raidAllyStep(al, dt); }
-      else if (al.down && Raid.map.war) {
+      else if (al.down && (Raid.map.war || Raid.map.bomb)) {
         al.downT = (al.downT || 0) + dt;
         if (al.downT > 12) {
           al.down = false; al.hp = al.max; al.downT = 0;
@@ -9700,6 +9939,8 @@ body{overscroll-behavior-y:contain}
     if (Raid.map.jail && p.hp <= 50 && p.hp > 0 && !Raid.dead) { startJail(); return; }
     /* 大战场：占领据点 */
     if (Raid.map.war) { raidCapStep(dt); if (Raid.over) { return; } }
+    /* 爆破模式：安包 / 引信 / 拆弹 */
+    if (Raid.map.bomb) { raidBombStep(dt); if (Raid.over) { return; } }
     /* 开箱 */
     for (i = 0; i < Raid.boxes.length; i++) {
       var bx = Raid.boxes[i];
@@ -10571,6 +10812,77 @@ body{overscroll-behavior-y:contain}
         ctx.globalAlpha = 1;
       }
     }
+    /* 爆破模式：A / B 包点 + 炸弹 */
+    if (Raid.bomb) {
+      var bm = Raid.bomb, si, st2, liveSite, pulse2;
+      for (si = 0; si < bm.sites.length; si++) {
+        st2 = bm.sites[si];
+        liveSite = (bm.phase === 'planted' && bm.at === st2);
+        pulse2 = 0.5 + Math.sin(Raid.t * 2.2) * 0.5;
+        ctx.fillStyle = liveSite ? 'rgba(255,90,60,.15)' : 'rgba(255,196,84,.09)';
+        ctx.beginPath(); ctx.arc(st2.x, st2.y, st2.r, 0, 6.2832); ctx.fill();
+        ctx.strokeStyle = liveSite ? '#ff5f45' : 'rgba(255,196,84,.75)';
+        ctx.lineWidth = liveSite ? 3.4 : 2.2;
+        ctx.setLineDash(liveSite ? [] : [14, 12]);
+        ctx.beginPath(); ctx.arc(st2.x, st2.y, st2.r, 0, 6.2832); ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.strokeStyle = liveSite ? 'rgba(255,95,69,.32)' : 'rgba(255,196,84,.2)';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(st2.x - st2.r * 0.32, st2.y); ctx.lineTo(st2.x + st2.r * 0.32, st2.y);
+        ctx.moveTo(st2.x, st2.y - st2.r * 0.32); ctx.lineTo(st2.x, st2.y + st2.r * 0.32);
+        ctx.stroke();
+        ctx.textAlign = 'center';
+        ctx.font = 'bold 46px sans-serif';
+        ctx.fillStyle = liveSite
+          ? ('rgba(255,95,69,' + (0.55 + pulse2 * 0.4) + ')')
+          : 'rgba(255,196,84,.72)';
+        ctx.fillText(st2.name.charAt(0), st2.x, st2.y - 18);
+        ctx.font = 'bold 13px sans-serif';
+        ctx.fillStyle = 'rgba(233,239,230,.78)';
+        ctx.fillText(st2.name, st2.x, st2.y + 30);
+        /* 安包读条 */
+        if (!liveSite && bm.phase === 'carry' && bm.site === st2 && bm.plant > 0.01) {
+          ctx.strokeStyle = '#ffd166';
+          ctx.lineWidth = 7;
+          ctx.beginPath();
+          ctx.arc(st2.x, st2.y, st2.r - 14, -1.5708, -1.5708 + 6.2832 * bm.plant);
+          ctx.stroke();
+          ctx.font = 'bold 15px sans-serif';
+          ctx.fillStyle = '#ffd166';
+          ctx.fillText('安包 ' + Math.round(bm.plant * 100) + '%', st2.x, st2.y + st2.r - 20);
+        }
+      }
+      /* 炸弹本体 + 引信环 */
+      if (bm.phase === 'planted' && bm.at) {
+        var bx2 = bm.at.x, by2 = bm.at.y;
+        var blink = 0.5 + Math.sin(Raid.t * (bm.fuse < 10 ? 15 : 7)) * 0.5;
+        ctx.fillStyle = '#151815';
+        ctx.strokeStyle = '#ff5f45';
+        ctx.lineWidth = 2.4;
+        ctx.beginPath(); ctx.rect(bx2 - 14, by2 - 9, 28, 19); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = 'rgba(255,95,69,' + (0.3 + blink * 0.7) + ')';
+        ctx.beginPath(); ctx.arc(bx2, by2 - 14, 3.8, 0, 6.2832); ctx.fill();
+        ctx.strokeStyle = 'rgba(255,95,69,.5)';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.arc(bx2, by2, 28, -1.5708, -1.5708 + 6.2832 * Math.max(0, bm.fuse) / BOMB_FUSE);
+        ctx.stroke();
+        ctx.textAlign = 'center';
+        ctx.font = 'bold 19px sans-serif';
+        ctx.fillStyle = (bm.fuse < 10 && blink > 0.45) ? '#ff8a5c' : '#ffd166';
+        ctx.fillText(Math.ceil(bm.fuse) + 's', bx2, by2 - 34);
+        if (bm.defuse > 0.01) {
+          ctx.fillStyle = 'rgba(10,12,10,.75)';
+          ctx.fillRect(bx2 - 42, by2 + 20, 84, 9);
+          ctx.fillStyle = '#5fb3f5';
+          ctx.fillRect(bx2 - 42, by2 + 20, 84 * bm.defuse, 9);
+          ctx.font = 'bold 12px sans-serif';
+          ctx.fillStyle = '#9fd0ff';
+          ctx.fillText('守军拆弹 ' + Math.round(bm.defuse * 100) + '%', bx2, by2 + 44);
+        }
+      }
+    }
     /* 撤离点 */
     if (Raid.ex) {
       var ex = Raid.ex, pulse = 0.5 + Math.sin(Raid.t * 2.4) * 0.5;
@@ -10988,6 +11300,15 @@ body{overscroll-behavior-y:contain}
       if (nc >= 0 && ncd > 360) {
         raidEdgeArrow(ctx, vw, vh, Raid.caps[nc].x, Raid.caps[nc].y, Raid.caps[nc].contested ? '#ff6a4d' : '#5fb3f5');
       }
+    } else if (Raid.map.bomb && Raid.bomb) {
+      /* 爆破：箭头指向该去安包的包点，安好了就指向炸弹 */
+      var btgt = raidBombObjective();
+      if (btgt) {
+        var bdd = rlen(btgt.x, btgt.y, Raid.p.x, Raid.p.y);
+        if (bdd > 320) {
+          raidEdgeArrow(ctx, vw, vh, btgt.x, btgt.y, Raid.bomb.phase === 'carry' ? '#ffd166' : '#ff5f45');
+        }
+      }
     } else {
       var nearest = -1, nd = 1e9;
       for (i = 0; i < Raid.boxes.length; i++) {
@@ -11341,6 +11662,23 @@ body{overscroll-behavior-y:contain}
         ctx.fill();
       }
     }
+    /* 爆破模式：包点与炸弹（小地图上也要看得见） */
+    if (Raid.bomb) {
+      for (i = 0; i < Raid.bomb.sites.length; i++) {
+        var bs = Raid.bomb.sites[i];
+        var bsLive = (Raid.bomb.phase === 'planted' && Raid.bomb.at === bs);
+        ctx.strokeStyle = bsLive ? '#ff5f45' : 'rgba(255,196,84,.82)';
+        ctx.fillStyle = bsLive ? 'rgba(255,95,69,.45)' : 'rgba(255,196,84,.2)';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.arc(ox + bs.x * sc, oy + bs.y * sc, Math.max(2.6, bs.r * sc), 0, 6.2832);
+        ctx.fill(); ctx.stroke();
+      }
+      if (Raid.bomb.phase === 'planted' && Raid.bomb.at) {
+        ctx.fillStyle = '#ff5f45';
+        ctx.fillRect(ox + Raid.bomb.at.x * sc - 2, oy + Raid.bomb.at.y * sc - 2, 4, 4);
+      }
+    }
     ctx.fillStyle = '#ff6a4d';
     for (i = 0; i < Raid.enemies.length; i++) {
       var e = Raid.enemies[i];
@@ -11348,8 +11686,7 @@ body{overscroll-behavior-y:contain}
       if (rlen(e.x, e.y, Raid.p.x, Raid.p.y) > 520) { continue; }
       var esz = e.t.boss ? 5 : 3;
       ctx.fillRect(ox + e.x * sc - esz / 2, oy + e.y * sc - esz / 2, esz, esz);
-    }
-    ctx.fillStyle = '#5aa7e8';
+    }    ctx.fillStyle = '#5aa7e8';
     for (i = 0; i < Raid.allies.length; i++) {
       var al2 = Raid.allies[i];
       if (al2.down) { continue; }
@@ -11414,6 +11751,7 @@ body{overscroll-behavior-y:contain}
     var bg = byId('raidBag');
     if (bg) { bg.textContent = Raid.bag.length + ' 件 / ' + raidBagValue(); }
     var isWar = !!(Raid.map && Raid.map.war);
+    var isBomb = !!(Raid.map && Raid.map.bomb);
     var skHud = byId('raidSkillHud');
     if (skHud) {
       var skOp = curOp();
@@ -11456,9 +11794,9 @@ body{overscroll-behavior-y:contain}
       } else { radHud.style.display = 'none'; }
     }
     var bagHud = byId('raidBagHud'), capHud = byId('raidCapHud'), dHud = byId('raidDeathHud'), mHud = byId('raidMateHud');
-    if (bagHud) { bagHud.style.display = isWar ? 'none' : ''; }
+    if (bagHud) { bagHud.style.display = (isWar || isBomb) ? 'none' : ''; }
     if (capHud) { capHud.style.display = isWar ? '' : 'none'; }
-    if (dHud) { dHud.style.display = isWar ? '' : 'none'; }
+    if (dHud) { dHud.style.display = (isWar || isBomb) ? '' : 'none'; }
     if (mHud) {
       if (isWar && Raid.mateName) {
         mHud.style.display = '';
@@ -11473,6 +11811,30 @@ body{overscroll-behavior-y:contain}
       if (cpEl) { cpEl.textContent = oc + ' / ' + Raid.caps.length; }
       var dEl = byId('raidDeath');
       if (dEl) { dEl.textContent = String(Raid.deaths); }
+    }
+    /* 爆破模式：顶部「爆破」HUD——待安包进度 / 引信倒数 / 守军拆弹进度 */
+    var bHudEl = byId('raidBombHud');
+    if (bHudEl) {
+      if (isBomb && Raid.bomb) {
+        var bmH = Raid.bomb, bTxt = byId('raidBombTxt');
+        bHudEl.style.display = '';
+        bHudEl.className = 'hud hud-bomb' + ((bmH.phase === 'planted' && bmH.fuse < 12) ? ' hot' : '');
+        var dBomb = byId('raidDeath');
+        if (dBomb) { dBomb.textContent = String(Raid.deaths); }
+        if (bTxt) {
+          if (bmH.phase === 'carry') {
+            bTxt.textContent = bmH.plant > 0.01
+              ? ('安包 ' + Math.round(bmH.plant * 100) + '%')
+              : ('待安包 · 守军剩 ' + (Raid.bombAlive || 0) + ' 人');
+          } else {
+            bTxt.textContent = ('引信 ' + Math.ceil(bmH.fuse) + 's')
+              + (bmH.defuse > 0.01 ? (' · 拆弹 ' + Math.round(bmH.defuse * 100) + '%') : '');
+          }
+        }
+      } else {
+        bHudEl.style.display = 'none';
+        bHudEl.className = 'hud hud-bomb';
+      }
     }
     var tm = byId('raidTime');
     if (tm) { tm.textContent = String(Math.max(0, Math.ceil(Raid.map.limit - Raid.t))); }

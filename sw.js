@@ -5,7 +5,7 @@
  *  - 跨域请求（云端数据表同步等）一律不拦截
  * 更新版本号 CACHE 后，新 SW 会在后台接管（skipWaiting + clients.claim）
  */
-var CACHE = 'mathops-v2.4.0';
+var CACHE = 'mathops-v2.5.0';
 var SHELL = [
   './',
   './index.html',
