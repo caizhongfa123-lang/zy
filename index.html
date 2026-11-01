@@ -376,6 +376,16 @@ main{padding:6px 0 40px}
 .raid-act .mini-btn{min-height:44px;font-size:13px;padding:8px 13px}
 .mini-btn.skill{background:var(--accent);border:1px solid var(--accent);color:#12160f;font-weight:800}
 .mini-btn.skill.cd{background:transparent;border:1px dashed var(--line);color:var(--muted);font-weight:700}
+/* v2.1.1 手游式圆形按键 */
+.raid-act{align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.raid-act .mini-btn{
+  width:58px;height:58px;min-height:58px;padding:0 4px;border-radius:50%;
+  font-size:10.5px;line-height:1.2;letter-spacing:.02em;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  white-space:normal;flex:none;box-shadow:0 4px 14px rgba(0,0,0,.35)
+}
+.raid-act .mini-btn.skill{font-size:11px;font-weight:800}
+.raid-ui.top .raid-act .mini-btn{width:42px;height:42px;min-height:42px;font-size:10px;padding:0;box-shadow:none}
 .joy{
   position:absolute;width:110px;height:110px;border-radius:50%;border:2px solid rgba(255,255,255,.22);
   background:rgba(255,255,255,.05);display:none;touch-action:none
@@ -1011,7 +1021,7 @@ body{
         <div class="lobby-poster">
           <div class="lobby-kicker">PLATINUM NATION · THREE-WAY WAR</div>
           <div class="lobby-title" id="lobbyOpName">白金国 · 边境</div>
-          <div class="lobby-sub" id="lobbyOpSub">纪年 1010，三方争斗的第一年</div>
+          <div class="lobby-sub" id="lobbyOpSub">2060 年，三方争斗的第一年</div>
           <div class="lobby-mode-row">
             <button class="lobby-mode" id="btnLobbyRaid" type="button">
               <b>边境冲突</b>
@@ -1030,16 +1040,16 @@ body{
           </button>
           <button class="lobby-card" id="btnLobbyBadge" type="button">
             <b>S1 卷 · 起源</b>
-            <span>白金国纪年 1010 · 故事就从这一夜开始</span>
+            <span>2060 年 · 白金成了最重要的物资</span>
           </button>
           <button class="lobby-cta" id="btnLobbyGo" type="button">行前备战</button>
         </div>
       </div>
     </div>
     <div class="panel">
-      <div class="panel-title"><span class="bar"></span>故事 · S1 卷「起源」<small>白金国纪年 1010</small></div>
+      <div class="panel-title"><span class="bar"></span>故事 · S1 卷「起源」<small>公元 2060 年</small></div>
       <div class="story">
-        <p>1010 年，巨龙烧毁了「机龙暴台」。蜂龙罗狂咬枋米华，蜂国虽然白金满仓，却没有一门技术能把它加工成有用的东西——国格一年比一年贫困。</p>
+        <p>2060 年，白金成了全世界最重要的物资——芯片、机甲、能源核心，全都离不开它。可就在这一年，巨龙一场大火烧毁了「机龙暴台」，白金国虽然白金满仓，却没有一门技术能把它加工成有用的东西——国力一年比一年弱。</p>
         <p>蚕蚀集团就是这时候进来的。他们打着「技术帮助」的旗号，干的却是见不得人的勾当。</p>
         <p>白金国终于发现了。大权限冲突一夜爆发，一些士兵看不下去，索性自己建起了一座「怪食都」。</p>
         <p>从此，白金国、蚕蚀集团、怪食都——三方争斗，再没有停过。你，是这场争斗里没有归属的那一个。</p>
@@ -1338,8 +1348,8 @@ body{
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '2.1.0';
-  var APP_DATE = '2026-10-31';
+  var APP_VER = '2.1.1';
+  var APP_DATE = '2026-11-01';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
   var LS_FORM = 'wb_mathdelta_form_v1';
@@ -5147,7 +5157,7 @@ body{
       lore: '龟壳术的极限形态：一堵墙变成一排墙',
       act: { id: 'shieldwall', name: '龟甲壁垒', cd: 55, desc: '大招：在身前架起一排可架枪的重盾，挡住整条走廊' } },
     { id: 'incendiary', code: '焚城弹', type: 'ult', price: 340, node: '焚', tier: 4,
-      lore: '1010 年烧毁机龙暴台的那把火，有人留了一点火种',
+      lore: '2060 年烧毁机龙暴台的那把火，有人留了一点火种',
       act: { id: 'incendiary', name: '焚城弹', cd: 60, desc: '大招：扔出燃烧弹，落点烧成一片火海，进去的人持续掉血' } },
     /* ---------- 被动节点（解锁即生效） ---------- */
     { id: 'helmet', code: '好头', type: 'pass', price: 160, node: '盔', tier: 1,
