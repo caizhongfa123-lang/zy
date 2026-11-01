@@ -1414,7 +1414,7 @@ body{overscroll-behavior-y:contain}
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '2.3.0';
+  var APP_VER = '2.4.0';
   var APP_DATE = '2026-11-01';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
@@ -6473,12 +6473,14 @@ body{overscroll-behavior-y:contain}
     }
     return FISH_KINDS[0];
   }
+  /* 人机（敌人）模板：spd = 移动速度（玩家 152），rate = 开火间隔秒数（越小打得越密）
+     v2.4.0 起整体提速 + 提高射速：移速约 +36%，开火间隔约 -28% */
   var ETYPE = [
-    { code: '巡逻兵', hp: 1.0, dmg: 0.7, spd: 60, rate: 1.6, acc: 0.30, r: 12, color: '#7f9a7c', ui: 0 },
-    { code: '步枪兵', hp: 1.5, dmg: 1.0, spd: 74, rate: 1.05, acc: 0.20, r: 13, color: '#c0a45f', ui: 1 },
-    { code: '重装兵', hp: 2.7, dmg: 1.5, spd: 46, rate: 0.68, acc: 0.16, r: 15, color: '#c1694f', ui: 2 },
-    { code: '矿主', hp: 7.2, dmg: 1.8, spd: 52, rate: 0.55, acc: 0.13, r: 24, color: '#e0567f', ui: 3, boss: true },
-    { code: '枪火', hp: 9.4, dmg: 2.2, spd: 44, rate: 0.6, acc: 0.12, r: 26, color: '#9b7fe0', ui: 4, boss: true }
+    { code: '巡逻兵', hp: 1.0, dmg: 0.7, spd: 82, rate: 1.15, acc: 0.30, r: 12, color: '#7f9a7c', ui: 0 },
+    { code: '步枪兵', hp: 1.5, dmg: 1.0, spd: 100, rate: 0.75, acc: 0.20, r: 13, color: '#c0a45f', ui: 1 },
+    { code: '重装兵', hp: 2.7, dmg: 1.5, spd: 63, rate: 0.50, acc: 0.16, r: 15, color: '#c1694f', ui: 2 },
+    { code: '矿主', hp: 7.2, dmg: 1.8, spd: 70, rate: 0.40, acc: 0.13, r: 24, color: '#e0567f', ui: 3, boss: true },
+    { code: '枪火', hp: 9.4, dmg: 2.2, spd: 60, rate: 0.44, acc: 0.12, r: 26, color: '#9b7fe0', ui: 4, boss: true }
   ];
   function bossTypeOf(map) { return ETYPE[map && map.bossEt !== undefined ? map.bossEt : 3]; }
   function gunById(id) {
@@ -9481,7 +9483,8 @@ body{overscroll-behavior-y:contain}
       else if (d < 125) { mvx = -(tgt.x - e.x) / d; mvy = -(tgt.y - e.y) / d; }
       else { mvx = Math.cos(e.ang + 1.57) * 0.62; mvy = Math.sin(e.ang + 1.57) * 0.62; }
       if (d < 420 && e.cd <= 0 && !raidBlocked(e.x, e.y, tgt.x, tgt.y)) {
-        e.cd = e.t.rate * rnd(0.8, 1.3);
+        /* 开火间隔：以模板 rate 为基准，随机浮动区间收紧（v2.4.0），出枪更连贯 */
+        e.cd = e.t.rate * rnd(0.78, 1.15);
         var a = e.ang + (Math.random() - 0.5) * e.t.acc * 2;
         Raid.bullets.push({
           x: e.x + Math.cos(e.ang) * 16, y: e.y + Math.sin(e.ang) * 16,
