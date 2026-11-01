@@ -340,6 +340,27 @@ main{padding:6px 0 40px}
 .mate-chip.on{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
 .mate-chip.mine{cursor:default;border-style:dashed;color:var(--muted)}
 .gun-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:10px}
+/* ===== v2.3.0 枪械图鉴（11 把真枪数据表） ===== */
+.dex-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}
+.gun-dex{width:100%;border-collapse:collapse;font-size:11.5px;min-width:660px}
+.gun-dex th{
+  position:sticky;top:0;background:var(--panel);color:var(--muted);font-weight:700;
+  font-size:11px;text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+.gun-dex td{padding:9px 10px;border-bottom:1px solid rgba(43,54,44,.6);vertical-align:top}
+.gun-dex tr:last-child td{border-bottom:0}
+.gun-dex tr.own td{background:var(--accent-soft)}
+.gun-dex .dx-n{font-weight:800;font-size:12.5px;white-space:nowrap}
+.gun-dex .dx-n i{display:block;font-style:normal;font-weight:600;font-size:10px;color:var(--muted);margin-top:2px}
+.gun-dex .dx-cls{white-space:nowrap;color:#43df87;font-weight:800}
+.gun-dex .dx-num{white-space:nowrap;font-variant-numeric:tabular-nums}
+.gun-dex .dx-num u{text-decoration:none;color:var(--muted);font-size:10px}
+.gun-dex .dx-pen b{color:var(--accent)}
+.gun-dex .dx-feat{min-width:150px;color:var(--txt);line-height:1.5}
+.gun-dex .dx-have{display:inline-block;margin-left:5px;font-size:9.5px;color:var(--ok);border:1px solid var(--ok);border-radius:999px;padding:0 5px;vertical-align:1px}
+.dex-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.dex-chip{font-size:10.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px}
+.dex-chip b{color:#43df87}
 .gun-card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:11px}
 .gun-card.on{border-color:var(--accent);background:var(--accent-soft)}
 .gun-h{display:flex;align-items:center;gap:8px;margin-bottom:6px}
@@ -1259,9 +1280,21 @@ body{overscroll-behavior-y:contain}
 
   <section class="view" id="view-radio">
     <div class="panel">
+      <div class="panel-title"><span class="bar"></span>枪械图鉴 · 11 把真枪<small>按类别 / 伤害 / 优射距离 / 射速 / 容量 / 穿甲 查</small></div>
+      <div class="dex-wrap"><table class="gun-dex" id="gunDex"></table></div>
+      <div class="dex-legend">
+        <span class="dex-chip"><b>伤害</b> 单发打中一枪掉的血</span>
+        <span class="dex-chip"><b>优射距离</b> 这段距离内弹道最稳、最好打</span>
+        <span class="dex-chip"><b>射速</b> 每分钟能打多少发</span>
+        <span class="dex-chip"><b>容量</b> 一个弹匣几发</span>
+        <span class="dex-chip"><b>穿甲</b> 数值越高越能打穿护甲</span>
+      </div>
+      <div class="radio-tip" style="margin-top:8px">这张表就是商店里那 11 把新枪的原始数据：<b>数据来源是孩子整理的真实枪械表</b>，游戏里照着同一套数值跑——表里射速写 780 发/分，进游戏就是 0.077 秒一发。想比一比哪把更适合自己，看「伤害 × 射速」和「优射距离」两列就够了：Vector 近身最猛、M700 一百米外点名、Ash-12 十米内一枪一个。<b>绿底那一行是你现在装着的那把。</b></div>
+    </div>
+    <div class="panel">
       <div class="panel-title"><span class="bar"></span>军火库 · 武器采购<small id="gunNote"></small></div>
       <div class="gun-grid" id="gunList"></div>
-      <div class="radio-tip" style="margin-top:8px"><b>9 把枪长得都不一样</b>：卡片上那张侧视图就是它进图握在你手里的样子——M9 手枪最短、MP5 带前竖握把和长弹匣、AKM 是下斜木托配弯月弹匣、M4A1 有长提把导轨、M870 中间那截是撸一下的泵动护木、SV-98 和 AWM 带大倍镜和两脚架（AWM 最长）、AA-12 挂着鼓形弹匣、M134 是三根枪管并排转。所有枪都按同一比例画，所以短枪显短、长枪显长；卡片用的是你<b>当前装的那款枪皮</b>，换了涂装整排预览跟着变。</div>
+      <div class="radio-tip" style="margin-top:8px"><b>20 把枪长得都不一样</b>：卡片上那张侧视图就是它进图握在你手里的样子——M9 手枪最短、G18 是加长弹匣的全自动手枪、MP5 带前竖握把、MP7 连弹匣都塞进握把里、Vector 机匣超短配弯月弹匣、AKM 是下斜木托配弯月弹匣、AK-12 顶上多一条整导轨、K416 导轨从机匣铺到护木、MCX 是短管紧凑型、QBZ95-1 是无托（弹匣在握把后面）、M4A1 有长提把导轨、M870 中间那截是撸一下的泵动护木、Ash-12 挂着方形大弹匣、SKS 木托长管、VSS 前段是粗消音器、SV-98 和 AWM 带大倍镜和两脚架（AWM 最长）、M700 是经典栓动猎枪、AA-12 挂鼓形弹匣、M134 是三根枪管并排转。所有枪都按同一比例画，所以短枪显短、长枪显长；卡片用的是你<b>当前装的那款枪皮</b>，换了涂装整排预览跟着变。</div>
     </div>
     <div class="panel">
       <div class="panel-title"><span class="bar"></span>近战军械 · 冷兵器<small id="knifeNote"></small></div>
@@ -1381,7 +1414,7 @@ body{overscroll-behavior-y:contain}
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '2.2.0';
+  var APP_VER = '2.3.0';
   var APP_DATE = '2026-11-01';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
@@ -5472,7 +5505,48 @@ body{overscroll-behavior-y:contain}
     { id: 'gatling', code: 'M134 加特林', price: 1800, dmg: 7, rate: 0.05, mag: 999, spread: 0.19, spd: 900, reload: 0, pellets: 1, noReload: true,
       tag: '无需换弹', desc: '弹链无限、射速拉满，永不换弹；代价是单发伤害低、后坐散，靠持续压制把人磨死' },
     { id: 'awm', code: 'AWM 狙击枪', price: 2600, dmg: 240, rate: 1.55, mag: 5, spread: 0.006, spd: 1650, reload: 2.7, pellets: 1, oneShot: true,
-      tag: 'A 大 · 一枪一个', desc: '玩家口中的「A 大」：栓动重狙，打中普通敌人一枪一个直接送走，Boss 打不死但也要掉一大截血；拉栓慢，必须站稳再瞄' }
+      tag: 'A 大 · 一枪一个', desc: '玩家口中的「A 大」：栓动重狙，打中普通敌人一枪一个直接送走，Boss 打不死但也要掉一大截血；拉栓慢，必须站稳再瞄' },
+    /* ===== v2.3.0 新增 11 把「真枪」：cls 类别 / rng 优射距离(米) / rpm 射速(发/分) / pen 穿甲 / feat 特点
+       这五项就是枪械图鉴里那张表的原始数据，改这里图鉴和商店会一起变 ===== */
+    /* --- 手枪 --- */
+    { id: 'g18', code: 'G18 手枪', price: 260, dmg: 18, rate: 0.05, mag: 17, spread: 0.105, spd: 800, reload: 1.15, pellets: 1,
+      cls: '手枪', rng: 15, rpm: 1200, pen: 20, tag: '全自动',
+      feat: '全自动补伤害', desc: '全自动手枪：一扣扳机就是一串，射速快过所有步枪，贴脸能当小冲锋枪用；单发伤害低，远了打不动' },
+    /* --- 冲锋枪 --- */
+    { id: 'mp7', code: 'MP7 冲锋枪', price: 900, dmg: 22, rate: 0.063, mag: 30, spread: 0.13, spd: 880, reload: 1.30, pellets: 1,
+      cls: '冲锋枪', rng: 15, rpm: 950, pen: 30, tag: '轻量高射速',
+      feat: '轻量高射速，适合冲锋', desc: '又小又轻，掏出来就能扫；弹匣藏在握把里所以枪身特别短，走廊拐角先手很占便宜' },
+    { id: 'vector', code: 'Vector 冲锋枪', price: 1250, dmg: 32, rate: 0.055, mag: 17, spread: 0.15, spd: 860, reload: 1.25, pellets: 1,
+      cls: '冲锋枪', rng: 20, rpm: 1091, pen: 28, tag: '近战神枪',
+      feat: '近战神枪，后座飘', desc: '全表射速最快的枪之一，17 发眨眼打空；单发 32 点近身伤害拉满，但弹道飘、换弹频繁，必须贴脸' },
+    /* --- 突击步枪 --- */
+    { id: 'qbz95', code: 'QBZ95-1 突击步枪', price: 1350, dmg: 27, rate: 0.08, mag: 30, spread: 0.052, spd: 950, reload: 1.50, pellets: 1,
+      cls: '突击步枪', rng: 30, rpm: 750, pen: 36, tag: '低后座',
+      feat: '低后座，操控拉满', desc: '无托结构、弹匣在握把后面，重心靠后所以压枪最省力；精度是全步枪里最高的一档，适合连点' },
+    { id: 'ak12', code: 'AK-12 突击步枪', price: 1400, dmg: 32, rate: 0.092, mag: 30, spread: 0.095, spd: 940, reload: 1.60, pellets: 1,
+      cls: '突击步枪', rng: 25, rpm: 650, pen: 42, tag: '高伤高穿',
+      feat: '高伤高穿，后座较大', desc: 'AK 家族的现代化版本：单发 32、穿甲 42，是步枪里最能打穿护甲的；代价是后座大，打连发要稳' },
+    { id: 'k416', code: 'K416 突击步枪', price: 1500, dmg: 28, rate: 0.077, mag: 30, spread: 0.060, spd: 960, reload: 1.45, pellets: 1,
+      cls: '突击步枪', rng: 30, rpm: 780, pen: 38, tag: '新手首选',
+      feat: '均衡稳定，新手首选', desc: '伤害、射速、精度、后座全都在中上，没有短板；第一次打步枪就选它，怎么打都不会太差' },
+    { id: 'mcx', code: 'MCX LT 突击步枪', price: 1600, dmg: 26, rate: 0.071, mag: 30, spread: 0.070, spd: 980, reload: 1.40, pellets: 1,
+      cls: '突击步枪', rng: 35, rpm: 840, pen: 32, tag: '中距压制',
+      feat: '射速快，中距压制', desc: '短管 + 高射速，中距离一梭子压过去对面抬不起头；优射距离是步枪里最远的 35 米' },
+    /* --- 射手步枪 --- */
+    { id: 'sks', code: 'SKS 射手步枪', price: 1700, dmg: 45, rate: 0.34, mag: 20, spread: 0.026, spd: 1250, reload: 1.80, pellets: 1,
+      cls: '射手步枪', rng: 70, rpm: '半自动', pen: 40, tag: '中距精准',
+      feat: '中距精准，依赖配件', desc: '半自动点射，45 点单发两枪带走一个普通兵；70 米内指哪打哪，但没有倍镜时全靠手感' },
+    { id: 'vss', code: 'VSS 射手步枪', price: 1900, dmg: 40, rate: 0.26, mag: 10, spread: 0.030, spd: 1200, reload: 1.70, pellets: 1,
+      cls: '射手步枪', rng: 50, rpm: '半自动', pen: 35, tag: '消音偷袭',
+      feat: '消音+高穿，偷袭利器', desc: '枪管自带消音器，开火声音最轻，摸到背后开枪不容易被其他人发现；10 发弹匣，打完就得换' },
+    /* --- 狙击枪 --- */
+    { id: 'm700', code: 'M700 狙击枪', price: 2300, dmg: 85, rate: 1.15, mag: 5, spread: 0.011, spd: 1550, reload: 2.30, pellets: 1,
+      cls: '狙击枪', rng: 100, rpm: '栓动', pen: 50, tag: '秒人神器',
+      feat: '秒人神器，容错低', desc: '栓动狙击：85 点单发、穿甲 50，打中就掉一大截；拉栓慢、打空一枪就得再等，站稳再开' },
+    /* --- 霰弹枪 --- */
+    { id: 'ash12', code: 'Ash-12 霰弹枪', price: 1500, dmg: 12, rate: 0.80, mag: 8, spread: 0.230, spd: 720, reload: 2.10, pellets: 8,
+      cls: '霰弹枪', rng: 10, rpm: '泵动', pen: 25, tag: '近距秒杀',
+      feat: '近距秒杀，射程极短', desc: '一枪 8 颗弹丸、每颗 12 点，贴脸总伤害接近 100；但只要拉开到 10 米外，弹丸就散得打不满' }
   ];
   var ARMORS = [
     { id: 'none', code: '战术背心', price: 0, red: 0, desc: '基础装具，没有减伤' },
@@ -5524,7 +5598,11 @@ body{overscroll-behavior-y:contain}
      刀的色位：blade 刀身 / edge 刃口 / spine 刀背 / grip 刀柄 / guard 护手 / glow 刃纹 */
   var GUN_SHAPE_OF = {
     m9: 'pistol', mp5: 'smg', akm: 'ak', m4a1: 'carbine', m870: 'pump',
-    sv98: 'bolt', aa12: 'drum', gatling: 'gatling', awm: 'awm'
+    sv98: 'bolt', aa12: 'drum', gatling: 'gatling', awm: 'awm',
+    /* v2.3.0 新增 11 把：每把一套独立剪影 */
+    g18: 'g18', mp7: 'mp7', vector: 'vector', qbz95: 'bullpup',
+    ak12: 'ak12', k416: 'k416', mcx: 'mcx', sks: 'sks', vss: 'vss',
+    m700: 'm700', ash12: 'ash12'
   };
   var KNIFE_SHAPE_OF = { kb: 'dagger', km9: 'bayonet', kk7: 'tanto', kmac: 'machete', ksh: 'shovel', kkat: 'katana' };
   var GUN_SHAPES = {
@@ -5647,6 +5725,148 @@ body{overscroll-behavior-y:contain}
       ['l', 46, 1.8, 41, 13, 1.8, 'metal'],
       ['l', 46, 1.8, 51.4, 13, 1.8, 'metal'],
       ['l', 29, -1.8, 56, -1.8, 1.2, 'glow']
+    ] },
+    /* ===== v2.3.0 新增 11 把枪的剪影 ===== */
+    /* G18：短套筒 + 加长弹匣（握把底下露出一截），全自动手枪的样子 */
+    g18: { len: 34, d: [
+      ['r', 8, -4.4, 20, 4.6, 'metal'],
+      ['r', 25.2, -3.2, 4.4, 3.4, 'body'],
+      ['r', 8, 0.2, 15, 3.4, 'body'],
+      ['r', 9.5, 3.6, 6.6, 12, 'grip'],
+      ['r', 9, 15.4, 7.8, 2, 'metal'],
+      ['r', 22.4, -6.4, 2, 2, 'accent'],
+      ['l', 15.6, 3.6, 15.6, 9, 1.8, 'body'],
+      ['l', 15.6, 9, 12.4, 9, 1.8, 'body'],
+      ['l', 14.6, -4.6, 25, -4.6, 1.2, 'glow']
+    ] },
+    /* MP7：极短机匣 + 握把里插弹匣 + 折叠托杆，比 MP5 还小一号 */
+    mp7: { len: 38, d: [
+      ['r', 0, -1.4, 8, 2.8, 'grip'],
+      ['r', -1.4, -3, 2, 6, 'metal'],
+      ['r', 8, -3.4, 18, 6.8, 'body'],
+      ['r', 10, -5.8, 14, 2.4, 'metal'],
+      ['r', 26, -2, 8, 4, 'metal'],
+      ['r', 33, -2.6, 3, 5.2, 'accent'],
+      ['r', 12, 3.4, 6, 10.6, 'grip'],
+      ['r', 12.6, 13.4, 5.4, 1.8, 'metal'],
+      ['r', 20, 3.4, 4, 4.4, 'metal'],
+      ['l', 11, -3.4, 24, -3.4, 1.2, 'glow']
+    ] },
+    /* Vector：超短机匣 + 高握把 + 弯月弹匣，机匣后坐弹簧仓特别方 */
+    vector: { len: 36, d: [
+      ['r', 0, -2, 9, 4, 'grip'],
+      ['r', 9, -4, 14, 8, 'body'],
+      ['r', 10, -6.2, 11, 2.2, 'metal'],
+      ['r', 23, -1.6, 9, 3.2, 'metal'],
+      ['r', 30.4, -2.2, 3, 4.4, 'accent'],
+      ['p', [[12, 4], [18, 4], [20, 14], [15, 16], [12, 9]], 'metal'],
+      ['r', 20, 4, 5, 8, 'grip'],
+      ['r', 12, 4, 4, 6, 'metal'],
+      ['l', 11, -4, 22, -4, 1.2, 'glow']
+    ] },
+    /* QBZ95-1：无托结构——弹匣装在握把后面，顶上一条提把导轨，枪身一长条 */
+    bullpup: { len: 50, d: [
+      ['r', 0, -3, 10, 6, 'body'],
+      ['p', [[9, 3.6], [15, 3.6], [14, 12], [8.6, 12]], 'metal'],
+      ['r', 4, -6.4, 16, 2.6, 'metal'],
+      ['r', 15, -3.4, 6, 6.8, 'grip'],
+      ['r', 21, -3, 16, 6, 'body'],
+      ['r', 36, -2, 12, 4, 'metal'],
+      ['r', 46.4, -2.6, 3.4, 5.2, 'accent'],
+      ['r', 9, 3.6, 5, 7.6, 'grip'],
+      ['r', 24, 3, 5, 4, 'metal'],
+      ['l', 21, -3.4, 34, -3.4, 1.2, 'glow']
+    ] },
+    /* AK-12：AK 的现代版——机匣上加了整条导轨，护木换成方形，弹匣稍微直一点 */
+    ak12: { len: 50, d: [
+      ['p', [[0, -2.2], [10, -2.2], [10, 3.4], [1, 6.6]], 'grip'],
+      ['r', 9, -4, 20, 8, 'body'],
+      ['r', 10, -6.8, 17, 2.6, 'metal'],
+      ['r', 28, -3.4, 10, 6.8, 'grip'],
+      ['r', 29, -5.8, 12, 2, 'metal'],
+      ['r', 38, -2.2, 9, 4.4, 'metal'],
+      ['r', 46.2, -3, 3, 6, 'accent'],
+      ['p', [[15, 4], [21, 4], [23, 14.2], [18.2, 15.2]], 'metal'],
+      ['r', 11, 4, 5, 8, 'grip'],
+      ['l', 11, -4.2, 30, -4.2, 1.2, 'glow']
+    ] },
+    /* K416：导轨从机匣一直铺到护木 + 短枪管 + 直弹匣，模块化 AR 的样子 */
+    k416: { len: 46, d: [
+      ['r', 0, -2.6, 9, 5.2, 'grip'],
+      ['r', 8, -1.6, 4, 3.2, 'metal'],
+      ['r', 11, -3.4, 14, 6.8, 'body'],
+      ['r', 12, -6.2, 16, 2.4, 'metal'],
+      ['r', 25, -3, 16, 6, 'body'],
+      ['r', 26, -5.4, 15, 1.6, 'metal'],
+      ['r', 41, -1.6, 4.4, 3.2, 'metal'],
+      ['r', 44.8, -2.4, 2.8, 4.8, 'accent'],
+      ['r', 16, 3.4, 5.6, 9.6, 'metal'],
+      ['r', 11, 3.4, 5, 7.6, 'grip'],
+      ['l', 12, -3.4, 40, -3.4, 1.2, 'glow']
+    ] },
+    /* MCX LT：短管紧凑机匣 + 细护木，比 K416 短一截 */
+    mcx: { len: 42, d: [
+      ['r', 0, -2.4, 8, 4.8, 'grip'],
+      ['r', 8, -3.2, 12, 6.4, 'body'],
+      ['r', 9, -5.6, 10, 2.2, 'metal'],
+      ['r', 20, -2.8, 12, 5.6, 'body'],
+      ['r', 31, -1.6, 7, 3.2, 'metal'],
+      ['r', 37, -2.2, 3, 4.4, 'accent'],
+      ['r', 21, 2.8, 5, 8, 'metal'],
+      ['r', 14, 3, 4.6, 7, 'grip'],
+      ['l', 10, -3.2, 30, -3.2, 1.2, 'glow']
+    ] },
+    /* SKS：木托长枪身 + 25 厘米以上长枪管 + 短弹仓，二战味儿的半自动 */
+    sks: { len: 58, d: [
+      ['p', [[0, -2.6], [12, -2.6], [12, 3.6], [2, 8]], 'grip'],
+      ['r', 12, -3, 12, 6, 'body'],
+      ['r', 20, 3, 9, 10, 'grip'],
+      ['r', 24, -2, 26, 4, 'metal'],
+      ['r', 49, -2.8, 3.4, 5.6, 'accent'],
+      ['r', 16, 3, 5, 7, 'grip'],
+      ['p', [[14, 3.4], [20, 3.4], [22, 13], [17, 13.4]], 'metal'],
+      ['r', 22, -5.4, 2, 2.4, 'accent'],
+      ['l', 24, -2, 47, -2, 1.2, 'glow']
+    ] },
+    /* VSS：一体式粗消音器（前段特别肥）+ 高倍镜 + 小弹匣 */
+    vss: { len: 54, d: [
+      ['p', [[0, -2.4], [11, -2.4], [11, 3.4], [2, 7]], 'grip'],
+      ['r', 11, -3, 12, 6, 'body'],
+      ['r', 23, -1.6, 10, 3.2, 'metal'],
+      ['r', 32, -3.6, 20, 7.2, 'metal'],
+      ['r', 50.6, -2.8, 2.4, 5.6, 'accent'],
+      ['r', 13, -8.8, 2, 5.8, 'body'],
+      ['r', 15, -8.4, 14, 5, 'metal'],
+      ['r', 28.4, -9.2, 2.4, 6.6, 'accent'],
+      ['p', [[14, 3], [20, 3], [21.6, 11], [16.6, 11.6]], 'metal'],
+      ['r', 12, 3, 5, 7, 'grip'],
+      ['l', 24, -3.6, 48, -3.6, 1.2, 'glow']
+    ] },
+    /* M700：经典栓动猎枪——细长管、木质托、大倍镜、拉栓加两脚架 */
+    m700: { len: 56, d: [
+      ['p', [[0, -2.6], [13, -2.6], [13, 3.8], [3, 9]], 'grip'],
+      ['r', 13, -3.2, 12, 6.4, 'body'],
+      ['r', 25, -1.8, 26, 3.6, 'metal'],
+      ['r', 49.4, -2.6, 2.8, 5.2, 'accent'],
+      ['r', 22, -10, 2, 6.6, 'body'],
+      ['r', 24, -9.4, 16, 5.4, 'metal'],
+      ['r', 40, -10.2, 2.4, 7, 'accent'],
+      ['l', 15, 3.2, 21, 8.4, 2.2, 'metal'],
+      ['c', 21.8, 8.8, 1.9, 'metal'],
+      ['l', 40, 1.8, 36, 12, 1.6, 'metal'],
+      ['l', 40, 1.8, 44, 12, 1.6, 'metal'],
+      ['l', 26, -1.8, 46, -1.8, 1.2, 'glow']
+    ] },
+    /* Ash-12：粗枪管 + 方形大弹匣 + 泵动前护木，看着就沉 */
+    ash12: { len: 48, d: [
+      ['p', [[0, -3], [10, -3], [10, 4], [1, 7]], 'grip'],
+      ['r', 10, -4.4, 16, 8.8, 'body'],
+      ['r', 26, -4, 18, 5, 'metal'],
+      ['r', 42.6, -5, 3.4, 7, 'accent'],
+      ['r', 12, 4.4, 9, 12, 'metal'],
+      ['r', 21, 4.4, 5, 5.6, 'metal'],
+      ['r', 11, 4.4, 5, 7, 'grip'],
+      ['l', 12, -4.4, 39, -4.4, 1.2, 'glow']
     ] }
   };
   var KNIFE_SHAPES = {
@@ -6686,12 +6906,97 @@ body{overscroll-behavior-y:contain}
       box.appendChild(b);
     }
   }
+  /* ---- v2.3.0 枪械图鉴：只列带 cls 字段的新枪，按类别分组顺序输出 ---- */
+  var DEX_ORDER = ['手枪', '冲锋枪', '突击步枪', '射手步枪', '狙击枪', '霰弹枪'];
+  function dexPenLv(pen) {
+    return pen >= 45 ? '极高' : (pen >= 38 ? '高' : (pen >= 30 ? '中' : '一般'));
+  }
+  function renderGunDex() {
+    var tb = byId('gunDex');
+    if (!tb) { return; }
+    clearNode(tb);
+    var thead = document.createElement('thead');
+    var htr = document.createElement('tr');
+    var heads = ['类别', '名称', '伤害', '优射距离', '射速(发/分)', '容量', '穿甲', '特点'];
+    for (var h = 0; h < heads.length; h++) {
+      var th = document.createElement('th');
+      th.textContent = heads[h];
+      htr.appendChild(th);
+    }
+    thead.appendChild(htr);
+    tb.appendChild(thead);
+
+    var tbody = document.createElement('tbody');
+    var list = [];
+    for (var i = 0; i < GUNS.length; i++) { if (GUNS[i].cls) { list.push(GUNS[i]); } }
+    list.sort(function (a, b) {
+      var ia = DEX_ORDER.indexOf(a.cls), ib = DEX_ORDER.indexOf(b.cls);
+      if (ia !== ib) { return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib); }
+      return a.price - b.price;
+    });
+    for (var k = 0; k < list.length; k++) {
+      var g = list[k];
+      var tr = document.createElement('tr');
+      if (state.gun === g.id) { tr.className = 'own'; }
+
+      var tdC = document.createElement('td');
+      tdC.className = 'dx-cls';
+      tdC.textContent = g.cls;
+      tr.appendChild(tdC);
+
+      var tdN = document.createElement('td');
+      tdN.className = 'dx-n';
+      tdN.appendChild(document.createTextNode(g.code));
+      if (hasGun(g.id)) {
+        var have = document.createElement('span');
+        have.className = 'dx-have';
+        have.textContent = state.gun === g.id ? '在用' : '已有';
+        tdN.appendChild(have);
+      }
+      tr.appendChild(tdN);
+
+      var tdD = document.createElement('td');
+      tdD.className = 'dx-num';
+      tdD.innerHTML = (g.pellets > 1 ? (g.dmg + '<u>×' + g.pellets + '</u>') : String(g.dmg));
+      tr.appendChild(tdD);
+
+      var tdR = document.createElement('td');
+      tdR.className = 'dx-num';
+      tdR.textContent = g.rng + ' m';
+      tr.appendChild(tdR);
+
+      var tdS = document.createElement('td');
+      tdS.className = 'dx-num';
+      tdS.textContent = String(g.rpm);
+      tr.appendChild(tdS);
+
+      var tdM = document.createElement('td');
+      tdM.className = 'dx-num';
+      tdM.textContent = g.mag + ' 发';
+      tr.appendChild(tdM);
+
+      var tdP = document.createElement('td');
+      tdP.className = 'dx-num dx-pen';
+      tdP.appendChild(make('b', '', String(g.pen)));
+      tdP.appendChild(document.createTextNode(' · ' + dexPenLv(g.pen)));
+      tr.appendChild(tdP);
+
+      var tdF = document.createElement('td');
+      tdF.className = 'dx-feat';
+      tdF.textContent = g.feat;
+      tr.appendChild(tdF);
+
+      tbody.appendChild(tr);
+    }
+    tb.appendChild(tbody);
+  }
   function renderGuns() {
     var box = byId('gunList');
     if (!box) { return; }
     clearNode(box);
     for (var i = 0; i < GUNS.length; i++) { box.appendChild(gunCard(GUNS[i])); }
-    setText('gunNote', '已拥有 ' + state.guns.length + ' / ' + GUNS.length + ' · 每把外形都不一样');
+    setText('gunNote', '已拥有 ' + state.guns.length + ' / ' + GUNS.length + ' · 20 把枪外形全不一样');
+    renderGunDex();
   }
   function renderArmors() {
     var box = byId('armorList');
