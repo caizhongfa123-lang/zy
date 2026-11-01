@@ -1,0 +1,16 @@
+{
+  "name": "数学作战台 · 白金国行动",
+  "short_name": "数学作战台",
+  "description": "答对题赚白金，解锁技能树，下战场撤离的六年级数学练习台",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070a08",
+  "theme_color": "#070a08",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
