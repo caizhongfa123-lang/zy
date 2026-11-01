@@ -1426,7 +1426,7 @@ body{overscroll-behavior-y:contain}
 
   /* ================= 常量 ================= */
   /* 版本号：以后每次更新只改这一行（以及下面的日期），首页和浏览器标签会一起跟着变 */
-  var APP_VER = '2.5.0';
+  var APP_VER = '2.6.0';
   var APP_DATE = '2026-11-01';
   var DATABASE_ID = 'PRVij9QaSgs6lAUAs1iA6E';
   var LS_KEY = 'wb_mathdelta_profile_v1';
@@ -6112,8 +6112,8 @@ body{overscroll-behavior-y:contain}
     { id: 'war', code: '焦土前线', fee: 60, enemies: 22, boxes: 0, edmg: 9, ehp: 55, qb: 2, limit: 240, war: true,
       desc: '联机占领模式：带上搭档账号一起打，没有箱子和刷卡房，抢下 3 个据点就赢；阵亡不结束，3 秒后在最近的己方据点无限复活。战线中部有水塘，中场休息可以钓鱼' },
     { id: 'blast', code: '爆破 · 旧城竞技场', fee: 80, enemies: 5, boxes: 0, edmg: 12, ehp: 70, qb: 1, limit: 210, bomb: true,
-      desc: '爆破模式 5v5：你带 4 名队友进攻，对面 5 名强化人机死守 A / B 两个包点。站进包点读条安包，40 秒引爆即胜；守军会扑上来拆弹，全歼守军也算赢',
-      tip: '爆破模式：站进 A 或 B 包点的圈里别动，3 秒读条完成安放；安放后引信走 40 秒，守军会派最近的两个人来拆（拆 5 秒），守住就赢。把 5 名守军全歼也直接算赢。' }
+      desc: '爆破模式 5v5：迷宫式竞技场，你带 4 名队友进攻，对面 5 名强化人机死守 A / B 两个包点。站进包点读条安包，40 秒引爆即胜；守军会扑上来拆弹，全歼守军也算赢',
+      tip: '爆破模式：整张竞技场是迷宫，巷子窄、拐角多，小心转角遇敌！站进 A 或 B 包点的圈里别动，3 秒读条完成安放；安放后引信走 40 秒，守军会派最近的两个人来拆（拆 5 秒），守住就赢。把 5 名守军全歼也直接算赢。' }
   ];
   /* ================= 地图地貌主题：七张地图各有各的样子 ================= */
   /* 每张地图一套：地面双色 + 纹理图案 pat + 墙体材质 + 装饰物件（deco 纯装饰 / big 实体挡路） */
@@ -6231,6 +6231,8 @@ body{overscroll-behavior-y:contain}
     if (raidWallHit(x, y, r + 8)) { return false; }
     if (radZoneAt(x, y)) { return false; }
     if (isWater(x, y) || waterInBox(x, y, hw, hh)) { return false; }
+    /* 迷宫地图：大件别把过道两侧全堵死，不然玩家和人机都过不去 */
+    if (Raid.maze && hw >= 26 && propWedged(x, y, hw, hh)) { return false; }
     for (i = 0; i < Raid.rooms.length; i++) {
       rr = Raid.rooms[i];
       if (x + hw > rr.x - 56 && x - hw < rr.x + rr.w + 56 && y + hh > rr.y - 56 && y - hh < rr.y + rr.h + 56) { return false; }
@@ -7558,6 +7560,220 @@ body{overscroll-behavior-y:contain}
     }
     return false;
   }
+  /* ================= 迷宫式地图：整张图挖成一张迷宫 =================
+     做法：把内场切成 cols×rows 个格子，用「随机深度优先」挖出连通的迷宫，
+     再随机打通一部分内墙做成环路、抹掉大部分死胡同 —— 纯死胡同迷宫在人机
+     不会寻路的时候会变成一堵一堵的墙。河道 / 水塘 / 辐射区 / 房间 / 包点 /
+     出生点 / 撤离点附近一律不开墙，保证该通的地方一定通。 */
+  function mazeKeepOpen(bx, by, bw, bh, rooms) {
+    var i;
+    /* 河道、木桥、水塘：墙压在水上既丑又挡船 */
+    if (nearRiver(Raid.map, bx, by, bw, bh, 18)) { return true; }
+    /* 核辐射区：绿圈不能盖着墙 */
+    if (radRectNear(bx, by, bw, bh, 30)) { return true; }
+    /* 房间（连门口一起，不然门被墙堵死） */
+    for (i = 0; i < rooms.length; i++) {
+      var rr = rooms[i];
+      if (bx < rr.x + rr.w + 76 && bx + bw > rr.x - 76 && by < rr.y + rr.h + 76 && by + bh > rr.y - 76) { return true; }
+    }
+    /* 牢房 */
+    if (Raid.jailRect && bx < Raid.jailRect.x + Raid.jailRect.w + 52 && bx + bw > Raid.jailRect.x - 52
+      && by < Raid.jailRect.y + Raid.jailRect.h + 52 && by + bh > Raid.jailRect.y - 52) { return true; }
+    /* 据点 / 包点：留一块空地，别把 A B 点砌成小方格 */
+    var cds = CAP_DEFS[(Raid.map && Raid.map.id) || ''] || [];
+    for (i = 0; i < cds.length; i++) {
+      if (rectNear(bx, by, bw, bh, { x: cds[i].x - cds[i].r, y: cds[i].y - cds[i].r, w: cds[i].r * 2, h: cds[i].r * 2 }, 56)) { return true; }
+    }
+    /* 玩家出生点（左下角）与撤离点（右上角） */
+    if (bx < 340 && bx + bw > -40 && by < Raid.H - 20 && by + bh > Raid.H - 340) { return true; }
+    if (bx < Raid.W + 10 && bx + bw > Raid.W - 300 && by < 300 && by + bh > 10) { return true; }
+    /* 攻击艇 / 老渔夫 */
+    var rv = RIVER_DEFS[(Raid.map && Raid.map.id) || ''];
+    if (rv && rv.boat && rectNear(bx, by, bw, bh, { x: rv.boat.x - 76, y: rv.boat.y - 76, w: 152, h: 152 }, 26)) { return true; }
+    if (rv && rv.npc && rectNear(bx, by, bw, bh, { x: rv.npc.x - 62, y: rv.npc.y - 62, w: 124, h: 124 }, 34)) { return true; }
+    return false;
+  }
+  function raidMazeWalls(map, walls, rooms) {
+    var T = 26, B = 26;
+    var iw = Raid.W - B * 2, ih = Raid.H - B * 2;
+    var cell = map.war ? 152 : 140;
+    var cols = Math.max(8, Math.round(iw / cell)), rows = Math.max(6, Math.round(ih / cell));
+    var cw = iw / cols, ch = ih / rows, c, r, i;
+    var vw = [], hw = [];
+    for (c = 0; c <= cols; c++) { vw.push([]); for (r = 0; r < rows; r++) { vw[c].push(true); } }
+    for (c = 0; c < cols; c++) { hw.push([]); for (r = 0; r <= rows; r++) { hw[c].push(true); } }
+    /* 随机深度优先挖路：从玩家出生的左下角开始 */
+    var seen = [], stack = [], dirs = [[0, -1], [1, 0], [0, 1], [-1, 0]];
+    for (i = 0; i < cols * rows; i++) { seen.push(false); }
+    var s0 = (rows - 1) * cols;
+    seen[s0] = true;
+    stack.push(s0);
+    while (stack.length) {
+      var cur = stack[stack.length - 1];
+      var cc = cur % cols, cr = (cur - cc) / cols, cand = [], d, nc, nr;
+      for (d = 0; d < 4; d++) {
+        nc = cc + dirs[d][0]; nr = cr + dirs[d][1];
+        if (nc < 0 || nr < 0 || nc >= cols || nr >= rows) { continue; }
+        if (seen[nr * cols + nc]) { continue; }
+        cand.push(d);
+      }
+      if (!cand.length) { stack.pop(); continue; }
+      var pick = cand[Math.floor(Math.random() * cand.length)];
+      nc = cc + dirs[pick][0]; nr = cr + dirs[pick][1];
+      if (dirs[pick][0] !== 0) { vw[Math.max(cc, nc)][cr] = false; }
+      else { hw[cc][Math.max(cr, nr)] = false; }
+      seen[nr * cols + nc] = true;
+      stack.push(nr * cols + nc);
+    }
+    /* 环路：随机打通内墙，迷宫还是迷宫，但不至于全是死胡同 */
+    for (c = 1; c < cols; c++) { for (r = 0; r < rows; r++) { if (vw[c][r] && Math.random() < 0.15) { vw[c][r] = false; } } }
+    for (c = 0; c < cols; c++) { for (r = 1; r < rows; r++) { if (hw[c][r] && Math.random() < 0.15) { hw[c][r] = false; } } }
+    /* 抹死胡同：只有一个出口的格子，六成概率再开一边 */
+    for (c = 0; c < cols; c++) {
+      for (r = 0; r < rows; r++) {
+        var open = 0, shut = [], sd;
+        if (c > 0 && !vw[c][r]) { open += 1; } else if (c > 0) { shut.push('v' + c); }
+        if (c < cols - 1 && !vw[c + 1][r]) { open += 1; } else if (c < cols - 1) { shut.push('v' + (c + 1)); }
+        if (r > 0 && !hw[c][r]) { open += 1; } else if (r > 0) { shut.push('h' + r); }
+        if (r < rows - 1 && !hw[c][r + 1]) { open += 1; } else if (r < rows - 1) { shut.push('h' + (r + 1)); }
+        if (open > 1 || !shut.length || Math.random() > 0.6) { continue; }
+        sd = shut[Math.floor(Math.random() * shut.length)];
+        if (sd.charAt(0) === 'v') { vw[parseInt(sd.slice(1), 10)][r] = false; }
+        else { hw[c][parseInt(sd.slice(1), 10)] = false; }
+      }
+    }
+    /* 铺墙：竖墙吃满一整格高度（转角自然接上），横墙同理 */
+    for (c = 1; c < cols; c++) {
+      for (r = 0; r < rows; r++) {
+        if (!vw[c][r]) { continue; }
+        var vx = B + c * cw - T / 2, vy = B + r * ch - T / 2;
+        if (mazeKeepOpen(vx, vy, T, ch + T, rooms)) { continue; }
+        walls.push({ x: vx, y: vy, w: T, h: ch + T });
+      }
+    }
+    for (c = 0; c < cols; c++) {
+      for (r = 1; r < rows; r++) {
+        if (!hw[c][r]) { continue; }
+        var hx = B + c * cw - T / 2, hy = B + r * ch - T / 2;
+        if (mazeKeepOpen(hx, hy, cw + T, T, rooms)) { continue; }
+        walls.push({ x: hx, y: hy, w: cw + T, h: T });
+      }
+    }
+    Raid.maze = { x: B, y: B, cw: cw, ch: ch, cols: cols, rows: rows };
+  }
+  /* ================= 迷宫寻路：BFS 距离场 =================
+     迷宫里「朝目标直线冲」必然撞墙，所以按格子做 BFS，找一个通往目标的方向。 */
+  function navWallHit(x, y, r) {
+    var i;
+    for (i = 0; i < Raid.walls.length; i++) {
+      var w = Raid.walls[i];
+      var cx = Math.max(w.x, Math.min(x, w.x + w.w));
+      var cy = Math.max(w.y, Math.min(y, w.y + w.h));
+      var dx = x - cx, dy = y - cy;
+      if (dx * dx + dy * dy < r * r) { return true; }
+    }
+    return false;
+  }
+  function raidNavInit() {
+    var mz = Raid.maze;
+    Raid.nav = null;
+    if (!mz) { return; }
+    var cols = mz.cols, rows = mz.rows, n = cols * rows, c, r, id;
+    var adj = [];
+    for (id = 0; id < n; id++) { adj.push([]); }
+    function cxo(c2) { return mz.x + (c2 + 0.5) * mz.cw; }
+    function cyo(r2) { return mz.y + (r2 + 0.5) * mz.ch; }
+    for (r = 0; r < rows; r++) {
+      for (c = 0; c < cols; c++) {
+        id = r * cols + c;
+        if (c < cols - 1) {
+          var mx = (cxo(c) + cxo(c + 1)) / 2, my = cyo(r);
+          if (!navWallHit(mx, my, 15)) { adj[id].push(id + 1); adj[id + 1].push(id); }
+        }
+        if (r < rows - 1) {
+          var mx2 = cxo(c), my2 = (cyo(r) + cyo(r + 1)) / 2;
+          if (!navWallHit(mx2, my2, 15)) { adj[id].push(id + cols); adj[id + cols].push(id); }
+        }
+      }
+    }
+    Raid.nav = { x: mz.x, y: mz.y, cw: mz.cw, ch: mz.ch, cols: cols, rows: rows, adj: adj, cache: {}, cacheN: 0 };
+  }
+  function raidNavCell(x, y) {
+    var n = Raid.nav;
+    if (!n) { return -1; }
+    var c = Math.floor((x - n.x) / n.cw), r = Math.floor((y - n.y) / n.ch);
+    c = Math.max(0, Math.min(n.cols - 1, c));
+    r = Math.max(0, Math.min(n.rows - 1, r));
+    return r * n.cols + c;
+  }
+  function raidNavField(tc) {
+    var n = Raid.nav;
+    if (n.cache[tc]) { return n.cache[tc]; }
+    var total = n.cols * n.rows, dist = new Int16Array(total), i;
+    for (i = 0; i < total; i++) { dist[i] = -1; }
+    dist[tc] = 0;
+    var q = [tc], head = 0;
+    while (head < q.length) {
+      var cur = q[head], nb = n.adj[cur], k;
+      head += 1;
+      for (k = 0; k < nb.length; k++) {
+        if (dist[nb[k]] >= 0) { continue; }
+        dist[nb[k]] = dist[cur] + 1;
+        q.push(nb[k]);
+      }
+    }
+    n.cache[tc] = { dist: dist };
+    n.cacheN += 1;
+    if (n.cacheN > 40) { n.cache = {}; n.cacheN = 1; n.cache[tc] = { dist: dist }; }
+    return n.cache[tc];
+  }
+  /* 返回一个「朝目标走」的航点；直线能到的格子会一路往前多看几格，走起来不僵 */
+  function raidNavDir(ex, ey, tx, ty) {
+    var n = Raid.nav;
+    if (!n) { return null; }
+    var ec = raidNavCell(ex, ey), tc = raidNavCell(tx, ty);
+    if (ec < 0 || tc < 0 || ec === tc) { return null; }
+    var f = raidNavField(tc);
+    if (!f || f.dist[ec] < 0) { return null; }
+    var cur = ec, wx = 0, wy = 0, found = false, guard;
+    for (guard = 0; guard < 6; guard++) {
+      var nb = n.adj[cur], best = -1, bd = 1e9, k;
+      for (k = 0; k < nb.length; k++) {
+        var dv = f.dist[nb[k]];
+        if (dv >= 0 && dv < bd) { bd = dv; best = nb[k]; }
+      }
+      if (best < 0) { break; }
+      var c2 = best % n.cols, r2 = (best - c2) / n.cols;
+      var px = n.x + (c2 + 0.5) * n.cw, py = n.y + (r2 + 0.5) * n.ch;
+      if (raidBlocked(ex, ey, px, py)) {
+        if (!found) { return { x: px, y: py }; }
+        break;
+      }
+      wx = px; wy = py; found = true; cur = best;
+    }
+    return found ? { x: wx, y: wy } : null;
+  }
+  /* 大件会不会把这条过道彻底堵死（两边都贴墙 = 过不去） */
+  function propWedged(cx, cy, hw, hh) {
+    if (!(hw > 0) || !(hh > 0)) { return false; }
+    var e = 26, i, w, b;
+    var bands = [
+      [cx - hw - e, cy - hh, e, hh * 2],
+      [cx + hw, cy - hh, e, hh * 2],
+      [cx - hw, cy - hh - e, hw * 2, e],
+      [cx - hw, cy + hh, hw * 2, e]
+    ];
+    var hit = [false, false, false, false];
+    for (i = 0; i < Raid.walls.length; i++) {
+      w = Raid.walls[i];
+      for (b = 0; b < 4; b++) {
+        var bb = bands[b];
+        if (hit[b]) { continue; }
+        if (bb[0] < w.x + w.w && bb[0] + bb[2] > w.x && bb[1] < w.y + w.h && bb[1] + bb[3] > w.y) { hit[b] = true; }
+      }
+    }
+    return (hit[0] && hit[1]) || (hit[2] && hit[3]);
+  }
   function raidBuild(map) {
     raidSetSize(map);
     /* 蚕蚀反应堆：先把辐射区铺好，后面的墙体 / 敌人 / 箱子都要避开它 */
@@ -7590,29 +7806,35 @@ body{overscroll-behavior-y:contain}
       var rd0 = defs[ri0];
       rooms.push({ x: rd0.x, y: rd0.y, w: rd0.w, h: rd0.h, door: rd0.door, name: rd0.name, open: false });
     }
-    var want = 12 + map.enemies, guard = 0;
-    while (walls.length < want && guard < 900) {
-      guard += 1;
-      var bw = rnd(80, 200), bh = rnd(80, 190);
-      var bx = rnd(70, Raid.W - 70 - bw), by = rnd(70, Raid.H - 70 - bh);
-      if (bx < 320 && by + bh > Raid.H - 320) { continue; }
-      if (bx + bw > Raid.W - 320 && by < 320) { continue; }
-      if (nearRiver(map, bx, by, bw, bh, 44)) { continue; }
-      if (radRectNear(bx, by, bw, bh, 30)) { continue; }
-      if (Raid.jailRect && bx < Raid.jailRect.x + Raid.jailRect.w + 90 && by + bh > Raid.jailRect.y - 90 && by < Raid.jailRect.y + Raid.jailRect.h + 90 && bx + bw > Raid.jailRect.x - 90) { continue; }
-      if (nearWarCap(bx + bw / 2, by + bh / 2, Math.max(bw, bh) / 2 + 150)) { continue; }
-      var ok = true, k;
-      for (k = 0; k < walls.length; k++) {
-        var o = walls[k];
-        if (bx < o.x + o.w + 38 && bx + bw + 38 > o.x && by < o.y + o.h + 38 && by + bh + 38 > o.y) { ok = false; break; }
-      }
-      if (ok) {
-        for (k = 0; k < rooms.length; k++) {
-          var rd = rooms[k];
-          if (bx < rd.x + rd.w + 70 && bx + bw + 70 > rd.x && by < rd.y + rd.h + 70 && by + bh + 70 > rd.y) { ok = false; break; }
+    /* v2.6.0：只有爆破模式的「旧城竞技场」是迷宫图；其他地图保持原来的随机掩体 */
+    Raid.maze = null;
+    if (map.bomb) {
+      raidMazeWalls(map, walls, rooms);
+    } else {
+      var want = 12 + map.enemies, guard = 0;
+      while (walls.length < want && guard < 900) {
+        guard += 1;
+        var bw = rnd(80, 200), bh = rnd(80, 190);
+        var bx = rnd(70, Raid.W - 70 - bw), by = rnd(70, Raid.H - 70 - bh);
+        if (bx < 320 && by + bh > Raid.H - 320) { continue; }
+        if (bx + bw > Raid.W - 320 && by < 320) { continue; }
+        if (nearRiver(map, bx, by, bw, bh, 44)) { continue; }
+        if (radRectNear(bx, by, bw, bh, 30)) { continue; }
+        if (Raid.jailRect && bx < Raid.jailRect.x + Raid.jailRect.w + 90 && by + bh > Raid.jailRect.y - 90 && by < Raid.jailRect.y + Raid.jailRect.h + 90 && bx + bw > Raid.jailRect.x - 90) { continue; }
+        if (nearWarCap(bx + bw / 2, by + bh / 2, Math.max(bw, bh) / 2 + 150)) { continue; }
+        var ok = true, k;
+        for (k = 0; k < walls.length; k++) {
+          var o = walls[k];
+          if (bx < o.x + o.w + 38 && bx + bw + 38 > o.x && by < o.y + o.h + 38 && by + bh + 38 > o.y) { ok = false; break; }
         }
+        if (ok) {
+          for (k = 0; k < rooms.length; k++) {
+            var rd = rooms[k];
+            if (bx < rd.x + rd.w + 70 && bx + bw + 70 > rd.x && by < rd.y + rd.h + 70 && by + bh + 70 > rd.y) { ok = false; break; }
+          }
+        }
+        if (ok) { walls.push({ x: bx, y: by, w: bw, h: bh }); }
       }
-      if (ok) { walls.push({ x: bx, y: by, w: bw, h: bh }); }
     }
     Raid.walls = walls;
     Raid.rooms = rooms;
@@ -7653,6 +7875,8 @@ body{overscroll-behavior-y:contain}
         }
       }
     }
+    /* 墙（含房间墙、牢房）都摆完了，再建寻路格子 */
+    raidNavInit();
     Raid.enemies = [];
     var i;
     for (i = 0; i < map.enemies; i++) {
@@ -9596,7 +9820,12 @@ body{overscroll-behavior-y:contain}
     var seeR = Raid.skOn.silent > 0 ? 170 : 520;
     if (d < seeR) {
       e.ang = Math.atan2(tgt.y - e.y, tgt.x - e.x);
-      if (d > 215) { mvx = (tgt.x - e.x) / d; mvy = (tgt.y - e.y) / d; }
+      if (d > 215) {
+        /* 迷宫：按 BFS 航点绕墙追人，而不是直愣愣撞墙 */
+        var nwp = raidNavDir(e.x, e.y, tgt.x, tgt.y), nl;
+        if (nwp) { nl = rlen(e.x, e.y, nwp.x, nwp.y) || 1; mvx = (nwp.x - e.x) / nl; mvy = (nwp.y - e.y) / nl; }
+        else { mvx = (tgt.x - e.x) / d; mvy = (tgt.y - e.y) / d; }
+      }
       else if (d < 125) { mvx = -(tgt.x - e.x) / d; mvy = -(tgt.y - e.y) / d; }
       else { mvx = Math.cos(e.ang + 1.57) * 0.62; mvy = Math.sin(e.ang + 1.57) * 0.62; }
       if (d < 420 && e.cd <= 0 && !raidBlocked(e.x, e.y, tgt.x, tgt.y)) {
@@ -9618,7 +9847,11 @@ body{overscroll-behavior-y:contain}
       if (gsite) {
         var gd = rlen(e.x, e.y, gsite.x, gsite.y);
         e.ang = Math.atan2(gsite.y - e.y, gsite.x - e.x);
-        if (gd > 140) { mvx = (gsite.x - e.x) / gd; mvy = (gsite.y - e.y) / gd; }
+        if (gd > 140) {
+          var gwp = raidNavDir(e.x, e.y, gsite.x, gsite.y), gl;
+          if (gwp) { gl = rlen(e.x, e.y, gwp.x, gwp.y) || 1; mvx = (gwp.x - e.x) / gl; mvy = (gwp.y - e.y) / gl; }
+          else { mvx = (gsite.x - e.x) / gd; mvy = (gsite.y - e.y) / gd; }
+        }
         else { mvx = Math.cos(e.wa) * 0.45; mvy = Math.sin(e.wa) * 0.45; }
       } else {
         mvx = Math.cos(e.wa) * 0.55; mvy = Math.sin(e.wa) * 0.55;
@@ -9643,7 +9876,11 @@ body{overscroll-behavior-y:contain}
     var bombtgt = (Raid.map && Raid.map.bomb && (!best || bd > 620)) ? raidBombObjective() : null;
     if (best && !bombtgt) {
       a.ang = Math.atan2(best.y - a.y, best.x - a.x);
-      if (bd > 300) { mvx = (best.x - a.x) / bd; mvy = (best.y - a.y) / bd; }
+      if (bd > 300) {
+        var awp = raidNavDir(a.x, a.y, best.x, best.y), al;
+        if (awp) { al = rlen(a.x, a.y, awp.x, awp.y) || 1; mvx = (awp.x - a.x) / al; mvy = (awp.y - a.y) / al; }
+        else { mvx = (best.x - a.x) / bd; mvy = (best.y - a.y) / bd; }
+      }
       else if (bd < 150) { mvx = -(best.x - a.x) / bd; mvy = -(best.y - a.y) / bd; }
       else { mvx = Math.cos(a.ang + 1.57) * 0.5; mvy = Math.sin(a.ang + 1.57) * 0.5; }
       if (bd < 520 && a.cd <= 0 && !raidBlocked(a.x, a.y, best.x, best.y)) {
@@ -9661,7 +9898,9 @@ body{overscroll-behavior-y:contain}
         var btd = rlen(a.x, a.y, bombtgt.x, bombtgt.y);
         if (btd > 160) {
           a.ang = Math.atan2(bombtgt.y - a.y, bombtgt.x - a.x);
-          mvx = (bombtgt.x - a.x) / btd; mvy = (bombtgt.y - a.y) / btd;
+          var bwp = raidNavDir(a.x, a.y, bombtgt.x, bombtgt.y), bl;
+          if (bwp) { bl = rlen(a.x, a.y, bwp.x, bwp.y) || 1; mvx = (bwp.x - a.x) / bl; mvy = (bwp.y - a.y) / bl; }
+          else { mvx = (bombtgt.x - a.x) / btd; mvy = (bombtgt.y - a.y) / btd; }
         } else {
           mvx = Math.cos(a.wa) * 0.5; mvy = Math.sin(a.wa) * 0.5; a.ang = a.wa;
         }
@@ -9818,7 +10057,10 @@ body{overscroll-behavior-y:contain}
     e.ang = Math.atan2(bb.y - e.y, bb.x - e.x);
     if (dd > 38) {
       e.defusing = false;
-      raidMoveEnt(e, (bb.x - e.x) / dd * e.t.spd * dt, (bb.y - e.y) / dd * e.t.spd * dt, e.r);
+      var dwp = raidNavDir(e.x, e.y, bb.x, bb.y), dl, dux, duy;
+      if (dwp) { dl = rlen(e.x, e.y, dwp.x, dwp.y) || 1; dux = (dwp.x - e.x) / dl; duy = (dwp.y - e.y) / dl; }
+      else { dux = (bb.x - e.x) / dd; duy = (bb.y - e.y) / dd; }
+      raidMoveEnt(e, dux * e.t.spd * dt, duy * e.t.spd * dt, e.r);
     } else {
       e.defusing = true;
     }
